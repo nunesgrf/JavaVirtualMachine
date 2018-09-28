@@ -2,7 +2,7 @@
 
 using namespace std;
 int main() {
-    ByteReader x;
-
-    x.print_test("Olá, mundo!");
+    ByteReader<uint32_t> type_char;
+    FILE * fp = fopen("HelloWorld.class","r");
+    cout << type_char.byteCatch(fp) << endl;
 }
