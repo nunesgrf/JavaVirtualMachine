@@ -1,13 +1,9 @@
-// TODO: Dividir este arquivo em .cpp e .h e definir macros para melhorar a leitura.
+#ifndef ___BYTEREADER_H___
+#define ___BYTEREADER_H___
 
-/**
- * @file ByteReader.cpp
- * @brief Uma classe que contém métodos de seleção e retorno de bytes.
- * @bug ...
- */
-#include <iostream>
-using namespace std;
+#define NEUTRAL_BYTE_FOR_OR 0x00;
 
+#include <stdio.h>
 /**
  * @brief Classe ByteReader. No momento da instanciação define-se qual tipo deseja-se buscar
  * E assim quando acionado o método byteCatch(FILE * fp) o arquivo busca o binário correspondente.
@@ -25,10 +21,12 @@ class ByteReader {
 template <class T>
 T ByteReader<T>::byteCatch(FILE * fp) {
     int num_of_bytes = sizeof(T); 
-    T toReturn = 0x00;
+    T toReturn = NEUTRAL_BYTE_FOR_OR;
 
     for(int i = 0; i < num_of_bytes; i++) {
         toReturn = ((toReturn << 8) | getc(fp));
     }
     return toReturn;
 }
+
+#endif // ___BYTEREADER_H___

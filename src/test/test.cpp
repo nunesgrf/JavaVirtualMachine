@@ -1,8 +1,21 @@
-#include "../main/ByteReader.cpp"
-
+#include "../main/cpp/JavaClass.cpp"
+#include "../main/cpp/ByteReader.cpp"
+#include <stdio.h>
+#include <iostream>
 using namespace std;
 int main() {
-    ByteReader<uint32_t> type_char;
+
     FILE * fp = fopen("HelloWorld.class","r");
-    cout << type_char.byteCatch(fp) << endl;
+    
+    JavaClass javaclass;
+
+    cout << "Teste!" << endl;
+    
+    javaclass.setMagic(fp);
+    javaclass.setMinor(fp);
+    javaclass.setMajor(fp);
+
+    cout << "MagicNumber  : " << hex << javaclass.getMagic() << endl;
+    cout << "MinorVersion : " << dec << javaclass.getMinor() << endl;
+    cout << "MajorVersion : " << dec << javaclass.getMajor() << endl;
 }
