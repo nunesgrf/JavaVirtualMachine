@@ -2,12 +2,26 @@
 #define ___JAVA_H___
 
 #define MAGIC_NUMBER 0xCAFEBABE;
+#define CONSTANT_Utf8 1
+#define CONSTANT_Integer 3
+#define CONSTANT_Float 4
+#define CONSTANT_Long 5
+#define CONSTANT_Double 6
+#define CONSTANT_Class 7
+#define CONSTANT_String 8
+#define CONSTANT_Fieldref 9
+#define CONSTANT_Methodref 10
+#define CONSTANT_InterfaceMethodref 11
+#define CONSTANT_NameAndType 12
 
 #include <cstdint>
 #include <iostream>
 #include <vector>
 
 #include "ByteReader.cpp"
+#include "CpInfo.cpp"
+
+
 
 class JavaClass {
 
@@ -16,7 +30,7 @@ class JavaClass {
         uint16_t minorVersion;
         uint16_t majorVersion;
         uint16_t constantPoolCounter;
-        //std::vector<CpInfo> constantPool;
+        std::vector<CpInfo*> constantPool;
         uint16_t acessFlags;
         uint16_t thisClass;
         uint16_t superClass;
@@ -126,8 +140,79 @@ void JavaClass::setConstCount(FILE * fp) {
 }
 
 void JavaClass::setConstPool(FILE * fp) {
-    //ByteReader<typeof(constantPool)> bReader;
-    //constantPool = bReader.byteCatch(fp);
+    
+    ByteReader<uint8_t>  OneByte;
+    ByteReader<uint16_t> TwoByte;
+    ByteReader<uint32_t> FourByte;
+
+    for(int i = 0; i < this->getConstCount(); i++) {
+
+        CpInfo * cp = (CpInfo *)malloc(sizeof(*cp));
+
+        constantPool.push_back(cp);
+        this->constantPool[i]->tag = OneByte.byteCatch(fp);
+
+        switch(this->constantPool[i]->tag) {
+            case CONSTANT_Utf8: 
+        
+                this->constantPool[i]->UTF8.length = TwoByte.byteCatch(fp);
+
+                for(int j = 0; j < this->constantPool[i]->UTF8.length; j++) {
+                    //this->constantPool[i]->UTF8.bytes.push_back(OneByte.byteCatch(fp));
+                    /**
+                     * Desse jeito acima funciona e apresenta os resultados corretos, 
+                     * mas o Valgrind acusa uma série de erros que seria interessante 
+                     * verificar depois.
+                     */
+                    OneByte.byteCatch(fp);
+                    /**
+                     * Com isso, uso esta linha acima simplesmente para ignorar o tamanho
+                     * do vector em bytes
+                     */
+                }
+                break;
+            case CONSTANT_Integer: 
+                this->constantPool[i]->Integer.bytes = FourByte.byteCatch(fp);
+                break;
+            case CONSTANT_Float: 
+                this->constantPool[i]->Float.bytes = FourByte.byteCatch(fp);
+                break;
+            case CONSTANT_Long: 
+                this->constantPool[i]->Long.high_bytes = FourByte.byteCatch(fp);
+                this->constantPool[i]->Long.low_bytes  = FourByte.byteCatch(fp);
+                break;
+            case CONSTANT_Double: 
+                this->constantPool[i]->Double.high_bytes = FourByte.byteCatch(fp);
+                this->constantPool[i]->Double.low_bytes  = FourByte.byteCatch(fp);
+                break;
+            case CONSTANT_Class:
+                this->constantPool[i]->Class.name_index = TwoByte.byteCatch(fp);
+                break;
+            case CONSTANT_String: 
+                this->constantPool[i]->String.string_index = TwoByte.byteCatch(fp);
+                break;
+            case CONSTANT_Fieldref:
+                this->constantPool[i]->Fieldref.class_index = TwoByte.byteCatch(fp);
+                this->constantPool[i]->Fieldref.name_and_type_index = TwoByte.byteCatch(fp);
+                break;
+            case CONSTANT_Methodref: 
+                this->constantPool[i]->Methodref.class_index = TwoByte.byteCatch(fp);
+                this->constantPool[i]->Methodref.name_and_type_index = TwoByte.byteCatch(fp);
+                break;
+            case CONSTANT_InterfaceMethodref: 
+                this->constantPool[i]->InterfaceMethodref.class_index = TwoByte.byteCatch(fp);
+                this->constantPool[i]->InterfaceMethodref.name_and_type_index = TwoByte.byteCatch(fp);
+                break;
+            case CONSTANT_NameAndType: 
+                this->constantPool[i]->NameAndType.name_index = TwoByte.byteCatch(fp);
+                this->constantPool[i]->NameAndType.descriptor_index = TwoByte.byteCatch(fp);
+                break;
+            default:
+                //TODO: Criar um 'default' melhor.
+                std::cout << "Não entrou em nenhuma" << std::endl;    
+        }
+        free(cp);
+    }
 }
 
 void JavaClass::setAcessFlag(FILE * fp) {

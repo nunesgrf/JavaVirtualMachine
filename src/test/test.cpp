@@ -13,10 +13,13 @@ int main() {
     javaclass.setMagic(fp);
     javaclass.setMinor(fp);
     javaclass.setMajor(fp);
-
+    javaclass.setConstCount(fp);
+    javaclass.setConstPool(fp);
+    
     cout << "MagicNumber  : " << hex << javaclass.getMagic() << endl;
     cout << "MinorVersion : " << dec << javaclass.getMinor() << endl;
     cout << "MajorVersion : " << dec << javaclass.getMajor() << endl;
+    cout << "PoolCounter  : " << dec << javaclass.getConstCount() << endl;
 
-   
+    fclose(fp);
 }
