@@ -9,7 +9,7 @@
 
     Gabriel Nunes Rodrigues Fonseca - 16/0006597
     Guilherme da Silva Fontes Lopes - 15/0128215
-    <Nome>                          - <Matrícula>
+    Alex Nascimento Souza           - 15/0115474
 
     Projeto final da disciplina que consiste na implementação 
     de uma JVM simplificada. 
