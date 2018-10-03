@@ -20,6 +20,6 @@ int main() {
     cout << "MinorVersion : " << dec << javaclass.getMinor() << endl;
     cout << "MajorVersion : " << dec << javaclass.getMajor() << endl;
     cout << "PoolCounter  : " << dec << javaclass.getConstCount() << endl;
-
+    
     fclose(fp);
 }
