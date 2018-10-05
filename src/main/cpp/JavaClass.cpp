@@ -20,7 +20,9 @@
 
 #include "ByteReader.cpp"
 #include "CpInfo.cpp"
-
+#include "MethodInfo.cpp"
+#include "FieldInfo.cpp"
+#include "AttributeInfo.cpp"
 
 
 class JavaClass {
@@ -37,11 +39,11 @@ class JavaClass {
         uint16_t interfaceCounter;
         std::vector<uint16_t> interfaces;
         uint16_t fieldsCounter;
-        //std::vector<FieldsInfo> fields;
+        std::vector<FieldsInfo*> fields;
         uint16_t methodsCounter;
-        //std::vector<MethodInfo> methods;
+        std::vector<MethodInfo*> methods;
         uint16_t attributesCounter;
-        //std::vector<AttributeInfo> attributes;
+        std::vector<AttributeInfo*> attributes;
 
         bool verify();
 
@@ -76,9 +78,9 @@ class JavaClass {
         typeof(constantPoolCounter) getConstCount() {
             return constantPoolCounter;
         }
-        /*std::vector<CpIntro> getConstPool() {
+        typeof(constantPool) getConstPool() {
             return constantPool;
-        }*/
+        }
         typeof(acessFlags) getFlag() {
             return acessFlags;
         }
@@ -97,23 +99,32 @@ class JavaClass {
         typeof(fieldsCounter) getFieldCount() {
             return fieldsCounter;
         }
-        /*std::vector<FieldsInfo> getFields() {
+        typeof(fields) getFields() {
             return fields;
-        }*/
+        }
         typeof(methodsCounter) getMethoCount() {
             return methodsCounter;
         }
-        /*std::vector<MethodInfo> getMethods() {
+        typeof(methods) getMethods() {
             return methods;
-        }*/
+        }
         typeof(attributesCounter) getAttriCount() {
             return attributesCounter;
         }
-        /*std::vector<AttributeInfo> getAttributes() {
+        typeof(attributes) getAttributes() {
             return attributes;
-        }*/
+        }
+
+        bool DEBUG = false;
+        ~JavaClass();
 
 };
+
+JavaClass::~JavaClass() {
+    for (auto a : constantPool) {
+        free(a);
+    }
+}
 
 bool JavaClass::verify() {
     return true;
@@ -144,75 +155,116 @@ void JavaClass::setConstPool(FILE * fp) {
     ByteReader<uint8_t>  OneByte;
     ByteReader<uint16_t> TwoByte;
     ByteReader<uint32_t> FourByte;
-
+    
+    int a = 0;
     for(int i = 0; i < this->getConstCount(); i++) {
 
-        CpInfo * cp = (CpInfo *)malloc(sizeof(*cp));
-
-        constantPool.push_back(cp);
+        CpInfo * cp = (CpInfo *)calloc(1, sizeof(*cp));
+    
+        this->constantPool.push_back(cp);
+        
         this->constantPool[i]->tag = OneByte.byteCatch(fp);
+        a+=1;
 
         switch(this->constantPool[i]->tag) {
+
             case CONSTANT_Utf8: 
-        
+    
                 this->constantPool[i]->UTF8.length = TwoByte.byteCatch(fp);
+                a+=2;
 
                 for(int j = 0; j < this->constantPool[i]->UTF8.length; j++) {
-                    //this->constantPool[i]->UTF8.bytes.push_back(OneByte.byteCatch(fp));
-                    /**
-                     * Desse jeito acima funciona e apresenta os resultados corretos, 
-                     * mas o Valgrind acusa uma série de erros que seria interessante 
-                     * verificar depois.
-                     */
-                    OneByte.byteCatch(fp);
-                    /**
-                     * Com isso, uso esta linha acima simplesmente para ignorar o tamanho
-                     * do vector em bytes
-                     */
+
+                    uint8_t xd = OneByte.byteCatch(fp);
+                    a+=1;
+
+                    this->constantPool[i]->UTF8.bytes.push_back(xd);
+                    
                 }
+                
                 break;
+
             case CONSTANT_Integer: 
                 this->constantPool[i]->Integer.bytes = FourByte.byteCatch(fp);
+                a+=4;
                 break;
+
             case CONSTANT_Float: 
+
                 this->constantPool[i]->Float.bytes = FourByte.byteCatch(fp);
+                a+=4;
+
                 break;
+
             case CONSTANT_Long: 
                 this->constantPool[i]->Long.high_bytes = FourByte.byteCatch(fp);
                 this->constantPool[i]->Long.low_bytes  = FourByte.byteCatch(fp);
+                a+=8;
+
                 break;
+
             case CONSTANT_Double: 
+
                 this->constantPool[i]->Double.high_bytes = FourByte.byteCatch(fp);
                 this->constantPool[i]->Double.low_bytes  = FourByte.byteCatch(fp);
+                a+=8;
+
                 break;
+
             case CONSTANT_Class:
+
                 this->constantPool[i]->Class.name_index = TwoByte.byteCatch(fp);
+                a+=2;
                 break;
+
             case CONSTANT_String: 
+
                 this->constantPool[i]->String.string_index = TwoByte.byteCatch(fp);
+                a+=2;
+
                 break;
+
             case CONSTANT_Fieldref:
+
                 this->constantPool[i]->Fieldref.class_index = TwoByte.byteCatch(fp);
                 this->constantPool[i]->Fieldref.name_and_type_index = TwoByte.byteCatch(fp);
+                a+=4;
+
                 break;
+
             case CONSTANT_Methodref: 
+
                 this->constantPool[i]->Methodref.class_index = TwoByte.byteCatch(fp);
                 this->constantPool[i]->Methodref.name_and_type_index = TwoByte.byteCatch(fp);
+                a+=4;
+
                 break;
+
             case CONSTANT_InterfaceMethodref: 
+
                 this->constantPool[i]->InterfaceMethodref.class_index = TwoByte.byteCatch(fp);
                 this->constantPool[i]->InterfaceMethodref.name_and_type_index = TwoByte.byteCatch(fp);
+                a+=4;
+
                 break;
+
             case CONSTANT_NameAndType: 
+
                 this->constantPool[i]->NameAndType.name_index = TwoByte.byteCatch(fp);
                 this->constantPool[i]->NameAndType.descriptor_index = TwoByte.byteCatch(fp);
+                a+=4;
+
                 break;
+
             default:
+                if(DEBUG) std::cout << "NAO SEI" << std::endl;
                 //TODO: Criar um 'default' melhor.
-                std::cout << "Não entrou em nenhuma" << std::endl;    
+                //std::cout << "Não entrou em nenhuma" << std::endl;    
         }
-        free(cp);
+
     }
+    if(!DEBUG) std::cout << "Valor de A: " << a << std::endl;
+    
 }
 
 void JavaClass::setAcessFlag(FILE * fp) {
