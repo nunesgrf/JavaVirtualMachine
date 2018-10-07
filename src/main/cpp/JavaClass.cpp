@@ -25,27 +25,69 @@
 #include "AttributeInfo.cpp"
 
 
+
+
 class JavaClass {
 
-    private: 
-        uint32_t magicNumber;
-        uint16_t minorVersion;
-        uint16_t majorVersion;
-        uint16_t constantPoolCounter;
-        std::vector<CpInfo*> constantPool;
-        uint16_t acessFlags;
-        uint16_t thisClass;
-        uint16_t superClass;
-        uint16_t interfaceCounter;
-        std::vector<uint16_t> interfaces;
-        uint16_t fieldsCounter;
-        std::vector<FieldsInfo*> fields;
-        uint16_t methodsCounter;
-        std::vector<MethodInfo*> methods;
-        uint16_t attributesCounter;
-        std::vector<AttributeInfo*> attributes;
+    private:
+      /* The magic item supplies the magic number identifying the class file format */
+      uint32_t magicNumber;
+      /* The values of the minor_version and major_version items are the 
+      minor and major version numbers of this class file. 
+      Together, a major and a minor version number determine 
+      the version of the class file format. */
+      uint16_t minorVersion;
+      uint16_t majorVersion;
 
-        bool verify();
+      /* The value of the constant_pool_count item is equal to the
+       number of entries in the constant_pool table plus one. */
+      uint16_t constantPoolCounter;
+
+      /* The constant_pool is a table of structures  */
+      std::vector<CpInfo *> constantPool;
+
+      /* The value of the access_flags item is a mask of flags used to denote
+       access permissions to and properties of this class or interface */
+      uint16_t acessFlags;
+
+
+      uint16_t thisClass;
+      uint16_t superClass;
+
+      /* The value of the interfaces_count item gives the number of direct
+       superinterfaces of this class or interface type. */
+      uint16_t interfaceCounter;
+
+      /* Each value in the interfaces array must be a valid
+       index into the constant_pool table */
+      std::vector<uint16_t> interfaces;
+
+      /* The value of the fields_count item gives the number
+       of field_info structures in the fields table */
+      uint16_t fieldsCounter;
+
+      /* The fields table includes only those fields that are declared by this class or interface. 
+      It does not include items representing fields that are 
+      inherited from superclasses or superinterfaces. */
+      std::vector<FieldsInfo *> fields;
+
+      /* The value of the methods_count item gives
+       the number of method_info structures in the methods table. */
+      uint16_t methodsCounter;
+
+      /*  The method_info structures represent all methods declared by this class or interface type,
+       including instance methods, class methods, instance initialization methods, 
+       and any class or interface initialization method.  */
+      std::vector<MethodInfo *> methods;
+
+      /*The value of the attributes_count item gives the number
+       of attributes in the attributes table of this class. */
+      uint16_t attributesCounter;
+
+      /* */
+      std::vector<AttributeInfo *> attributes;
+
+      bool verify();
 
     public:
 
@@ -61,9 +103,9 @@ class JavaClass {
         void setInterface(FILE * fp);
         void setFieldCount(FILE * fp);
         void setFields(FILE * fp);
-        void setMethoCount(FILE * fp);
+        void setMethodCount(FILE * fp);
         void setMethods(FILE * fp);
-        void setAttriCount(FILE * fp);
+        void setAttributesCount(FILE * fp);
         void setAttributes(FILE * fp);
 
         typeof(magicNumber) getMagic() {
@@ -157,109 +199,128 @@ void JavaClass::setConstPool(FILE * fp) {
     ByteReader<uint32_t> FourByte;
     
     int a = 0;
+
+    /* Iterate over the size of constant pool */
     for(int i = 0; i < this->getConstCount(); i++) {
 
+        /* Allocate a constante pool */
         CpInfo * cp = (CpInfo *)calloc(1, sizeof(*cp));
-    
+
+        /* Puts into the vector of constant pools  */
         this->constantPool.push_back(cp);
         
+        /* For the i-est constant pool vector, it catches the tag for it */
         this->constantPool[i]->tag = OneByte.byteCatch(fp);
         a+=1;
 
         switch(this->constantPool[i]->tag) {
 
             case CONSTANT_Utf8: 
-    
+
+                /* It reads two bytes from the file */    
                 this->constantPool[i]->UTF8.length = TwoByte.byteCatch(fp);
                 a+=2;
 
-                for(int j = 0; j < this->constantPool[i]->UTF8.length; j++) {
 
+                for(int j = 0; j < this->constantPool[i]->UTF8.length; j++) {
+                    /* Reads one byte from file */
                     uint8_t xd = OneByte.byteCatch(fp);
                     a+=1;
 
+                    /* It pushes into the UTF8 array */
                     this->constantPool[i]->UTF8.bytes.push_back(xd);
-                    
+                    /* Concatenates \0 for string last char */
+                    this->constantPool[i]->UTF8.bytes[this->constantPool[i]->UTF8.length] = '\0';
                 }
                 
                 break;
 
             case CONSTANT_Integer: 
+                /* Reads 4 bytes of the file */
                 this->constantPool[i]->Integer.bytes = FourByte.byteCatch(fp);
                 a+=4;
                 break;
 
-            case CONSTANT_Float: 
-
+            case CONSTANT_Float:
+                /* Reads 4 bytes of the file */
                 this->constantPool[i]->Float.bytes = FourByte.byteCatch(fp);
                 a+=4;
 
                 break;
 
-            case CONSTANT_Long: 
+            case CONSTANT_Long:
+                /* Reads 4 bytes of the file */
                 this->constantPool[i]->Long.high_bytes = FourByte.byteCatch(fp);
+
+                /* Reads 4 bytes of the file */
                 this->constantPool[i]->Long.low_bytes  = FourByte.byteCatch(fp);
                 a+=8;
 
                 break;
 
-            case CONSTANT_Double: 
-
+            case CONSTANT_Double:
+                /* Reads 4 bytes of the file */
                 this->constantPool[i]->Double.high_bytes = FourByte.byteCatch(fp);
+                
+                /* Reads 4 bytes of the file */
                 this->constantPool[i]->Double.low_bytes  = FourByte.byteCatch(fp);
                 a+=8;
 
                 break;
 
             case CONSTANT_Class:
-
+                /* Reads 2 bytes of the file */
                 this->constantPool[i]->Class.name_index = TwoByte.byteCatch(fp);
                 a+=2;
                 break;
 
-            case CONSTANT_String: 
-
+            case CONSTANT_String:
+                /* Reads 2 bytes of the file */
                 this->constantPool[i]->String.string_index = TwoByte.byteCatch(fp);
                 a+=2;
 
                 break;
 
             case CONSTANT_Fieldref:
-
+                /* Reads 2 bytes of the file */
                 this->constantPool[i]->Fieldref.class_index = TwoByte.byteCatch(fp);
+                
+                /* Reads 2 bytes of the file */
                 this->constantPool[i]->Fieldref.name_and_type_index = TwoByte.byteCatch(fp);
                 a+=4;
 
                 break;
 
-            case CONSTANT_Methodref: 
-
+            case CONSTANT_Methodref:
+                /* Reads 2 bytes of the file */
                 this->constantPool[i]->Methodref.class_index = TwoByte.byteCatch(fp);
                 this->constantPool[i]->Methodref.name_and_type_index = TwoByte.byteCatch(fp);
                 a+=4;
 
                 break;
 
-            case CONSTANT_InterfaceMethodref: 
-
+            case CONSTANT_InterfaceMethodref:
+                /* Reads 2 bytes of the file */
                 this->constantPool[i]->InterfaceMethodref.class_index = TwoByte.byteCatch(fp);
+                
+                /* Reads 2 bytes of the file */
                 this->constantPool[i]->InterfaceMethodref.name_and_type_index = TwoByte.byteCatch(fp);
                 a+=4;
 
                 break;
 
-            case CONSTANT_NameAndType: 
-
+            case CONSTANT_NameAndType:
+                /* Reads 2 bytes of the file */
                 this->constantPool[i]->NameAndType.name_index = TwoByte.byteCatch(fp);
+                
+                /* Reads 2 bytes of the file */
                 this->constantPool[i]->NameAndType.descriptor_index = TwoByte.byteCatch(fp);
                 a+=4;
 
                 break;
 
             default:
-                if(DEBUG) std::cout << "NAO SEI" << std::endl;
-                //TODO: Criar um 'default' melhor.
-                //std::cout << "Não entrou em nenhuma" << std::endl;    
+                if(DEBUG) std::cout << "A invalid tag was detected" << std::endl;
         }
 
     }
@@ -301,7 +362,7 @@ void JavaClass::setFields(FILE * fp) {
     //fields = bReader.byteCatch(fp);
 }
 
-void JavaClass::setMethoCount(FILE * fp) {
+void JavaClass::setMethodCount(FILE * fp) {
     ByteReader<typeof(methodsCounter)> bReader;
     methodsCounter = bReader.byteCatch(fp);
 }
@@ -311,7 +372,7 @@ void JavaClass::setMethods(FILE * fp) {
     //methods = bReader.byteCatch(fp);
 }
 
-void JavaClass::setAttriCount(FILE * fp) {
+void JavaClass::setAttributesCount(FILE * fp) {
     ByteReader<typeof(attributesCounter)> bReader;
     attributesCounter = bReader.byteCatch(fp);
 }
