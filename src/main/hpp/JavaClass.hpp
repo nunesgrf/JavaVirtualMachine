@@ -1,0 +1,160 @@
+#ifndef ___JAVA_H___
+#define ___JAVA_H___
+
+#define MAGIC_NUMBER 0xCAFEBABE;
+#define CONSTANT_Utf8 1
+#define CONSTANT_Integer 3
+#define CONSTANT_Float 4
+#define CONSTANT_Long 5
+#define CONSTANT_Double 6
+#define CONSTANT_Class 7
+#define CONSTANT_String 8
+#define CONSTANT_Fieldref 9
+#define CONSTANT_Methodref 10
+#define CONSTANT_InterfaceMethodref 11
+#define CONSTANT_NameAndType 12
+
+#include <cstdint>
+#include <iostream>
+#include <vector>
+
+#include "../cpp/ByteReader.cpp"
+#include "../cpp/CpInfo.cpp"
+#include "../cpp/MethodInfo.cpp"
+#include "../cpp/FieldInfo.cpp"
+#include "../cpp/AttributeInfo.cpp"
+
+class JavaClass {
+
+    private:
+      /* The magic item supplies the magic number identifying the class file format */
+      uint32_t magicNumber;
+      /* The values of the minor_version and major_version items are the 
+      minor and major version numbers of this class file. 
+      Together, a major and a minor version number determine 
+      the version of the class file format. */
+      uint16_t minorVersion;
+      uint16_t majorVersion;
+
+      /* The value of the constant_pool_count item is equal to the
+       number of entries in the constant_pool table plus one. */
+      uint16_t constantPoolCounter;
+
+      /* The constant_pool is a table of structures  */
+      std::vector<CpInfo *> constantPool;
+
+      /* The value of the access_flags item is a mask of flags used to denote
+       access permissions to and properties of this class or interface */
+      uint16_t acessFlags;
+
+
+      uint16_t thisClass;
+      uint16_t superClass;
+
+      /* The value of the interfaces_count item gives the number of direct
+       superinterfaces of this class or interface type. */
+      uint16_t interfaceCounter;
+
+      /* Each value in the interfaces array must be a valid
+       index into the constant_pool table */
+      std::vector<uint16_t> interfaces;
+
+      /* The value of the fields_count item gives the number
+       of field_info structures in the fields table */
+      uint16_t fieldsCounter;
+
+      /* The fields table includes only those fields that are declared by this class or interface. 
+      It does not include items representing fields that are 
+      inherited from superclasses or superinterfaces. */
+      std::vector<FieldsInfo *> fields;
+
+      /* The value of the methods_count item gives
+       the number of method_info structures in the methods table. */
+      uint16_t methodsCounter;
+
+      /*  The method_info structures represent all methods declared by this class or interface type,
+       including instance methods, class methods, instance initialization methods, 
+       and any class or interface initialization method.  */
+      std::vector<MethodInfo *> methods;
+
+      /*The value of the attributes_count item gives the number
+       of attributes in the attributes table of this class. */
+      uint16_t attributesCounter;
+
+      /* */
+      std::vector<AttributeInfo *> attributes;
+
+      void setMagic(FILE * fp);
+      void setMajor(FILE * fp);
+      void setMinor(FILE * fp);
+      void setConstCount(FILE * fp);
+      void setConstPool(FILE * fp);
+      void setAcessFlag(FILE * fp);
+      void setThisClass(FILE * fp);
+      void setSuperClass(FILE * fp);
+      void setInterCount(FILE * fp);
+      void setInterface(FILE * fp);
+      void setFieldCount(FILE * fp);
+      void setFields(FILE * fp);
+      void setMethodCount(FILE * fp);
+      void setMethods(FILE * fp);
+      void setAttributesCount(FILE * fp);
+      void setAttributes(FILE * fp);
+
+    public:
+
+        typeof(magicNumber) getMagic() {
+            return magicNumber;
+        }
+        typeof(majorVersion) getMajor() {
+            return majorVersion;
+        }
+        typeof(minorVersion) getMinor() {
+            return minorVersion;
+        }
+        typeof(constantPoolCounter) getConstCount() {
+            return constantPoolCounter;
+        }
+        typeof(constantPool) getConstPool() {
+            return constantPool;
+        }
+        typeof(acessFlags) getFlag() {
+            return acessFlags;
+        }
+        typeof(thisClass) getThisClass() {
+            return thisClass;
+        }
+        typeof(superClass) getSuper() {
+            return superClass;
+        }
+        typeof(interfaceCounter) getInterCounter() {
+            return interfaceCounter;
+        }
+        std::vector<uint16_t> getInterfaces() {
+            return interfaces;
+        }
+        typeof(fieldsCounter) getFieldCount() {
+            return fieldsCounter;
+        }
+        typeof(fields) getFields() {
+            return fields;
+        }
+        typeof(methodsCounter) getMethoCount() {
+            return methodsCounter;
+        }
+        typeof(methods) getMethods() {
+            return methods;
+        }
+        typeof(attributesCounter) getAttriCount() {
+            return attributesCounter;
+        }
+        typeof(attributes) getAttributes() {
+            return attributes;
+        }
+
+        bool DEBUG = true;
+        ~JavaClass();
+        JavaClass(FILE * fp);
+};
+
+#endif // ___JAVA_H___

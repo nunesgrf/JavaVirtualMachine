@@ -8,9 +8,8 @@
 class FieldsInfo {
     public:
         uint16_t access_flags;
-        uint16_t access_flags;
-        uint16_t access_flags;
-        uint16_t access_flags;
         /* TO DO: An Attribute info instance */
 
 };
+
+#endif

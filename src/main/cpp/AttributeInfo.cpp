@@ -25,7 +25,9 @@ class CodeAttribute {
 class AttributeInfo{
     public: 
         uint16_t name_index;
-        uint32_t length
+        uint32_t length;
         std::vector<uint8_t> info;
 
 };
+
+#endif
