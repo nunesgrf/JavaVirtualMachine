@@ -1,12 +1,12 @@
-#include "../hpp/JavaClass.hpp"
+#include "../hpp/ClassLoader.hpp"
 
 /**
- * @brief Construtor da classe da JavaClass;
+ * @brief Construtor da classe da ClassLoader;
  * A ideia é chamar todos os Set's aqui de maneira
  * garantir a qualidade dos dados.
  */
 
-JavaClass::JavaClass(FILE * fp) {
+ClassLoader::ClassLoader(FILE * fp) {
     this->setMagic(fp);
 
     if((this->getMagic() == 0xCAFEBABE)) {
@@ -31,36 +31,36 @@ JavaClass::JavaClass(FILE * fp) {
 
 /**
  * Aqui são feitas as desalocações 
- * da JavaClass
+ * da ClassLoader
  */
 
-JavaClass::~JavaClass() {
+ClassLoader::~ClassLoader() {
     for (auto a : constantPool) {
         free(a);
     }
 }
 
-void JavaClass::setMagic(FILE * fp) {
+void ClassLoader::setMagic(FILE * fp) {
     ByteReader<typeof(magicNumber)> bReader;
     magicNumber = bReader.byteCatch(fp);
 }
 
-void JavaClass::setMinor(FILE * fp) {
+void ClassLoader::setMinor(FILE * fp) {
     ByteReader<typeof(minorVersion)> bReader;
     minorVersion = bReader.byteCatch(fp);
 }
 
-void JavaClass::setMajor(FILE * fp) {
+void ClassLoader::setMajor(FILE * fp) {
     ByteReader<typeof(majorVersion)> bReader;
     majorVersion = bReader.byteCatch(fp);
 }
 
-void JavaClass::setConstCount(FILE * fp) {
+void ClassLoader::setConstCount(FILE * fp) {
     ByteReader<typeof(constantPoolCounter)> bReader;
     constantPoolCounter = bReader.byteCatch(fp);
 }
 
-void JavaClass::setConstPool(FILE * fp) {
+void ClassLoader::setConstPool(FILE * fp) {
     
     ByteReader<uint8_t>  OneByte;
     ByteReader<uint16_t> TwoByte;
@@ -93,7 +93,7 @@ void JavaClass::setConstPool(FILE * fp) {
                     /* Reads one byte from file */
                     uint8_t xd = OneByte.byteCatch(fp);
                     /* It pushes into the UTF8 array */
-                    this->constantPool[i]->UTF8.bytes.push_back(xd);
+                    //this->constantPool[i]->UTF8.bytes.push_back(xd);
                     /* Concatenates \0 for string last char */
                     this->constantPool[i]->UTF8.bytes[this->constantPool[i]->UTF8.length] = '\0';
                 }
@@ -177,56 +177,57 @@ void JavaClass::setConstPool(FILE * fp) {
     }    
 }
 
-void JavaClass::setAcessFlag(FILE * fp) {
+
+void ClassLoader::setAcessFlag(FILE * fp) {
     ByteReader<typeof(acessFlags)> bReader;
     acessFlags = bReader.byteCatch(fp);
 }
 
-void JavaClass::setThisClass(FILE * fp) {
+void ClassLoader::setThisClass(FILE * fp) {
     ByteReader<typeof(thisClass)> bReader;
     thisClass = bReader.byteCatch(fp);
 }
-void JavaClass::setSuperClass(FILE * fp) {
+void ClassLoader::setSuperClass(FILE * fp) {
     ByteReader<typeof(superClass)> bReader;
     superClass = bReader.byteCatch(fp);
 }
 
-void JavaClass::setInterCount(FILE * fp) {
+void ClassLoader::setInterCount(FILE * fp) {
     ByteReader<typeof(interfaceCounter)> bReader;
     interfaceCounter = bReader.byteCatch(fp);
 }
 
-void JavaClass::setInterface(FILE * fp) {
+void ClassLoader::setInterface(FILE * fp) {
     //ByteReader<typeof(interfaces)> bReader;
     //interfaces = bReader.byteCatch(fp);
 }
 
-void JavaClass::setFieldCount(FILE * fp) {
+void ClassLoader::setFieldCount(FILE * fp) {
     ByteReader<typeof(fieldsCounter)> bReader;
     fieldsCounter = bReader.byteCatch(fp);
 }
 
-void JavaClass::setFields(FILE * fp) {
+void ClassLoader::setFields(FILE * fp) {
     //ByteReader<typeof(fields)> bReader;
     //fields = bReader.byteCatch(fp);
 }
 
-void JavaClass::setMethodCount(FILE * fp) {
+void ClassLoader::setMethodCount(FILE * fp) {
     ByteReader<typeof(methodsCounter)> bReader;
     methodsCounter = bReader.byteCatch(fp);
 }
 
-void JavaClass::setMethods(FILE * fp) {
+void ClassLoader::setMethods(FILE * fp) {
     //ByteReader<typeof(methods)> bReader;
     //methods = bReader.byteCatch(fp);
 }
 
-void JavaClass::setAttributesCount(FILE * fp) {
+void ClassLoader::setAttributesCount(FILE * fp) {
     ByteReader<typeof(attributesCounter)> bReader;
     attributesCounter = bReader.byteCatch(fp);
 }
 
-void JavaClass::setAttributes(FILE * fp) {
+void ClassLoader::setAttributes(FILE * fp) {
    // ByteReader<typeof(attributes)> bReader;
    // attributes = bReader.byteCatch(fp);
 }

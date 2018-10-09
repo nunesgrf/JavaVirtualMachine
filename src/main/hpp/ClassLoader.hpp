@@ -24,7 +24,7 @@
 #include "../cpp/FieldInfo.cpp"
 #include "../cpp/AttributeInfo.cpp"
 
-class JavaClass {
+class ClassLoader {
 
     private:
       /* The magic item supplies the magic number identifying the class file format */
@@ -57,7 +57,7 @@ class JavaClass {
 
       /* Each value in the interfaces array must be a valid
        index into the constant_pool table */
-      std::vector<uint16_t> interfaces;
+      //std::vector<uint16_t> interfaces;
 
       /* The value of the fields_count item gives the number
        of field_info structures in the fields table */
@@ -66,7 +66,7 @@ class JavaClass {
       /* The fields table includes only those fields that are declared by this class or interface. 
       It does not include items representing fields that are 
       inherited from superclasses or superinterfaces. */
-      std::vector<FieldsInfo *> fields;
+      //std::vector<FieldsInfo *> fields;
 
       /* The value of the methods_count item gives
        the number of method_info structures in the methods table. */
@@ -75,14 +75,14 @@ class JavaClass {
       /*  The method_info structures represent all methods declared by this class or interface type,
        including instance methods, class methods, instance initialization methods, 
        and any class or interface initialization method.  */
-      std::vector<MethodInfo *> methods;
+      //std::vector<MethodInfo *> methods;
 
       /*The value of the attributes_count item gives the number
        of attributes in the attributes table of this class. */
       uint16_t attributesCounter;
 
       /* */
-      std::vector<AttributeInfo *> attributes;
+      //std::vector<AttributeInfo *> attributes;
 
       void setMagic(FILE * fp);
       void setMajor(FILE * fp);
@@ -102,59 +102,64 @@ class JavaClass {
       void setAttributes(FILE * fp);
 
     public:
-
-        typeof(magicNumber) getMagic() {
-            return magicNumber;
+      
+        uint32_t getMagic() {
+          return magicNumber;
         }
-        typeof(majorVersion) getMajor() {
+        uint16_t getMajor() {
             return majorVersion;
         }
-        typeof(minorVersion) getMinor() {
+        uint16_t getMinor() {
             return minorVersion;
         }
-        typeof(constantPoolCounter) getConstCount() {
+        uint16_t getConstCount() {
             return constantPoolCounter;
         }
-        typeof(constantPool) getConstPool() {
+        /* typeof(constantPool) getConstPool() {
             return constantPool;
-        }
-        typeof(acessFlags) getFlag() {
+        } */
+        uint16_t getFlag() {
             return acessFlags;
         }
-        typeof(thisClass) getThisClass() {
+        uint16_t getThisClass() {
             return thisClass;
         }
-        typeof(superClass) getSuper() {
+        uint16_t getSuper() {
             return superClass;
         }
-        typeof(interfaceCounter) getInterCounter() {
+        uint16_t getInterCounter() {
             return interfaceCounter;
         }
-        std::vector<uint16_t> getInterfaces() {
+        /* std::vector<uint16_t> getInterfaces() {
             return interfaces;
-        }
-        typeof(fieldsCounter) getFieldCount() {
+        } */
+
+        uint16_t getFieldCount() {
             return fieldsCounter;
         }
-        typeof(fields) getFields() {
+        /* typeof(fields) getFields() {
             return fields;
-        }
-        typeof(methodsCounter) getMethoCount() {
+        } */
+
+        uint16_t getMethoCount() {
             return methodsCounter;
         }
-        typeof(methods) getMethods() {
+
+        /* typeof(methods) getMethods() {
             return methods;
-        }
-        typeof(attributesCounter) getAttriCount() {
+        } */
+
+        uint16_t getAttriCount() {
             return attributesCounter;
         }
-        typeof(attributes) getAttributes() {
+
+        /* typeof(attributes) getAttributes() {
             return attributes;
-        }
+        } */
 
         bool DEBUG = true;
-        ~JavaClass();
-        JavaClass(FILE * fp);
+        ~ClassLoader();
+        ClassLoader(FILE * fp);
 };
 
 #endif // ___JAVA_H___

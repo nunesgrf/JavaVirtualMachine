@@ -59,7 +59,7 @@ class CpInfo {
             
             struct {
                 uint16_t length; 
-                std::vector<uint8_t> bytes;
+                uint8_t * bytes;
             } UTF8;
             
         };   
