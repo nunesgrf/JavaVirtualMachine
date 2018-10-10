@@ -25,6 +25,12 @@
 #include "../cpp/FieldInfo.cpp"
 #include "../cpp/AttributeInfo.cpp"
 
+class CpInfo;
+class FieldInfo;
+class MethodInfo;
+class AttributeInfo;
+class InterfaceInfo;
+
 class ClassLoader {
 
     private:
@@ -83,7 +89,7 @@ class ClassLoader {
       uint16_t attributesCounter;
 
       
-      //std::vector<AttributeInfo *> attributes;
+      std::vector<AttributeInfo *> attributes;
 
       void setMagic(FILE * fp);
       void setMajor(FILE * fp);
