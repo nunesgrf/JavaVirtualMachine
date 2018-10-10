@@ -22,12 +22,12 @@ int main() {
     cout << "MethodCount  : " << dec << classloader.getMethoCount() << dec << endl;
     cout << "AtributeCoun : " << dec << classloader.getAttriCount() << endl;
 
-    /* std::vector<CpInfo*> a = classloader.getConstPool();
+    std::vector<CpInfo*> a = classloader.getConstPool();
     cout << "top" << endl;
     cout << a.size() << endl;
     for(int i = 0; i < a.size(); i++) {
-      cout <<setw(2) << setfill('0') << i << " : " << setw(2) << setfill('0') << a[i]->UTF8.length << " : " << setw(2) << setfill('0') << a[i]->UTF8.bytes.size() << endl;
+      cout << setw(2) << setfill('0') << i << " : " << setw(2) << setfill('0') << a[i]->UTF8.length << " : " << setw(2) << setfill('0') << 1 << endl;
 
-    } */
+    }
     fclose(fp);
 }

@@ -67,7 +67,7 @@ void ClassLoader::setConstPool(FILE * fp) {
     ByteReader<uint32_t> FourByte;
     
     /* Iterate over the size of constant pool */
-    for(int i = 0; i < this->getConstCount(); i++) {
+    for(int i = 0; i < this->getConstCount() - 1; i++) {
 
         /* Allocate a constante pool */
         CpInfo * cp = (CpInfo *)calloc(1, sizeof(*cp));
@@ -86,17 +86,17 @@ void ClassLoader::setConstPool(FILE * fp) {
 
                 /* It reads two bytes from the file */    
                 this->constantPool[i]->UTF8.length = TwoByte.byteCatch(fp);
-                
+                this->constantPool[i]->UTF8.bytes = (uint8_t *) malloc(this->constantPool[i]->UTF8.length * sizeof(uint8_t));
 
-
-                for(int j = 0; j < this->constantPool[i]->UTF8.length; j++) {
+                    for (int j = 0; j < this->constantPool[i]->UTF8.length; j++)
+                {
                     /* Reads one byte from file */
                     uint8_t xd = OneByte.byteCatch(fp);
                     /* It pushes into the UTF8 array */
-                    //this->constantPool[i]->UTF8.bytes.push_back(xd);
+                    this->constantPool[i]->UTF8.bytes[j] = xd;
                     /* Concatenates \0 for string last char */
-                    this->constantPool[i]->UTF8.bytes[this->constantPool[i]->UTF8.length] = '\0';
                 }
+                    this->constantPool[i]->UTF8.bytes[this->constantPool[i]->UTF8.length] = '\0';
                 
                 break;
 
@@ -179,7 +179,7 @@ void ClassLoader::setConstPool(FILE * fp) {
 
 
 void ClassLoader::setAcessFlag(FILE * fp) {
-    ByteReader<typeof(acessFlags)> bReader;
+    ByteReader<uint16_t> bReader;
     acessFlags = bReader.byteCatch(fp);
 }
 

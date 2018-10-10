@@ -17,6 +17,7 @@
 #include <cstdint>
 #include <iostream>
 #include <vector>
+#include <memory>
 
 #include "../cpp/ByteReader.cpp"
 #include "../cpp/CpInfo.cpp"
@@ -41,7 +42,7 @@ class ClassLoader {
       uint16_t constantPoolCounter;
 
       /* The constant_pool is a table of structures  */
-      std::vector<CpInfo *> constantPool;
+      std::vector<CpInfo*> constantPool;
 
       /* The value of the access_flags item is a mask of flags used to denote
        access permissions to and properties of this class or interface */
@@ -81,7 +82,7 @@ class ClassLoader {
        of attributes in the attributes table of this class. */
       uint16_t attributesCounter;
 
-      /* */
+      
       //std::vector<AttributeInfo *> attributes;
 
       void setMagic(FILE * fp);
@@ -115,9 +116,10 @@ class ClassLoader {
         uint16_t getConstCount() {
             return constantPoolCounter;
         }
-        /* typeof(constantPool) getConstPool() {
+        std::vector<CpInfo*> getConstPool() {
             return constantPool;
-        } */
+        }
+        
         uint16_t getFlag() {
             return acessFlags;
         }
