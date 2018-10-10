@@ -30,6 +30,7 @@ class FieldInfo;
 class MethodInfo;
 class AttributeInfo;
 class InterfaceInfo;
+class ClassLoader;
 
 class ClassLoader {
 

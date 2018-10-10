@@ -2,13 +2,21 @@
 #define ___ATTRIBUTEINFO_H___
 
 #include <cstdint>
+#include <cstdio>
 #include <vector>
+#include <cstring>
+#include <iostream>
+#include "../cpp/ByteReader.cpp"
 #include "ClassLoader.hpp"
 
 using namespace std;
 
 class AttributeInfo;
-
+class CodeException;
+class CodeAttribute;
+class Synthetic;
+class ConstantValue;
+class ClassLoader;
 
 class CodeException
 {
@@ -26,27 +34,24 @@ class Exception
     uint16_t attribute_length;
     /* Number of exceptions */
     uint16_t number_exceptions;
-    vector<uint16_t> exception_index_table;
+    uint16_t* exception_index_table;
 };
 
 class CodeAttribute
 {
   public:
-    uint16_t name_index;
     uint16_t max_stacks;
     uint16_t max_locals;
-    /* Attribute length */
-    uint32_t length;
     /* Code length */
     uint32_t code_length;
     /* It must have this length ^ */
-    vector<uint8_t> code;
-    uint16_t exception_length;
+    uint8_t *code;
+    uint16_t exception_table_length;
     /* It must have this length ^ */
-    vector<CodeException *> code_exception;
+    CodeException *exception_table;
     uint16_t attributes_count;
     /* It must have this length ^ */
-    vector<AttributeInfo *> attributes;
+    AttributeInfo *attributes;
 
     CodeAttribute read(ClassLoader, FILE*, AttributeInfo);
 };
@@ -66,8 +71,8 @@ class InnerClass
     uint16_t name_index;
     uint32_t length;
     uint16_t class_length;
-    vector<InnerClassData *> inner_class_data;
-    InnerClass read(ClassLoader, FILE, AttributeInfo);
+    InnerClassData *inner_class_data;
+    InnerClass read(ClassLoader, FILE*, AttributeInfo);
 };
 
 class Synthetic
