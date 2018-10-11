@@ -20,16 +20,7 @@ std::string getUTF8CP(CpInfo* constant_pool, uint16_t position){
         case CONSTANT_Fieldref:
             utf8_const = getUTF8CP(constant_pool, constant_pool[position].Class.name_index - 1);
             break;
-
-        case:
-            break;
-
-        case:
-            break;
-
-        case:
-            break;
         default:
-
+            
     }
 }
