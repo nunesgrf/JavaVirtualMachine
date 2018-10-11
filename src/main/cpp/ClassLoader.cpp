@@ -1,5 +1,6 @@
 #include "../hpp/ClassLoader.hpp"
 
+
 /**
  * @brief Construtor da classe da ClassLoader;
  * A ideia é chamar todos os Set's aqui de maneira
@@ -14,7 +15,7 @@ ClassLoader::ClassLoader(FILE * fp) {
         this->setMajor(fp);
         this->setConstCount(fp);
         this->setConstPool(fp);
-        this->setAcessFlag(fp);
+        this->setAccessFlag(fp);
         this->setThisClass(fp);
         this->setSuperClass(fp);
         this->setInterCount(fp);
@@ -79,6 +80,7 @@ void ClassLoader::setConstPool(FILE * fp) {
         this->constantPool[i]->tag = OneByte.byteCatch(fp);
         
         if(DEBUG) std::cout << int(this->constantPool[i]->tag) << std::endl;
+
         switch(this->constantPool[i]->tag) {
 
             
@@ -178,9 +180,9 @@ void ClassLoader::setConstPool(FILE * fp) {
 }
 
 
-void ClassLoader::setAcessFlag(FILE * fp) {
+void ClassLoader::setAccessFlag(FILE * fp) {
     ByteReader<uint16_t> bReader;
-    acessFlags = bReader.byteCatch(fp);
+    accessFlags = bReader.byteCatch(fp);
 }
 
 void ClassLoader::setThisClass(FILE * fp) {
