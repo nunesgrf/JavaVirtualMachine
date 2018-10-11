@@ -1,71 +1,35 @@
-#ifndef ___CPINFO_H___
-#define ___CPINFO_H___
+#include "CpInfo.hpp"
 
-#include <cstdint>
-#include <vector>
+ByteReader<uint8_t> OneByte;
+ByteReader<uint16_t> TwoByte;
+ByteReader<uint32_t> FourByte;
 
+std::string getUTF8CP(CpInfo* constant_pool, uint16_t position){
+    std::string utf8_const;
+    uint16_t tag = constant_pool[position].tag;
 
+    switch(tag) {
+        case CONSTANT_Utf8:
+            utf8_const = (char*) constant_pool[position].UTF8.bytes;
+        break;
 
-class CpInfo {
+        case CONSTANT_Class:
+            utf8_const = getUTF8CP(constant_pool,constant_pool[position].Class.name_index - 1);
+            break;
 
-    public:
-        uint8_t tag;
-        union {
-            struct {
-                uint16_t name_index;
-            } Class;
-            
-            struct {
-                uint16_t class_index;
-                uint16_t name_and_type_index;
-            } Fieldref;
-            
-            struct {
-                uint16_t class_index;
-                uint16_t name_and_type_index;
-            } Methodref;
-            
-            struct {
-                uint16_t class_index;
-                uint16_t name_and_type_index;
-            } InterfaceMethodref;
-            
-            struct {
-                uint16_t string_index;
-            } String;
-            
-            struct {
-                uint32_t bytes;
-            } Integer;
-            
-            struct {
-                uint32_t bytes;
-            } Float;
-            
-            struct {
-                uint32_t high_bytes;
-                uint32_t low_bytes;
-            } Long;
-            
-            struct {
-                uint32_t high_bytes;
-                uint32_t low_bytes;
-            } Double;
-            
-            struct {
-                uint16_t name_index; 
-                uint16_t descriptor_index;
-            } NameAndType;
-            
-            struct {
-                uint16_t length; 
-                uint8_t * bytes;
-            } UTF8;
-            
-        };   
+        case CONSTANT_Fieldref:
+            utf8_const = getUTF8CP(constant_pool, constant_pool[position].Class.name_index - 1);
+            break;
 
-};
+        case:
+            break;
 
+        case:
+            break;
 
+        case:
+            break;
+        default:
 
-#endif // ___CPINFO_H____
+    }
+}
