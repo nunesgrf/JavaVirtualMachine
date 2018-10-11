@@ -30,11 +30,11 @@ class CodeException
 class Exception
 {
   public:
-    uint16_t attribute_name_index;
-    uint16_t attribute_length;
     /* Number of exceptions */
     uint16_t number_exceptions;
     uint16_t* exception_index_table;
+
+    Exception read(ClassLoader, FILE *, AttributeInfo);
 };
 
 class CodeAttribute
@@ -48,7 +48,7 @@ class CodeAttribute
     uint8_t *code;
     uint16_t exception_table_length;
     /* It must have this length ^ */
-    CodeException *exception_table;
+    CodeException *code_exception_table;
     uint16_t attributes_count;
     /* It must have this length ^ */
     AttributeInfo *attributes;
@@ -105,6 +105,7 @@ class AttributeInfo
         Synthetic synthetic;
     };
     
+    AttributeInfo get_attribute_info(ClassLoader, FILE*, AttributeInfo);
     void read(ClassLoader, FILE *);
     
 };
