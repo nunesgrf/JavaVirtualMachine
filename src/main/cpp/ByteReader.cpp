@@ -1,9 +1,9 @@
 #ifndef ___BYTEREADER_H___
 #define ___BYTEREADER_H___
 
+
 #define NEUTRAL_BYTE_FOR_OR 0x00;
 
-#include <stdio.h>
 /**
  * @brief Classe ByteReader. No momento da instanciação define-se qual tipo deseja-se buscar
  * E assim quando acionado o método byteCatch(FILE * fp) o arquivo busca o binário correspondente.
@@ -13,6 +13,7 @@ class ByteReader {
     public:
     T byteCatch(FILE * fp);
 };
+
 
 /**
  * @brief byteCatch(FILE * fp) busca o binário correspondendo ao tipo T.

@@ -5,7 +5,7 @@ ByteReader<uint8_t> OneByte;
 ByteReader<uint16_t> TwoByte;
 ByteReader<uint32_t> FourByte;
 
-ConstantValue ConstantValue::read(ClassLoader classloader, FILE *fp, AttributeInfo attribute_info){
+ConstantValue ConstantValue::read(ClassLoader * classloader,FILE *fp, AttributeInfo attribute_info){
     attribute_info.name_index = TwoByte.byteCatch(fp);
     attribute_info.length = FourByte.byteCatch(fp);
     attribute_info.constant_value.constvalue_index = TwoByte.byteCatch(fp);
@@ -13,7 +13,7 @@ ConstantValue ConstantValue::read(ClassLoader classloader, FILE *fp, AttributeIn
     return attribute_info.constant_value;
 }
 
-CodeAttribute CodeAttribute::read(ClassLoader classloader, FILE *fp, AttributeInfo attribute_info){
+CodeAttribute CodeAttribute::read(ClassLoader * classloader,FILE *fp, AttributeInfo attribute_info){
     unsigned int i, j, k;
 
     attribute_info.name_index = TwoByte.byteCatch(fp);
@@ -45,7 +45,7 @@ CodeAttribute CodeAttribute::read(ClassLoader classloader, FILE *fp, AttributeIn
     return attribute_info.code;
 }
 
-InnerClass InnerClass::read(ClassLoader classloader, FILE *fp, AttributeInfo attribute_info){
+InnerClass InnerClass::read(ClassLoader * classloader,FILE *fp, AttributeInfo attribute_info){
     attribute_info.name_index = TwoByte.byteCatch(fp);
     attribute_info.length = FourByte.byteCatch(fp);
     attribute_info.inner_class.name_index = TwoByte.byteCatch(fp);
@@ -55,12 +55,11 @@ InnerClass InnerClass::read(ClassLoader classloader, FILE *fp, AttributeInfo att
     return attribute_info.inner_class;
 }
 
-Synthetic Synthetic::read(ClassLoader classloader, FILE *fp, AttributeInfo attribute_info){
+Synthetic Synthetic::read(ClassLoader * classloader,FILE *fp, AttributeInfo attribute_info){
     /* A class member that does not appear in the source code must be marked using a Synthetic attribute */
 }
 
-Exception Exception::read(ClassLoader classloader, FILE *fp, AttributeInfo attribute_info)
-{
+Exception Exception::read(ClassLoader * classloader,FILE *fp, AttributeInfo attribute_info) {
     int i;
 
     attribute_info.name_index = TwoByte.byteCatch(fp);
@@ -74,8 +73,7 @@ Exception Exception::read(ClassLoader classloader, FILE *fp, AttributeInfo attri
     return attribute_info.exception;
 }
 
-AttributeInfo AttributeInfo::get_attribute_info(ClassLoader classloader, FILE * fp, AttributeInfo attribute_info)
-{
+AttributeInfo AttributeInfo::get_attribute_info(ClassLoader * classloader,FILE * fp, AttributeInfo attribute_info) {
     attribute_info.name_index = TwoByte.byteCatch(fp);
     attribute_info.length = FourByte.byteCatch(fp);
 
