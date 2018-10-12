@@ -26,7 +26,7 @@ int main() {
     cout << "top" << endl;
     cout << a.size() << endl;
     for(int i = 0; i < a.size(); i++) {
-      cout << setw(2) << setfill('0') << i << " : " << setw(2) << setfill('0') << a[i]->UTF8.length << " : " << setw(2) << setfill('0') << 1 << endl;
+      cout << setw(2) << setfill('0') << i << " : " << setw(2) << setfill('0') << a[i]->Methodref.name_and_type_index  << " : " << setw(2) << setfill('0') << 1 << endl;
 
     }
     fclose(fp);
