@@ -34,7 +34,7 @@ class Exception
     uint16_t number_exceptions;
     uint16_t* exception_index_table;
 
-    Exception read(ClassLoader *, FILE *, AttributeInfo);
+    Exception read(ClassLoader*, FILE *, AttributeInfo);
 };
 
 class CodeAttribute
@@ -53,7 +53,7 @@ class CodeAttribute
     /* It must have this length ^ */
     AttributeInfo *attributes;
 
-    CodeAttribute read(ClassLoader *, FILE*, AttributeInfo);
+    CodeAttribute read(ClassLoader*, FILE*, AttributeInfo);
 };
 
 class InnerClassData
@@ -72,7 +72,7 @@ class InnerClass
     uint32_t length;
     uint16_t class_length;
     InnerClassData *inner_class_data;
-    InnerClass read(ClassLoader *, FILE*, AttributeInfo);
+    InnerClass read(ClassLoader*, FILE*, AttributeInfo);
 };
 
 class Synthetic
@@ -80,14 +80,14 @@ class Synthetic
   public:
     uint16_t name_index;
     uint32_t length;
-    Synthetic read(ClassLoader *, FILE *, AttributeInfo);
+    Synthetic read(ClassLoader*, FILE *, AttributeInfo);
 };
 
 class ConstantValue
 {
   public:
     uint16_t constvalue_index;
-    ConstantValue read(ClassLoader *,FILE *, AttributeInfo);
+    ConstantValue read(ClassLoader*,FILE *, AttributeInfo);
 };
 
 class AttributeInfo
@@ -105,8 +105,8 @@ class AttributeInfo
         Synthetic synthetic;
     };
     
-    AttributeInfo get_attribute_info(ClassLoader *, FILE*, AttributeInfo);
-    void read(ClassLoader *, FILE *);
+    AttributeInfo get_attribute_info(ClassLoader*, FILE*, AttributeInfo);
+    void read(ClassLoader*, FILE *);
     
 };
 #endif
