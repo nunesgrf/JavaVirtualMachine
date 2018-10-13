@@ -1,12 +1,5 @@
 #ifndef ___ATTRIBUTEINFO_H___
 #define ___ATTRIBUTEINFO_H___
-
-#include <cstdint>
-#include <cstdio>
-#include <vector>
-#include <cstring>
-#include <iostream>
-#include "../cpp/ByteReader.cpp"
 #include "ClassLoader.hpp"
 
 using namespace std;
@@ -16,7 +9,6 @@ class CodeException;
 class CodeAttribute;
 class Synthetic;
 class ConstantValue;
-class ClassLoader;
 
 class CodeException
 {
@@ -95,8 +87,8 @@ class AttributeInfo
   public:
     uint16_t name_index;
     uint32_t length;
-    uint8_t *info;
     /* It must have this length ^ */
+    uint8_t *info;
     union {
         CodeAttribute code;
         ConstantValue constant_value;

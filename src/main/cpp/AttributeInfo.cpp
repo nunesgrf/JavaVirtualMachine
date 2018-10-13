@@ -1,5 +1,5 @@
 #include "../hpp/AttributeInfo.hpp"
-
+#include "ByteReader.cpp"
 
 ByteReader<uint8_t> OneByte;
 ByteReader<uint16_t> TwoByte;

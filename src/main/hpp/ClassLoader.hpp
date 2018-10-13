@@ -13,24 +13,24 @@
 #define CONSTANT_Methodref 10
 #define CONSTANT_InterfaceMethodref 11
 #define CONSTANT_NameAndType 12
+#define typeof __typeof__
 
 #include <cstdint>
 #include <iostream>
+#include <cstring>
 #include <vector>
 #include <memory>
+#include <cstdio>
 
 #include "../cpp/ByteReader.cpp"
-#include "../cpp/CpInfo.cpp"
+#include "../hpp/CpInfo.hpp"
 #include "../cpp/MethodInfo.cpp"
 #include "../cpp/FieldInfo.cpp"
-#include "../cpp/AttributeInfo.cpp"
 
 class CpInfo;
 class FieldInfo;
 class MethodInfo;
 class AttributeInfo;
-class InterfaceInfo;
-class ClassLoader;
 
 class ClassLoader {
 
@@ -53,7 +53,7 @@ class ClassLoader {
 
       /* The value of the access_flags item is a mask of flags used to denote
        access permissions to and properties of this class or interface */
-      uint16_t acessFlags;
+      uint16_t accessFlags;
 
 
       uint16_t thisClass;
@@ -97,7 +97,7 @@ class ClassLoader {
       void setMinor(FILE * fp);
       void setConstCount(FILE * fp);
       void setConstPool(FILE * fp);
-      void setAcessFlag(FILE * fp);
+      void setAccessFlag(FILE * fp);
       void setThisClass(FILE * fp);
       void setSuperClass(FILE * fp);
       void setInterCount(FILE * fp);
@@ -128,7 +128,7 @@ class ClassLoader {
         }
         
         uint16_t getFlag() {
-            return acessFlags;
+            return accessFlags;
         }
         uint16_t getThisClass() {
             return thisClass;
