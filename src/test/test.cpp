@@ -14,7 +14,7 @@ int main() {
     cout << "MinorVersion : " << dec << classloader.getMinor() << endl;
     cout << "MajorVersion : " << dec << classloader.getMajor() << endl;
     cout << "PoolCounter  : " << dec << classloader.getConstCount() << endl;
-    cout << "AcessFlag    : " << dec << classloader.getFlag() << endl;
+    cout << "AcessFlag    : " << hex << classloader.getFlag() << endl;
     cout << "ThisClass    : " << dec << classloader.getThisClass() << endl;
     cout << "SuperClass   : " << dec << classloader.getSuper() << endl;
     cout << "InterfaceCou : " << dec << classloader.getInterCounter() << endl;
@@ -22,12 +22,5 @@ int main() {
     cout << "MethodCount  : " << dec << classloader.getMethoCount() << dec << endl;
     cout << "AtributeCoun : " << dec << classloader.getAttriCount() << endl;
 
-    std::vector<CpInfo*> a = classloader.getConstPool();
-    cout << "top" << endl;
-    cout << a.size() << endl;
-    for(int i = 0; i < a.size(); i++) {
-      cout << setw(2) << setfill('0') << i << " : " << setw(2) << setfill('0') << a[i]->UTF8.length << " : " << setw(2) << setfill('0') << 1 << endl;
-
-    }
     fclose(fp);
 }

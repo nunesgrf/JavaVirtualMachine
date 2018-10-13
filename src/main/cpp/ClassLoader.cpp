@@ -36,7 +36,13 @@ ClassLoader::ClassLoader(FILE * fp) {
  */
 
 ClassLoader::~ClassLoader() {
-    for (auto a : constantPool) {
+
+    for(int i = 0; i < this->getConstCount()-1; i++) {
+        auto a = this->constantPool[i]->UTF8.bytes;
+        free(a);
+    }
+    
+    for(auto a : constantPool) {
         free(a);
     }
 }
@@ -88,17 +94,23 @@ void ClassLoader::setConstPool(FILE * fp) {
 
                 /* It reads two bytes from the file */    
                 this->constantPool[i]->UTF8.length = TwoByte.byteCatch(fp);
-                this->constantPool[i]->UTF8.bytes = (uint8_t *) malloc(this->constantPool[i]->UTF8.length * sizeof(uint8_t));
+                /**
+                 * A alocação via calloc é feita aqui com o entuito de settar os valores como 0
+                 * inicialmente. Alocala-se um total de lenght+1 posições para que ao final possa se inserir
+                 * o caractere '\0' sem acessar uma região de memória não garantida para nosso
+                 * programa.
+                 */
+                this->constantPool[i]->UTF8.bytes = (uint8_t *) calloc(this->constantPool[i]->UTF8.length+1,sizeof(uint8_t));
 
-                    for (int j = 0; j < this->constantPool[i]->UTF8.length; j++)
-                {
+                for (int j = 0; j < this->constantPool[i]->UTF8.length; j++) {
                     /* Reads one byte from file */
                     uint8_t xd = OneByte.byteCatch(fp);
                     /* It pushes into the UTF8 array */
                     this->constantPool[i]->UTF8.bytes[j] = xd;
-                    /* Concatenates \0 for string last char */
+                    
                 }
-                    this->constantPool[i]->UTF8.bytes[this->constantPool[i]->UTF8.length] = '\0';
+                /* Concatenates \0 for string last char */
+                this->constantPool[i]->UTF8.bytes[this->constantPool[i]->UTF8.length] = '\0';
                 
                 break;
 
