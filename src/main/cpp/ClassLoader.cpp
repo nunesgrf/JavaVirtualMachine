@@ -1,5 +1,8 @@
 #include "../hpp/ClassLoader.hpp"
-
+#include <stdio.h>
+#include <iostream>
+#include <iomanip>
+using namespace std;
 
 /**
  * @brief Construtor da classe da ClassLoader;
@@ -107,11 +110,9 @@ void ClassLoader::setConstPool(FILE * fp) {
                     uint8_t xd = OneByte.byteCatch(fp);
                     /* It pushes into the UTF8 array */
                     this->constantPool[i]->UTF8.bytes[j] = xd;
-                    
                 }
                 /* Concatenates \0 for string last char */
                 this->constantPool[i]->UTF8.bytes[this->constantPool[i]->UTF8.length] = '\0';
-                
                 break;
 
             case CONSTANT_Integer: 
@@ -201,6 +202,7 @@ void ClassLoader::setThisClass(FILE * fp) {
     ByteReader<typeof(thisClass)> bReader;
     thisClass = bReader.byteCatch(fp);
 }
+
 void ClassLoader::setSuperClass(FILE * fp) {
     ByteReader<typeof(superClass)> bReader;
     superClass = bReader.byteCatch(fp);
@@ -212,8 +214,18 @@ void ClassLoader::setInterCount(FILE * fp) {
 }
 
 void ClassLoader::setInterface(FILE * fp) {
-    //ByteReader<typeof(interfaces)> bReader;
-    //interfaces = bReader.byteCatch(fp);
+
+    /* Iterate over the size of interface */
+    for(int i = 0; i < this->getInterCounter(); i++) {
+
+        /* Allocate a interface */
+        InterfaceInfo * interface = (InterfaceInfo *)calloc(1, sizeof(*interface));
+
+        /* Puts into the vector of interfaces  */
+        this->interfaces.push_back(interface);
+        this->interfaces[i]->setInterfaceInfo(fp);
+    }
+
 }
 
 void ClassLoader::setFieldCount(FILE * fp) {

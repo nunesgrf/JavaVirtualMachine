@@ -25,6 +25,8 @@
 #include "../cpp/ByteReader.cpp"
 #include "CpInfo.hpp"
 #include "../cpp/MethodInfo.cpp"
+#include "InterfaceInfo.hpp"
+#include "../cpp/InterfaceInfo.cpp"
 
 class CpInfo;
 class FieldInfo;
@@ -65,7 +67,7 @@ class ClassLoader {
 
       /* Each value in the interfaces array must be a valid
        index into the constant_pool table */
-      //std::vector<uint16_t> interfaces;
+      std::vector<InterfaceInfo*> interfaces;
 
       /* The value of the fields_count item gives the number
        of field_info structures in the fields table */
@@ -139,9 +141,10 @@ class ClassLoader {
         uint16_t getInterCounter() {
             return interfaceCounter;
         }
-        /* std::vector<uint16_t> getInterfaces() {
+        
+        std::vector<InterfaceInfo*> getInterfaces() {
             return interfaces;
-        } */
+        }
 
         uint16_t getFieldCount() {
             return fieldsCounter;

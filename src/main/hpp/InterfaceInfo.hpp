@@ -5,10 +5,16 @@
 #include "../cpp/ByteReader.cpp"
 
 class InterfaceInfo {
-    public:
+
+    private:
         uint16_t interface_table;
-        void read(ClassLoader*,FILE*);
-        InterfaceInfo getInterfaceInfo(ClassLoader*,FILE*,InterfaceInfo);
+
+    public:
+        uint16_t getInterfaceInfo() {
+            return this->interface_table;
+        }
+        void setInterfaceInfo(FILE*);
+
 };
 
 #endif
