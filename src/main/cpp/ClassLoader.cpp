@@ -234,8 +234,16 @@ void ClassLoader::setFieldCount(FILE * fp) {
 }
 
 void ClassLoader::setFields(FILE * fp) {
-    //ByteReader<typeof(fields)> bReader;
-    //fields = bReader.byteCatch(fp);
+    /* Iterate over the size of fields */
+    for(int i = 0; i < this->getFieldCount(); i++) {
+
+        /* Allocate a interface */
+        FieldInfo * field = (FieldInfo *)calloc(1, sizeof(*field));
+
+        /* Puts into the vector of fields  */
+        this->fields.push_back(field);
+        this->fields[i]->setFieldInfo(fp);
+    }
 }
 
 void ClassLoader::setMethodCount(FILE * fp) {

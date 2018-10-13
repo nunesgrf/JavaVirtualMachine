@@ -27,6 +27,7 @@
 #include "../cpp/MethodInfo.cpp"
 #include "InterfaceInfo.hpp"
 #include "../cpp/InterfaceInfo.cpp"
+#include "../cpp/FieldInfo.cpp"
 
 class CpInfo;
 class FieldInfo;
@@ -76,7 +77,7 @@ class ClassLoader {
       /* The fields table includes only those fields that are declared by this class or interface. 
       It does not include items representing fields that are 
       inherited from superclasses or superinterfaces. */
-      //std::vector<FieldsInfo *> fields;
+      std::vector<FieldInfo *> fields;
 
       /* The value of the methods_count item gives
        the number of method_info structures in the methods table. */
@@ -149,9 +150,10 @@ class ClassLoader {
         uint16_t getFieldCount() {
             return fieldsCounter;
         }
-        /* typeof(fields) getFields() {
+        
+        typeof(fields) getFields() {
             return fields;
-        } */
+        }
 
         uint16_t getMethoCount() {
             return methodsCounter;

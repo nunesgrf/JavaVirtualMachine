@@ -84,7 +84,7 @@ class ConstantValue
 
 class AttributeInfo
 {
-  public:
+  private:
     uint16_t name_index;
     uint32_t length;
     /* It must have this length ^ */
@@ -97,8 +97,9 @@ class AttributeInfo
         Synthetic synthetic;
     };
     
+  public:
     AttributeInfo get_attribute_info(ClassLoader*, FILE*, AttributeInfo);
-    void read(ClassLoader*, FILE *);
+    void read(FILE *);
     
 };
 #endif
