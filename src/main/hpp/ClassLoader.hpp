@@ -23,14 +23,14 @@
 #include <cstdio>
 
 #include "../cpp/ByteReader.cpp"
-#include "../hpp/CpInfo.hpp"
+#include "CpInfo.hpp"
 #include "../cpp/MethodInfo.cpp"
-#include "../cpp/FieldInfo.cpp"
 
 class CpInfo;
 class FieldInfo;
 class MethodInfo;
 class AttributeInfo;
+class InterfaceInfo;
 
 class ClassLoader {
 
