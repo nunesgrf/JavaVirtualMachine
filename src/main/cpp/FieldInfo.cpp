@@ -1,20 +1,20 @@
 #include "../hpp/FieldInfo.hpp"
 
-void FieldInfo::setFieldInfo(FILE *fp) {
+void FieldInfo::setFieldInfo(FILE *fp,FieldInfo* fieldinfo) {
     ByteReader<uint16_t> TwoByte;
-    access_flags = TwoByte.byteCatch(fp);
-    name_index = TwoByte.byteCatch(fp);
-    descriptor_index = TwoByte.byteCatch(fp);
-    attributes_count = TwoByte.byteCatch(fp);
+    fieldinfo->access_flags = TwoByte.byteCatch(fp);
+    fieldinfo->name_index = TwoByte.byteCatch(fp);
+    fieldinfo->descriptor_index = TwoByte.byteCatch(fp);
+    fieldinfo->attributes_count = TwoByte.byteCatch(fp);
     
     for(int i = 0; i < attributes_count; i++)
     {
         /* Allocate a attribute */
         AttributeInfo * attribute = (AttributeInfo *)calloc(1, sizeof(*attribute));
-
+        //attribute.read(fp)
         /* Puts into the vector of attributes  */
-        attributes.push_back(attribute);
-        attributes[i]->read(fp);
+        //fieldinfo->attributes.push_back(attribute);
+        
     }
     
 
