@@ -242,7 +242,7 @@ void ClassLoader::setFields(FILE * fp) {
 
         /* Puts into the vector of fields  */
         this->fields.push_back(field);
-        this->fields[i]->setFieldInfo(fp);
+        this->fields[i]->setFieldInfo(fp,field);
     }
 }
 
@@ -262,6 +262,9 @@ void ClassLoader::setAttributesCount(FILE * fp) {
 }
 
 void ClassLoader::setAttributes(FILE * fp) {
-   // ByteReader<typeof(attributes)> bReader;
-   // attributes = bReader.byteCatch(fp);
+   for(int j = 0; j < this->getAttriCount(); j++){
+        AttributeInfo *attribute = (AttributeInfo *)calloc(1, sizeof(*attribute));
+        attribute->read(fp,this->constantPool);
+        this->attributes.push_back(attribute);
+   }
 }
