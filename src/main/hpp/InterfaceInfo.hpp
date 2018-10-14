@@ -6,13 +6,8 @@
 
 class InterfaceInfo {
 
-    private:
-        uint16_t interface_table;
-
     public:
-        uint16_t getInterfaceInfo() {
-            return this->interface_table;
-        }
+        uint16_t interface_table;
         void setInterfaceInfo(FILE*);
 
 };
