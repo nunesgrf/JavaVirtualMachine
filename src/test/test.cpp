@@ -25,8 +25,5 @@ int main() {
     cout << "MethodCount  : " << dec << classloader.getMethoCount() << dec << endl;
     cout << "AtributeCoun : " << dec << classloader.getAttriCount() << endl;
 
-    for(int i = 0; i < classloader.getConstCount()-1; i++) {
-        cout << x.getUTF8(classloader.getConstPool(),i) << endl;
-    }
     fclose(fp);
 }

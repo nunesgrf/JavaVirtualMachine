@@ -61,10 +61,6 @@ void AttributeInfo::read(FILE * fp, std::vector<CpInfo *> trueCpInfo){
     length = FourByte.byteCatch(fp);
 
     std::string attribute_name = utf8Getter.getUTF8(trueCpInfo, name_index-1);
-
-    std::cout << "BLABLABLABLABLABLA" << std::endl;
-    std::cout << attribute_name << std::endl;
-    std::cout << "BLABLABLABLABLABLA" << std::endl;
     
     if(attribute_name == "Code"){
         code.read(fp);
