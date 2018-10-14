@@ -74,7 +74,7 @@ class CpInfo
         } UTF8;
     };
 
-    std::string getUTF8CP(CpInfo*, uint16_t);
+    std::string getUTF8CP();
 };
 
 #endif // ___CPINFO_H____
