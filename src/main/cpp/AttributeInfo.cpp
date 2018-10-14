@@ -1,5 +1,6 @@
 #include "../hpp/AttributeInfo.hpp"
 #include "ByteReader.cpp"
+#include "CpAttributeInterface.cpp"
 
 ByteReader<uint8_t> OneByte;
 ByteReader<uint16_t> TwoByte;
@@ -53,11 +54,18 @@ void Exception::read(FILE *fp) {
 }
 
 void AttributeInfo::read(FILE * fp, std::vector<CpInfo *> trueCpInfo){
+
+    CpAttributeInterface utf8Getter;
+
     name_index = TwoByte.byteCatch(fp);
     length = FourByte.byteCatch(fp);
 
-    std::string attribute_name = trueCpInfo[0]->getUTF8CP(trueCpInfo, name_index - 1);
+    std::string attribute_name = utf8Getter.getUTF8(trueCpInfo, name_index-1);
 
+    std::cout << "BLABLABLABLABLABLA" << std::endl;
+    std::cout << attribute_name << std::endl;
+    std::cout << "BLABLABLABLABLABLA" << std::endl;
+    
     if(attribute_name == "Code"){
         code.read(fp);
     }

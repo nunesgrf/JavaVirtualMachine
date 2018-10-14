@@ -1,4 +1,5 @@
 #include "../hpp/ClassLoader.hpp"
+#include "AttributeInfo.cpp"
 #include <stdio.h>
 #include <iostream>
 #include <iomanip>

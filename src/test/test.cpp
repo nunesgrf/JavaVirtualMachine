@@ -1,6 +1,7 @@
 #include "../main/cpp/ClassLoader.cpp"
 #include "../main/cpp/ByteReader.cpp"
 #include "../main/cpp/CpInfo.cpp"
+#include "../main/cpp/CpAttributeInterface.cpp"
 #include <stdio.h>
 #include <iostream>
 #include <iomanip>
@@ -10,6 +11,8 @@ int main() {
     FILE * fp = fopen("HelloWorld.class","r");
     
     ClassLoader classloader(fp);
+    CpAttributeInterface x;
+
     cout << "MagicNumber  : " << hex << classloader.getMagic() << endl;
     cout << "MinorVersion : " << dec << classloader.getMinor() << endl;
     cout << "MajorVersion : " << dec << classloader.getMajor() << endl;
@@ -22,5 +25,8 @@ int main() {
     cout << "MethodCount  : " << dec << classloader.getMethoCount() << dec << endl;
     cout << "AtributeCoun : " << dec << classloader.getAttriCount() << endl;
 
+    for(int i = 0; i < classloader.getConstCount()-1; i++) {
+        cout << x.getUTF8(classloader.getConstPool(),i) << endl;
+    }
     fclose(fp);
 }
