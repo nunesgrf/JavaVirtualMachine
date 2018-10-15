@@ -11,7 +11,7 @@ void MethodInfo::read(FILE *fp, std::vector<CpInfo*> trueCpInfo)
     int i = 0;
     ByteReader<uint16_t> reader;
 
-    this->acess_flags = reader.byteCatch(fp);
+    this->access_flags = reader.byteCatch(fp);
     this->name_index = reader.byteCatch(fp);
     this->descriptor_index = reader.byteCatch(fp);
     this->attributes_count = reader.byteCatch(fp);
