@@ -10,7 +10,7 @@ void ConstantValue::read(FILE *fp) {
     constvalue_index = TwoByte.byteCatch(fp);
 }
 
-void CodeAttribute::read(FILE *fp) {
+void CodeAttribute::read(FILE *fp, std::vector<CpInfo*> trueCpInfo) {
     unsigned int i, j, k;
 
     max_stacks = TwoByte.byteCatch(fp);
@@ -34,8 +34,8 @@ void CodeAttribute::read(FILE *fp) {
 
     attributes_count = TwoByte.byteCatch(fp);
     attributes = (AttributeInfo *)malloc(attributes_count * sizeof(AttributeInfo));
-    for (k = 0; k < exception_table_length; k++){
-        /* Don't know what to do here */
+    for (k = 0; k < attributes_count; k++){
+        attributes[k].read(fp, trueCpInfo);
     }
 }
 
@@ -63,18 +63,18 @@ void AttributeInfo::read(FILE * fp, std::vector<CpInfo *> trueCpInfo){
     std::string attribute_name = utf8Getter.getUTF8(trueCpInfo, name_index-1);
     
     if(attribute_name == "Code"){
-        code.read(fp);
+        code.read(fp,trueCpInfo);
     }
 
-    if(attribute_name == "ConstantValue"){
+    else if(attribute_name == "ConstantValue"){
         constant_value.read(fp);
     }
 
-    if(attribute_name == "Exceptions"){
+    else if(attribute_name == "Exceptions"){
         exception.read(fp);
     }
 
-    if(attribute_name == "InnerClass"){
+    else if(attribute_name == "InnerClass"){
         inner_class.read(fp);
     }
 
