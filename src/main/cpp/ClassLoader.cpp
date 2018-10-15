@@ -253,8 +253,13 @@ void ClassLoader::setMethodCount(FILE * fp) {
 }
 
 void ClassLoader::setMethods(FILE * fp) {
-    //ByteReader<typeof(methods)> bReader;
-    //methods = bReader.byteCatch(fp);
+    for (int i = 0; i < this->getMethoCount(); i++)
+    {
+
+        MethodInfo *mi = (MethodInfo *)calloc(1, sizeof(MethodInfo));
+        mi->read(fp,this->constantPool);
+        this->methods.push_back(mi);
+    }
 }
 
 void ClassLoader::setAttributesCount(FILE * fp) {
