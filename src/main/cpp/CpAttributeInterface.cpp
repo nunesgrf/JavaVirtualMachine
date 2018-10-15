@@ -3,7 +3,7 @@
 
 #include "../hpp/CpAttributeInterface.hpp"
 
-std::string CpAttributeInterface::getUTF8(std::vector<CpInfo*> alpha, int beta) {
+std::string CpAttributeInterface::getUTF8(std::vector<CpInfo*> alpha, uint16_t beta) {
 
     if(alpha[beta]->tag == 1) return (char*)alpha[beta]->UTF8.bytes;
 
