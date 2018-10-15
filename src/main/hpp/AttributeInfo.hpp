@@ -47,7 +47,7 @@ class CodeAttribute
     /* It must have this length ^ */
     AttributeInfo *attributes;
 
-    void read(FILE*);
+    void read(FILE*,std::vector<CpInfo*>);
 };
 
 class InnerClassData
@@ -82,12 +82,12 @@ class AttributeInfo
     uint16_t name_index;
     uint32_t length;
     /* It must have this length ^ */
-    uint8_t *info;
     union {
         CodeAttribute code;
         ConstantValue constant_value;
         Exception exception;
         InnerClass inner_class;
+        uint8_t *info;
     };
     void read(FILE *, std::vector<CpInfo *>);
 };
