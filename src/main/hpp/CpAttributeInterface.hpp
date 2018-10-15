@@ -7,7 +7,7 @@
 
 struct CpAttributeInterface {
 
-    std::string getUTF8(std::vector<CpInfo*>, int);
+    std::string getUTF8(std::vector<CpInfo*>, uint16_t);
 };
 
 #endif // _CP_ATR_H_
