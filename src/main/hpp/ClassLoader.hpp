@@ -86,7 +86,7 @@ class ClassLoader {
       /*  The method_info structures represent all methods declared by this class or interface type,
        including instance methods, class methods, instance initialization methods, 
        and any class or interface initialization method.  */
-      //std::vector<MethodInfo *> methods;
+      std::vector<MethodInfo *> methods;
 
       /*The value of the attributes_count item gives the number
        of attributes in the attributes table of this class. */
