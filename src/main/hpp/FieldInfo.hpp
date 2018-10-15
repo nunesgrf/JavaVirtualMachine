@@ -11,7 +11,7 @@ class FieldInfo {
         uint16_t descriptor_index;
         uint16_t attributes_count;
         std::vector<AttributeInfo *> attributes;
-        void setFieldInfo(FILE *,FieldInfo*);
+        void read(FILE *,std::vector<CpInfo*>);
 };
 
 #endif

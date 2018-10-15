@@ -239,11 +239,11 @@ void ClassLoader::setFields(FILE * fp) {
     for(int i = 0; i < this->getFieldCount(); i++) {
 
         /* Allocate a interface */
-        FieldInfo * field = (FieldInfo *)calloc(1, sizeof(*field));
+        FieldInfo* field = (FieldInfo *)calloc(1, sizeof(FieldInfo));
 
         /* Puts into the vector of fields  */
+        field->read(fp,this->constantPool);
         this->fields.push_back(field);
-        this->fields[i]->setFieldInfo(fp,field);
     }
 }
 
