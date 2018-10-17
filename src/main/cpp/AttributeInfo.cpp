@@ -1,3 +1,6 @@
+#ifndef CPP_ATR
+#define CPP_ATR
+
 #include "../hpp/AttributeInfo.hpp"
 #include "ByteReader.cpp"
 #include "CpAttributeInterface.cpp"
@@ -5,6 +8,10 @@
 ByteReader<uint8_t> OneByte;
 ByteReader<uint16_t> TwoByte;
 ByteReader<uint32_t> FourByte;
+
+AttributeInfo::~AttributeInfo() {
+
+}
 
 void ConstantValue::read(FILE *fp) {
     constvalue_index = TwoByte.byteCatch(fp);
@@ -86,3 +93,5 @@ void AttributeInfo::read(FILE * fp, std::vector<CpInfo *> trueCpInfo){
         }
     }
 }
+
+#endif

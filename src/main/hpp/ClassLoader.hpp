@@ -159,17 +159,17 @@ class ClassLoader {
             return methodsCounter;
         }
 
-        /* typeof(methods) getMethods() {
+        typeof(methods) getMethods() {
             return methods;
-        } */
+        }
 
         uint16_t getAttriCount() {
             return attributesCounter;
         }
 
-        /* typeof(attributes) getAttributes() {
+        typeof(attributes) getAttributes() {
             return attributes;
-        } */
+        } 
 
         bool DEBUG = true;
         ~ClassLoader();

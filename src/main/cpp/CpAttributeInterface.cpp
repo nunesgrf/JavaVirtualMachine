@@ -1,5 +1,5 @@
-#ifndef BLA
-#define BLA
+#ifndef CPP_INTERACP
+#define CPP_INTERACP
 
 #include "../hpp/CpAttributeInterface.hpp"
 

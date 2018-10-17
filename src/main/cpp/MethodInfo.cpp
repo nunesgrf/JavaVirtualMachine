@@ -1,3 +1,6 @@
+#ifndef CPP_METHOD
+#define CPP_METHOD
+
 #include "../hpp/MethodInfo.hpp"
 #include "ByteReader.cpp"
 
@@ -22,3 +25,5 @@ void MethodInfo::read(FILE *fp, std::vector<CpInfo*> trueCpInfo)
         this->attributes[i].read(fp,trueCpInfo);
     }
 }
+
+#endif 
