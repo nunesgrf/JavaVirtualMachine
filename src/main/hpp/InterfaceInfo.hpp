@@ -8,6 +8,8 @@ class InterfaceInfo {
 
     public:
         uint16_t interface_table;
+
+        ~InterfaceInfo();
         void setInterfaceInfo(FILE*);
 
 };

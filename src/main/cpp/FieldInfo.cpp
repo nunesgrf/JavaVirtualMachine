@@ -1,4 +1,11 @@
+#ifndef CPP_FIELD
+#define CPP_FIELD
+
 #include "../hpp/FieldInfo.hpp"
+
+FieldInfo::~FieldInfo() {
+
+}
 
 void FieldInfo::read(FILE *fp, std::vector<CpInfo *> trueCpInfo)
 {
@@ -19,3 +26,5 @@ void FieldInfo::read(FILE *fp, std::vector<CpInfo *> trueCpInfo)
     
 
 }
+
+#endif

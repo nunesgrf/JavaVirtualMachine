@@ -89,6 +89,8 @@ class AttributeInfo
         InnerClass inner_class;
         uint8_t *info;
     };
+
+    ~AttributeInfo();
     void read(FILE *, std::vector<CpInfo *>);
 };
 #endif
