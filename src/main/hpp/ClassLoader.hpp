@@ -23,14 +23,17 @@
 #include <cstdio>
 
 #include "../cpp/ByteReader.cpp"
-#include "../hpp/CpInfo.hpp"
+#include "CpInfo.hpp"
 #include "../cpp/MethodInfo.cpp"
+#include "InterfaceInfo.hpp"
+#include "../cpp/InterfaceInfo.cpp"
 #include "../cpp/FieldInfo.cpp"
 
 class CpInfo;
 class FieldInfo;
 class MethodInfo;
 class AttributeInfo;
+class InterfaceInfo;
 
 class ClassLoader {
 
@@ -65,7 +68,7 @@ class ClassLoader {
 
       /* Each value in the interfaces array must be a valid
        index into the constant_pool table */
-      //std::vector<uint16_t> interfaces;
+      std::vector<InterfaceInfo*> interfaces;
 
       /* The value of the fields_count item gives the number
        of field_info structures in the fields table */
@@ -74,7 +77,7 @@ class ClassLoader {
       /* The fields table includes only those fields that are declared by this class or interface. 
       It does not include items representing fields that are 
       inherited from superclasses or superinterfaces. */
-      //std::vector<FieldsInfo *> fields;
+      std::vector<FieldInfo *> fields;
 
       /* The value of the methods_count item gives
        the number of method_info structures in the methods table. */
@@ -83,7 +86,7 @@ class ClassLoader {
       /*  The method_info structures represent all methods declared by this class or interface type,
        including instance methods, class methods, instance initialization methods, 
        and any class or interface initialization method.  */
-      //std::vector<MethodInfo *> methods;
+      std::vector<MethodInfo *> methods;
 
       /*The value of the attributes_count item gives the number
        of attributes in the attributes table of this class. */
@@ -139,32 +142,34 @@ class ClassLoader {
         uint16_t getInterCounter() {
             return interfaceCounter;
         }
-        /* std::vector<uint16_t> getInterfaces() {
+        
+        std::vector<InterfaceInfo*> getInterfaces() {
             return interfaces;
-        } */
+        }
 
         uint16_t getFieldCount() {
             return fieldsCounter;
         }
-        /* typeof(fields) getFields() {
+        
+        typeof(fields) getFields() {
             return fields;
-        } */
+        }
 
         uint16_t getMethoCount() {
             return methodsCounter;
         }
 
-        /* typeof(methods) getMethods() {
+        typeof(methods) getMethods() {
             return methods;
-        } */
+        }
 
         uint16_t getAttriCount() {
             return attributesCounter;
         }
 
-        /* typeof(attributes) getAttributes() {
+        typeof(attributes) getAttributes() {
             return attributes;
-        } */
+        } 
 
         bool DEBUG = true;
         ~ClassLoader();
