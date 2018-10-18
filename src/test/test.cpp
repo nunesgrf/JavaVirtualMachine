@@ -12,7 +12,7 @@ int main() {
 
     ClassLoader classloader(fp);
     CpAttributeInterface x;
-
+    /* Print de infomações genericas do .class */
     cout << "MagicNumber  : " << hex << classloader.getMagic() << endl;
     cout << "MinorVersion : " << dec << classloader.getMinor() << endl;
     cout << "MajorVersion : " << dec << classloader.getMajor() << endl;
@@ -24,8 +24,9 @@ int main() {
     cout << "FieldsCount  : " << dec << classloader.getFieldCount() << dec << endl;
     cout << "MethodCount  : " << dec << classloader.getMethoCount() << dec << endl;
     cout << "AtributeCoun : " << dec << classloader.getAttriCount() << endl;
-
-    std::vector<CpInfo*> a = classloader.getConstPool();
+    /*Fim do Print de infomações genericas do .class */
+    /* Print do vetor de constant pool */
+    vector<CpInfo*> a = classloader.getConstPool();
     cout << "top" << endl << endl;
     cout << a.size() << endl;
     for(int i = 0; i < a.size(); i++) {
@@ -94,6 +95,20 @@ int main() {
         default :
           cout << "Non-type" << endl;
       }
+    }
+    /* Fim do Print do vetor de constant pool */
+    /* Print do vetor de interfaces */
+    std::vector<InterfaceInfo*> interfaces = classloader.getInterfaces();
+    cout << "Interfaces" << endl << endl;
+    for (int j = 0; j < interfaces.size(); j++) {
+        cout << x.getUTF8(classloader.getConstPool(), interfaces[j]->interface_table);
+
+    }
+    /* Fim do Print do vetor de interfaces */
+    /* Print do vetor de atributos */
+    vector<AttributeInfo *> attributes = classloader.getAttributes();
+    cout << "Attributes" << endl << endl;
+    for (int k = 0 ; k < attributes.size(); k++) {
 
     }
     fclose(fp);

@@ -16,6 +16,9 @@ AttributeInfo::~AttributeInfo() {
 void ConstantValue::read(FILE *fp) {
     constvalue_index = TwoByte.byteCatch(fp);
 }
+void ConstantValue::print(std::vector<CpInfo*> trueCpInfo) {
+
+}
 
 void CodeAttribute::read(FILE *fp, std::vector<CpInfo*> trueCpInfo) {
     unsigned int i, j, k;
@@ -46,8 +49,15 @@ void CodeAttribute::read(FILE *fp, std::vector<CpInfo*> trueCpInfo) {
     }
 }
 
+void CodeAttribute::print(std::vector<CpInfo*> trueCpInfo) {
+
+}
 void InnerClass::read(FILE *fp) {
     class_length = TwoByte.byteCatch(fp);
+}
+
+void InnerClass::print(std::vector<CpInfo*> trueCpInfo) {
+
 }
 
 void Exception::read(FILE *fp) {
@@ -60,6 +70,10 @@ void Exception::read(FILE *fp) {
     }
 }
 
+void Exception::print(std::vector<CpInfo*> trueCpInfo) {
+
+}
+
 void AttributeInfo::read(FILE * fp, std::vector<CpInfo *> trueCpInfo){
 
     CpAttributeInterface utf8Getter;
@@ -68,7 +82,7 @@ void AttributeInfo::read(FILE * fp, std::vector<CpInfo *> trueCpInfo){
     length = FourByte.byteCatch(fp);
 
     std::string attribute_name = utf8Getter.getUTF8(trueCpInfo, name_index-1);
-    
+
     if(attribute_name == "Code"){
         code.read(fp,trueCpInfo);
     }
@@ -92,6 +106,27 @@ void AttributeInfo::read(FILE * fp, std::vector<CpInfo *> trueCpInfo){
             info[j] = OneByte.byteCatch(fp);
         }
     }
+}
+
+void AttributeInfo::print(std::vector<CpInfo *> trueCpInfo) {
+    CpAttributeInterface utf8Getter;
+    std::string attribute_name = utf8Getter.getUTF8(trueCpInfo, this->name_index-1);
+
+    if(attribute_name == "Code"){
+        code.print(trueCpInfo);
+    }
+
+    else if(attribute_name == "ConstantValue"){
+        constant_value.print(trueCpInfo);
+    }
+
+    else if(attribute_name == "Exceptions"){
+        exception.print(trueCpInfo);
+    }
+    else if(attribute_name == "InnerClass"){
+        inner_class.print(trueCpInfo);
+    }
+
 }
 
 #endif

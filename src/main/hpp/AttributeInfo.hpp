@@ -29,6 +29,7 @@ class Exception
     uint16_t* exception_index_table;
 
     void read(FILE *);
+    void print(std::vector<CpInfo *>);
 };
 
 class CodeAttribute
@@ -48,6 +49,7 @@ class CodeAttribute
     AttributeInfo *attributes;
 
     void read(FILE*,std::vector<CpInfo*>);
+    void print(std::vector<CpInfo*>);
 };
 
 class InnerClassData
@@ -65,6 +67,7 @@ class InnerClass
     uint16_t class_length;
     InnerClassData *inner_class_data;
     void read(FILE*);
+    void print(std::vector<CpInfo*>);
 };
 
 
@@ -73,6 +76,7 @@ class ConstantValue
   public:
     uint16_t constvalue_index;
     void read(FILE *);
+    void print(std::vector<CpInfo*>);
 };
 
 class AttributeInfo
@@ -92,5 +96,6 @@ class AttributeInfo
 
     ~AttributeInfo();
     void read(FILE *, std::vector<CpInfo *>);
+    void print(std::vector<CpInfo *>);
 };
 #endif
