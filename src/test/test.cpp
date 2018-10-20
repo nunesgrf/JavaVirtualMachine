@@ -1,3 +1,5 @@
+#ifndef TEST
+
 #include "../main/cpp/ClassLoader.cpp"
 #include "../main/cpp/ByteReader.cpp"
 #include "../main/cpp/CpInfo.cpp"
@@ -5,6 +7,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <iomanip>
+
 using namespace std;
 int main() {
 
@@ -13,6 +16,8 @@ int main() {
     ClassLoader classloader(fp);
     CpAttributeInterface x;
     /* Print de infomações genericas do .class */
+
+    cout << "General information \n\n\n";
     cout << "MagicNumber  : " << hex << classloader.getMagic() << endl;
     cout << "MinorVersion : " << dec << classloader.getMinor() << endl;
     cout << "MajorVersion : " << dec << classloader.getMajor() << endl;
@@ -33,23 +38,32 @@ int main() {
       switch (a[i]->tag){
         case CONSTANT_Fieldref:
           cout << "Fieldref" <<endl;
-          cout << setw(2) << setfill('0') << i+1 << " : " << setw(2) << setfill('0') << "Class name = constantpool["  << a[i]->Fieldref.class_index <<"]" << endl;
-          cout << setw(2) << setfill('0') << i+1 << " : " << setw(2) << setfill('0') << "Name and Type = constantpool["  << a[i]->Fieldref.name_and_type_index<<"]"  << endl <<endl;
+          cout << setw(2) << setfill('0') << i+1 << " : " << setw(2) << setfill('0') << "Class name = constantpool["  << a[i]->Fieldref.class_index <<"] ";
+          cout <<"<" << a[a[a[i]->Fieldref.class_index-1]->Class.name_index -1]->UTF8.bytes << ">" << endl;
+          cout << setw(2) << setfill('0') << i+1 << " : " << setw(2) << setfill('0') << "Name and Type = constantpool["  << a[i]->Fieldref.name_and_type_index<<"] "; 
+          cout << "<" << a[a[a[i]->Fieldref.name_and_type_index-1]->NameAndType.name_index -1]->UTF8.bytes << " : " << a[a[a[i]->Fieldref.name_and_type_index-1]->NameAndType.descriptor_index -1]->UTF8.bytes << ">" << endl << endl;
           break;
 
         case CONSTANT_Methodref:
           cout << "Methodref" <<endl;
-          cout << setw(2) << setfill('0') << i+1 << " : " << setw(2) << setfill('0') << "Class name = constantpool["  << a[i]->Methodref.class_index  << "]"<< endl;
-          cout << setw(2) << setfill('0') << i+1 << " : " << setw(2) << setfill('0')  <<"Name and Type = constantpool[" << a[i]->Methodref.name_and_type_index  << "]"<< endl << endl;
+          cout << setw(2) << setfill('0') << i+1 << " : " << setw(2) << setfill('0') << "Class name = constantpool["  << a[i]->Methodref.class_index  << "] ";
+          cout <<"<" << a[a[a[i]->Methodref.class_index-1]->Class.name_index -1]->UTF8.bytes << ">" << endl;
+          cout << setw(2) << setfill('0') << i+1 << " : " << setw(2) << setfill('0')  <<"Name and Type = constantpool[" << a[i]->Methodref.name_and_type_index  << "] ";
+          cout << "<" << a[a[a[i]->Methodref.name_and_type_index-1]->NameAndType.name_index -1]->UTF8.bytes << " : " << a[a[a[i]->Methodref.name_and_type_index-1]->NameAndType.descriptor_index -1]->UTF8.bytes << ">" << endl << endl;
           break;
 
         case CONSTANT_NameAndType:
           cout << "NameAndType" <<endl;
-          cout << setw(2) << setfill('0') << i+1 << " : " << setw(2) << setfill('0') << "Name = constantpool["  << a[i]->NameAndType.name_index <<"]" << endl;
-          cout << setw(2) << setfill('0') << i+1 << " : " << setw(2) << setfill('0') << "Descriptor = constantpool["  << a[i]->NameAndType.descriptor_index <<"]" << endl << endl;
+          cout << setw(2) << setfill('0') << i+1 << " : " << setw(2) << setfill('0') << "Name = constantpool["  << a[i]->NameAndType.name_index <<"] " ;
+          cout << "<"<< a[a[i]->NameAndType.name_index-1]->UTF8.bytes <<  ">"  <<endl;
+          cout << setw(2) << setfill('0') << i+1 << " : " << setw(2) << setfill('0') << "Descriptor = constantpool["  << a[i]->NameAndType.descriptor_index <<"] " ;
+          cout << "<"<< a[a[i]->NameAndType.descriptor_index-1]->UTF8.bytes <<  ">" << endl << endl;
           break;
+
         case CONSTANT_String:
-          cout << setw(2) << setfill('0') << i+1 << " : " << setw(2) << setfill('0') << "String = constantpool["  << a[i]->String.string_index << "]" << endl<<endl;
+          cout << "String" << endl;
+          cout << setw(2) << setfill('0') << i+1 << " : " << setw(2) << setfill('0') << "String = constantpool["  << a[i]->String.string_index << "] ";
+          cout << "<"<< a[a[i]->String.string_index-1]->UTF8.bytes <<  ">"  <<endl << endl;
           break;
 
         case CONSTANT_Utf8:
@@ -61,7 +75,8 @@ int main() {
 
         case CONSTANT_Class:
           cout << "Class" << endl;
-          cout << setw(2) << setfill('0') << i+1 << " : " << setw(2) << setfill('0') << "Class name = "  << a[i]->Class.name_index << endl << endl;
+          cout << setw(2) << setfill('0') << i+1 << " : " << setw(2) << setfill('0') << "Class name = "  << a[i]->Class.name_index ;
+          cout << " <"<< a[a[i]->Class.name_index-1]->UTF8.bytes <<  ">"  <<endl << endl;
           break;
 
         case CONSTANT_InterfaceMethodref:
@@ -111,5 +126,21 @@ int main() {
     for (int k = 0 ; k < attributes.size(); k++) {
 
     }
+
+    /* Printar o method */
+    vector<MethodInfo *> methods = classloader.getMethods();
+    int countMethod = methods.size();
+    cout <<"COUTMETHOD = " << countMethod<<endl;
+    for(int i=0;i<countMethod;i++){
+      cout << "[" << i << "]" << endl;
+      cout <<"Name = constantpool[" << methods[i]->name_index<<"] " <<"<"<<a[methods[i]->name_index-1]->UTF8.bytes<<">"<< endl;
+      cout <<"Descriptor = constantpool[" << methods[i]->descriptor_index<<"] "<< "<"<< a[methods[i]->descriptor_index-1]->UTF8.bytes<<">"<<endl;
+      cout <<"Access flag = " << "0x" << setw(4) << setfill('0') << methods[i]->access_flags <<endl;
+    }
+     
+
+    /* Fim do print method */
     fclose(fp);
 }
+
+#endif 
