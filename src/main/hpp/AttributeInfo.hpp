@@ -11,6 +11,7 @@ class CodeAttribute;
 class Synthetic;
 class ConstantValue;
 class ClassLoader;
+class NumberTableAttribute_lineNumber;
 
 class CodeException
 {
@@ -79,6 +80,35 @@ class ConstantValue
     void print(std::vector<CpInfo*>);
 };
 
+class SourceFile 
+{
+  public:
+
+    uint16_t sourceFileIndex;
+    void read(FILE *);
+    void print(std::vector<CpInfo*>);
+};
+
+class NumberTableAttribute
+{
+  public:
+
+    uint16_t length;
+    NumberTableAttribute_lineNumber *line_number_table;
+
+
+    void read(FILE *);
+    void print();
+};
+class NumberTableAttribute_lineNumber
+{
+  public:
+
+    uint16_t start_pc;
+    uint16_t lineNumber;
+
+};
+
 class AttributeInfo
 {
   public:
@@ -91,6 +121,8 @@ class AttributeInfo
         ConstantValue constant_value;
         Exception exception;
         InnerClass inner_class;
+        SourceFile sourceFile;
+        NumberTableAttribute lineNumber;
         uint8_t *info;
     };
 
