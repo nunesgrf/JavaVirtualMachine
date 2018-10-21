@@ -17,7 +17,7 @@ int main() {
     CpAttributeInterface x;
     /* Print de infomações genericas do .class */
 
-    cout << "General information \n\n\n";
+    cout << "------------------------------General information------------------------------ \n\n\n";
     cout << "MagicNumber  : " << hex << classloader.getMagic() << endl;
     cout << "MinorVersion : " << dec << classloader.getMinor() << endl;
     cout << "MajorVersion : " << dec << classloader.getMajor() << endl;
@@ -32,8 +32,8 @@ int main() {
     /*Fim do Print de infomações genericas do .class */
     /* Print do vetor de constant pool */
     vector<CpInfo*> a = classloader.getConstPool();
-    cout << "top" << endl << endl;
     cout << a.size() << endl;
+    cout << "------------------------------ConstantPool------------------------------ \n\n\n";
     for(int i = 0; i < a.size(); i++) {
       switch (a[i]->tag){
         case CONSTANT_Fieldref:
@@ -114,21 +114,16 @@ int main() {
     /* Fim do Print do vetor de constant pool */
     /* Print do vetor de interfaces */
     std::vector<InterfaceInfo*> interfaces = classloader.getInterfaces();
-    cout << "Interfaces" << endl << endl;
+    cout << "------------------------------Interfaces------------------------------" << endl << endl;
     for (int j = 0; j < interfaces.size(); j++) {
         cout << x.getUTF8(classloader.getConstPool(), interfaces[j]->interface_table);
 
     }
+    cout << "\nEMPTY" << endl;
     /* Fim do Print do vetor de interfaces */
-    /* Print do vetor de atributos */
-    vector<AttributeInfo *> attributes = classloader.getAttributes();
-    cout << "Attributes" << endl << endl;
-    for (int k = 0 ; k < attributes.size(); k++) {
-        attributes[k]->print(a);
-    }
 
     /* Printar o method */
-    cout << "Method" << endl << endl;
+    cout << "------------------------------Method------------------------------" << endl << endl;
     vector<MethodInfo *> methods = classloader.getMethods();
     int countMethod = methods.size();
     for(int i=0;i<countMethod;i++){
@@ -141,6 +136,15 @@ int main() {
      
 
     /* Fim do print method */
+    /* Print do vetor de atributos */
+    vector<AttributeInfo *> attributes = classloader.getAttributes();
+    cout << "\n------------------------------Attributes------------------------------" << endl << endl;
+    for (int k = 0 ; k < attributes.size(); k++) {
+        cout << "[" << k << "]" << endl;
+        attributes[k]->print(a);
+    }
+
+    /* Fim do print atributos */
     fclose(fp);
 }
 
