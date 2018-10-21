@@ -130,12 +130,12 @@ int main() {
     /* Printar o method */
     vector<MethodInfo *> methods = classloader.getMethods();
     int countMethod = methods.size();
-    cout <<"COUTMETHOD = " << countMethod<<endl;
     for(int i=0;i<countMethod;i++){
       cout << "[" << i << "]" << endl;
       cout <<"Name = constantpool[" << methods[i]->name_index<<"] " <<"<"<<a[methods[i]->name_index-1]->UTF8.bytes<<">"<< endl;
       cout <<"Descriptor = constantpool[" << methods[i]->descriptor_index<<"] "<< "<"<< a[methods[i]->descriptor_index-1]->UTF8.bytes<<">"<<endl;
       cout <<"Access flag = " << "0x" << setw(4) << setfill('0') << methods[i]->access_flags <<endl;
+      //cout << "atributos = " << attributes[i] << endl; 
     }
      
 
