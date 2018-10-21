@@ -117,7 +117,6 @@ int main() {
     cout << "------------------------------Interfaces------------------------------" << endl << endl;
     for (int j = 0; j < interfaces.size(); j++) {
         cout << x.getUTF8(classloader.getConstPool(), interfaces[j]->interface_table);
-
     }
     cout << "\nEMPTY" << endl;
     /* Fim do Print do vetor de interfaces */
@@ -131,12 +130,14 @@ int main() {
       cout <<"Name = constantpool[" << methods[i]->name_index<<"] " <<"<"<<a[methods[i]->name_index-1]->UTF8.bytes<<">"<< endl;
       cout <<"Descriptor = constantpool[" << methods[i]->descriptor_index<<"] "<< "<"<< a[methods[i]->descriptor_index-1]->UTF8.bytes<<">"<<endl;
       cout <<"Access flag = " << "0x" << setw(4) << setfill('0') << methods[i]->access_flags <<endl;
-      //cout << "atributos = " << attributes[i] << endl; 
+      for(int j=0;j<methods[i]->attributes_count; j++){
+        methods[i]->attributes[j].print(a);  
+      }
     }
      
 
     /* Fim do print method */
-    /* Print do vetor de atributos */
+    /* Print do vetor de attributes */
     vector<AttributeInfo *> attributes = classloader.getAttributes();
     cout << "\n------------------------------Attributes------------------------------" << endl << endl;
     for (int k = 0 ; k < attributes.size(); k++) {
@@ -144,7 +145,7 @@ int main() {
         attributes[k]->print(a);
     }
 
-    /* Fim do print atributos */
+    /* Fim do print attributes */
     fclose(fp);
 }
 
