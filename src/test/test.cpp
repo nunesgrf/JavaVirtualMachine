@@ -128,6 +128,7 @@ int main() {
     }
 
     /* Printar o method */
+    cout << "Method" << endl << endl;
     vector<MethodInfo *> methods = classloader.getMethods();
     int countMethod = methods.size();
     for(int i=0;i<countMethod;i++){
