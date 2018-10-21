@@ -109,7 +109,7 @@ int main() {
     vector<AttributeInfo *> attributes = classloader.getAttributes();
     cout << "Attributes" << endl << endl;
     for (int k = 0 ; k < attributes.size(); k++) {
-
+        attributes[k]->print(a);
     }
     fclose(fp);
 }

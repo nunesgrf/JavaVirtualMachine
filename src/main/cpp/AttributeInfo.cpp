@@ -4,6 +4,9 @@
 #include "../hpp/AttributeInfo.hpp"
 #include "ByteReader.cpp"
 #include "CpAttributeInterface.cpp"
+#include <iomanip>
+#include <iostream>
+using namespace std;
 
 ByteReader<uint8_t> OneByte;
 ByteReader<uint16_t> TwoByte;
@@ -17,7 +20,9 @@ void ConstantValue::read(FILE *fp) {
     constvalue_index = TwoByte.byteCatch(fp);
 }
 void ConstantValue::print(std::vector<CpInfo*> trueCpInfo) {
+    CpAttributeInterface utf8Getter;
 
+    cout << "Constante Value Index= constantpool[" << this->constvalue_index << "]" << utf8Getter.getUTF8(trueCpInfo, this->constvalue_index - 1) << endl;
 }
 
 void CodeAttribute::read(FILE *fp, std::vector<CpInfo*> trueCpInfo) {
@@ -50,14 +55,40 @@ void CodeAttribute::read(FILE *fp, std::vector<CpInfo*> trueCpInfo) {
 }
 
 void CodeAttribute::print(std::vector<CpInfo*> trueCpInfo) {
+    unsigned int i, j, k;
+    CpAttributeInterface utf8Getter;
 
+    cout << "Max Stacks" << this->max_stacks << endl;
+    cout << "Max Locals" << this->max_locals << endl;
+    cout << "Code Length" << this->code_length << endl;
+
+    for (i = 0; i < this->code_length; i++){
+        cout << "Code =" << code[i]<< endl;
+    }
+
+
+
+    cout << "Exception Table Length" << this->exception_table_length << endl;
+    for (j = 0; j < this->exception_table_length; j++){
+        cout << "Start PC =" << this->code_exception_table[j].start_pc<< endl;
+        cout << "End PC =" << this->code_exception_table[j].end_pc<< endl;
+        cout << "Handler PC=" << this->code_exception_table[j].handler_pc<< endl;
+        if(code_exception_table[j].catch_type) {
+            cout << "Catch type=constantpool[" << this->code_exception_table[j].catch_type<< "]" << utf8Getter.getUTF8(trueCpInfo, this->code_exception_table[j].catch_type-1) << endl;
+        }
+    }
+
+    cout << "Attributes Count=" << this->attributes_count << endl;
+    for (k = 0; k < this->attributes_count; k++){
+        attributes[k].print(trueCpInfo);
+    }
 }
 void InnerClass::read(FILE *fp) {
     class_length = TwoByte.byteCatch(fp);
 }
 
 void InnerClass::print(std::vector<CpInfo*> trueCpInfo) {
-
+    cout << "Class length=" << this->class_length<<endl;
 }
 
 void Exception::read(FILE *fp) {
@@ -71,7 +102,13 @@ void Exception::read(FILE *fp) {
 }
 
 void Exception::print(std::vector<CpInfo*> trueCpInfo) {
+    int i;
+    CpAttributeInterface utf8Getter;
 
+    cout << "Number of exceptions=" << number_exceptions <<endl;
+    for (i = 0; i < number_exceptions; i++){
+        cout << setw(2) << setfill('0') << "Exception Index Table =constantpool[" << this->exception_index_table[i]<< "]" << utf8Getter.getUTF8(trueCpInfo, exception_index_table[i]-1) << endl;
+    }
 }
 
 void AttributeInfo::read(FILE * fp, std::vector<CpInfo *> trueCpInfo){
@@ -112,6 +149,8 @@ void AttributeInfo::print(std::vector<CpInfo *> trueCpInfo) {
     CpAttributeInterface utf8Getter;
     std::string attribute_name = utf8Getter.getUTF8(trueCpInfo, this->name_index-1);
 
+    cout << setw(2) << setfill('0') << "Attribute Name Index= constantpool[" << this->name_index<< "]" << attribute_name << endl;
+    cout << setw(2) << setfill('0') << "Attribute Length = " << this->length<< endl;
     if(attribute_name == "Code"){
         code.print(trueCpInfo);
     }
