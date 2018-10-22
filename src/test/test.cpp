@@ -128,7 +128,7 @@ int main() {
     std::vector<InterfaceInfo*> interfaces = classloader.getInterfaces();
     cout << "------------------------------Interfaces------------------------------" << endl << endl;
     for (int j = 0; j < interfaces.size(); j++) {
-        cout << x.getUTF8(classloader.getConstPool(), interfaces[j]->interface_table);
+        cout << x.getUTF8(classloader.getConstPool(), interfaces[j]->interface_table -1);
     }
     cout << "\nEMPTY" << endl;
     /* Fim do Print do vetor de interfaces */
