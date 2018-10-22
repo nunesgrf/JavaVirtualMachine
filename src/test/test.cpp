@@ -34,6 +34,7 @@ int main() {
         default : file_wish = 0 ; break;
       }
     }
+    
     ClassLoader classloader(fp);
     CpAttributeInterface x;
     vector<CpInfo*> a = classloader.getConstPool();
@@ -143,6 +144,9 @@ int main() {
       cout <<"Descriptor = constantpool[" << fieldInfo[i]->descriptor_index<<"] "<< "<"<< a[fieldInfo[i]->descriptor_index-1]->UTF8.bytes<<">"<<endl;
       cout <<"Access flag = " << "0x" << setw(4) << setfill('0') << fieldInfo[i]->access_flags <<endl << endl;
     }  
+    if(countFields == 0 ){
+      cout << "EMPTY" << endl;
+    }
 
 
     /* Print do vetor de interfaces */
