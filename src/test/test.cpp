@@ -9,10 +9,31 @@
 #include <iomanip>
 
 using namespace std;
+
+
 int main() {
+    FILE *fp;
 
-    FILE * fp = fopen("AttributeInstDemo.class","r");
+    int file_wish=0;
+    while(file_wish ==0 ){
 
+      cout << "------------------------------MENU------------------------------ \n\n\n";
+
+      cout << "Escolha o arquivo que deseja : " << endl << endl;
+      cout << "1 - HelloWorld.class" << endl;
+      cout << "2 - Fibonacci.class" << endl;
+      cout << "3 - AttributeInstDemo.class" << endl;
+      cout << "4 - HarmonicSeries.class" << endl;
+      cin >> file_wish ;
+
+      switch(file_wish){
+        case 1 :   fp  =fopen("HelloWorld.class","r"); break;
+        case 2 :   fp =fopen("Fibonacci.class","r"); break;
+        case 3 :   fp  =fopen("AttributeInstDemo.class","r"); break;
+        case 4 :   fp = fopen("HarmonicSeries.class","r"); break;
+        default : file_wish = 0 ; break;
+      }
+    }
     ClassLoader classloader(fp);
     CpAttributeInterface x;
     vector<CpInfo*> a = classloader.getConstPool();

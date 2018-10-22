@@ -19,7 +19,6 @@
 #define NEW 187
 #define putfield 181
 #define putstatic 179
-
 #define GOTO 167
 #define if_acmpeq 165
 #define if_acmpne 166
@@ -38,6 +37,14 @@
 #define ifnonull 199
 #define ifnull 198
 #define jsr 168
+
+#define aload 25
+#define aload_0 42
+#define aload_1 43
+#define aload_2 44
+#define aload_3 45
+#define areturn 176
+#define return_original 177
 
 
 class InstructionReader

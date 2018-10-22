@@ -43,6 +43,13 @@ void InstructionReader::print(int code)
         case ifnonull :cout << "ifnonull" <<endl; break;
         case ifnull :cout << "ifnull" <<endl; break;
         case jsr :cout << "jsr" <<endl; break;
+        case aload : cout << "aload" <<endl; break;
+        case aload_0 :cout << "aload_0" <<endl; break;
+        case aload_1 :cout << "aload_1" <<endl; break;
+        case aload_2 :cout << "aload_2" <<endl; break;
+        case aload_3 :cout << "aload_3" <<endl; break;
+        case areturn :cout << "areturn" <<endl; break;
+        case return_original :cout << "return" <<endl; break;
         default : break;
     }
 
