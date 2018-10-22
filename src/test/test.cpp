@@ -15,6 +15,7 @@ int main() {
 
     ClassLoader classloader(fp);
     CpAttributeInterface x;
+    vector<CpInfo*> a = classloader.getConstPool();
     /* Print de infomações genericas do .class */
 
     cout << "------------------------------General information------------------------------ \n\n\n";
@@ -22,16 +23,15 @@ int main() {
     cout << "MinorVersion : " << dec << classloader.getMinor() << endl;
     cout << "MajorVersion : " << dec << classloader.getMajor() << endl;
     cout << "PoolCounter  : " << dec << classloader.getConstCount() << endl;
-    cout << "AcessFlag    : " << hex << classloader.getFlag() << endl;
-    cout << "ThisClass    : " << dec << classloader.getThisClass() << endl;
-    cout << "SuperClass   : " << dec << classloader.getSuper() << endl;
+    cout << "AcessFlag    : "<< "0x" << setw(4) << setfill('0') << hex << classloader.getFlag() << endl;
+    cout << "ThisClass    : " <<"constantpool[" << classloader.getThisClass()<<"] " <<"<"<<x.getUTF8(classloader.getConstPool(),classloader.getThisClass()-1)<<">"<< endl;
+    cout << "SuperClass   : " <<"constantpool[" << classloader.getSuper()<<"] " <<"<"<<x.getUTF8(classloader.getConstPool(),classloader.getSuper()-1)<<">"<< endl;
     cout << "InterfaceCou : " << dec << classloader.getInterCounter() << endl;
     cout << "FieldsCount  : " << dec << classloader.getFieldCount() << dec << endl;
     cout << "MethodCount  : " << dec << classloader.getMethoCount() << dec << endl;
     cout << "AtributeCoun : " << dec << classloader.getAttriCount() << endl;
     /*Fim do Print de infomações genericas do .class */
     /* Print do vetor de constant pool */
-    vector<CpInfo*> a = classloader.getConstPool();
     cout << a.size() << endl;
     cout << "------------------------------ConstantPool------------------------------ \n\n\n";
     for(int i = 0; i < a.size(); i++) {
