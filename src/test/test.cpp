@@ -11,7 +11,7 @@
 using namespace std;
 int main() {
 
-    FILE * fp = fopen("HelloWorld.class","r");
+    FILE * fp = fopen("AttributeInstDemo.class","r");
 
     ClassLoader classloader(fp);
     CpAttributeInterface x;
@@ -112,6 +112,18 @@ int main() {
       }
     }
     /* Fim do Print do vetor de constant pool */
+    cout << "------------------------------Fields------------------------------" << endl << endl;
+    
+    vector<FieldInfo *> fieldInfo = classloader.getFields();
+    int countFields = fieldInfo.size();
+    for(int i=0;i<countFields;i++){
+      cout << "[" << i << "]" << endl;
+      cout <<"Name = constantpool[" << fieldInfo[i]->name_index<<"] " <<"<"<<a[fieldInfo[i]->name_index-1]->UTF8.bytes<<">"<< endl;
+      cout <<"Descriptor = constantpool[" << fieldInfo[i]->descriptor_index<<"] "<< "<"<< a[fieldInfo[i]->descriptor_index-1]->UTF8.bytes<<">"<<endl;
+      cout <<"Access flag = " << "0x" << setw(4) << setfill('0') << fieldInfo[i]->access_flags <<endl << endl;
+    }  
+
+
     /* Print do vetor de interfaces */
     std::vector<InterfaceInfo*> interfaces = classloader.getInterfaces();
     cout << "------------------------------Interfaces------------------------------" << endl << endl;
