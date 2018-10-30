@@ -38,7 +38,7 @@ void NumberTableAttribute::print() {
     cout << "\nLine Number Table" << endl;
     for(int i=0;i < this->length ; i++ ){
         cout <<"["<< i <<"] || "<< this->line_number_table[i].start_pc << " || " << this->line_number_table[i].lineNumber << endl;
-    }    
+    }
     cout << "\n\n";
 }
 
@@ -89,7 +89,7 @@ void CodeAttribute::print(std::vector<CpInfo*> trueCpInfo) {
 
 
 
-    cout << "Exception Table Length:" << endl <<endl;
+    cout << "Exception Table:" << endl <<endl;
     for (j = 0; j < this->exception_table_length; j++){
         cout << "Start PC =" << this->code_exception_table[j].start_pc<< endl;
         cout << "End PC =" << this->code_exception_table[j].end_pc<< endl;
@@ -133,9 +133,9 @@ void Exception::print(std::vector<CpInfo*> trueCpInfo) {
 }
 
 void SourceFile::read(FILE *fp) {
- 
+
     sourceFileIndex = TwoByte.byteCatch(fp);
-    
+
 }
 
 void SourceFile::print(std::vector<CpInfo*> trueCpInfo) {
@@ -181,7 +181,7 @@ void AttributeInfo::read(FILE * fp, std::vector<CpInfo *> trueCpInfo){
         for(int j = 0; j < length ; j++) {
             info[j] = OneByte.byteCatch(fp);
         }
-        
+
     }
 }
 
@@ -191,7 +191,7 @@ void AttributeInfo::print(std::vector<CpInfo *> trueCpInfo) {
 
     cout << setw(2) << setfill('0') << "Attribute Name Index= constantpool[" << this->name_index<< "] " <<"<"<< attribute_name << ">" <<endl;
     cout << setw(2) << setfill('0') << "Attribute Length = " << this->length<< endl;
-    
+
     if(attribute_name == "Code"){
         code.print(trueCpInfo);
     }

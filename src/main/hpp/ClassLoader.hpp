@@ -13,6 +13,7 @@
 #define CONSTANT_Methodref 10
 #define CONSTANT_InterfaceMethodref 11
 #define CONSTANT_NameAndType 12
+#define CONSTANT_Empty 0
 #define typeof __typeof__
 
 #include <cstdint>
@@ -40,9 +41,9 @@ class ClassLoader {
     private:
       /* The magic item supplies the magic number identifying the class file format */
       uint32_t magicNumber;
-      /* The values of the minor_version and major_version items are the 
-      minor and major version numbers of this class file. 
-      Together, a major and a minor version number determine 
+      /* The values of the minor_version and major_version items are the
+      minor and major version numbers of this class file.
+      Together, a major and a minor version number determine
       the version of the class file format. */
       uint16_t minorVersion;
       uint16_t majorVersion;
@@ -74,8 +75,8 @@ class ClassLoader {
        of field_info structures in the fields table */
       uint16_t fieldsCounter;
 
-      /* The fields table includes only those fields that are declared by this class or interface. 
-      It does not include items representing fields that are 
+      /* The fields table includes only those fields that are declared by this class or interface.
+      It does not include items representing fields that are
       inherited from superclasses or superinterfaces. */
       std::vector<FieldInfo *> fields;
 
@@ -84,7 +85,7 @@ class ClassLoader {
       uint16_t methodsCounter;
 
       /*  The method_info structures represent all methods declared by this class or interface type,
-       including instance methods, class methods, instance initialization methods, 
+       including instance methods, class methods, instance initialization methods,
        and any class or interface initialization method.  */
       std::vector<MethodInfo *> methods;
 
@@ -92,7 +93,7 @@ class ClassLoader {
        of attributes in the attributes table of this class. */
       uint16_t attributesCounter;
 
-      
+
       std::vector<AttributeInfo *> attributes;
 
       void setMagic(FILE * fp);
@@ -113,7 +114,7 @@ class ClassLoader {
       void setAttributes(FILE * fp);
 
     public:
-      
+
         uint32_t getMagic() {
           return magicNumber;
         }
@@ -129,7 +130,7 @@ class ClassLoader {
         std::vector<CpInfo*> getConstPool() {
             return constantPool;
         }
-        
+
         uint16_t getFlag() {
             return accessFlags;
         }
@@ -142,7 +143,7 @@ class ClassLoader {
         uint16_t getInterCounter() {
             return interfaceCounter;
         }
-        
+
         std::vector<InterfaceInfo*> getInterfaces() {
             return interfaces;
         }
@@ -150,7 +151,7 @@ class ClassLoader {
         uint16_t getFieldCount() {
             return fieldsCounter;
         }
-        
+
         typeof(fields) getFields() {
             return fields;
         }
@@ -169,7 +170,7 @@ class ClassLoader {
 
         typeof(attributes) getAttributes() {
             return attributes;
-        } 
+        }
 
         bool DEBUG = true;
         ~ClassLoader();
