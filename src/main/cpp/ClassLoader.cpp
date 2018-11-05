@@ -34,11 +34,11 @@ ClassLoader::ClassLoader(FILE * fp) {
         this->setAttributesCount(fp);
         this->setAttributes(fp);
     }
-    else std::cout << "invalid file pointer" << std::endl; // TODO: Modificar esse Else para algum throw ou retorno.  
+    else std::cout << "invalid file pointer" << std::endl; // TODO: Modificar esse Else para algum throw ou retorno.
 }
 
 /**
- * Aqui são feitas as desalocações 
+ * Aqui são feitas as desalocações
  * da ClassLoader
  */
 
@@ -63,7 +63,7 @@ ClassLoader::~ClassLoader() {
         a->~MethodInfo();
         free(a);
     }
-    
+
     for(auto a : constantPool) {
         a->~CpInfo();
         free(a);
@@ -91,14 +91,19 @@ void ClassLoader::setConstCount(FILE * fp) {
 }
 
 void ClassLoader::setConstPool(FILE * fp) {
-        
+
     for(int i = 0; i < this->getConstCount() - 1; i++) {
 
         CpInfo * cp = (CpInfo *)calloc(1, sizeof(*cp)); /* Allocate a constante pool */
-        cp->read(fp);   
+        cp->read(fp);
         this->constantPool.push_back(cp); /* Puts into the vector of constant pools  */
-        
-    }    
+        if ((cp->tag == CONSTANT_Double) || (cp->tag == CONSTANT_Long)) { 
+            CpInfo * cp2 = (CpInfo *)calloc(1, sizeof(*cp));
+            cp2->tag = CONSTANT_Empty;
+            this->constantPool.push_back(cp2);
+            i++;
+        }
+    }
 }
 
 
