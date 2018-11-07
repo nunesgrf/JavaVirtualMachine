@@ -17,8 +17,6 @@ int main() {
     cout << "Stack.push(3)" << endl;
     sp.push(3);
     
-    sp.dup2_x2();
-
     while(sp.size() != 0) {
         cout << " | " << sp.pop() << " | " << endl;
     }

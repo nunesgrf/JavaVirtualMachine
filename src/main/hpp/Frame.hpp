@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include "../cpp/Stack.cpp"
+#include "CpInfo.hpp"
 
 typedef struct {
     std::vector<Operand*> array;
@@ -30,10 +31,14 @@ struct Frame {
     
     uint32_t pc; // program counter
     Stack<Operand> operand_stack;
+    CodeAttribute method_code;
+    MethodInfo * method_reference;
+    std::vector<CpInfo*> cp_reference;
     std::vector<Operand> local_variables;
 
-    void exe();
-    void setInstructs();
+    Frame(std::vector<CpInfo*>,MethodInfo *);
+    //void exe();
+    //void setInstructs();
 };
 
 #endif
