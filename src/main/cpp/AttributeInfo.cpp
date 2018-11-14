@@ -1,7 +1,7 @@
 #ifndef CPP_ATR
 #define CPP_ATR
 
-#include "InstructionReader.cpp"
+#include "Instruction.cpp"
 #include "../hpp/AttributeInfo.hpp"
 #include "ByteReader.cpp"
 #include "CpAttributeInterface.cpp"
@@ -75,17 +75,89 @@ void CodeAttribute::read(FILE *fp, std::vector<CpInfo*> trueCpInfo) {
 void CodeAttribute::print(std::vector<CpInfo*> trueCpInfo) {
     unsigned int i, j, k;
     CpAttributeInterface utf8Getter;
-    InstructionReader instructionReader;
+    Instruction instructions[256];
+    Instruction::init(instructions);
+
 
     cout << "Max Stacks " << this->max_stacks << endl;
     cout << "Max Locals " << this->max_locals << endl;
 
     cout << "\nCode:" << endl<<endl;
-    for (i = 0; i < this->code_length; i++){
+    for (int i = 0; i < code_length; i++){
         int code_num = (int)code[i];
-        instructionReader.print(code_num);
+
+        std::cout << i << ": " << instructions[code_num].name;
+        for (int j = 0; (unsigned)j < instructions[code_num].bytes; j++) {
+            ++i;
+            if (code_num == c_ldc) {
+              uint8_t index = code[i];
+              uint16_t index_utf8 = 0x00|index;
+              std::cout << " #" << (int)index << " "
+                        << utf8Getter.getUTF8(trueCpInfo, index_utf8-1);
+              j++;
+            }
+            else if (code_num == c_newarray) {
+              printf(" %x", code[j]);
+              switch (code[j]) {
+                case 4: std::cout << " (bool)"; break;
+                case 5 : std::cout << " (char)"; break;
+                case 6 : std::cout << " (float)"; break;
+                case 7 : std::cout << " (double)"; break;
+                case 8 : std::cout << " (byte)"; break;
+                case 9 : std::cout << " (short)"; break;
+                case 10 : std::cout << " (int)"; break;
+                case 11 : std::cout << " (long)"; break;
+              }
+              j++;
+            }
+            else if (code_num == c_multianewarray) {
+              uint8_t byte1 = code[i];
+              uint8_t byte2 = code[i+1];
+              uint8_t dim = code[i+2];
+              uint16_t index = (byte1<<8)|byte2;
+              std::string str = utf8Getter.getUTF8(trueCpInfo, index-1);
+              if (!str.empty()) {
+                std::cout << " #" << std::dec << index << " " << str;
+                std::cout << " dim " << (int)dim;
+              }
+              j++;
+            }
+            else if (code_num == c_anewarray || code_num ==c_checkcast ||
+                code_num == c_getfield || code_num == c_getstatic ||
+                code_num == c_instanceof || code_num == c_invokespecial ||
+                code_num == c_invokestatic || code_num == c_invokevirtual ||
+                code_num == c_ldc_w || code_num == c_ldc2_w || code_num == c_NEW ||
+                code_num == c_putfield || code_num == c_putstatic) {
+
+                uint8_t byte1 = code[i];
+                uint8_t byte2 = code[i+1];
+                uint16_t index = (byte1<<8)|byte2;
+                std::cout << " #" << std::dec << index << " "
+                          << utf8Getter.getUTF8(trueCpInfo, index-1);
+
+                i++;
+                j++;
+            }
+            else if (code_num == c_GOTO || code_num == c_if_acmpeq ||
+                    code_num == c_if_acmpne || code_num == c_if_icmpeq ||
+                    code_num == c_if_icmpne || code_num == c_if_icmplt ||
+                    code_num == c_if_icmpge || code_num == c_if_icmpgt ||
+                    code_num == c_if_icmple || code_num == c_iifeq ||
+                    code_num == c_ifne || code_num == c_iflt || code_num == c_ifge ||
+                    code_num == c_ifgt || code_num == c_ifle || code_num == c_ifnonull ||
+                    code_num == c_ifnull || code_num == c_jsr) {
+                uint8_t branchbyte1 = code[i];
+                uint8_t branchbyte2 = code[i+1];
+                uint16_t address = (branchbyte1 << 8) | branchbyte2;
+                cout << " " << i+address <<" "<< "("<<address<<")" << " ";
+                i++;
+                j++;
+            }
+        }
+        cout << endl;
     }
-    cout << "\n";
+    cout << endl << endl;
+
 
 
 
