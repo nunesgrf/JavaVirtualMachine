@@ -143,6 +143,7 @@ public:
 
     static void isub( );
     static void invokeinterface( );
+    static void invokedynamic( );
     static void areturn( );
     static void dreturn( );
     static void freturn( );
@@ -172,6 +173,7 @@ public:
     static void if_acmpne( );
 
     static void newarray();
+    static void anewarray();
     static void arraylength( );
     static void iastore();
 
@@ -200,6 +202,25 @@ public:
     static void ifnonnull( );
 
     static void ret( );
+    static void i2b( );
+    static void i2c( );
+    static void lcmp( );
+    static void fcmpl( );
+    static void fcmpg( );
+    static void dcmpl( );
+    static void dcmpg( );
+    static void i_goto( );
+    static void jsr( );
+    static void jsr_w( );
+    static void putstatic( );
+    static void athrow();
+    static void checkcast();
+    static void goto_w( );
+    static void monitorenter( );
+    static void monitorexit( );
+    static void instanceof( );
+    static void wide( );
+    static void multianewarray( );
 
     static void tableswitch( );
 };

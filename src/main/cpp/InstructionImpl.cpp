@@ -378,6 +378,9 @@ void InstructionImpl::nop(){
  void InstructionImpl::invokestatic( ){
 
  }
+ void InstructionImpl::invokedynamic( ) {
+
+ }
  void InstructionImpl::lreturn( ){
 
  }
@@ -389,6 +392,10 @@ void InstructionImpl::nop(){
  }
 
  void InstructionImpl::putfield( ){
+
+ }
+
+ void InstructionImpl::putstatic( ){
 
  }
 
@@ -486,6 +493,12 @@ void InstructionImpl::nop(){
  void InstructionImpl::newarray(){
 
  }
+ void InstructionImpl::anewarray(){
+
+ }
+ void InstructionImpl::athrow( ){
+
+ }
  void InstructionImpl::arraylength( ){
 
  }
@@ -566,6 +579,63 @@ void InstructionImpl::nop(){
  void InstructionImpl::tableswitch( ){
 
  }
+
+ void InstructionImpl::i2b( ) {
+
+ }
+
+ void InstructionImpl::i2c( ) {
+
+ }
+
+ void InstructionImpl::lcmp( ) {
+
+ }
+
+ void InstructionImpl::fcmpl( ) {
+
+ }
+ void InstructionImpl::fcmpg( ) {
+
+ }
+ void InstructionImpl::dcmpl( ){
+
+ }
+ void InstructionImpl::dcmpg( ){
+
+ }
+ /*Goto é um nome reservado pelo c */
+ void InstructionImpl::i_goto( ){
+
+ }
+ void InstructionImpl::goto_w( ){
+
+ }
+ void InstructionImpl::instanceof( ){
+
+ }
+ void InstructionImpl::wide( ){
+
+ }
+ void InstructionImpl::multianewarray( ){
+
+ }
+ void InstructionImpl::monitorexit( ){
+
+ }
+ void InstructionImpl::monitorenter( ){
+
+ }
+ void InstructionImpl::jsr( ){
+
+ }
+ void InstructionImpl::jsr_w( ){
+
+ }
+ void InstructionImpl::checkcast(){
+
+ }
+
 
 
 #endif
