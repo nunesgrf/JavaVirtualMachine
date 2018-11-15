@@ -5,6 +5,6 @@
 
 class ClassPrinter {
 
-}
+};
 
 #endif
