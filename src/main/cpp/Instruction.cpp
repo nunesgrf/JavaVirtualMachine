@@ -1,9 +1,5 @@
-#ifndef INSTRUCTION
-#define INSTRUCTION
-
-
 #include "../hpp/Instruction.hpp"
-#include "InstructionImpl.cpp"
+#include "../hpp/InstructionImpl.hpp"
 
 
 void Instruction::init(Instruction* instructions) {
@@ -831,4 +827,3 @@ void Instruction::init(Instruction* instructions) {
 
 }
 
-#endif

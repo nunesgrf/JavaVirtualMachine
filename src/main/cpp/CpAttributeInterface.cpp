@@ -1,7 +1,17 @@
-#ifndef CPP_INTERACP
-#define CPP_INTERACP
-
 #include "../hpp/CpAttributeInterface.hpp"
+
+#define CONSTANT_Utf8 1
+#define CONSTANT_Integer 3
+#define CONSTANT_Float 4
+#define CONSTANT_Long 5
+#define CONSTANT_Double 6
+#define CONSTANT_Class 7
+#define CONSTANT_String 8
+#define CONSTANT_Fieldref 9
+#define CONSTANT_Methodref 10
+#define CONSTANT_InterfaceMethodref 11
+#define CONSTANT_NameAndType 12
+#define CONSTANT_Empty 0
 
 std::string CpAttributeInterface::getUTF8(std::vector<CpInfo*> alpha, uint16_t beta) {
 
@@ -40,5 +50,3 @@ std::string CpAttributeInterface::getUTF8(std::vector<CpInfo*> alpha, uint16_t b
              break; /* Must Change default */
     }
 } 
-
-#endif

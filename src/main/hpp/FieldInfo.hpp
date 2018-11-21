@@ -1,8 +1,9 @@
 #ifndef ___FIELDINFO_H___
 #define ___FIELDINFO_H___
 
-#include "ClassLoader.hpp"
+#include "CpInfo.hpp"
 #include "AttributeInfo.hpp"
+#include <cstdint>
 
 class FieldInfo {
     public:

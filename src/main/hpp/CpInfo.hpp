@@ -1,9 +1,9 @@
 #ifndef ___CPINFO_H___
 #define ___CPINFO_H___
 
-#include "ClassLoader.hpp"
-
-
+//#include "ClassLoader.hpp"
+#include <cstdint>
+#include <fstream>
 
 class CpInfo
 {

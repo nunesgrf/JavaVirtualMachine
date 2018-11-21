@@ -1,8 +1,5 @@
-#ifndef CPP_CLASS
-#define CPP_CLASS
-
 #include "../hpp/ClassLoader.hpp"
-#include "AttributeInfo.cpp"
+#include "../hpp/ByteReader.hpp"
 #include <stdio.h>
 #include <iostream>
 #include <iomanip>
@@ -187,4 +184,3 @@ void ClassLoader::setAttributes(FILE * fp) {
    }
 }
 
-#endif

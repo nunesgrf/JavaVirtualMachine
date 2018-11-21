@@ -1,7 +1,9 @@
 #ifndef ___INTERFACEINFO_H___
 #define ___INTERFACEINFO_H___
 
-#include "ClassLoader.hpp"
+#include <fstream>
+#include <cstdint>
+
 #include "../cpp/ByteReader.cpp"
 
 class InterfaceInfo {

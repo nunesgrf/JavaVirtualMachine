@@ -1,5 +1,7 @@
 #include "../hpp/Stack.hpp"
 
+#define FLAG 1
+
 template <class T>
 T Stack<T>::pop() {
     if(!this->stack_pointer.empty()) {

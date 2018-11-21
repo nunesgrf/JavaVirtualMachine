@@ -1,10 +1,8 @@
-#ifndef CPP_ATR
-#define CPP_ATR
-
-#include "Instruction.cpp"
+#include "../hpp/Instruction.hpp"
 #include "../hpp/AttributeInfo.hpp"
-#include "ByteReader.cpp"
-#include "CpAttributeInterface.cpp"
+#include "../hpp/ByteReader.hpp"
+#include "../hpp/CpAttributeInterface.hpp"
+
 #include <iomanip>
 #include <iostream>
 using namespace std;
@@ -287,4 +285,3 @@ void AttributeInfo::print(std::vector<CpInfo *> trueCpInfo) {
 
 }
 
-#endif

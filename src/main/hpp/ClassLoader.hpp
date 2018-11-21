@@ -23,12 +23,11 @@
 #include <memory>
 #include <cstdio>
 
-#include "../cpp/ByteReader.cpp"
 #include "CpInfo.hpp"
-#include "../cpp/MethodInfo.cpp"
+#include "MethodInfo.hpp"
 #include "InterfaceInfo.hpp"
-#include "../cpp/InterfaceInfo.cpp"
-#include "../cpp/FieldInfo.cpp"
+#include "FieldInfo.hpp"
+#include "AttributeInfo.hpp"
 
 class CpInfo;
 class FieldInfo;

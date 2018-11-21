@@ -1,9 +1,9 @@
 #ifndef TEST
 
-#include "../main/cpp/ClassLoader.cpp"
-#include "../main/cpp/ByteReader.cpp"
-#include "../main/cpp/CpInfo.cpp"
-#include "../main/cpp/CpAttributeInterface.cpp"
+#include "../main/hpp/ClassLoader.hpp"
+#include "../main/hpp/ByteReader.hpp"
+#include "../main/hpp/CpInfo.hpp"
+#include "../main/hpp/CpAttributeInterface.hpp"
 #include <stdio.h>
 #include <iostream>
 #include <iomanip>

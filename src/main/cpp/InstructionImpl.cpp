@@ -1,6 +1,3 @@
-#ifndef INTRUCTION_IMPL_CPP
-#define INTRUCTION_IMPL_CPP
-
 #include "../hpp/InstructionImpl.hpp"
 
 void InstructionImpl::nop(){
@@ -636,6 +633,3 @@ void InstructionImpl::nop(){
 
  }
 
-
-
-#endif

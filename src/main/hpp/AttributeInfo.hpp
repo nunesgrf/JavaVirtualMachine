@@ -1,7 +1,11 @@
 #ifndef ___ATTRIBUTEINFO_H___
 #define ___ATTRIBUTEINFO_H___
 
-#include "ClassLoader.hpp"
+//#include "ClassLoader.hpp"
+#include <cstdint>
+#include <vector>
+#include <fstream>
+#include "CpInfo.hpp"
 
 using namespace std;
 

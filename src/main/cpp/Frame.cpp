@@ -1,5 +1,5 @@
 #include "../hpp/Frame.hpp"
-#include "CpAttributeInterface.cpp"
+#include "../hpp/CpAttributeInterface.hpp"
 
 Frame::Frame(std::vector<CpInfo*> cp, MethodInfo * methd) {
 

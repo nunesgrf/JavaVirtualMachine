@@ -3,6 +3,7 @@
 
 #include <cstdint>
 #include "AttributeInfo.hpp"
+#include "CpInfo.hpp"
 
 struct MethodInfo
 {
