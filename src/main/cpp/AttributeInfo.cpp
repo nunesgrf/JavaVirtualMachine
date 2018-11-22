@@ -1,6 +1,10 @@
 #include "../hpp/Instruction.hpp"
 #include "../hpp/AttributeInfo.hpp"
 #include "../hpp/ByteReader.hpp"
+
+//ISSO DAQUI ESTÁ ERRADO
+#include "ByteReader.cpp" // TEM QUE RESOLVER, VAI DAR MERDA
+//ISSO DAQUI ESTÁ ERRADO
 #include "../hpp/CpAttributeInterface.hpp"
 
 #include <iomanip>

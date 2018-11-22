@@ -1,5 +1,6 @@
 #include "../hpp/Frame.hpp"
 #include "../hpp/CpAttributeInterface.hpp"
+#include <iostream>
 
 Frame::Frame(std::vector<CpInfo*> cp, MethodInfo * methd) {
 
@@ -13,4 +14,7 @@ Frame::Frame(std::vector<CpInfo*> cp, MethodInfo * methd) {
         AttributeInfo at = methd->attributes[i];
         if(cpAtAux.getUTF8(cp,at.name_index-1) == "Code") this->method_code = at.code;
     }
+    //this->local_variables.resize(method_code.max_locals);
 }
+
+void Frame::run() {}

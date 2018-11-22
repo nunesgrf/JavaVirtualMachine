@@ -4,7 +4,7 @@
 #include <fstream>
 #include <cstdint>
 
-#include "../cpp/ByteReader.cpp"
+#include "ByteReader.hpp"
 
 class InterfaceInfo {
 

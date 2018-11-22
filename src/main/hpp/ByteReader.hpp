@@ -13,4 +13,5 @@ class ByteReader {
     T byteCatch(FILE * fp);
 };
 
+
 #endif // ___BYTEREADER_H___

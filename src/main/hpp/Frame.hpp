@@ -4,12 +4,21 @@
 #include <cstdint>
 #include <string>
 #include <vector>
+#include <stack>
+#include <map>
+
 #include "Stack.hpp"
 #include "CpInfo.hpp"
 #include "MethodInfo.hpp"
 #include "AttributeInfo.hpp"
-
+#include "ClassLoader.hpp"
 struct Operand;
+
+typedef struct {
+    std::string name;
+    std::map< std::string, Operand* >  references;
+    ClassLoader classe;    
+} Instance;
 
 typedef struct {
     std::vector<Operand*> array;
@@ -27,6 +36,7 @@ struct Operand {
         uint64_t type_long;
         uint64_t type_double;
         std::string type_string;
+        Instance class_instance;
         ArrayType array_type;
     };
 };
@@ -34,14 +44,14 @@ struct Operand {
 struct Frame {
     
     uint32_t pc; // program counter
-    Stack<Operand*> operand_stack;
+    std::stack< Operand*> operand_stack;
     CodeAttribute method_code;
     MethodInfo * method_reference;
     std::vector<CpInfo*> cp_reference;
-    std::vector<Operand*> local_variables;
+    std::vector< Operand* > local_variables;
 
     Frame(std::vector<CpInfo*>,MethodInfo *);
-    //void exe();
+    void run();
     //void setInstructs();
 };
 
