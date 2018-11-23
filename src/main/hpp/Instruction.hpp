@@ -1,3 +1,7 @@
+/** @file Instruction.hpp
+ *  @brief Declarações das instruçoes referentes ao interpretador da JVM.
+ *  @bug No known bugs.
+ */
 #ifndef INSTRUCTION_H
 #define INSTRUCTION_H
 

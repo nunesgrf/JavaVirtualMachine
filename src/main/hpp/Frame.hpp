@@ -1,3 +1,7 @@
+/** @file Frame.hpp
+ *  @brief Declarações das funções e da estrutura do Frame, utilizado para salvar resultados parciais.
+ *  @bug No known bugs.
+ */
 #ifndef _FRAME_H_
 #define _FRAME_H_
 
@@ -14,11 +18,13 @@
 #include "ClassLoader.hpp"
 struct Operand;
 
-typedef struct {
+struct Instance {
     std::string name;
     std::map< std::string, Operand* >  references;
-    ClassLoader classe;    
-} Instance;
+    ClassLoader * classe;
+
+    Instance(ClassLoader*);
+};
 
 typedef struct {
     std::vector<Operand*> array;

@@ -1,3 +1,7 @@
+/** @file ClassLoader.hpp
+ *  @brief Declarações das funções do ClassLoader para salvar todos os bytes de .class corretamente.
+ *  @bug No known bugs.
+ */
 #ifndef ___JAVA_H___
 #define ___JAVA_H___
 

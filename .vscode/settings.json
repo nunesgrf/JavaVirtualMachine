@@ -43,6 +43,7 @@
         "deque": "cpp",
         "iomanip": "cpp",
         "cinttypes": "cpp",
-        "typeindex": "cpp"
+        "typeindex": "cpp",
+        "string": "cpp"
     }
 }

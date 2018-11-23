@@ -2,6 +2,15 @@
 #include "../hpp/CpAttributeInterface.hpp"
 #include <iostream>
 
+Instance::Instance(ClassLoader * toLoad) {
+    
+    CpAttributeInterface cpAtAux;
+    
+    this->name   = cpAtAux.getUTF8(toLoad->getConstPool(),toLoad->getThisClass()-1);
+    this->classe = toLoad;   
+}
+
+
 Frame::Frame(std::vector<CpInfo*> cp, MethodInfo * methd) {
 
     CpAttributeInterface cpAtAux;

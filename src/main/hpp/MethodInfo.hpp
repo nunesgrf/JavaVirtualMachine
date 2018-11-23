@@ -1,3 +1,7 @@
+/** @file MethodInfo.hpp
+ *  @brief Declarações das funções do MethodInfo estrutura responsável por guardas as informaçoes dos metodos do arquivo .class
+ *  @bug No known bugs.
+ */
 #ifndef ___METHOD_H___
 #define ___METHOD_H___
 

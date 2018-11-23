@@ -1,3 +1,7 @@
+/** @file CpAttributeInterface.hpp
+ *  @brief Declarações da interface entre ConstantPool e AttributeInfo para traduzir as strings UTF8.
+ *  @bug No known bugs.
+ */
 #ifndef _CP_ATR_H_
 #define _CP_ATR_H_
 

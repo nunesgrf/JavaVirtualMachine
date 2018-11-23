@@ -1,3 +1,7 @@
+/** @file FieldInfo.hpp
+ *  @brief Declarações das funções do FieldInfo para tratamento dos fields do arquivo .class.
+ *  @bug No known bugs.
+ */
 #ifndef ___FIELDINFO_H___
 #define ___FIELDINFO_H___
 

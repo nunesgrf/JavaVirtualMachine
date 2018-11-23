@@ -1,3 +1,7 @@
+/** @file InstructionImpl.hpp
+ *  @brief Declarações das funções do ClassLoader para salvar todos os bytes de .class corretamente.
+ *  @bug No known bugs.
+ */
 #ifndef INTRUCTION_IMPL_H
 #define INTRUCTION_IMPL_H
 
