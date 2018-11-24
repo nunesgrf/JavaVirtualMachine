@@ -1,7 +1,8 @@
 #include "../hpp/InstructionImpl.hpp"
-
+#include <iostream>
 void InstructionImpl::nop(){
     /*frame pc++ */
+    std::cout << "O teste que você fez agora deu certo" << std::endl;
     return;
 }
 

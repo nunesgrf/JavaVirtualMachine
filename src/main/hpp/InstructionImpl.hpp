@@ -5,11 +5,12 @@
 #ifndef INTRUCTION_IMPL_H
 #define INTRUCTION_IMPL_H
 
+#include "Frame.hpp"
 
 class InstructionImpl {
 
 public:
-    static void nop( );
+    static void nop();
     static void ldc( );
     static void invokespecial( );
     static void invokevirtual( );

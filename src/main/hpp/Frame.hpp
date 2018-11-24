@@ -16,6 +16,8 @@
 #include "MethodInfo.hpp"
 #include "AttributeInfo.hpp"
 #include "ClassLoader.hpp"
+#include "Instruction.hpp"
+
 struct Operand;
 
 struct Instance {
@@ -55,8 +57,10 @@ struct Frame {
     MethodInfo * method_reference;
     std::vector<CpInfo*> cp_reference;
     std::vector< Operand* > local_variables;
+    Instruction * instructions;
 
     Frame(std::vector<CpInfo*>,MethodInfo *);
+    ~Frame();
     void run();
     //void setInstructs();
 };

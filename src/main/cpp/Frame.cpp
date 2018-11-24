@@ -10,14 +10,24 @@ Instance::Instance(ClassLoader * toLoad) {
     this->classe = toLoad;   
 }
 
+Frame::~Frame() {
+    free(this->instructions);
+}
 
 Frame::Frame(std::vector<CpInfo*> cp, MethodInfo * methd) {
 
     CpAttributeInterface cpAtAux;
 
+    std::cout << "constructor" << std::endl;
+    this->instructions = (Instruction*)calloc(256,sizeof(Instruction));
+    std::cout << "Teste de segfault : " << this->instructions[300].bytes << endl;
+    std::cout << "Isso daqui ta estranho" << std::endl;
+    this->instructions->init(this->instructions); // Inicializa as instruções.
+
     this->pc = 0;
     this->method_reference = methd;
     this->cp_reference = cp;
+    
 
     for(int i = 0; i < methd->attributes_count; i++) {
         AttributeInfo at = methd->attributes[i];
@@ -26,4 +36,7 @@ Frame::Frame(std::vector<CpInfo*> cp, MethodInfo * methd) {
     //this->local_variables.resize(method_code.max_locals);
 }
 
-void Frame::run() {}
+void Frame::run() {
+    uint8_t opCode = this->method_code.code[pc];
+    this->instructions[opCode].func();
+}
