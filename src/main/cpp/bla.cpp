@@ -11,7 +11,7 @@ int main() {
     
     FILE * fp = fopen("../../test/HelloWorld.class","r");
     ClassLoader cl(fp);
-    Interpreter * x = (Interpreter*)calloc(1,sizeof(x));
+   Interpreter x;
 
-    x->execute(&cl);
+    x.execute(&cl);
 }
