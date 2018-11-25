@@ -53,12 +53,13 @@
 #define c_areturn 176
 #define c_return_original 177
 
+struct Frame;
 
 class Instruction {
     public:
         std::string name;
         uint32_t bytes;
-        void (* func)();
+        void (* func)(Frame * this_frame);
         static void init(Instruction *);
 };
 

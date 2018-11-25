@@ -5,13 +5,12 @@
 
 void Instruction::init(Instruction* instructions) {
 
-    std::cout << "init " << std::endl;
+    std::cout << "Instruction::init begin" << std::endl;
+
     instructions[0].name = "nop";
     instructions[0].bytes = 0;
     instructions[0].func = InstructionImpl::nop;
 
-    std::cout << "init " << std::endl;
-    std::cout << "compilei" << std::endl;
     instructions[1].name = "aconst_null";
     instructions[1].bytes = 0;
     instructions[1].func = InstructionImpl::aconst_null;
@@ -182,25 +181,17 @@ void Instruction::init(Instruction* instructions) {
     instructions[42].bytes = 0;
     instructions[42].func = InstructionImpl::aload_0;
 
-    std::cout << "TESTE 2" << std::endl;
-
     instructions[43].name = "aload_1";
     instructions[43].bytes = 0;
     instructions[43].func = InstructionImpl::aload_1;
-
-    std::cout << "TESTE 2" << std::endl;
 
     instructions[44].name = "aload_2";
     instructions[44].bytes = 0;
     instructions[44].func = InstructionImpl::aload_2;
 
-    std::cout << "TESTE 2" << std::endl;
-
     instructions[45].name = "aload_3";
     instructions[45].bytes = 0;
     instructions[45].func = InstructionImpl::aload_3;
-
-    std::cout << "TESTE 2" << std::endl;
 
     instructions[46].name = "iaload";
     instructions[46].bytes = 0;
@@ -841,5 +832,6 @@ void Instruction::init(Instruction* instructions) {
     instructions[255].name = "impdep2";
     instructions[255].bytes = 0;
 
+    std::cout << "Instruction::init end" << std::endl;
 }
 

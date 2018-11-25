@@ -19,7 +19,7 @@
 #include "Instruction.hpp"
 
 struct Operand;
-
+struct Instruction;
 struct Instance {
     std::string name;
     std::map< std::string, Operand* >  references;

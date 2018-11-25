@@ -2,7 +2,9 @@
 #include "../hpp/CpAttributeInterface.hpp"
 
 void Interpreter::execute(ClassLoader * javaclass) {
-    
+    Frame * frame = new Frame(javaclass->getConstPool(),this->mainFinder(*javaclass));
+
+    frame->run();
 }
 
 void Interpreter::loadClasses(ClassLoader * javaclass) {
