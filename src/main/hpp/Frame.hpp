@@ -43,10 +43,10 @@ struct Operand {
         uint32_t type_float;
         uint64_t type_long;
         uint64_t type_double;
-        std::string type_string;
-        Instance class_instance;
-        ArrayType array_type;
     };
+    std::string type_string;
+    Instance class_instance;
+    ArrayType array_type;
 };
 
 struct Frame {

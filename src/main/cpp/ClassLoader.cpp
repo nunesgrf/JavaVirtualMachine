@@ -184,3 +184,14 @@ void ClassLoader::setAttributes(FILE * fp) {
    }
 }
 
+std::vector<FieldInfo*> ClassLoader::getFields(){
+    return this->fields;
+}
+
+std::vector<MethodInfo*> ClassLoader::getMethods(){
+    return this->methods;
+}
+
+std::vector<AttributeInfo*> ClassLoader::getAttributes(){
+    return this->attributes;
+}

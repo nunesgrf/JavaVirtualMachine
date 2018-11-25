@@ -155,25 +155,19 @@ class ClassLoader {
             return fieldsCounter;
         }
 
-        typeof(fields) getFields() {
-            return fields;
-        }
+        std::vector<FieldInfo*> getFields();
 
         uint16_t getMethoCount() {
             return methodsCounter;
         }
 
-        typeof(methods) getMethods() {
-            return methods;
-        }
+        std::vector<MethodInfo*> getMethods();
 
         uint16_t getAttriCount() {
             return attributesCounter;
         }
 
-        typeof(attributes) getAttributes() {
-            return attributes;
-        }
+        std::vector<AttributeInfo*> getAttributes();
 
         bool DEBUG = true;
         ~ClassLoader();
