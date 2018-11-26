@@ -13,7 +13,7 @@
 
 void classInterpreter(ClassLoader classloader) {
     Interpreter engine;
-    engine.execute(classloader);
+    engine.execute(&classloader);
 }
 
 void classReader(ClassLoader classloader) {
@@ -183,6 +183,7 @@ int main(int argc, char * argv[]) {
 
     FILE * fp = fopen(argv[2],"r");
     ClassLoader classloader(fp);
+    
     fclose(fp);
 
     switch(*argv[1]) {

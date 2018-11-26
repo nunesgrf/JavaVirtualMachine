@@ -41,7 +41,7 @@ ClassLoader::ClassLoader(FILE * fp) {
 
 ClassLoader::~ClassLoader() {
 
-    std::cout << "ClassLoader::~ClassLoader begin" << std::endl;
+    //std::cout << "ClassLoader::~ClassLoader begin" << std::endl;
     for(auto a : interfaces) {
         //
         free(a);
@@ -66,7 +66,7 @@ ClassLoader::~ClassLoader() {
         a->~CpInfo();
         free(a);
     }
-    std::cout << "ClassLoader::~ClassLoader end" << std::endl;
+    //std::cout << "ClassLoader::~ClassLoader end" << std::endl;
 }
 
 void ClassLoader::setMagic(FILE * fp) {

@@ -62,6 +62,7 @@ struct Frame {
     Frame(std::vector<CpInfo*>,MethodInfo *);
     ~Frame();
     void run();
+    void cpPrint();
     //void setInstructs();
 };
 

@@ -11,16 +11,21 @@
 
 using namespace std;
 
+//std::map<std::string, Instance*> global_loaded_classes;
+//std::map<std::string, Instance*> global_static_classes;
+
 class Interpreter {
 
   public:
     std::string current_path_folder;
     std::stack<Frame*> frame_stack;
     std::vector<Instance*> loaded_classes;
-  
-    void execute(ClassLoader);
+    
+
+    void execute(ClassLoader*);
     void loadClasses(ClassLoader*);
-    MethodInfo * mainFinder(ClassLoader);
+    MethodInfo * mainFinder(ClassLoader*);
+    Instance   * loadInMemo(ClassLoader*);
 };
 
 #endif
