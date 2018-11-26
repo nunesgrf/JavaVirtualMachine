@@ -18,7 +18,7 @@ class Interpreter {
     std::stack<Frame*> frame_stack;
     std::vector<Instance*> loaded_classes;
   
-    void execute(ClassLoader*);
+    void execute(ClassLoader);
     void loadClasses(ClassLoader*);
     MethodInfo * mainFinder(ClassLoader);
 };

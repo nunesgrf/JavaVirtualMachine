@@ -1,10 +1,10 @@
 #include "../hpp/Interpreter.hpp"
 #include "../hpp/CpAttributeInterface.hpp"
 
-void Interpreter::execute(ClassLoader * javaclass) {
+void Interpreter::execute(ClassLoader javaclass) {
 
     std::cout << "Interpreter::execute begin" << std::endl;
-    Frame toRun(javaclass->getConstPool(),this->mainFinder(*javaclass));
+    Frame toRun(javaclass.getConstPool(),this->mainFinder(javaclass));
     
     this->frame_stack.push(&toRun);
     std::cout << this->frame_stack.empty() << std::endl;
@@ -13,8 +13,6 @@ void Interpreter::execute(ClassLoader * javaclass) {
         this->frame_stack.top()->run();
         this->frame_stack.pop();
     }
-
-    toRun.~Frame();
     std::cout << "Interpreter::execute end" << std::endl;
 }
 

@@ -13,7 +13,7 @@ int main() {
     ClassLoader cl(fp);
     Interpreter x;
 
-    x.execute(&cl);
+    x.execute(cl);
     free(fp);
     return 0;
 }

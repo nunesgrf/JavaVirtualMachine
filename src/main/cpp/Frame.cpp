@@ -40,5 +40,5 @@ void Frame::run() {
     uint8_t opCode = this->method_code.code[pc];
     std::cout << this->instructions[opCode].name << std::endl;
     this->instructions[opCode].func(this);
-    std::cout << "Frame::Frame end" << std::endl;
+    std::cout << "Frame::run end" << std::endl;
 }
