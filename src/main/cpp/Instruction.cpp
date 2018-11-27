@@ -1,3 +1,7 @@
+/** @file Instruction.hpp
+ *  @brief Implementações das instruçoes referentes ao interpretador da JVM.
+ *  @bug No known bugs.
+ */
 #include "../hpp/Instruction.hpp"
 #include "../hpp/InstructionImpl.hpp"
 

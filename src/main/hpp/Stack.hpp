@@ -1,3 +1,7 @@
+/** @file Stack.hpp
+ *  @brief Declarações do Stack, estrutura responsável por armazenar operandos.
+ *  @bug No known bugs.
+ */
 #ifndef _STACK_H_
 #define _STACK_H_
 

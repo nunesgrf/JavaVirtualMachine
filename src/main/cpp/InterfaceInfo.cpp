@@ -1,3 +1,7 @@
+/** @file InterfaceInfo.hpp
+ *  @brief Implementações das funções e atributos de InterfaceInfo.
+ *  @bug No known bugs.
+ */
 #include "../hpp/InterfaceInfo.hpp"
 
 InterfaceInfo::~InterfaceInfo() {

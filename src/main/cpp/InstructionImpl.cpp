@@ -1,3 +1,7 @@
+/** @file InstructionImpl.hpp
+ *  @brief Implementações das funções do ClassLoader para salvar todos os bytes de .class corretamente.
+ *  @bug No known bugs.
+ */
 #include "../hpp/InstructionImpl.hpp"
 #include <iostream>
 

@@ -1,3 +1,7 @@
+/** @file ByteReader.hpp
+ *  @brief Implementação das funções do ByteReader para leitura dos bytes no arquivo .class.
+ *  @bug No known bugs.
+ */
 #include "../hpp/ByteReader.hpp"
 
 #define NEUTRAL_BYTE_FOR_OR 0x00;

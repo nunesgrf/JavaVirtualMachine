@@ -1,3 +1,7 @@
+/** @file Frame.hpp
+ *  @brief Implementação das funções e da estrutura do Frame, utilizado para salvar resultados parciais.
+ *  @bug No known bugs.
+ */
 #include "../hpp/Frame.hpp"
 #include "../hpp/CpAttributeInterface.hpp"
 #include <iostream>

@@ -1,3 +1,7 @@
+/** @file ClassLoader.hpp
+ *  @brief Implementação das funções do ClassLoader para salvar todos os bytes de .class corretamente.
+ *  @bug No known bugs.
+ */
 #include "../hpp/ClassLoader.hpp"
 #include "../hpp/ByteReader.hpp"
 #include <stdio.h>

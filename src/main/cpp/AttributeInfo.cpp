@@ -1,3 +1,8 @@
+/** @file AttributeInfo.cpp
+ *  @brief Implementação das funções do AttributeInfo para tratamento dos atributos do arquivo .class.
+ *  @bug No known bugs.
+ */
+
 #include "../hpp/Instruction.hpp"
 #include "../hpp/AttributeInfo.hpp"
 #include "../hpp/ByteReader.hpp"
@@ -19,6 +24,10 @@ AttributeInfo::~AttributeInfo() {
 
 }
 
+/**
+ * @brief read(FILE *fp) lê dois bytes do arquivo.
+ * @param FILE * fp : arquivo de acesso.
+ */
 void ConstantValue::read(FILE *fp) {
     constvalue_index = TwoByte.byteCatch(fp);
 }

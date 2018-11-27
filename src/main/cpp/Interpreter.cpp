@@ -1,3 +1,7 @@
+/** @file Interpreter.hpp
+ *  @brief Implementações das funções e atributos do Interpretador para interpretar o que foi lido do .class.
+ *  @bug No known bugs.
+ */
 #include "../hpp/Interpreter.hpp"
 #include "../hpp/CpAttributeInterface.hpp"
 

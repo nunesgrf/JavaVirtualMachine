@@ -1,3 +1,7 @@
+/** @file CpInfo.hpp
+ *  @brief Implementação das funções e dos atributos do Pool de constantes.
+ *  @bug No known bugs.
+ */
 #ifndef CPP_CPINFO
 #define CPP_CPINFO
 

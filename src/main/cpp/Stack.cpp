@@ -1,3 +1,7 @@
+/** @file Stack.hpp
+ *  @brief Implementações do Stack, estrutura responsável por armazenar operandos.
+ *  @bug No known bugs.
+ */
 #include "../hpp/Stack.hpp"
 
 template <class T>
