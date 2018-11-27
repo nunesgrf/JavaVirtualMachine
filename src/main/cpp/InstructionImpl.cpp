@@ -1,4 +1,4 @@
-#include "../hpp/InstructionImpl.hpp"  
+#include "../hpp/Frame.hpp"
 #include "../hpp/CpAttributeInterface.hpp"
 #include <iostream>
 
@@ -37,7 +37,7 @@ void InstructionImpl::nop(Frame * this_frame) {
  void InstructionImpl::getstatic(Frame * this_frame){
 
     InstructionImpl::nop(this_frame);
-
+   
     CpAttributeInterface cpAtAux;
     uint16_t pos = this_frame->method_code.code[this_frame->pc++]; 
     pos = (pos << 8) + this_frame->method_code.code[this_frame->pc++];
@@ -46,15 +46,12 @@ void InstructionImpl::nop(Frame * this_frame) {
     CpInfo * name_n_type = this_frame->cp_reference[field->Fieldref.name_and_type_index-1];
 
     std::string className = cpAtAux.getUTF8(this_frame->cp_reference,field->Fieldref.name_and_type_index-1);
-    
-    std::cout << "String : " << className << std::endl;
 
     if(className == "java/lang/System") return;
-    
-    
-    
 
+    //TERMINAR ISSO DAQUI
  }
+
  void InstructionImpl::aaload(Frame * this_frame){
     InstructionImpl::nop(this_frame);
      
