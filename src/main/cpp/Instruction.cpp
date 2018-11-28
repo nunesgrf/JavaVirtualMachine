@@ -5,8 +5,6 @@
 
 void Instruction::init(Instruction* instructions) {
 
-    //std::cout << "Instruction::init begin" << std::endl;
-
     instructions[0].name = "nop";
     instructions[0].bytes = 0;
     instructions[0].func = InstructionImpl::nop;
@@ -832,6 +830,5 @@ void Instruction::init(Instruction* instructions) {
     instructions[255].name = "impdep2";
     instructions[255].bytes = 0;
 
-    //std::cout << "Instruction::init end" << std::endl;
 }
 

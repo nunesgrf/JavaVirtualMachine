@@ -1,14 +1,15 @@
 #include "../hpp/Frame.hpp"
 #include "../hpp/CpAttributeInterface.hpp"
+
 #include <iostream>
 
-Instance::Instance(ClassLoader * toLoad) {
+// Instance::Instance(ClassLoader * toLoad) {
     
-    CpAttributeInterface cpAtAux;
+//     CpAttributeInterface cpAtAux;
     
-    this->name   = cpAtAux.getUTF8(toLoad->getConstPool(),toLoad->getThisClass()-1);
-    this->classe = toLoad;   
-}
+//     this->name   = cpAtAux.getUTF8(toLoad->getConstPool(),toLoad->getThisClass()-1);
+//     this->classe = toLoad;   
+// }
 
 Frame::~Frame() {
     free(this->instructions);
@@ -45,17 +46,5 @@ void Frame::run() {
         std::cout << this->instructions[opCode].name << std::endl;
         if(this->instructions[opCode].name == "return") flag = false;    
     } while(flag);
-    
 
-    //std::cout << "Frame::run end" << std::endl;
-}
-
-void Frame::cpPrint() {
-    CpAttributeInterface aux;
-    auto a = this->cp_reference;
-    for(int i = 0; i < a.size(); i++) {
-        std::cout << i << " : " << aux.getUTF8(a,i) << std::endl;
-        getchar();
-    }
-    getchar();
 }

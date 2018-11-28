@@ -1,5 +1,6 @@
 #include "../hpp/Frame.hpp"
 #include "../hpp/CpAttributeInterface.hpp"
+#include "../hpp/GLOBAL_file.hpp"
 #include <iostream>
 
 void InstructionImpl::nop(Frame * this_frame) {
@@ -37,7 +38,8 @@ void InstructionImpl::nop(Frame * this_frame) {
  void InstructionImpl::getstatic(Frame * this_frame){
 
     InstructionImpl::nop(this_frame);
-   
+    MethodsArea container;
+
     CpAttributeInterface cpAtAux;
     uint16_t pos = this_frame->method_code.code[this_frame->pc++]; 
     pos = (pos << 8) + this_frame->method_code.code[this_frame->pc++];
@@ -383,6 +385,18 @@ void InstructionImpl::nop(Frame * this_frame) {
  }
  void InstructionImpl::iadd(Frame * this_frame){
     InstructionImpl::nop(this_frame);
+
+    Operand *operand_1 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+    Operand *operand_2 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+
+    Operand *result = (Operand *) malloc(sizeof(Operand));
+
+    result->tag = CONSTANT_Integer;
+    result->type_int = operand_1->type_int + operand_2->type_int;
+
+    this_frame->operand_stack.push(result);
      
  }
  void InstructionImpl::iand(Frame * this_frame){
@@ -574,6 +588,17 @@ void InstructionImpl::nop(Frame * this_frame) {
 
  void InstructionImpl::isub(Frame * this_frame){
     InstructionImpl::nop(this_frame);
+    Operand *operand_1 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+    Operand *operand_2 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+
+    Operand *result = (Operand *) malloc(sizeof(Operand));
+
+    result->tag = CONSTANT_Integer;
+    result->type_int = operand_2->type_int - operand_1->type_int;
+
+    this_frame->operand_stack.push(result);
      
  }
  void InstructionImpl::invokeinterface(Frame * this_frame){
@@ -600,7 +625,26 @@ void InstructionImpl::nop(Frame * this_frame) {
 
  void InstructionImpl::fadd(Frame * this_frame){
     InstructionImpl::nop(this_frame);
-     
+    
+    float value_1, value_2;
+    std::cout << "INIT" << std::endl;
+    
+
+    Operand * op1 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+    Operand * op2 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+    
+    Operand * result = (Operand*) calloc(1,sizeof(result));
+    
+    std::memcpy(&value_1,&op1->type_float,sizeof(float));
+    std::memcpy(&value_2,&op2->type_float,sizeof(float));
+    value_1 += value_2;
+
+    result->tag = CONSTANT_Float;
+    std::memcpy(&result->type_float,&value_1,sizeof(float));
+    this_frame->operand_stack.push(result);
+
  }
  void InstructionImpl::fsub(Frame * this_frame){
     InstructionImpl::nop(this_frame);
@@ -711,6 +755,18 @@ void InstructionImpl::nop(Frame * this_frame) {
  }
  void InstructionImpl::imul(Frame * this_frame){
     InstructionImpl::nop(this_frame);
+
+    Operand *operand_1 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+    Operand *operand_2 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+
+    Operand *result = (Operand *) malloc(sizeof(Operand));
+
+    result->tag = CONSTANT_Integer;
+    result->type_int = operand_2->type_int * operand_1->type_int;
+
+    this_frame->operand_stack.push(result);
      
  }
  void InstructionImpl::lmul(Frame * this_frame){
@@ -719,7 +775,19 @@ void InstructionImpl::nop(Frame * this_frame) {
  }
  void InstructionImpl::idiv(Frame * this_frame){
     InstructionImpl::nop(this_frame);
-     
+    
+    Operand *operand_1 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+    Operand *operand_2 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+
+    Operand *result = (Operand *) malloc(sizeof(Operand));
+
+    result->tag = CONSTANT_Integer;
+    result->type_int = operand_2->type_int / operand_1->type_int;
+
+    this_frame->operand_stack.push(result);
+
  }
  void InstructionImpl::irem(Frame * this_frame){
     InstructionImpl::nop(this_frame);

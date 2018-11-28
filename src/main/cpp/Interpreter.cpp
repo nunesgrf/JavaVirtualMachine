@@ -1,9 +1,14 @@
 #include "../hpp/Interpreter.hpp"
 #include "../hpp/CpAttributeInterface.hpp"
+#include "GLOBAL_file.hpp"
 #include <stdio.h>
 #include <iostream>
 #include <string>
 
+/** @brief Carrega o classLoader na memória e na stack e executa-o.
+ * @param *classloader ponteiro para ClassLoader
+ * @return void
+ */
 void Interpreter::execute(ClassLoader * classloader) {
 
     this->loadInMemo(classloader);
@@ -17,16 +22,16 @@ void Interpreter::execute(ClassLoader * classloader) {
     }
 }
 
-Operand * Interpreter::getStaticfield(std::string className, std::string varName) {
-    auto staticField = GLOBAL_staticClasses.at(className)->references.at(varName);
-    return staticField;
-}
-
+/** @brief Acessa a memória em busca de uma classe, caso inexistente, carrega a classe buscada em memória.
+ * @param className nome da classe buscada.
+ * @return void
+ */
 ClassLoader * Interpreter::getClassInfo(std::string className) {
 
     std::cout << "Interpreter::getClassInfo BEGIN" <<std::endl;
     
-    Instance * instance = GLOBAL_staticClasses[className];
+    MethodsArea dump;
+    Instance * instance = dump.GLOBAL_staticClasses[className];
     
     if(instance == NULL) {
         //mudar esse bereguejhonson
@@ -39,10 +44,12 @@ ClassLoader * Interpreter::getClassInfo(std::string className) {
     std::cout << "Interpreter::getClassInfo END" <<std::endl;
 
     return instance->classe;
-
-    
 }
 
+/** @brief Cria um operando settado em um tipo específico.
+ * @param type string contendo a informação de qual novo tipo.
+ * @return Operand*
+ */
 Operand * Interpreter::createType(std::string type) {
 
     char toSwitch      = type[0];
@@ -68,9 +75,12 @@ Operand * Interpreter::createType(std::string type) {
 
     return toReturn;
 }
-void Interpreter::loadVariables(Instance * instance) {
 
-    std::cout << "Interpreter::loadVariables BEGIN" << std::endl;
+/** @brief Carrega em memórias as variáveis de uma classe.
+ * @param *instance ponteiro para Instance.
+ * @return void
+ */
+void Interpreter::loadVariables(Instance * instance) {
 
     CpAttributeInterface cpAt;
     auto currClass = instance->classe;
@@ -90,28 +100,29 @@ void Interpreter::loadVariables(Instance * instance) {
         if(superClassName != "java/lang/Object" && superClassName != "") currClass = this->getClassInfo(superClassName); //IMPLEMENTAR O MÉTODO getClassInfo();
 
     } 
-    std::cout << "Interpreter::loadVariables END" << std::endl;
-
 }
 
+/** @brief Realiza o carregamento do ClassLoader em memória e retorna a instância.
+ * @param *javaclass ponteiro de ClassLoader
+ * @return Instance*
+ */
 Instance * Interpreter::loadInMemo(ClassLoader * javaclass) {
 
-    std::cout << "Interpreter::loadInMemo BEGIN" << std::endl;
-        
+    MethodsArea dump;
     Instance * inst_LC = new Instance(javaclass);  
     Instance * inst_SC = new Instance(javaclass);
 
-    GLOBAL_loadedClasses.insert(std::pair<std::string, Instance*>(inst_LC->name,inst_LC));
-    GLOBAL_staticClasses.insert(std::pair<std::string, Instance*>(inst_SC->name,inst_SC)); 
+    dump.GLOBAL_loadedClasses.insert(std::pair<std::string, Instance*>(inst_LC->name,inst_LC));
+    dump.GLOBAL_staticClasses.insert(std::pair<std::string, Instance*>(inst_SC->name,inst_SC)); 
 
-    this->loadVariables(inst_LC);
-
-    std::cout << "Interpreter::loadInMemo END" << std::endl;
-    
+    this->loadVariables(inst_LC);    
     return inst_LC;
 }
 
-
+/** @brief Busca a main de uma javaclass e retorna o método.
+ * @param *javaclass ponteiro para ClassLoader.
+ * @return MethodInfo*
+ */
 MethodInfo * Interpreter::mainFinder(ClassLoader * javaclass) {
     
     
@@ -129,20 +140,5 @@ MethodInfo * Interpreter::mainFinder(ClassLoader * javaclass) {
     std::cout << "Arquivo não possui main " << std::endl;
     
     MethodInfo * toReturn = (MethodInfo*)calloc(1,sizeof(toReturn));
-    return toReturn;
-    // ARRUMAR ESTA SAIDA;
+    return toReturn; // ARRUMAR ESTA SAIDA;
 }
-
-/*Instance * Interpreter::loadInMemo(ClassLoader * classloader) {
-
-    std::string name;
-    CpAttributeInterface cpAt;
-    Instance * instance = (Instance*)calloc(1,sizeof(Instance));
-
-    instance->classe = classloader;
-    name = cpAt.getUTF8(classloader->getConstPool(),classloader->getThisClass()-1);
-    instance->name = name;
-
-    std::cout << "Classe estática " << name << " carregada na memória...!" << std::endl;
-    
-}*/

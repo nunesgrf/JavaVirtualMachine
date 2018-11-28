@@ -17,16 +17,11 @@
 #include "AttributeInfo.hpp"
 #include "ClassLoader.hpp"
 #include "Instruction.hpp"
+#include "Instance.hpp"
 
 struct Operand;
 struct Instruction;
-struct Instance {
-    std::string name;
-    std::map< std::string, Operand* >  references;
-    ClassLoader * classe;
-
-    Instance(ClassLoader*);
-};
+struct Instance;
 
 typedef struct {
     std::vector<Operand*> array;
@@ -45,7 +40,7 @@ struct Operand {
         uint64_t type_double;
     };
     std::string type_string;
-    Instance class_instance;
+    Instance * class_instance;
     ArrayType array_type;
 };
 
@@ -62,8 +57,6 @@ struct Frame {
     Frame(std::vector<CpInfo*>,MethodInfo *);
     ~Frame();
     void run();
-    void cpPrint();
-    //void setInstructs();
 };
 
 #endif

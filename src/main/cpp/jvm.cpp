@@ -11,11 +11,19 @@
 #define ERROR -1
 #define ERROR_MESSAGE " Mensagem de erro: "
 
+/** @brief Chama o interpretador para classloader.
+ * @param classloader Instancia da classe ClassLoader.
+ * @return void
+ */
 void classInterpreter(ClassLoader classloader) {
     Interpreter engine;
     engine.execute(&classloader);
 }
 
+/** @brief Exibidor de ClassLoader
+ * @param classloader Instancia da classe ClassLoader
+ * @return void
+ */
 void classReader(ClassLoader classloader) {
     CpAttributeInterface x;
     vector<CpInfo*> a = classloader.getConstPool();
@@ -174,6 +182,10 @@ void classReader(ClassLoader classloader) {
     //fclose(fp);
 }
 
+/** @brief Função main
+ * @param argc contador de argumentos @param *argv[] argumentos do tipo texto
+ * @return void
+ */
 int main(int argc, char * argv[]) {
  
     if(argc != 3) {

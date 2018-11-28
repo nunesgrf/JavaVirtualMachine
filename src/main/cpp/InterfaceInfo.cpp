@@ -4,6 +4,10 @@ InterfaceInfo::~InterfaceInfo() {
 
 }
 
+/** @brief Carrega as informações de um arquivo na instância de InterfaceInfo.
+ * @param *fp ponteiro de arquivo
+ * @return void
+ */
 void InterfaceInfo::setInterfaceInfo(FILE *fp) {
     ByteReader<uint16_t> TwoByte;
     interface_table = TwoByte.byteCatch(fp);
