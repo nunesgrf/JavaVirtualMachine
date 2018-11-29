@@ -22,26 +22,6 @@ void InstructionImpl::nop(Frame * this_frame) {
     this_frame->pc++;
  }
 
- /*
- * @brief guarda uma referencia na posiçao 1 do array de variaveis locais
- * @param *this_frame ponteiro para o frame atual
- * @return void
- */
- void InstructionImpl::astore_1(Frame * this_frame){
-   this_frame->pc++;
-   Operand * op = this_frame->operand_stack.top();
-   this_frame->operand_stack.pop();
-   this_frame->local_variables.at(1) = op;
-     
- }
- void InstructionImpl::astore_2(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
- }
- void InstructionImpl::astore_3(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
- }
  void InstructionImpl::getstatic(Frame * this_frame){
 
     InstructionImpl::nop(this_frame);
@@ -118,10 +98,6 @@ void InstructionImpl::nop(Frame * this_frame) {
     std::cout << "String : " << className << std::endl;
 
     if(className == "java/lang/System") return;
-    
-    
-    
-
  }
 
 /*
