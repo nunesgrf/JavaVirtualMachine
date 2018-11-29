@@ -54,33 +54,158 @@ void InstructionImpl::nop(Frame * this_frame) {
     //TERMINAR ISSO DAQUI
  }
 
- void InstructionImpl::aaload(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+/*
+ * @brief desempilha um operando do topo da pilha de operandos, 
+ * guardando sua referência do array de variáveis locais na posiçao 1
+ * @param *this_frame ponteiro para o frame atual
+ * @return void
+ */
+ void InstructionImpl::astore_1(Frame * this_frame){
+   InstructionImpl::nop(this_frame);
+   Operand * op = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   this_frame->local_variables.at(0) = op;
+   this_frame->pc++;
+ }
+
+/*
+ * @brief desempilha um operando do topo da pilha de operandos, 
+ * guardando sua referência do array de variáveis locais na posiçao 2
+ * @param *this_frame ponteiro para o frame atual
+ * @return void
+ */
+ void InstructionImpl::astore_2(Frame * this_frame){
+   InstructionImpl::nop(this_frame);
+   Operand * op = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   this_frame->local_variables.at(1) = op;
+   this_frame->pc++;
+ }
+
+ /*
+ * @brief desempilha um operando do topo da pilha de operandos, 
+ * guardando sua referência do array de variáveis locais na posiçao 3
+ * @param *this_frame ponteiro para o frame atual
+ * @return void
+ */
+ void InstructionImpl::astore_3(Frame * this_frame){
+   InstructionImpl::nop(this_frame);
+   Operand * op = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   this_frame->local_variables.at(2) = op;
+   this_frame->pc++;
      
  }
+ void InstructionImpl::getstatic(Frame * this_frame){
+
+    InstructionImpl::nop(this_frame);
+
+    CpAttributeInterface cpAtAux;
+    uint16_t pos = this_frame->method_code.code[this_frame->pc++]; 
+    pos = (pos << 8) + this_frame->method_code.code[this_frame->pc++];
+
+    CpInfo * field = this_frame->cp_reference[pos-1];
+    CpInfo * name_n_type = this_frame->cp_reference[field->Fieldref.name_and_type_index-1];
+
+    std::string className = cpAtAux.getUTF8(this_frame->cp_reference,field->Fieldref.name_and_type_index-1);
+    
+    std::cout << "String : " << className << std::endl;
+
+    if(className == "java/lang/System") return;
+    
+    
+    
+
+ }
+
+/*
+ * @brief retorna uma referência a um objeto, contido em um array de objetos e coloca tal referência na stack
+ * @param *this_frame ponteiro para o frame atual
+ * @return void
+ */ 
+ void InstructionImpl::aaload(Frame * this_frame){
+   InstructionImpl::nop(this_frame);
+   Operand * index = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   Operand * array = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+
+   if(array == NULL) std::cout << "NullPointerException" << std::endl;
+   if(index->type_int < 0 ||  index->type_int >= array->array_type.array.size()) std::cout << "ArrayIndexOutOfBoundsException" << std::endl;
+
+   Operand * op = array->array_type.array.at(index->type_int);
+   this_frame->operand_stack.push(op);
+     
+ }
+
+/*
+ * @brief Empilha uma referência nula a um objeto na pilha de operandos
+ * @param *this_frame ponteiro para o frame atual
+ * @return void
+ */
  void InstructionImpl::aconst_null(Frame * this_frame){
     InstructionImpl::nop(this_frame);
-     
+    Operand * op = (Operand*)calloc(1,sizeof(op));
+    op->tag = CONSTANT_Empty;
+    this_frame->operand_stack.push(op);
+    this_frame->pc++;
  }
+
+/** @brief Empilha o inteiro -1 na stack de operandos
+ * @param *this_frame ponteiro para o frame atual
+ * @return void
+ */
  void InstructionImpl::iconst_m1(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
-
+   InstructionImpl::nop(this_frame);
+   Operand * op = (Operand*)calloc(1,sizeof(op));
+   op->tag = CONSTANT_Integer;
+   op->type_int = -1;
+   this_frame->operand_stack.push(op);
+   this_frame->pc++;
  }
+
+  /** @brief Empilha 0 na stack de operandos
+ * @param *this_frame ponteiro para o frame atual
+ * @return void
+ */
  void InstructionImpl::iconst_0(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
-
+   InstructionImpl::nop(this_frame);
+   Operand * op = (Operand*)calloc(1,sizeof(op));
+   op->tag = CONSTANT_Integer;
+   op->type_int = 0;
+   this_frame->operand_stack.push(op);
+   this_frame->pc++;
  }
+ /** @brief Empilha 1 na stack de operandos
+ * @param *this_frame ponteiro para o frame atual
+ * @return void
+ */
  void InstructionImpl::iconst_1(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
+   InstructionImpl::nop(this_frame);
+   Operand * op = (Operand*)calloc(1,sizeof(op));
+   op->tag = CONSTANT_Integer;
+   op->type_int = 1;
+   this_frame->operand_stack.push(op);
+   this_frame->pc++;
+ }
 
- }
+/** @brief Empilha 2 na stack de operandos
+ * @param *this_frame ponteiro para o frame atual
+ * @return void
+ */
  void InstructionImpl::iconst_2(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
+   InstructionImpl::nop(this_frame);
+   Operand * op = (Operand*)calloc(1,sizeof(op));
+   op->tag = CONSTANT_Integer;
+   op->type_int = 2;
+   this_frame->operand_stack.push(op);   
+   this_frame->pc++;
  }
+
+ /** @brief Empilha 3 na stack de operandos
+ * @param *this_frame ponteiro para o frame atual
+ * @return void
+ */
  void InstructionImpl::iconst_3(Frame * this_frame){
     InstructionImpl::nop(this_frame);
 
@@ -88,20 +213,63 @@ void InstructionImpl::nop(Frame * this_frame) {
     op->tag = CONSTANT_Integer;
     op->type_int = 3;
     this_frame->operand_stack.push(op);
+    this_frame->pc++;
      
  }
+
+ /** @brief Empilha 4 na stack de operandos
+ * @param *this_frame ponteiro para o frame atual
+ * @return void
+ */
  void InstructionImpl::iconst_4(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
+   Operand * op = (Operand*)calloc(1,sizeof(op));
+   op->tag = CONSTANT_Integer;
+   op->type_int = 4;
+   this_frame->operand_stack.push(op); 
+   this_frame->pc++;  
  }
+
+ /** @brief Empilha 5 na stack de operandos
+ * @param *this_frame ponteiro para o frame atual
+ * @return void
+ */
  void InstructionImpl::iconst_5(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+   InstructionImpl::nop(this_frame);
+   Operand * op = (Operand*)calloc(1,sizeof(op));
+   op->tag = CONSTANT_Integer;
+   op->type_int = 5;
+   this_frame->operand_stack.push(op);   
+   this_frame->pc++;
      
  }
+
+ /** @brief Busca o campo de um objeto
+ * @param *this_frame ponteiro para o frame atual
+ * @return void
+ */
  void InstructionImpl::getfield(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+   CpAttributeInterface cpAtAux;
+   /* Busca o indexbyte1 e indexbyte2 no código seguinte a instruçao getfield */
+   uint8_t indexbyte1 = this_frame->method_code.code[this_frame->pc++];
+   uint8_t indexbyte2 = this_frame->method_code.code[this_frame->pc++];
+
+   /* Forma o indice para a pool de constantes com os indexbyte1 e indexbyte2 */
+   uint16_t cp_index = (indexbyte1 << 8) | indexbyte2;
+
+   /* Acessa uma referencia a field na pool de constantes */
+   CpInfo * field_ref = this_frame->cp_reference[cp_index-1];
+
+   /* A partir da referência pro field, acessamos uma referencia na pool de constantes para name_and_type */
+   CpInfo * name_and_type = this_frame->cp_reference[field_ref->Fieldref.name_and_type_index-1];
+
+   /* Com a referencia do name_and_type, pegam-se o nome da classe e o nome do field */
+   std::string class_name = cpAtAux.getUTF8(this_frame->cp_reference,field_ref->Fieldref.name_and_type_index-1);
+   std::string field_name = cpAtAux.getUTF8(this_frame->cp_reference,name_and_type->NameAndType.name_index-1);
+
+   this_frame->operand_stack.pop();
      
  }
+
  void InstructionImpl::aload(Frame * this_frame){
     InstructionImpl::nop(this_frame);
      
