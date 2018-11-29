@@ -20,11 +20,18 @@ void InstructionImpl::nop(Frame * this_frame) {
     InstructionImpl::nop(this_frame);
     this_frame->pc++;
     this_frame->pc++;
-     
-
  }
+
+ /*
+ * @brief guarda uma referencia na posiçao 1 do array de variaveis locais
+ * @param *this_frame ponteiro para o frame atual
+ * @return void
+ */
  void InstructionImpl::astore_1(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+   this_frame->pc++;
+   Operand * op = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   this_frame->local_variables.at(1) = op;
      
  }
  void InstructionImpl::astore_2(Frame * this_frame){
@@ -61,11 +68,10 @@ void InstructionImpl::nop(Frame * this_frame) {
  * @return void
  */
  void InstructionImpl::astore_1(Frame * this_frame){
-   InstructionImpl::nop(this_frame);
+   this_frame->pc++;
    Operand * op = this_frame->operand_stack.top();
    this_frame->operand_stack.pop();
-   this_frame->local_variables.at(0) = op;
-   this_frame->pc++;
+   this_frame->local_variables.at(1) = op;
  }
 
 /*
@@ -78,7 +84,7 @@ void InstructionImpl::nop(Frame * this_frame) {
    InstructionImpl::nop(this_frame);
    Operand * op = this_frame->operand_stack.top();
    this_frame->operand_stack.pop();
-   this_frame->local_variables.at(1) = op;
+   this_frame->local_variables.at(2) = op;
    this_frame->pc++;
  }
 
@@ -92,7 +98,7 @@ void InstructionImpl::nop(Frame * this_frame) {
    InstructionImpl::nop(this_frame);
    Operand * op = this_frame->operand_stack.top();
    this_frame->operand_stack.pop();
-   this_frame->local_variables.at(2) = op;
+   this_frame->local_variables.at(3) = op;
    this_frame->pc++;
      
  }
