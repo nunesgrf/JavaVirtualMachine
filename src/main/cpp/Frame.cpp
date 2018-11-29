@@ -3,23 +3,22 @@
 
 #include <iostream>
 
-// Instance::Instance(ClassLoader * toLoad) {
-    
-//     CpAttributeInterface cpAtAux;
-    
-//     this->name   = cpAtAux.getUTF8(toLoad->getConstPool(),toLoad->getThisClass()-1);
-//     this->classe = toLoad;   
-// }
-
+/** @brief Destrutor de frame, libera o que é alocado no construtor de frame.
+ * @param sem parâmetros
+ * @return void
+ */
 Frame::~Frame() {
     free(this->instructions);
 }
 
+/** @brief Construtor de frame, faz a settagem das variáveis do frame.
+ * @param cp vetor de de CpInfo* @param methd método sobre o qual o frame será criado.
+ * @return 
+ */
 Frame::Frame(std::vector<CpInfo*> cp, MethodInfo * methd) {
 
     CpAttributeInterface cpAtAux;
     
-    //std::cout << "Frame::Frame begin" << std::endl;
     this->instructions = (Instruction*)calloc(256,sizeof(Instruction));
     this->instructions->init(this->instructions); // Inicializa as instruções.
 
@@ -32,12 +31,14 @@ Frame::Frame(std::vector<CpInfo*> cp, MethodInfo * methd) {
         if(cpAtAux.getUTF8(cp,at.name_index-1) == "Code") this->method_code = at.code;
     }
     this->local_variables.resize(method_code.max_locals);
-    //std::cout << "Frame::Frame end" << std::endl;
 }
 
+/** @brief método de execução do código armazenado em um frame.
+ * @param sem parâmetros.
+ * @return void
+ */
 void Frame::run() {
-    //std::cout << "Frame::run begin" << std::endl;
-
+    
     bool flag = true;
 
     do {

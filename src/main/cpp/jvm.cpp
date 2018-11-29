@@ -7,6 +7,7 @@
 #include "../hpp/CpInfo.hpp"
 #include "../hpp/CpAttributeInterface.hpp"
 #include "../hpp/Interpreter.hpp"
+#include "../hpp/GLOBAL_file.hpp"
 
 #define ERROR -1
 #define ERROR_MESSAGE " Mensagem de erro: "
@@ -182,6 +183,22 @@ void classReader(ClassLoader classloader) {
     //fclose(fp);
 }
 
+/**
+ * @brief isola o path de entrada e armazena em uma classe estática para que possa ser acessado posteriormente.
+ * @param *toConvert ponteiro para string.
+ * @return void
+ */
+
+void getPath(char * toConvert) {
+
+    MethodsArea dump;
+    std::string toEdit(toConvert);
+
+    auto pos  = toEdit.find_last_of('/');
+    auto path = toEdit.substr(0,pos+1);
+    
+    dump.path = path;
+}
 /** @brief Função main
  * @param argc contador de argumentos @param *argv[] argumentos do tipo texto
  * @return void
@@ -196,6 +213,7 @@ int main(int argc, char * argv[]) {
     FILE * fp = fopen(argv[2],"r");
     ClassLoader classloader(fp);
     
+    getPath(argv[2]);
     fclose(fp);
 
     switch(*argv[1]) {

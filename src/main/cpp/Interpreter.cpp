@@ -30,14 +30,13 @@ ClassLoader * Interpreter::getClassInfo(std::string className) {
 
     std::cout << "Interpreter::getClassInfo BEGIN" <<std::endl;
     
-    MethodsArea dump;
-    Instance * instance = dump.GLOBAL_staticClasses[className];
+    MethodsArea container;
+    Instance * instance = container.GLOBAL_staticClasses[className];
     
     if(instance == NULL) {
-        //mudar esse bereguejhonson
-        FILE * fp = fopen("/home/nunesgrf/Documentos/JavaVirtualMachine/src/test/IntegerDemo.class","r");
-        ClassLoader cl(fp);
-        instance = this->loadInMemo(&cl);
+        FILE * fp = fopen((container.path + className + ".class").c_str(),"r");
+        ClassLoader new_class(fp);
+        instance = this->loadInMemo(&new_class);
         fclose(fp);
     }
 

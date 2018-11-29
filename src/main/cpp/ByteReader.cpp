@@ -4,6 +4,7 @@
 /**
  * @brief byteCatch(FILE * fp) busca o binário correspondendo ao tipo T.
  * @param FILE * fp : arquivo de acesso.
+ * @return T
  */
 template <class T>
 T ByteReader<T>::byteCatch(FILE * fp) {

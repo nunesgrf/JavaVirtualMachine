@@ -18,11 +18,18 @@
 #define CONSTANT_NameAndType 12
 #define CONSTANT_Empty 0
 
-
+/** @brief Destrutor de CpInfo, desaloca o que foi alocado.
+ * @param sem parâmetros
+ * @return void
+ */
 CpInfo::~CpInfo() {
      if(this->tag == 1) free(this->UTF8.bytes);
 }
 
+/** @brief realiza o set inicial das variáveis a partir do @param *fp
+ * @param *fp ponteiro de arquivo
+ * @return void
+ */
 void CpInfo::read(FILE * fp) {
 
     ByteReader<uint8_t>  OneByte;
