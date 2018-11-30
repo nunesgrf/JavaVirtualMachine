@@ -62,16 +62,43 @@ Operand * Interpreter::createType(std::string type) {
         case 'J':
             toReturn->tag = CONSTANT_Long; break;
         case 'D':
-            toReturn->tag = CONSTANT_Double; break;      
+            toReturn->tag = CONSTANT_Double; break;    
+        case 'Z':
+            toReturn->tag = CONSTANT_Boolean; break;
+        case 'B':
+            toReturn->tag = CONSTANT_Byte; break;
+        case 'C':
+            toReturn->tag = CONSTANT_Char; break;
+        case 'S':
+            toReturn->tag = CONSTANT_Short; break;
+        case '[':
+            toReturn->tag = CONSTANT_Array;
+            toReturn->array_type = (ArrayType*)calloc(1,sizeof(ArrayType));
+            toReturn->array_type->array = new std::vector<Operand*>(); break;
         case 'P':
             toReturn->tag = CONSTANT_Empty; break;
-        //case CONSTANT_String:
-        //    toReturn->tag = CONSTANT_String;
-        //    toReturn->type_string = "";
+        case CONSTANT_String:
+            toReturn->tag = CONSTANT_String;
+            toReturn->type_string = new std::string(""); break;
+        case 'L':
+            if(type == "Ljava/lang/String;") {
+                toReturn->tag = CONSTANT_String;
+                toReturn->type_string = new std::string("");
+            }
+            else {
+                toReturn->tag = CONSTANT_Class;
+                toReturn->class_instance = (Instance*)calloc(1,sizeof(Instance));
 
-        //IMPLEMENTAR DEMAIS MÉTODOS.
+                std::string className  = type.substr(1,type.size());
+                ClassLoader * newClass = Interpreter::getClassInfo(className);
+
+                toReturn->class_instance->classe = newClass;
+                toReturn->class_instance->name   = className;
+
+                Interpreter::loadVariables(toReturn->class_instance);
+            }
+            break;
     }
-
     return toReturn;
 }
 

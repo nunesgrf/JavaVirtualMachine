@@ -43,8 +43,8 @@ void Frame::run() {
 
     do {
         uint8_t opCode = this->method_code.code[pc];
+        //std::cout << this->pc << " : " << this->instructions[opCode].name << std::endl;
         this->instructions[opCode].func(this);
-        //std::cout << this->instructions[opCode].name << std::endl;
         if(this->instructions[opCode].name == "return") flag = false;    
     } while(flag);
 
