@@ -181,6 +181,7 @@ void classReader(ClassLoader classloader) {
 
     /* Fim do print attributes */
     //fclose(fp);
+  exit(0);
 }
 
 /**
