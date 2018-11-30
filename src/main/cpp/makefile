@@ -1,6 +1,6 @@
 IDIR=../hpp
 CXX=g++
-CXXFLAGS=-I$(IDIR) -g -std=c++11 -Wall
+CXXFLAGS=-I$(IDIR) -g -std=c++11 -Wall -fbounds-check
 
 _DEPS= AttributeInfo.hpp ByteReader.hpp ClassLoader.hpp ClassPrinter.hpp CpAttributeInterface.hpp CpInfo.hpp FieldInfo.hpp Frame.hpp Instruction.hpp InstructionImpl.hpp InterfaceInfo.hpp MethodInfo.hpp Stack.hpp CpAttributeInterface.hpp CpInfo.hpp FieldInfo.hpp Frame.hpp Instruction.hpp InstructionImpl.hpp InterfaceInfo.hpp Interpreter.hpp MethodInfo.hpp Stack.hpp Instance.hpp GLOBAL_file.hpp jvm.hpp
 DEPS=$(patsubst %,$(IDIR)/%,$(_DEPS))

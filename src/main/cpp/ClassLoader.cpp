@@ -43,17 +43,17 @@ ClassLoader::~ClassLoader() {
 
     //std::cout << "ClassLoader::~ClassLoader begin" << std::endl;
     for(auto a : interfaces) {
-        //
+        a->~InterfaceInfo();
         free(a);
     }
 
     for(auto a : attributes) {
-        //
+        a->~AttributeInfo();
         free(a);
     }
 
     for(auto a : fields) {
-        //
+        a->~FieldInfo();
         free(a);
     }
 

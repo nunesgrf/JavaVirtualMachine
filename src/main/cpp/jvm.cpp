@@ -188,7 +188,6 @@ void classReader(ClassLoader classloader) {
  * @param *toConvert ponteiro para string.
  * @return void
  */
-
 void getPath(char * toConvert) {
 
     MethodsArea dump;

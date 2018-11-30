@@ -1,7 +1,9 @@
 #include "../hpp/Frame.hpp"
 #include "../hpp/CpAttributeInterface.hpp"
 #include "../hpp/GLOBAL_file.hpp"
+#include "../hpp/Interpreter.hpp"
 #include <iostream>
+#include <string>
 
 /*
  * @brief Incrementa o program counter.
@@ -13,8 +15,49 @@ void InstructionImpl::nop(Frame * this_frame) {
 }
 
  void InstructionImpl::ldc(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-    this_frame->pc++;
+
+   this_frame->pc++;
+   Operand * op = (Operand*)calloc(1,sizeof(op));
+   CpAttributeInterface cpAttrAux;
+   
+   /* Pegando o indice do para acessar a constante no pool de constantes */
+   uint8_t index = this_frame->method_code.code[this_frame->pc++];
+   
+   /* Referência para a pool de constantes */
+   CpInfo * Cp = this_frame->cp_reference[index-1];
+
+   /* Obtem-se a flag para acessar o tipo da constante */
+   op->tag = Cp->tag;
+
+   /* Verifica o tipo da tag */
+   switch(op->tag){
+      case CONSTANT_String:
+      {
+         /* Caso seja string, acessar o UTF8 correspondente a ela */
+         std::string utf8s = cpAttrAux.getUTF8(this_frame->cp_reference,Cp->String.string_index-1);
+         op->type_string = new std::string(utf8s);
+         break;
+      }
+      case CONSTANT_Float:
+      {
+          /* Caso seja float, acessar os bytes correspondentes a ele */
+         op->type_float = Cp->Float.bytes;
+         break;
+      }
+      case CONSTANT_Integer:
+      {
+         /* Caso seja int, acessar os bytes correspondentes a ele */
+         op->type_int = Cp->Integer.bytes;
+         break;
+      }
+      default:
+      {
+         std::cout << "BUG LDC SWITCH DEFAULT";
+         break;
+      }
+   }
+
+   this_frame->operand_stack.push(op);
     
  }
  void InstructionImpl::invokespecial(Frame * this_frame){
@@ -22,9 +65,81 @@ void InstructionImpl::nop(Frame * this_frame) {
      
  }
  void InstructionImpl::invokevirtual(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-    this_frame->pc++;
-    this_frame->pc++;
+
+   CpAttributeInterface cpAttrAux;
+   this_frame->pc++;
+   /* Recupera o valor dos indices que formam a referencia a pool de constantes */
+   uint16_t indexbyte1 = this_frame->method_code.code[this_frame->pc++];
+   uint16_t indexbyte2 = this_frame->method_code.code[this_frame->pc++];
+
+   /* Constrói a referência */
+   uint16_t index = (indexbyte1 << 8) | indexbyte2;
+
+   /* Constrói uma referência ao metodo */
+   CpInfo * method_reference = this_frame->cp_reference[index-1];
+
+   /* A partir da referencia do metodo, constrói-se a reference para o nome e o tipo do método */
+   CpInfo * name_and_type = this_frame->cp_reference[method_reference->Methodref.name_and_type_index-1];
+
+   /* Para descobrir o qual o metodo, pegamos o nome da classe, nome do metodo e descritor dele */
+   std::string class_name = cpAttrAux.getUTF8(this_frame->cp_reference,method_reference->Methodref.class_index-1);
+   std::string method_name = cpAttrAux.getUTF8(this_frame->cp_reference,name_and_type->NameAndType.name_index-1);
+   std::string method_deor = cpAttrAux.getUTF8(this_frame->cp_reference,name_and_type->NameAndType.name_index-1);
+
+   /* Inicia-se o procedimento para verificar se o metodo a ser chamado é um print f */
+   if((class_name == "java/io/PrintStream") && (method_name == "println" || method_deor == "print")){
+      if(method_deor != "()V"){
+         Operand * op = this_frame->operand_stack.top();
+         this_frame->operand_stack.pop();
+
+         switch(op->tag) {
+            case CONSTANT_String:
+               std::cout << (*op->type_string);
+               break;
+            case CONSTANT_Integer:
+               std::cout << op->type_int;
+               break;
+            case CONSTANT_Float:
+               float converted_operand;
+               memcpy(&converted_operand,&op->type_float,sizeof(float));
+               std::cout << converted_operand;
+               break;
+            case CONSTANT_Byte:
+               std::cout << (int) op->type_byte;
+               break;
+            case CONSTANT_Char:
+               std::cout << (char) op->type_char;
+               break;
+            case CONSTANT_Short:
+               std::cout << (short) op->type_short;
+               break;
+            case CONSTANT_Boolean:
+               std::cout << (bool) op->type_bool;
+               break;
+            case CONSTANT_Long:
+               std::cout << (long) op->type_long;
+               break;
+            case CONSTANT_Empty:
+               printf("null");
+               break;
+            case CONSTANT_Double: {
+               double converted_operand;
+               memcpy(&converted_operand, &op->type_double, sizeof(double));
+               std::cout << converted_operand; 
+               break;
+            }
+            case CONSTANT_Class: {
+               Instance * class_instance = op->class_instance;
+               ClassLoader * class_loader = class_instance->classe;
+               std::string class_name = cpAttrAux.getUTF8(class_loader->getConstPool(),class_loader->getThisClass());
+               std::cout << class_name << "@" << class_instance;
+               break;
+            }
+         }
+
+         if(method_name == "println") std::cout << std::endl;
+      }
+   }
  }
 
 /*
@@ -72,18 +187,22 @@ void InstructionImpl::nop(Frame * this_frame) {
 
     InstructionImpl::nop(this_frame);
 
-    CpAttributeInterface cpAtAux;
+    Interpreter aux;
+    MethodsArea container;
+    CpAttributeInterface cpAt;
     uint16_t pos = this_frame->method_code.code[this_frame->pc++]; 
     pos = (pos << 8) + this_frame->method_code.code[this_frame->pc++];
 
     CpInfo * field = this_frame->cp_reference[pos-1];
     CpInfo * name_n_type = this_frame->cp_reference[field->Fieldref.name_and_type_index-1];
 
-    std::string className = cpAtAux.getUTF8(this_frame->cp_reference,field->Fieldref.name_and_type_index-1);
-    
-    std::cout << "String : " << className << std::endl;
+    std::string className = cpAt.getUTF8(this_frame->cp_reference,field->Fieldref.class_index-1);
+    if(className == "java/lang/System") return; // Não tenta acessar caso seja um java/lang/Syste,.
 
-    if(className == "java/lang/System") return;
+    auto classloader         = aux.getClassInfo(className);
+    std::string variableName = cpAt.getUTF8(classloader->getConstPool(),name_n_type->NameAndType.name_index-1);
+    auto staticField         = container.getStaticfield(className,variableName);
+    this_frame->operand_stack.push(staticField);
  }
 
 /*
@@ -1486,7 +1605,7 @@ void InstructionImpl::nop(Frame * this_frame) {
     this_frame->pc++;
      
  }
- 
+
  void InstructionImpl::lrem(Frame * this_frame){
     InstructionImpl::nop(this_frame);
      

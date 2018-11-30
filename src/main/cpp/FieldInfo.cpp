@@ -6,7 +6,11 @@
  * @return void
  */
 FieldInfo::~FieldInfo() {
-
+    
+    for(auto a : this->attributes) {
+        a->~AttributeInfo();
+        free(a);
+    }
 }
 
 /** @brief setting inicial do FieldInfo a partir de um arquivo.

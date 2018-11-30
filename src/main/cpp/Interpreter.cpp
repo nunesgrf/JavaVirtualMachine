@@ -11,7 +11,7 @@
  */
 void Interpreter::execute(ClassLoader * classloader) {
 
-    this->loadInMemo(classloader);
+    Interpreter::loadInMemo(classloader);
     
     Frame toRun(classloader->getConstPool(),this->mainFinder(classloader));
     this->frame_stack.push(&toRun);
@@ -36,7 +36,7 @@ ClassLoader * Interpreter::getClassInfo(std::string className) {
     if(instance == NULL) {
         FILE * fp = fopen((container.path + className + ".class").c_str(),"r");
         ClassLoader new_class(fp);
-        instance = this->loadInMemo(&new_class);
+        instance = Interpreter::loadInMemo(&new_class);
         fclose(fp);
     }
 
@@ -89,14 +89,14 @@ void Interpreter::loadVariables(Instance * instance) {
     while(superClassName != "java/lang/Object") {
 
         superClassName = cpAt.getUTF8(currClass->getConstPool(),currClass->getThisClass()-1);
-        
+        //
         for(auto fpointer : currClass->getFields()) {
             std::string nameField = cpAt.getUTF8(currClass->getConstPool(),fpointer->name_index-1);
             std::string typeVariable = cpAt.getUTF8(currClass->getConstPool(),fpointer->descriptor_index-1);
-            instance->references[nameField] = this->createType(typeVariable); 
+            instance->references[nameField] = Interpreter::createType(typeVariable); 
         }
 
-        if(superClassName != "java/lang/Object" && superClassName != "") currClass = this->getClassInfo(superClassName); //IMPLEMENTAR O MÉTODO getClassInfo();
+        if(superClassName != "java/lang/Object" && superClassName != "") currClass = Interpreter::getClassInfo(superClassName); //IMPLEMENTAR O MÉTODO getClassInfo();
 
     } 
 }
@@ -114,7 +114,7 @@ Instance * Interpreter::loadInMemo(ClassLoader * javaclass) {
     dump.GLOBAL_loadedClasses.insert(std::pair<std::string, Instance*>(inst_LC->name,inst_LC));
     dump.GLOBAL_staticClasses.insert(std::pair<std::string, Instance*>(inst_SC->name,inst_SC)); 
 
-    this->loadVariables(inst_LC);    
+    Interpreter::loadVariables(inst_LC);    
     return inst_LC;
 }
 
