@@ -51,6 +51,7 @@ std::string CpAttributeInterface::getUTF8(std::vector<CpInfo*> alpha, uint16_t b
             return getUTF8(alpha, alpha[beta]->String.string_index -1);
             break;
         default:
+             return "";
              break; /* Must Change default */
     }
 } 

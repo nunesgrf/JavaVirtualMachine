@@ -45,7 +45,7 @@ void classReader(ClassLoader classloader) {
     /*Fim do Print de infomações genericas do .class */
     /* Print do vetor de constant pool */
     std::cout << "------------------------------ConstantPool------------------------------ \n\n\n";
-    for(int i = 0; i < a.size(); i++) {
+    for(unsigned i = 0; i < a.size(); i++) {
       switch (a[i]->tag){
         case CONSTANT_Fieldref:
           std::cout << "Fieldref" <<endl;
@@ -149,7 +149,7 @@ void classReader(ClassLoader classloader) {
     /* Print do vetor de interfaces */
     std::vector<InterfaceInfo*> interfaces = classloader.getInterfaces();
     std::cout << "------------------------------Interfaces------------------------------" << endl << endl;
-    for (int j = 0; j < interfaces.size(); j++) {
+    for (unsigned j = 0; j < interfaces.size(); j++) {
         std::cout << x.getUTF8(classloader.getConstPool(), interfaces[j]->interface_table -1);
     }
     std::cout << "\nEMPTY" << endl;
@@ -174,7 +174,7 @@ void classReader(ClassLoader classloader) {
     /* Print do vetor de attributes */
     vector<AttributeInfo *> attributes = classloader.getAttributes();
     std::cout << "\n------------------------------Attributes------------------------------" << endl << endl;
-    for (int k = 0 ; k < attributes.size(); k++) {
+    for (unsigned k = 0 ; k < attributes.size(); k++) {
         std::cout << "[" << k << "]" << endl;
         attributes[k]->print(a);
     }

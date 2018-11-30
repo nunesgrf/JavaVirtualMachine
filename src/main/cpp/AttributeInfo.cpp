@@ -86,7 +86,7 @@ void CodeAttribute::read(FILE *fp, std::vector<CpInfo*> trueCpInfo) {
 
 
 void CodeAttribute::print(std::vector<CpInfo*> trueCpInfo) {
-    unsigned int i, j, k;
+    unsigned int j, k;
     CpAttributeInterface utf8Getter;
     Instruction instructions[256];
     Instruction::init(instructions);
@@ -96,7 +96,7 @@ void CodeAttribute::print(std::vector<CpInfo*> trueCpInfo) {
     cout << "Max Locals " << this->max_locals << endl;
 
     cout << "\nCode:" << endl<<endl;
-    for (int i = 0; i < code_length; i++){
+    for (unsigned i = 0; i < code_length; i++){
         int code_num = (int)code[i];
 
         std::cout << i << ": " << instructions[code_num].name;
@@ -263,7 +263,7 @@ void AttributeInfo::read(FILE * fp, std::vector<CpInfo *> trueCpInfo){
     else {
         info = (uint8_t*)malloc(length*sizeof(uint8_t));
         /* Ignore attribute if it doesn't exist */
-        for(int j = 0; j < length ; j++) {
+        for(unsigned j = 0; j < length ; j++) {
             info[j] = OneByte.byteCatch(fp);
         }
 
