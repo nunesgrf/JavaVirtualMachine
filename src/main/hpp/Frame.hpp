@@ -39,7 +39,7 @@ struct Operand {
         uint64_t type_long;
         uint64_t type_double;
     };
-    std::string type_string;
+    std::string * type_string;
     Instance * class_instance;
     ArrayType array_type;
 };

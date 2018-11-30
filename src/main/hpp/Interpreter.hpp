@@ -21,11 +21,11 @@ class Interpreter {
     std::stack<Frame*> frame_stack;
     
     void execute(ClassLoader*);
-    void loadVariables(Instance*);
-    ClassLoader * getClassInfo(std::string);
+    static void loadVariables(Instance*);
+    static ClassLoader * getClassInfo(std::string);
     MethodInfo  * mainFinder(ClassLoader*);
-    Instance    * loadInMemo(ClassLoader*);
-    Operand     * createType(std::string);
+    static Instance    * loadInMemo(ClassLoader*);
+    static Operand     * createType(std::string);
 };
 
 #endif

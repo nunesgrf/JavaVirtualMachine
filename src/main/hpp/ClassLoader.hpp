@@ -17,6 +17,11 @@
 #define CONSTANT_Methodref 10
 #define CONSTANT_InterfaceMethodref 11
 #define CONSTANT_NameAndType 12
+#define CONSTANT_Boolean  90
+#define CONSTANT_Byte     91
+#define CONSTANT_Char     92
+#define CONSTANT_Short    93
+#define CONSTANT_Array 94
 #define CONSTANT_Empty 0
 #define typeof __typeof__
 

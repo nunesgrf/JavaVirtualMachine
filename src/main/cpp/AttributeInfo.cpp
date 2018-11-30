@@ -16,9 +16,20 @@ ByteReader<uint16_t> TwoByte;
 ByteReader<uint32_t> FourByte;
 
 AttributeInfo::~AttributeInfo() {
-
+    //free(this->info);
+    //this->code.~CodeAttribute();
+    //this->exception.~Exception();
 }
 
+CodeAttribute::~CodeAttribute() {
+    //free(this->code);
+    //free(this->code_exception_table);
+    //free(this->attributes);
+}
+
+Exception::~Exception() {
+    //free(this->exception_index_table);
+}
 void ConstantValue::read(FILE *fp) {
     constvalue_index = TwoByte.byteCatch(fp);
 }
