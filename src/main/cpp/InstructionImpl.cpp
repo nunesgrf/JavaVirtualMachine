@@ -385,16 +385,12 @@ void InstructionImpl::nop(Frame * this_frame) {
  * @return void
  */
  void InstructionImpl::iinc(Frame * this_frame){
-    //TA COM ALGUM PROBLEMA.
-    //this_frame->pc++;
-    auto index         = this_frame->method_code.code[(int)(++this_frame->pc)];
-    auto constantValue = this_frame->method_code.code[(int)(++this_frame->pc)];
 
-    std::cout << (int)index << " " << (int)constantValue << std::endl;
-    //char a = getchar();
-    //std::cout << a << std::endl;
-    this_frame->local_variables.at((int)index) += constantValue;
-    this_frame->pc++;
+    int8_t  field = this_frame->method_code.code[this_frame->pc+1];
+    int32_t value = this_frame->method_code.code[this_frame->pc+2];
+    
+    this_frame->local_variables.at((int)field)->type_int += value;
+    for(int i = 0; i < 3; i++) this_frame->pc++;  
  }
 
  /**
@@ -606,6 +602,7 @@ void InstructionImpl::nop(Frame * this_frame) {
  void InstructionImpl::lload_0(Frame * this_frame){
     
     auto op = this_frame->local_variables.at(0);
+    
     this_frame->operand_stack.push(op);
     this_frame->pc++;
  }
@@ -929,7 +926,7 @@ void InstructionImpl::nop(Frame * this_frame) {
 /**
  * @brief Armazena long do topo da pilha de operandos no array de variaveis
  *  locais
- * @param *curr_frame Ponteiro para o frame atual
+ * @param *this_frame Ponteiro para o frame atual
  * @return void
  */
  void InstructionImpl::lstore(Frame * this_frame){
@@ -945,7 +942,7 @@ void InstructionImpl::nop(Frame * this_frame) {
 
  /**
 * @brief Armazena long do topo da pilha de operandos no array de variaveis locais no indice 0
-* @param Frame *curr_frame Ponteiro para o frame atual
+* @param Frame *this_frame Ponteiro para o frame atual
 * @return void
 */
  void InstructionImpl::lstore_0(Frame * this_frame){
@@ -959,7 +956,7 @@ void InstructionImpl::nop(Frame * this_frame) {
 
  /**
 * @brief Armazena long do topo da pilha de operandos no array de variaveis locais no indice 1
-* @param Frame *curr_frame Ponteiro para o frame atual
+* @param Frame *this_frame Ponteiro para o frame atual
 * @return void
 */
  void InstructionImpl::lstore_1(Frame * this_frame){
@@ -973,7 +970,7 @@ void InstructionImpl::nop(Frame * this_frame) {
 
  /**
 * @brief Armazena long do topo da pilha de operandos no array de variaveis locais no indice 2
-* @param Frame *curr_frame Ponteiro para o frame atual
+* @param Frame *this_frame Ponteiro para o frame atual
 * @return void
 */
  void InstructionImpl::lstore_2(Frame * this_frame){
@@ -986,7 +983,7 @@ void InstructionImpl::nop(Frame * this_frame) {
 
  /**
 * @brief Armazena long do topo da pilha de operandos no array de variaveis locais no indice 3
-* @param Frame *curr_frame Ponteiro para o frame atual
+* @param Frame *this_frame Ponteiro para o frame atual
 * @return void
 */
  void InstructionImpl::lstore_3(Frame * this_frame){
@@ -1015,7 +1012,7 @@ void InstructionImpl::nop(Frame * this_frame) {
  /*
 * @brief Armazena um inteiro no array de variaveis locais no valor indicado
 *   pelo indice.
-* @param *curr_frame Ponteiro para o frame atual
+* @param *this_frame Ponteiro para o frame atual
 * @return void
 */
  void InstructionImpl::istore(Frame * this_frame){
@@ -1032,7 +1029,7 @@ void InstructionImpl::nop(Frame * this_frame) {
 
  /**
  * @brief Armazena um inteiro no array de variaveis locais no indice 0
- * @param *curr_frame Ponteiro para o frame atual
+ * @param *this_frame Ponteiro para o frame atual
  * @return void
  */
  void InstructionImpl::istore_0(Frame * this_frame){
@@ -1045,7 +1042,7 @@ void InstructionImpl::nop(Frame * this_frame) {
 
  /**
  * @brief Armazena um inteiro no array de variaveis locais no indice 1
- * @param *curr_frame Ponteiro para o frame atual
+ * @param *this_frame Ponteiro para o frame atual
  * @return void
  */
  void InstructionImpl::istore_1(Frame * this_frame){
@@ -1059,7 +1056,7 @@ void InstructionImpl::nop(Frame * this_frame) {
 
  /**
  * @brief Armazena um inteiro no array de variaveis locais no indice 2
- * @param *curr_frame Ponteiro para o frame atual
+ * @param *this_frame Ponteiro para o frame atual
  * @return void
  */
  void InstructionImpl::istore_2(Frame * this_frame){
@@ -1072,7 +1069,7 @@ void InstructionImpl::nop(Frame * this_frame) {
 
  /**
  * @brief Armazena um inteiro no array de variaveis locais no indice 3
- * @param *curr_frame Ponteiro para o frame atual
+ * @param *this_frame Ponteiro para o frame atual
  * @return void
  */
  void InstructionImpl::istore_3(Frame * this_frame){
@@ -1150,7 +1147,7 @@ void InstructionImpl::nop(Frame * this_frame) {
 
  /**
  * @brief Realiza a operacao de OR entre dois operandos e empilha o resultado
- * @param *curr_frame ponteiro para o frame atual
+ * @param *this_frame ponteiro para o frame atual
  * @return void
  */
  void InstructionImpl::ior(Frame * this_frame){
@@ -1342,7 +1339,7 @@ void InstructionImpl::nop(Frame * this_frame) {
 
 /**
  * @brief Realiza um salto condicional caso o segundo operando na pilha seja >= que o topo.
- * @param Frame *curr_frame ponteiro que aponta para o frame atual
+ * @param Frame *this_frame ponteiro que aponta para o frame atual
  * @return void
  */
  void InstructionImpl::if_icmpge(Frame * this_frame){
@@ -1467,7 +1464,6 @@ void InstructionImpl::nop(Frame * this_frame) {
     InstructionImpl::nop(this_frame);
     
     float value_1, value_2;
-    std::cout << "INIT" << std::endl;
     
 
     Operand * op1 = this_frame->operand_stack.top();
@@ -1517,7 +1513,7 @@ void InstructionImpl::nop(Frame * this_frame) {
 
 /**
  * @brief Realiza um salto condicional caso o segundo operando na pilha seja != que o topo.
- * @param Frame *curr_frame ponteiro que aponta para o frame atual
+ * @param Frame *this_frame ponteiro que aponta para o frame atual
  * @return void
  */
  void InstructionImpl::if_icmpne(Frame * this_frame){
@@ -1539,7 +1535,7 @@ void InstructionImpl::nop(Frame * this_frame) {
 
  /**
  * @brief Realiza um salto condicional caso o segundo operando na pilha seja == que o topo.
- * @param Frame *curr_frame ponteiro que aponta para o frame atual
+ * @param Frame *this_frame ponteiro que aponta para o frame atual
  * @return void
  */
  void InstructionImpl::if_icmpeq(Frame * this_frame){
@@ -1678,7 +1674,7 @@ void InstructionImpl::nop(Frame * this_frame) {
 
  /**
  * @brief Realiza um salto condicional caso o segundo operando na pilha seja < que o topo.
- * @param Frame *curr_frame ponteiro que aponta para o frame atual
+ * @param Frame *this_frame ponteiro que aponta para o frame atual
  * @return void
  */
  void InstructionImpl::if_icmplt(Frame * this_frame){
@@ -1700,11 +1696,11 @@ void InstructionImpl::nop(Frame * this_frame) {
 
  /**
  * @brief Realiza um salto condicional caso o segundo operando na pilha seja > que o topo.
- * @param Frame *curr_frame ponteiro que aponta para o frame atual
+ * @param Frame *this_frame ponteiro que aponta para o frame atual
  * @return void
  */
  void InstructionImpl::if_icmpgt(Frame * this_frame){
-    int offset;
+    int16_t offset;
 
     auto op1 = this_frame->operand_stack.top();
     this_frame->operand_stack.pop();
@@ -1715,29 +1711,30 @@ void InstructionImpl::nop(Frame * this_frame) {
       offset = this_frame->method_code.code[this_frame->pc+1];
       offset = (offset << 8) | this_frame->method_code.code[this_frame->pc+2];
     }
-    else offset = 3;
+    else offset = 3; 
+
     this_frame->pc += offset;
      
  }
 
  /**
  * @brief Realiza um salto condicional caso o segundo operando na pilha seja <= que o topo.
- * @param Frame *curr_frame ponteiro que aponta para o frame atual
+ * @param Frame *this_frame ponteiro que aponta para o frame atual
  * @return void
  */
  void InstructionImpl::if_icmple(Frame * this_frame){
-    uint16_t offset;
+    int16_t offset;
 
     auto op1 = this_frame->operand_stack.top();
     this_frame->operand_stack.pop();
     auto op2 = this_frame->operand_stack.top();
     this_frame->operand_stack.pop();
     
-    if(op2->type_int <= op1->type_int) {
+    if((int)(op2->type_int) <= (int)(op1->type_int)) {
       offset = this_frame->method_code.code[this_frame->pc+1];
       offset = (offset << 8) | this_frame->method_code.code[this_frame->pc+2];
     }
-    else offset = 3;
+    else offset = 3; 
     this_frame->pc += offset;
      
  }
@@ -1855,7 +1852,7 @@ void InstructionImpl::nop(Frame * this_frame) {
 
  /**
  * @brief Calcula o modulo entre dois inteiros.
- * @param *curr_frame Ponteiro para o frame atual
+ * @param *this_frame Ponteiro para o frame atual
  * @return void
  */
  void InstructionImpl::irem(Frame * this_frame){
