@@ -36,7 +36,7 @@ void ConstantValue::read(FILE *fp) {
 void ConstantValue::print(std::vector<CpInfo*> trueCpInfo) {
     CpAttributeInterface utf8Getter;
 
-    cout << "Constante Value Index= constantpool[" << this->constvalue_index << "]" << utf8Getter.getUTF8(trueCpInfo, this->constvalue_index - 1) << endl;
+    cout << "Constante Value Index: cp info #" << this->constvalue_index << " " << utf8Getter.getUTF8(trueCpInfo, this->constvalue_index - 1) << endl;
 }
 
 void NumberTableAttribute::read(FILE *fp) {
@@ -92,10 +92,7 @@ void CodeAttribute::print(std::vector<CpInfo*> trueCpInfo) {
     Instruction::init(instructions);
 
 
-    cout << "Max Stacks " << this->max_stacks << endl;
-    cout << "Max Locals " << this->max_locals << endl;
-
-    cout << "\nCode:" << endl<<endl;
+    cout << "\n[0]Code:" << endl<<endl;
     for (unsigned i = 0; i < code_length; i++){
         int code_num = (int)code[i];
 
@@ -176,15 +173,15 @@ void CodeAttribute::print(std::vector<CpInfo*> trueCpInfo) {
 
     cout << "Exception Table:" << endl <<endl;
     for (j = 0; j < this->exception_table_length; j++){
-        cout << "Start PC =" << this->code_exception_table[j].start_pc<< endl;
-        cout << "End PC =" << this->code_exception_table[j].end_pc<< endl;
-        cout << "Handler PC=" << this->code_exception_table[j].handler_pc<< endl;
+        cout << "Start PC: " << this->code_exception_table[j].start_pc<< endl;
+        cout << "End PC: " << this->code_exception_table[j].end_pc<< endl;
+        cout << "Handler PC: " << this->code_exception_table[j].handler_pc<< endl;
         if(code_exception_table[j].catch_type) {
-            cout << "Catch type=constantpool[" << this->code_exception_table[j].catch_type<< "]" << utf8Getter.getUTF8(trueCpInfo, this->code_exception_table[j].catch_type-1) << endl;
+            cout << "Catch type: cp info #" << this->code_exception_table[j].catch_type<< " " << utf8Getter.getUTF8(trueCpInfo, this->code_exception_table[j].catch_type-1) << endl;
         }
     }
 
-    cout << "Attributes Count=" << this->attributes_count << endl;
+    cout << "Attributes Count: " << this->attributes_count << endl;
     for (k = 0; k < this->attributes_count; k++){
         attributes[k].print(trueCpInfo);
     }
@@ -194,7 +191,7 @@ void InnerClass::read(FILE *fp) {
 }
 
 void InnerClass::print(std::vector<CpInfo*> trueCpInfo) {
-    cout << "Class length=" << this->class_length<<endl;
+    cout << "Class length: " << this->class_length<<endl;
 }
 
 void Exception::read(FILE *fp) {
@@ -213,7 +210,7 @@ void Exception::print(std::vector<CpInfo*> trueCpInfo) {
 
     cout << "Number of exceptions=" << number_exceptions <<endl;
     for (i = 0; i < number_exceptions; i++){
-        cout << setw(2) << setfill('0') << "Exception Index Table =constantpool[" << this->exception_index_table[i]<< "]" << utf8Getter.getUTF8(trueCpInfo, exception_index_table[i]-1) << endl;
+        cout << setw(2) << setfill('0') << "Exception Index Table: cp info #" << this->exception_index_table[i]<< " " << utf8Getter.getUTF8(trueCpInfo, exception_index_table[i]-1) << endl;
     }
 }
 
@@ -226,7 +223,7 @@ void SourceFile::read(FILE *fp) {
 void SourceFile::print(std::vector<CpInfo*> trueCpInfo) {
     CpAttributeInterface utf8Getter;
 
-    cout <<"Source file name index = constantpool[" << this->sourceFileIndex << "]" <<" <" << utf8Getter.getUTF8(trueCpInfo, this->sourceFileIndex - 1)<< ">" << endl;
+    cout <<"Source file name index: cp info #" << this->sourceFileIndex <<" <" << utf8Getter.getUTF8(trueCpInfo, this->sourceFileIndex - 1)<< ">" << endl;
 }
 
 
@@ -274,8 +271,8 @@ void AttributeInfo::print(std::vector<CpInfo *> trueCpInfo) {
     CpAttributeInterface utf8Getter;
     std::string attribute_name = utf8Getter.getUTF8(trueCpInfo, this->name_index-1);
 
-    cout << setw(2) << setfill('0') << "Attribute Name Index= constantpool[" << this->name_index<< "] " <<"<"<< attribute_name << ">" <<endl;
-    cout << setw(2) << setfill('0') << "Attribute Length = " << this->length<< endl;
+    cout << setw(2) << setfill('0') << "Attribute Name Index: cp info #" << this->name_index<< " <"<< attribute_name << ">" <<endl;
+    cout << setw(2) << setfill('0') << "Attribute Length: " << this->length<< endl;
 
     if(attribute_name == "Code"){
         code.print(trueCpInfo);
