@@ -2083,8 +2083,19 @@ void InstructionImpl::baload(Frame * this_frame){
    this_frame->pc +=offset;
      
  }
+
+ /*
+ * @brief Instruçao que executa o desvio para determinado endereco com mais bytes.
+ * @param *this_frame ponteiro para o frame atual
+ * @return void
+ */
  void InstructionImpl::goto_w(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+   uint32_t branchbyte1 = this_frame->method_code.code[this_frame->pc++];
+   uint32_t branchbyte2 = this_frame->method_code.code[this_frame->pc++];
+   uint32_t branchbyte3 = this_frame->method_code.code[this_frame->pc++];
+   uint32_t branchbyte4 = this_frame->method_code.code[this_frame->pc++];
+   uint32_t offset = (branchbyte1 << 24) | (branchbyte2 << 16) | (branchbyte3 << 8) | branchbyte4;
+   this_frame->pc +=offset;
      
  }
  void InstructionImpl::instanceof(Frame * this_frame){
@@ -2107,13 +2118,40 @@ void InstructionImpl::baload(Frame * this_frame){
     InstructionImpl::nop(this_frame);
      
  }
- void InstructionImpl::jsr(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
- }
- void InstructionImpl::jsr_w(Frame * this_frame){
-     std::cout << "teste bem sucedido" << std::endl;
- }
+/*
+* @brief Instruçao que executa o desvio salvando o endereco de retorno na pilha de operandos.
+* @param *this_frame ponteiro para o frame atual
+* @return void
+*/
+void InstructionImpl::jsr(Frame * this_frame){
+   Operand * op = (Operand*)calloc(1,sizeof(Operand));
+   op->type_byte = this_frame->pc;
+   this_frame->operand_stack.push(op);
+   uint16_t branchbyte1 = this_frame->method_code.code[this_frame->pc++];
+   uint16_t branchbyte2 = this_frame->method_code.code[this_frame->pc++];
+   uint16_t offset = (branchbyte1 << 8) | (branchbyte2);
+
+   this_frame->pc += offset;
+}
+
+/*
+* @brief Instruçao que executa o desvio salvando o endereco de retorno na pilha de operandos.
+* @param *this_frame ponteiro para o frame atual
+* @return void
+*/
+void InstructionImpl::jsr_w(Frame * this_frame){
+   Operand * op = (Operand*)calloc(1,sizeof(Operand));
+   op->type_byte = this_frame->pc;
+   this_frame->operand_stack.push(op);
+   uint32_t branchbyte1 = this_frame->method_code.code[this_frame->pc++];
+   uint32_t branchbyte2 = this_frame->method_code.code[this_frame->pc++];
+   uint32_t branchbyte3 = this_frame->method_code.code[this_frame->pc++];
+   uint32_t branchbyte4 = this_frame->method_code.code[this_frame->pc++];
+   uint32_t offset = (branchbyte1 << 24) | (branchbyte2 << 16) | (branchbyte3 << 8) | branchbyte4;
+
+   this_frame->pc += offset;
+}
+
  void InstructionImpl::checkcast(Frame * this_frame){
     InstructionImpl::nop(this_frame);
      
