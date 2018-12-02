@@ -14,11 +14,11 @@ void Interpreter::execute(ClassLoader * classloader) {
     Interpreter::loadInMemo(classloader);
     
     Frame toRun(classloader->getConstPool(),this->mainFinder(classloader));
-    this->frame_stack.push(&toRun);
+    Interpreter::frame_stack.push(&toRun);
 
-    while(!this->frame_stack.empty()) {
-        this->frame_stack.top()->run();
-        this->frame_stack.pop();
+    while(!Interpreter::frame_stack.empty()) {
+        Interpreter::frame_stack.top()->run();
+        Interpreter::frame_stack.pop();
     }
 }
 

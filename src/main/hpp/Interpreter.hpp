@@ -18,7 +18,7 @@ class Interpreter {
 
   public:
     std::string current_path_folder;
-    std::stack<Frame*> frame_stack;
+    static std::stack<Frame*> frame_stack;
     
     void execute(ClassLoader*);
     static void loadVariables(Instance*);
