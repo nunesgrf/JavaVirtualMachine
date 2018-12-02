@@ -17,7 +17,7 @@ void InstructionImpl::nop(Frame * this_frame) {
  void InstructionImpl::ldc(Frame * this_frame){
 
    this_frame->pc++;
-   Operand * op = (Operand*)calloc(1,sizeof(op));
+   Operand * op = (Operand*)calloc(1,sizeof(Operand));
    CpAttributeInterface cpAttrAux;
    
    /* Pegando o indice do para acessar a constante no pool de constantes */
@@ -231,7 +231,7 @@ void InstructionImpl::nop(Frame * this_frame) {
  * @return void
  */
  void InstructionImpl::aconst_null(Frame * this_frame){
-    Operand * op = (Operand*)calloc(1,sizeof(op));
+    Operand * op = (Operand*)calloc(1,sizeof(Operand));
     op->tag = CONSTANT_Empty;
     this_frame->operand_stack.push(op);
     this_frame->pc++;
@@ -243,7 +243,7 @@ void InstructionImpl::nop(Frame * this_frame) {
  */
  void InstructionImpl::iconst_m1(Frame * this_frame){
 
-   Operand * op = (Operand*)calloc(1,sizeof(op));
+   Operand * op = (Operand*)calloc(1,sizeof(Operand));
    op->tag = CONSTANT_Integer;
    op->type_int = -1;
    this_frame->operand_stack.push(op);
@@ -256,7 +256,7 @@ void InstructionImpl::nop(Frame * this_frame) {
  */
  void InstructionImpl::iconst_0(Frame * this_frame){
 
-   Operand * op = (Operand*)calloc(1,sizeof(op));
+   Operand * op = (Operand*)calloc(1,sizeof(Operand));
    op->tag = CONSTANT_Integer;
    op->type_int = 0;
    this_frame->operand_stack.push(op);
@@ -268,7 +268,7 @@ void InstructionImpl::nop(Frame * this_frame) {
  */
  void InstructionImpl::iconst_1(Frame * this_frame){
    
-   Operand * op = (Operand*)calloc(1,sizeof(op));
+   Operand * op = (Operand*)calloc(1,sizeof(Operand));
    op->tag = CONSTANT_Integer;
    op->type_int = 1;
    this_frame->operand_stack.push(op);
@@ -281,7 +281,7 @@ void InstructionImpl::nop(Frame * this_frame) {
  */
  void InstructionImpl::iconst_2(Frame * this_frame){
 
-   Operand * op = (Operand*)calloc(1,sizeof(op));
+   Operand * op = (Operand*)calloc(1,sizeof(Operand));
    op->tag = CONSTANT_Integer;
    op->type_int = 2;
    this_frame->operand_stack.push(op);   
@@ -294,7 +294,7 @@ void InstructionImpl::nop(Frame * this_frame) {
  */
  void InstructionImpl::iconst_3(Frame * this_frame){
 
-    Operand * op = (Operand*)calloc(1,sizeof(op));
+    Operand * op = (Operand*)calloc(1,sizeof(Operand));
     op->tag = CONSTANT_Integer;
     op->type_int = 3;
     this_frame->operand_stack.push(op);
@@ -307,7 +307,7 @@ void InstructionImpl::nop(Frame * this_frame) {
  * @return void
  */
  void InstructionImpl::iconst_4(Frame * this_frame){
-   Operand * op = (Operand*)calloc(1,sizeof(op));
+   Operand * op = (Operand*)calloc(1,sizeof(Operand));
    op->tag = CONSTANT_Integer;
    op->type_int = 4;
    this_frame->operand_stack.push(op); 
@@ -320,7 +320,7 @@ void InstructionImpl::nop(Frame * this_frame) {
  */
  void InstructionImpl::iconst_5(Frame * this_frame){
    
-   Operand * op = (Operand*)calloc(1,sizeof(op));
+   Operand * op = (Operand*)calloc(1,sizeof(Operand));
    op->tag = CONSTANT_Integer;
    op->type_int = 5;
    this_frame->operand_stack.push(op);   
@@ -568,7 +568,7 @@ void InstructionImpl::nop(Frame * this_frame) {
  void InstructionImpl::bipush(Frame * this_frame){
     this_frame->pc++; // NÃO ESTOU CERTO DISTO.
     
-    Operand * op = (Operand*)calloc(1,sizeof(op));
+    Operand * op = (Operand*)calloc(1,sizeof(Operand));
     auto byte    = this_frame->method_code.code[this_frame->pc++];
 
     op->tag      = CONSTANT_Integer;
@@ -584,7 +584,7 @@ void InstructionImpl::nop(Frame * this_frame) {
  */
  void InstructionImpl::sipush(Frame * this_frame){
 
-    Operand * op = (Operand*)calloc(1,sizeof(op));
+    Operand * op = (Operand*)calloc(1,sizeof(Operand));
 
     auto byte_1  = this_frame->method_code.code[this_frame->pc++];
     auto byte_2  = this_frame->method_code.code[this_frame->pc++];
