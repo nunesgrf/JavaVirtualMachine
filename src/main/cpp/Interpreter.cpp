@@ -141,3 +141,26 @@ MethodInfo * Interpreter::mainFinder(ClassLoader * javaclass) {
     MethodInfo * toReturn = (MethodInfo*)calloc(1,sizeof(toReturn));
     return toReturn; // ARRUMAR ESTA SAIDA;
 }
+
+/** @brief Busca um metodo pelo seu descritor ou nome e o retorna.
+ * @param *javaclass ponteiro para ClassLoader.
+ * @param string que representa o nome do metodo.
+ * @param string que representa o descritor do metodo.
+ * @return MethodInfo*
+ */
+MethodInfo * findMethodByNameOrDescriptor(ClassLoader* classloader,std::string method_name,std::string method_desc){
+    std::vector<MethodInfo*> methods = classloader->getMethods();
+    std::vector<CpInfo*> constantPool = classloader->getConstPool();
+    CpAttributeInterface cpAttrAux;
+    for (int i = 0; i < classloader->getMethoCount(); i++) {
+        std::string searched_method_name = cpAttrAux.getUTF8(constantPool,methods.at(i)->name_index-1);
+
+        if (searched_method_name == method_name) {
+            std::string searched_desc_name = cpAttrAux.getUTF8(constantPool,methods.at(i)->descriptor_index-1);
+            if (searched_desc_name == method_desc) return methods.at(i);
+        }
+    }
+  std::cout << "Método nao encontrado, ponteiro retornado nulo";
+  getchar();
+  return NULL;
+}

@@ -23,7 +23,8 @@ class Interpreter {
     void execute(ClassLoader*);
     static void loadVariables(Instance*);
     static ClassLoader * getClassInfo(std::string);
-    MethodInfo  * mainFinder(ClassLoader*);
+    MethodInfo * mainFinder(ClassLoader*);
+    MethodInfo * findMethodByNameOrDescriptor(ClassLoader*,std::string,std::string);
     static Instance    * loadInMemo(ClassLoader*);
     static Operand     * createType(std::string);
 };
