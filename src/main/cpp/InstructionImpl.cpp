@@ -697,7 +697,7 @@ void InstructionImpl::nop(Frame * this_frame) {
  void InstructionImpl::lload(Frame * this_frame){
    this_frame->pc++;
    uint8_t index = this_frame->method_code.code[this_frame->pc++];
-   Operand * op = this_frame->local_variables.at(index);
+   Operand * op = this_frame->local_variables.at(index-1);
    this_frame->operand_stack.push(op);
  }
 
