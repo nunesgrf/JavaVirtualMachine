@@ -101,14 +101,14 @@ void InstructionImpl::nop(Frame * this_frame) {
 		}
 		return;
 
-    } 
-    /* Caso o nome da classe nao contenha a substring 'Java', ela nao foi implementado e a saida da instrucao é forçada */
-    else if (class_name.find("java/") != std::string::npos) {
-        std::cout << "Classe em questao nao implementada" << std::endl;
-        getchar();
-        exit(1);
-    } 
-    else {
+   } 
+   /* Caso o nome da classe nao contenha a substring 'Java', ela nao foi implementado e a saida da instrucao é forçada */
+   else if (class_name.find("java/") != std::string::npos) {
+      std::cout << "Classe em questao nao implementada" << std::endl;
+      getchar();
+      exit(1);
+   } 
+   else {
       /* Conta-se os argumentos presentes na inicializaçao da instancia */
       int count_args = 0;
       uint8_t counter = 1;
@@ -1483,10 +1483,87 @@ void InstructionImpl::baload(Frame * this_frame){
     InstructionImpl::nop(this_frame);
      
  }
+ /*
+ * @brief Invoca um método de classe.
+ * @param *this_frame ponteiro para o frame atual
+ * @return void
+ */
  void InstructionImpl::invokestatic(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
+   CpAttributeInterface cpAttrAux;
+   Interpreter auxInterpreter;
+   std::vector<Operand*> instance_arguments;
+   MethodsArea methodAreaAux;
+   this_frame->pc++;
+   /* Recupera o valor dos indices que formam a referencia a pool de constantes */
+   uint16_t indexbyte1 = this_frame->method_code.code[this_frame->pc++];
+   uint16_t indexbyte2 = this_frame->method_code.code[this_frame->pc++];
+
+   /* Constrói a referência */
+   uint16_t index = (indexbyte1 << 8) | indexbyte2;
+
+   /* Constrói uma referência ao metodo */
+   CpInfo * method_reference = this_frame->cp_reference[index-1];
+
+   /* A partir da referencia do metodo, constrói-se a reference para o nome e o tipo do método */
+   CpInfo * name_and_type = this_frame->cp_reference[method_reference->Methodref.name_and_type_index-1];
+
+   /* Para descobrir o qual o metodo, pegamos o nome da classe, nome do metodo e descritor dele */
+   std::string class_name = cpAttrAux.getUTF8(this_frame->cp_reference,method_reference->Methodref.class_index-1);
+   std::string method_name = cpAttrAux.getUTF8(this_frame->cp_reference,name_and_type->NameAndType.name_index-1);
+   std::string method_desc = cpAttrAux.getUTF8(this_frame->cp_reference,name_and_type->NameAndType.name_index-1);
+
+   /* Caso o metodo seja nativo, printa um erro */
+   if (class_name == "java/lang/Object" && method_name == "registerNatives") {
+      std::cout << "Metodo nativos nao suportados por esse projeto" << std::endl;
+      return;
+   }
+
+   /* Calcula o numero de argumentos do metodo */
+   int count_args = 0;
+   uint8_t counter = 1;
+   while (method_desc[counter] != ')') {
+      char find_type = method_desc[counter];
+      if (find_type == 'L') { // tipo é um objeto
+         count_args++;
+         while (method_desc[++counter] != ';');
+      } else if (find_type == '[') { // tipo é um array
+         count_args++;
+         while (method_desc[++counter] == '[');
+         if (method_desc[counter] == 'L')
+               while(method_desc[++counter] != ';');
+      } else count_args++;
+      counter++;
+   }
+
+   if (class_name.find("Float") != std::string::npos && method_name.find("valueOf") != std::string::npos) {
+      return;
+   } 
+   else {
+      for (int i = 0; i < count_args; ++i) {
+         /* Para o numero de argumentos, desempilhamos um operando da pilha de operandos */
+         Operand * instance_argument = this_frame->operand_stack.top();
+         this_frame->operand_stack.pop();
+         /* Inserimos no vetor de instancias */
+         instance_arguments.insert(instance_arguments.begin(), instance_argument);
+         /* Se a instancia for do tipo double ou do tipo long, criamos um operando do tipo empty space */
+         if (instance_argument->tag == CONSTANT_Double || instance_argument->tag == CONSTANT_Long) {
+            Operand * new_op = auxInterpreter.createType("P");
+            instance_arguments.insert(instance_arguments.begin()+1,new_op);
+         }
+      }
+   }
+
+   Instance * reference_class = methodAreaAux.GLOBAL_staticClasses.at(class_name);
+
+   MethodInfo * searched_method_info = auxInterpreter.findMethodByNameOrDescriptor(reference_class->classe, method_name, method_desc);
+   Frame *new_frame = new Frame(reference_class->classe->getConstPool(),searched_method_info);
+
+   for (int j = 0; (unsigned)j < instance_arguments.size(); ++j)
+      new_frame->local_variables.at(j) = instance_arguments.at(j);
+
+   auxInterpreter.frame_stack.push(new_frame);
  }
+
  void InstructionImpl::invokedynamic(Frame * this_frame) {
     InstructionImpl::nop(this_frame);
      
