@@ -689,9 +689,16 @@ void InstructionImpl::nop(Frame * this_frame) {
     this_frame->operand_stack.push(op);
     this_frame->pc++;
  }
+
+/** @brief Carrega um long das variáveis locais
+ * @param *this_frame ponteiro que aponta para o frame atual
+ * @return void
+ */ 
  void InstructionImpl::lload(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
+   this_frame->pc++;
+   uint8_t index = this_frame->method_code.code[this_frame->pc++];
+   Operand * op = this_frame->local_variables.at(index);
+   this_frame->operand_stack.push(op);
  }
 
 /** @brief Dá push em um valor de preciso dupla de uma variável local para a
