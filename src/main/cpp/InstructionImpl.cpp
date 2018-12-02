@@ -2070,9 +2070,17 @@ void InstructionImpl::baload(Frame * this_frame){
     InstructionImpl::nop(this_frame);
      
  }
- /*Goto é um nome reservado pelo c */
+
+/*
+ * @brief Instruçao que executa o desvio para determinado endereco.
+ * @param *this_frame ponteiro para o frame atual
+ * @return void
+ */
  void InstructionImpl::i_goto(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+   uint16_t branchbyte1 = this_frame->method_code.code[this_frame->pc++];
+   uint16_t branchbyte2 = this_frame->method_code.code[this_frame->pc++];
+   uint16_t offset = (branchbyte1 << 8) | branchbyte2;
+   this_frame->pc +=offset;
      
  }
  void InstructionImpl::goto_w(Frame * this_frame){
