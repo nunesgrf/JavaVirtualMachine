@@ -1031,7 +1031,7 @@ void InstructionImpl::nop(Frame * this_frame) {
 /**
  * @brief Armazena long do topo da pilha de operandos no array de variaveis
  *  locais
- * @param *curr_frame Ponteiro para o frame atual
+ * @param *this_frame Ponteiro para o frame atual
  * @return void
  */
  void InstructionImpl::lstore(Frame * this_frame){
@@ -1047,7 +1047,7 @@ void InstructionImpl::nop(Frame * this_frame) {
 
  /**
 * @brief Armazena long do topo da pilha de operandos no array de variaveis locais no indice 0
-* @param Frame *curr_frame Ponteiro para o frame atual
+* @param Frame *this_frame Ponteiro para o frame atual
 * @return void
 */
  void InstructionImpl::lstore_0(Frame * this_frame){
@@ -1061,7 +1061,7 @@ void InstructionImpl::nop(Frame * this_frame) {
 
  /**
 * @brief Armazena long do topo da pilha de operandos no array de variaveis locais no indice 1
-* @param Frame *curr_frame Ponteiro para o frame atual
+* @param Frame *this_frame Ponteiro para o frame atual
 * @return void
 */
  void InstructionImpl::lstore_1(Frame * this_frame){
@@ -1075,7 +1075,7 @@ void InstructionImpl::nop(Frame * this_frame) {
 
  /**
 * @brief Armazena long do topo da pilha de operandos no array de variaveis locais no indice 2
-* @param Frame *curr_frame Ponteiro para o frame atual
+* @param Frame *this_frame Ponteiro para o frame atual
 * @return void
 */
  void InstructionImpl::lstore_2(Frame * this_frame){
@@ -1088,7 +1088,7 @@ void InstructionImpl::nop(Frame * this_frame) {
 
  /**
 * @brief Armazena long do topo da pilha de operandos no array de variaveis locais no indice 3
-* @param Frame *curr_frame Ponteiro para o frame atual
+* @param Frame *this_frame Ponteiro para o frame atual
 * @return void
 */
  void InstructionImpl::lstore_3(Frame * this_frame){
@@ -1581,10 +1581,74 @@ void InstructionImpl::baload(Frame * this_frame){
      
  }
 
- void InstructionImpl::putfield(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
- }
+/*
+ * @brief Seta o campo em um objeto.
+ * @param *this_frame ponteiro para o frame atual
+ * @return void
+ */
+void InstructionImpl::putfield(Frame * this_frame){
+   CpAttributeInterface cpAtAux;
+   /* Busca o indexbyte1 e indexbyte2 no código seguinte a instruçao getfield */
+   uint8_t indexbyte1 = this_frame->method_code.code[this_frame->pc++];
+   uint8_t indexbyte2 = this_frame->method_code.code[this_frame->pc++];
+
+   /* Forma o indice para a pool de constantes com os indexbyte1 e indexbyte2 */
+   uint16_t cp_index = (indexbyte1 << 8) | indexbyte2;
+
+   /* Acessa uma referencia a field na pool de constantes */
+   CpInfo * field_ref = this_frame->cp_reference[cp_index-1];
+
+   /* A partir da referência pro field, acessamos uma referencia na pool de constantes para name_and_type */
+   CpInfo * name_and_type = this_frame->cp_reference[field_ref->Fieldref.name_and_type_index-1];
+
+   /* Com a referencia do name_and_type, pegam-se o nome da classe e o nome do field */
+   std::string class_name = cpAtAux.getUTF8(this_frame->cp_reference,field_ref->Fieldref.name_and_type_index-1);
+   std::string field_name = cpAtAux.getUTF8(this_frame->cp_reference,name_and_type->NameAndType.name_index-1);
+
+   Operand *var_operand = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   Operand *class_instance = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+
+   Operand *class_variable = class_instance->class_instance->references.at(field_name);
+
+   switch (var_operand->tag) {
+      case CONSTANT_Integer:
+         class_variable->type_int = var_operand->type_int;
+         break;
+      case CONSTANT_Long:
+         class_variable->type_long = var_operand->type_long;
+         break;
+      case CONSTANT_Boolean:
+         class_variable->type_bool = var_operand->type_bool;
+         break;
+      case CONSTANT_Char:
+         class_variable->type_char = var_operand->type_char;
+         break;
+      case CONSTANT_Short:
+         class_variable->type_short = var_operand->type_short;
+         break;
+      case CONSTANT_Byte:
+         class_variable->type_byte = var_operand->type_byte;
+         break;
+      case CONSTANT_Float:
+         class_variable->type_float = var_operand->type_float;
+         break;
+      case CONSTANT_Double:
+         class_variable->type_double = var_operand->type_double;
+         break;
+      case CONSTANT_String:
+         class_variable->type_string = var_operand->type_string;
+         break;
+      case CONSTANT_Class:
+         class_variable->c_instance = var_operand->c_instance;
+         break;
+      case CONSTANT_Array:
+         class_variable->array_type = var_operand->array_type;
+         break;
+    }
+   
+}
 
  void InstructionImpl::putstatic(Frame * this_frame){
     InstructionImpl::nop(this_frame);
@@ -1920,7 +1984,7 @@ void InstructionImpl::baload(Frame * this_frame){
 
  /**
  * @brief Calcula o modulo entre dois inteiros.
- * @param *curr_frame Ponteiro para o frame atual
+ * @param *this_frame Ponteiro para o frame atual
  * @return void
  */
  void InstructionImpl::irem(Frame * this_frame){
