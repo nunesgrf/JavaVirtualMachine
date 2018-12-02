@@ -1198,29 +1198,115 @@ void InstructionImpl::nop(Frame * this_frame) {
      
 
  }
+
+/**
+ * @brief Empilha na pilha de operandos um elemento de um array de inteiros.
+ * @param *this_frame Ponteiro para o frame atual
+ * @return void
+ */
  void InstructionImpl::iaload(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
+   Operand * index = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   Operand * array = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+
+   Operand * op = array->array_type.array.at(index->type_int);
+
+   this_frame->operand_stack.push(op);
+
+   this_frame->pc++;
  }
+
+/**
+ * @brief Empilha na pilha de operandos um elemento de um array de float.
+ * @param *this_frame Ponteiro para o frame atual
+ * @return void
+ */
  void InstructionImpl::faload(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
- }
- void InstructionImpl::daload(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
- }
- void InstructionImpl::baload(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
- }
+   Operand * index = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   Operand * array = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+      
+   Operand * op = array->array_type.array.at(index->type_int);
+
+   this_frame->operand_stack.push(op);
+
+   this_frame->pc++;   
+}
+
+
+/**
+ * @brief Empilha na pilha de operandos um elemento de um array de float de dupla precisao.
+ * @param *this_frame Ponteiro para o frame atual
+ * @return void
+ */
+void InstructionImpl::daload(Frame * this_frame){
+   Operand * index = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   Operand * array = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+      
+   Operand * op = array->array_type.array.at(index->type_int);
+
+   this_frame->operand_stack.push(op);
+
+   this_frame->pc++; 
+}
+
+/**
+ * @brief Empilha na pilha de operandos um byte de um array de bytes.
+ * @param *this_frame Ponteiro para o frame atual
+ * @return void
+ */
+void InstructionImpl::baload(Frame * this_frame){
+   Operand * index = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   Operand * array = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+      
+   Operand * op = array->array_type.array.at(index->type_int);
+
+   this_frame->operand_stack.push(op);
+
+   this_frame->pc++; 
+}
+
+/**
+ * @brief Empilha na pilha de operandos um char de um array de chars.
+ * @param *this_frame Ponteiro para o frame atual
+ * @return void
+ */
  void InstructionImpl::caload(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+   Operand * index = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   Operand * array = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+      
+   Operand * op = array->array_type.array.at(index->type_int);
+
+   this_frame->operand_stack.push(op);
+
+   this_frame->pc++; 
      
  }
+
+ /**
+ * @brief Empilha na pilha de operandos um char de um array de chars.
+ * @param *this_frame Ponteiro para o frame atual
+ * @return void
+ */
  void InstructionImpl::saload(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
+   Operand * index = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   Operand * array = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+      
+   Operand * op = array->array_type.array.at(index->type_int);
+
+   this_frame->operand_stack.push(op);
+
+   this_frame->pc++;
  }
 
  void InstructionImpl::lastore(Frame * this_frame){
