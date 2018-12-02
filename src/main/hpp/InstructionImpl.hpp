@@ -8,6 +8,11 @@
 #include "Frame.hpp"
 struct Frame;
 
+/**
+*   @class InstructionImpl
+*   @brief Objetivo incluir todos os metodos para a ação de cada instrução achada pelo interpretador;    
+*/
+
 class InstructionImpl {
 
 public:

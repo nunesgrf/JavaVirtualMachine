@@ -1,3 +1,8 @@
+/** @file ClassLoader.cpp
+    @brief Arquivo que obtém os bytecodes do .class e realiza o carregamento dessas informações;
+    
+*/
+
 #include "../hpp/ClassLoader.hpp"
 #include "../hpp/ByteReader.hpp"
 #include <stdio.h>
@@ -9,6 +14,8 @@ using namespace std;
  * @brief Construtor da classe da ClassLoader;
  * A ideia é chamar todos os Set's aqui de maneira
  * garantir a qualidade dos dados.
+ * @param fp = Arquivo .class
+ * @return void;
  */
 
 ClassLoader::ClassLoader(FILE * fp) {
@@ -35,8 +42,9 @@ ClassLoader::ClassLoader(FILE * fp) {
 }
 
 /**
- * Aqui são feitas as desalocações
- * da ClassLoader
+  @brief Aqui são feitas as desalocações da ClassLoader;
+  @param fp =  destructor;
+  @return destructor;
  */
 
 ClassLoader::~ClassLoader() {
@@ -69,26 +77,50 @@ ClassLoader::~ClassLoader() {
     //std::cout << "ClassLoader::~ClassLoader end" << std::endl;
 }
 
+/**
+ *  @brief Método que busca identificar o formato da classe. Tem o valor de 0xCAFEBABE;
+ *  @param Arquivo .class
+ *  @return void;
+ */ 
 void ClassLoader::setMagic(FILE * fp) {
     ByteReader<typeof(magicNumber)> bReader;
     magicNumber = bReader.byteCatch(fp);
 }
-
+/**
+ *  @brief Método como Minor busca identificar a menor versão acessivel do formato do arquivo de classe;
+ *  @param Arquivo .class
+ *  @return void; 
+ */ 
 void ClassLoader::setMinor(FILE * fp) {
     ByteReader<typeof(minorVersion)> bReader;
     minorVersion = bReader.byteCatch(fp);
 }
-
+/**
+ *  @brief Método como Major busca identificar a maior versão acessivel do formato do arquivo de classe;
+ *  @param Arquivo .class
+ *  @return void;
+ *
+ */ 
 void ClassLoader::setMajor(FILE * fp) {
     ByteReader<typeof(majorVersion)> bReader;
     majorVersion = bReader.byteCatch(fp);
 }
-
+/**
+ *  @brief Método com o objetivo de setar a quantidade de constant pool mais 1;
+ *  @param Arquivo .class
+ *  @return void; 
+ *
+ */ 
 void ClassLoader::setConstCount(FILE * fp) {
     ByteReader<typeof(constantPoolCounter)> bReader;
     constantPoolCounter = bReader.byteCatch(fp);
 }
-
+/**
+ *  @brief Método com o objetivo de representar uma tebela de estruturas como strings, classes, interfaces, entre outros;
+ *  O formato para cada constant pool na tabela é indicado com uma tag;
+ *  @param Arquivo .class
+ *  @return void; 
+ */ 
 void ClassLoader::setConstPool(FILE * fp) {
 
     for(int i = 0; i < this->getConstCount() - 1; i++) {
@@ -105,27 +137,59 @@ void ClassLoader::setConstPool(FILE * fp) {
     }
 }
 
+/**
+ *  @brief O valor setado através desse método é uma mascara de flags que denotam o acesso das propriedades da classe ou interface;
+ *  @param Arquivo .class
+ *  @return void;
+ */ 
 
 void ClassLoader::setAccessFlag(FILE * fp) {
     ByteReader<uint16_t> bReader;
     accessFlags = bReader.byteCatch(fp);
 }
 
+/**
+ *  @brief Método que seta um index valido pego da tabela de constatnt pool que indica uma CONSTANT_Class_info;
+ *  @param Arquivo .class
+ *  @return void;
+ *
+ */ 
 void ClassLoader::setThisClass(FILE * fp) {
     ByteReader<typeof(thisClass)> bReader;
     thisClass = bReader.byteCatch(fp);
 }
 
+
+/**
+ *  @brief Caso o valor do index passado seja diferente de zero, é tratado como uma CONSTANT_Class_info, caso contrário é tratado como objeto;
+ *  @param Arquivo .class
+ *  @return void;
+ *
+ */ 
 void ClassLoader::setSuperClass(FILE * fp) {
     ByteReader<typeof(superClass)> bReader;
     superClass = bReader.byteCatch(fp);
 }
+
+
+/**
+ *  @brief Método que seta a quantidade de superinterfaces e tipo interface;
+ *  @param Arquivo .class
+ *  @return void;
+ *
+ */ 
 
 void ClassLoader::setInterCount(FILE * fp) {
     ByteReader<typeof(interfaceCounter)> bReader;
     interfaceCounter = bReader.byteCatch(fp);
 }
 
+/**
+ *  @brief Método que seta uma array contendo as interfaces pegas a partir de index válidos no contant_poll;
+ *  @param Arquivo .class
+ *  @return void;
+ *
+ */ 
 void ClassLoader::setInterface(FILE * fp) {
 
     /* Iterate over the size of interface */
@@ -141,11 +205,24 @@ void ClassLoader::setInterface(FILE * fp) {
 
 }
 
+/**
+ *  @brief Método com o objetivo de setar a quantidade de estruturas do tipo field_info na tabela de fields ;
+ *  @param Arquivo .class
+ *  @return void;
+ *
+ */ 
 void ClassLoader::setFieldCount(FILE * fp) {
     ByteReader<typeof(fieldsCounter)> bReader;
     fieldsCounter = bReader.byteCatch(fp);
 }
 
+
+/**
+ *  @brief Método que seta uma array de field_info ;
+ *  @param Arquivo .class
+ *  @return void;
+ *
+ */ 
 void ClassLoader::setFields(FILE * fp) {
     /* Iterate over the size of fields */
     for(int i = 0; i < this->getFieldCount(); i++) {
@@ -159,11 +236,23 @@ void ClassLoader::setFields(FILE * fp) {
     }
 }
 
+/**
+ *  @brief Método seta a quantidade de estruturas method_info  ;
+ *  @param Arquivo .class
+ *  @return void;
+ *
+ */ 
 void ClassLoader::setMethodCount(FILE * fp) {
     ByteReader<typeof(methodsCounter)> bReader;
     methodsCounter = bReader.byteCatch(fp);
 }
 
+/**
+ *  @brief Método que seta uma array de methods_info ;
+ *  @param Arquivo .class
+ *  @return void;
+ *
+ */ 
 void ClassLoader::setMethods(FILE * fp) {
     for (int i = 0; i < this->getMethoCount(); i++) {
 
@@ -173,11 +262,23 @@ void ClassLoader::setMethods(FILE * fp) {
     }
 }
 
+/**
+ *  @brief Método que seta a quantidade de estruturas attribute_info ;
+ *  @param Arquivo .class
+ *  @return void;
+ *
+ */ 
 void ClassLoader::setAttributesCount(FILE * fp) {
     ByteReader<typeof(attributesCounter)> bReader;
     attributesCounter = bReader.byteCatch(fp);
 }
 
+/**
+ *  @brief Método que seta uma array de attribute_info ;
+ *  @param Arquivo .class
+ *  @return void;
+ *
+ */ 
 void ClassLoader::setAttributes(FILE * fp) {
    for(int j = 0; j < this->getAttriCount(); j++){
         AttributeInfo *attribute = (AttributeInfo *)calloc(1, sizeof(*attribute));
@@ -186,14 +287,30 @@ void ClassLoader::setAttributes(FILE * fp) {
    }
 }
 
+/**
+ *  @brief Método que retona os field_info ;
+ *  
+ *  @param Arquivo .class
+ *  @return Field_info
+ */ 
 std::vector<FieldInfo*> ClassLoader::getFields(){
     return this->fields;
 }
 
+/**
+ *  @brief Método que retona os methods_info ;
+ *  @param Arquivo .class
+ *  @return Field_info
+ */ 
 std::vector<MethodInfo*> ClassLoader::getMethods(){
     return this->methods;
 }
 
+/**
+ *  @brief Método que retona os attributes_info ;
+ *  @param Arquivo .class
+ *  @return Attribute_info
+ */ 
 std::vector<AttributeInfo*> ClassLoader::getAttributes(){
     return this->attributes;
 }

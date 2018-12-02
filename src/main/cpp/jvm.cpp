@@ -1,3 +1,8 @@
+/** @file jvm.cpp
+    @brief Arquivo inicial em que é selecionado ou a exibição do leitor ou do interpretador dependendo da chamada de argumentos;
+
+*/
+
 #include <iostream>
 #include <iomanip>
 #include <fstream>
@@ -22,7 +27,8 @@ void classInterpreter(ClassLoader classloader) {
     engine.execute(&classloader);
 }
 
-/** @brief Exibidor de ClassLoader
+/** 
+ * @brief Chama o exibidor de ClassLoader
  * @param classloader Instancia da classe ClassLoader
  * @return void
  */
@@ -45,6 +51,7 @@ void classReader(ClassLoader classloader) {
     std::cout << "AtributeCoun : " << dec << classloader.getAttriCount() << endl;
     /*Fim do Print de infomações genericas do .class */
     /* Print do vetor de constant pool */
+    
     std::cout << "------------------------------ConstantPool------------------------------ \n\n\n";
     for(unsigned i = 0; i < a.size(); i++) {
       switch (a[i]->tag){
@@ -186,6 +193,7 @@ void classReader(ClassLoader classloader) {
 
     /* Fim do print attributes */
     //fclose(fp);
+  /**Finalizar o leitor*/
   exit(0);
 }
 
@@ -211,7 +219,9 @@ void getPath(char * toConvert) {
 int main(int argc, char * argv[]) {
  
     if(argc != 3) {
-        std::cout << ERROR_MESSAGE << "Necerrário(s) 3 argumentos." << std::endl;
+        std::cout << ERROR_MESSAGE << "Necerrário(s) argumentos.\n" << std::endl;
+        std::cout << "Ex leitor: ./jvm e path_to_class_file " << std::endl;
+        std::cout << "Ex interpretador: ./jvm i path_to_class_file" << std::endl;
         return ERROR;
     }
 

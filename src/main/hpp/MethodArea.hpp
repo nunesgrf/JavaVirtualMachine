@@ -8,6 +8,10 @@
 #include <vector>
 #include "ClassLoader.hpp"
 
+/**
+*	@class MethodArea
+*	@brief Responsável por guardar as estruturas dos metodos do .class recebido;
+*/
 class MethodArea {
   public: 
     std::vector<ClassLoader*> loaded_classes;

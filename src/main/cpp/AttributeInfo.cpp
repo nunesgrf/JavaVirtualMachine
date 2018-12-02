@@ -15,21 +15,35 @@ ByteReader<uint8_t> OneByte;
 ByteReader<uint16_t> TwoByte;
 ByteReader<uint32_t> FourByte;
 
+/**
+*   @brief Destrutor Attribute_info
+*
+*/
 AttributeInfo::~AttributeInfo() {
     //free(this->info);
     //this->code.~CodeAttribute();
     //this->exception.~Exception();
 }
-
+/**
+*   @brief Destrutor CodeAttribute
+*
+*/
 CodeAttribute::~CodeAttribute() {
     //free(this->code);
     //free(this->code_exception_table);
     //free(this->attributes);
 }
-
+/**
+*   @brief Destrutor exception_index_table
+*
+*/
 Exception::~Exception() {
     //free(this->exception_index_table);
 }
+/**
+*   @brief Destrutor Attribute_info
+*
+*/
 void ConstantValue::read(FILE *fp) {
     constvalue_index = TwoByte.byteCatch(fp);
 }

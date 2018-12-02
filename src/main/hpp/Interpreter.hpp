@@ -13,7 +13,12 @@
 #include <string>
 
 using namespace std;
-
+/**
+*	@class Interpreter
+*	@brief cĺasse contém uma path para o arquivo e é feito uma "pilha" para os frames, chamada de frame_stack;
+*		Além contém método execute para executar o interpretador do .class recebido, loadVariables para garregar as variáveis, getClassInfo para pegar as informações das classes do .class,
+*			mainFInder para pegar os métodos da .class, loadInMemo para armazenar as instancias do .class e por fim o createType para criar o tipo de acordo com as intruções que são passadas.		
+*/
 class Interpreter {
 
   public:

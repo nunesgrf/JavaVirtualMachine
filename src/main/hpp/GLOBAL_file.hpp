@@ -6,6 +6,10 @@
 #define GLOBAL_H
 
 #include "Instance.hpp"
+/**
+*   @class MethodsArea
+*   @brief Armazenas classes estáticas para serem usadas por todo o código ; 
+*/
 
 class MethodsArea {
     public:
