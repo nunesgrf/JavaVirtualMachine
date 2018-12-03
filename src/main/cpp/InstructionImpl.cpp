@@ -1241,26 +1241,39 @@ void InstructionImpl::d2f(Frame * this_frame){
  * @param *this_frame ponteiro para o frame atual
  * @return void
  */
- void InstructionImpl::iadd(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+void InstructionImpl::iadd(Frame * this_frame){
 
-    Operand *operand_1 = this_frame->operand_stack.top();
-    this_frame->operand_stack.pop();
-    Operand *operand_2 = this_frame->operand_stack.top();
-    this_frame->operand_stack.pop();
+   Operand *operand_1 = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   Operand *operand_2 = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
 
-    Operand *result = (Operand *) malloc(sizeof(Operand));
+   Operand *result = (Operand *) malloc(sizeof(Operand));
 
-    result->tag = CONSTANT_Integer;
-    result->type_int = operand_1->type_int + operand_2->type_int;
+   result->tag = CONSTANT_Integer;
+   result->type_int = operand_1->type_int + operand_2->type_int;
 
-    this_frame->operand_stack.push(result);
+   this_frame->operand_stack.push(result);
      
  }
- void InstructionImpl::iand(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
- }
+
+/**
+*   @fn void iand(Frame* this_frame)
+*   @brief Desempilha dois valores inteiros da pilha, realiza a operação lógica de AND entre os inteiros bit a bit.
+*   @param this_frame Ponteiro para o frame corrente.
+*   @return
+*/
+void InstructionImpl::iand(Frame * this_frame){
+   
+   Operand *op1 = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   Operand *op2 = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   int result = op1->type_int && op1->type_int;
+   memcpy(&op1->type_int,&result,sizeof(int));
+   this_frame->operand_stack.push(op1);
+   this_frame->pc++;
+}
 
 /**
 * @brief Converte de double para long
@@ -1308,14 +1321,54 @@ void InstructionImpl::d2i(Frame * this_frame){
     InstructionImpl::nop(this_frame);
      
  }
- void InstructionImpl::dup2_x1(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+
+/**
+*   @fn void dup2_x1(Frame* this_frame)
+*   @brief Duplica os dois primeiro valores da pilha embaixo do penultimo valor da pilha
+*   @param this_frame Ponteiro para frame corrente.
+*   @return
+*/
+void InstructionImpl::dup2_x1(Frame * this_frame){
+   Operand * op1 = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   Operand * op2 = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   Operand * op3 = this_frame->operand_stack.top();
+   this_frame->operand_stack.push(op2);
+   this_frame->operand_stack.push(op1);
+   this_frame->operand_stack.push(op3);
+   this_frame->operand_stack.push(op2);
+   this_frame->operand_stack.push(op1);
+   this_frame->pc++;
      
- }
- void InstructionImpl::dup2_x2(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
- }
+}
+
+/**
+*   @fn void dup2_x2(Frame* this_frame)
+*   @brief Duplica os dois primeiro valores da pilha embaixo do penultimo valor da pilha
+*   @param this_frame Ponteiro para frame corrente.
+*   @return
+*/
+void InstructionImpl::dup2_x2(Frame * this_frame){
+   Operand * op1 = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   Operand * op2 = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   Operand * op3 = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   Operand * op4 = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   this_frame->operand_stack.push(op2);
+   this_frame->operand_stack.push(op1);
+   this_frame->operand_stack.push(op4);
+   this_frame->operand_stack.push(op3);
+   this_frame->operand_stack.push(op2);
+   this_frame->operand_stack.push(op1);
+   this_frame->pc++;
+   
+}
+
+
  void InstructionImpl::f2l(Frame * this_frame){
     InstructionImpl::nop(this_frame);
      
@@ -1500,50 +1553,133 @@ void InstructionImpl::baload(Frame * this_frame){
    this_frame->pc++;
  }
 
+/**
+*   @fn void lastore(Frame* this_frame)
+*   @brief Desempilha a referencia para o array, o indice e o valor(long) e salva o valor no array.
+*   @param this_frame Ponteiro para frame corrente.
+*   @return
+*/
  void InstructionImpl::lastore(Frame * this_frame){
     InstructionImpl::nop(this_frame);
      
  }
+
+ /**
+*   @fn void fastore(Frame* this_frame)
+*   @brief Desempilha a referencia para o array, o indice e o valor(float) e salva o valor no array.
+*   @param *this_frame Ponteiro para frame corrente.
+*   @return
+*/
  void InstructionImpl::fastore(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
+   auto value = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   auto index = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   auto arrayRef = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   memcpy(&arrayRef->array_type.array.at(index->type_int), &value->type_float, sizeof(uint64_t));
  }
+
+
  void InstructionImpl::dastore(Frame * this_frame){
     InstructionImpl::nop(this_frame);
      
  }
- void InstructionImpl::aastore(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
- }
- void InstructionImpl::bastore(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
- }
- void InstructionImpl::castore(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
- }
- void InstructionImpl::sastore(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
- }
+/**
+*   @fn void aastore(Frame* this_frame)
+*   @brief Desempilha a referencia para o array, o indice e o valor(referencia) e salva o valor no array.
+*   @param *this_frame Ponteiro para frame corrente.
+*   @return
+*/
+void InstructionImpl::aastore(Frame * this_frame){
+   auto value = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   auto index = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   auto arrayRef = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   memcpy(&arrayRef->array_type.array.at(index->type_int), &value, sizeof(uint64_t));
+}
 
- void InstructionImpl::pop(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-    this_frame->operand_stack.pop(); 
- }
+/**
+*   @fn void bastore(Frame* this_frame)
+*   @brief Desempilha a referencia para o array, o indice e o valor(byte) e salva o valor no array.
+*   @param *this_frame Ponteiro para frame corrente.
+*   @return
+*/
+void InstructionImpl::bastore(Frame * this_frame){
+   auto value = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   uint8_t converted_value = (uint8_t) value->type_int;
+   auto index = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   auto arrayRef = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   memcpy(&arrayRef->array_type.array.at(index->type_int), &converted_value, sizeof(uint64_t));
 
- void InstructionImpl::pop2(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-    auto op = this_frame->operand_stack.top();
-    this_frame->operand_stack.pop();
+}
 
-    if(op->tag != CONSTANT_Double && op->tag != CONSTANT_Long) this_frame->operand_stack.pop(); 
- }
+/**
+*   @fn void castore(Frame* this_frame)
+*    @brief Desempilha a referencia para o array, o indice e o valor(char) e salva o valor no array. Trunca inteiro
+*   de 32 bits da pilha para 16 bits
+*   @param *this_frame Ponteiro para frame corrente.
+*   @return
+*/
+void InstructionImpl::castore(Frame * this_frame){
+   auto value = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   uint16_t converted_value = (uint16_t) value->type_int;
+   auto index = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   auto arrayRef = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   memcpy(&arrayRef->array_type.array.at(index->type_int), &converted_value, sizeof(uint64_t));
+   
+}
 
- void InstructionImpl::astore(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+/**
+*   @fn void sastore(Frame* this_frame)
+*   @brief Desempilha a referencia para o array, o indice e o valor(short) e salva o valor no array. Trunca int do
+*   stack para short de 16 bits.
+*   @param *this_frame Ponteiro para frame corrente.
+*   @return
+*/
+void InstructionImpl::sastore(Frame * this_frame){
+   auto value = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   short converted_value = (short) value->type_int;
+   auto index = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   auto arrayRef = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   memcpy(&arrayRef->array_type.array.at(index->type_int), &converted_value, sizeof(uint64_t));
+   
+}
+
+void InstructionImpl::pop(Frame * this_frame){
+   this_frame->operand_stack.pop(); 
+}
+
+void InstructionImpl::pop2(Frame * this_frame){
+   auto op = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+
+   if(op->tag != CONSTANT_Double && op->tag != CONSTANT_Long) this_frame->operand_stack.pop(); 
+}
+
+/**
+*   @fn void astore(Frame* frame, int index)
+*   @brief Desempilha operando e salva na variável indicada pelo index.
+*   @param frame Frame corrente.
+*   @param index Indice para localização do da referencia no vetor de variáveis locais.
+*   @return
+*/
+void InstructionImpl::astore(Frame * this_frame, int index){
+   this_frame->pc++;
+   Operand * op = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   this_frame->local_variables.at(index) = op;
      
  }
 
@@ -2005,14 +2141,37 @@ void InstructionImpl::putfield(Frame * this_frame){
     InstructionImpl::nop(this_frame);
      
  }
- void InstructionImpl::arraylength(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
- }
- void InstructionImpl::iastore(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
- }
+
+/**
+*   @fn void arraylength(Frame *this_frame)
+*   @brief pega a referencia de um array, remove array, e empilha o seu tamanho no lugar
+*	 @param this_frame Ponteiro para frame corrente
+*   @return
+*/
+void InstructionImpl::arraylength(Frame * this_frame){
+   auto arrayRef = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   int size = sizeof(arrayRef);
+   memcpy(&arrayRef->type_int,&size,sizeof(int));
+   this_frame->operand_stack.push(arrayRef);
+   this_frame->pc++;
+}
+
+/**
+*   @fn void iastore(Frame* frame)
+*   @brief Desempilha a referencia para o array, o indice e o valor(inteiro) e salva o valor no array.
+*   @param frame Frame corrente.
+*   @return
+*/
+void InstructionImpl::iastore(Frame * this_frame){
+   auto value = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   auto index = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   auto arrayRef = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   arrayRef->array_type.array.at(index->type_int) = value;
+}
 
 /**
  * @brief Realiza uma permutação entre os 2 primeiros elementos da pilha.
@@ -2020,16 +2179,16 @@ void InstructionImpl::putfield(Frame * this_frame){
  * @return void
  */
  void InstructionImpl::swap(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+   InstructionImpl::nop(this_frame);
     
-    auto op1 = this_frame->operand_stack.top();
-    this_frame->operand_stack.pop();
-    auto op2 = this_frame->operand_stack.top();
-    this_frame->operand_stack.pop();
+   auto op1 = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   auto op2 = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
 
-    this_frame->operand_stack.push(op1);
-    this_frame->operand_stack.push(op2);
- }
+   this_frame->operand_stack.push(op1);
+   this_frame->operand_stack.push(op2);
+}
 
  /*
  * @brief Desempilha 2 inteiros da pilha de operandos e empilha a multiplicação entre eles.
@@ -2150,18 +2309,51 @@ void InstructionImpl::putfield(Frame * this_frame){
     InstructionImpl::nop(this_frame);
      
  }
- void InstructionImpl::iushr(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
- }
+
+
+/**
+*   @fn void iushr(Frame* this_frame)
+*   @brief Desempilha dois valores inteiros da pilha, realiza o shift para a direita do número de bits,indicados
+*   pelos 2 valor do stack e empilha o resultado.
+*   @param this_frame Ponteiro para frame corrente.
+*   @return
+*/
+void InstructionImpl::iushr(Frame * this_frame){
+   Operand *op1 = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   Operand *op2 = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+
+   int shiftedValue = op1->type_int << op2->type_int;
+   
+   memcpy(&op1->type_int,&shiftedValue,sizeof(int));
+   this_frame->operand_stack.push(op1);
+   this_frame->pc++;
+}
+
+/**
+*   @fn void lushr(Frame* this_frame)
+*   @brief Desempilha um valor inteiro e um valor long da pilha, realiza o shift para a direita de n bits
+*   indicados pelos 6 bits menos significativos do segundo valor do stack. O sinal é ignorado.
+*   @param this_frame Ponteiro para frame corrente.
+*   @return
+*/
  void InstructionImpl::lushr(Frame * this_frame){
     InstructionImpl::nop(this_frame);
      
  }
- void InstructionImpl::land(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
- }
+
+/**
+*   @fn void land(Frame* this_frame)
+*   @brief Desempilha dois valores long da pilha, realiza a operação lógica de AND bit a bit.
+*   @param this_frame Ponteiro para frame corrente.
+*   @return
+*/
+void InstructionImpl::land(Frame * this_frame){
+   
+}
+
+
  void InstructionImpl::lor(Frame * this_frame){
     InstructionImpl::nop(this_frame);
      
