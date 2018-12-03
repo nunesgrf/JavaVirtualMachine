@@ -2153,7 +2153,18 @@ void InstructionImpl::nop(Frame * this_frame) {
  }
 
  void InstructionImpl::lrem(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+    this_frame->pc++;
+
+    auto op1 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+    auto op2 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+
+    auto result = (Operand *)calloc(1,sizeof(Operand));
+    result->type_long = op2->type_long % op1->type_long;
+    result->tag = CONSTANT_Long;
+
+    this_frame->operand_stack.push(result);
      
  }
 
@@ -2314,14 +2325,58 @@ void InstructionImpl::nop(Frame * this_frame) {
     InstructionImpl::nop(this_frame);
      
  }
+
+/**
+ * @brief Realiza um shift a direita do valor v2.
+ * @param *this_frame ponteiro para frame atual.
+ * @return void
+ */
  void InstructionImpl::lushr(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
+    
+    Interpreter auxInter;
+
+    this_frame->pc++;
+
+    auto op1 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+    auto op2 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+
+    auto v1 = op1->type_long;
+    auto v2 = op2->type_long;
+    
+    v2 &= 0x0000003f;
+
+    auto result = v1 >> v2;
+    auto opResult = auxInter.createType("J");
+
+    opResult->type_long = result;
+    this_frame->operand_stack.push(opResult);
  }
+
+/**
+ * @brief Realiza um and bit a bit em um long.
+ * @param *this_frame ponteiro para frame atual.
+ * @return void
+ */
  void InstructionImpl::land(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
+    
+    Interpreter auxInter;
+
+    this_frame->pc++;
+    auto op1 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+    auto op2 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+
+    uint64_t v1 = op1->type_long;
+    uint64_t v2 = op2->type_long;
+
+    auto result = auxInter.createType("J");
+    result->type_long = (uint64_t)(v1 & v2);
+    this_frame->operand_stack.push(result);
  }
+
  void InstructionImpl::lor(Frame * this_frame){
     InstructionImpl::nop(this_frame);
      
@@ -2429,8 +2484,45 @@ void InstructionImpl::nop(Frame * this_frame) {
      
  }
  void InstructionImpl::instanceof(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
+    
+    /*CpAttributeInterface cpAt;
+
+    uint16_t index = this_frame->method_code.code[this_frame->pc+1];
+    index = this_frame->method_code.code[this_frame->pc+2];
+    
+    auto op = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+    
+    auto name = cpAt.getUTF8(this_frame->cp_reference,index-1);
+    std::cout << name.substr(name.find_last_of('/')+1,name.size()-1) << std::endl;
+    getchar();
+
+    switch(op->tag) {
+      case CONSTANT_Boolean: break;
+      case CONSTANT_Byte: break;
+      case CONSTANT_Char: break;
+      case CONSTANT_Double: break;
+      case CONSTANT_Fieldref: break;
+      case CONSTANT_Float: break;
+      case CONSTANT_Integer: break;
+      case CONSTANT_InterfaceMethodref: break;
+      case CONSTANT_Long: break;
+      case CONSTANT_Utf8: break;
+      case CONSTANT_String: break;
+      case CONSTANT_Short: break;
+      case CONSTANT_NameAndType: break;
+      case CONSTANT_Methodref: break;
+      case CONSTANT_Empty: break;
+      case CONSTANT_Class: break;
+      
+    }
+
+    auto toPush = (Operand*)calloc(1,sizeof(Operand));
+    toPush->tag = CONSTANT_Integer;
+    toPush->type_int = 1;
+    this_frame->operand_stack.push(toPush);*/
+    for(int i = 0; i < 3; i++) this_frame->pc++;
+    
  }
  void InstructionImpl::wide(Frame * this_frame){
     InstructionImpl::nop(this_frame);
