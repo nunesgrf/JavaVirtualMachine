@@ -284,6 +284,7 @@ void InstructionImpl::nop(Frame * this_frame) {
    this_frame->pc++;
      
  }
+
  void InstructionImpl::getstatic(Frame * this_frame){
 
     InstructionImpl::nop(this_frame);
@@ -559,45 +560,45 @@ void InstructionImpl::nop(Frame * this_frame) {
  * @param *this_frame Ponteiro para o frame atual
  * @return void
  */
- void InstructionImpl::lconst_0(Frame * this_frame){
-     Operand *op   = (Operand*)malloc(sizeof(Operand));
+void InstructionImpl::lconst_0(Frame * this_frame){
+   Operand *op   = (Operand*)malloc(sizeof(Operand));
 
-     op->tag       = CONSTANT_Long;
-     op->type_long = 0;
+   op->tag       = CONSTANT_Long;
+   op->type_long = 0;
 
-     this_frame->operand_stack.push(op);
-     this_frame->pc++;
- }
+   this_frame->operand_stack.push(op);
+   this_frame->pc++;
+}
 
  /**
  * @brief Empilha a constante long 1 na pilha de operandos
  * @param *this_frame Ponteiro para o frame atual
  * @return void
  */
- void InstructionImpl::lconst_1(Frame * this_frame){
-     Operand *op   = (Operand*)malloc(sizeof(Operand));
+void InstructionImpl::lconst_1(Frame * this_frame){
+   Operand *op   = (Operand*)malloc(sizeof(Operand));
 
-     op->tag       = CONSTANT_Long;
-     op->type_long = 1;
+   op->tag       = CONSTANT_Long;
+   op->type_long = 1;
 
-     this_frame->operand_stack.push(op);
-     this_frame->pc++;
- }
+   this_frame->operand_stack.push(op);
+   this_frame->pc++;
+}
 
  /**
  * @brief Empilha a constante float 0.0 na pilha de operandos
  * @param *this_frame Ponteiro para o frame atual
  * @return void
  */
- void InstructionImpl::fconst_0(Frame * this_frame){
-     Operand *op   = (Operand*)malloc(sizeof(Operand));
+void InstructionImpl::fconst_0(Frame * this_frame){
+   Operand *op   = (Operand*)malloc(sizeof(Operand));
 
-     op->tag = CONSTANT_Float;
-     op->type_float = 0.0;
+   op->tag = CONSTANT_Float;
+   op->type_float = 0.0;
 
-     this_frame->operand_stack.push(op);
-     this_frame->pc++;
- }
+   this_frame->operand_stack.push(op);
+   this_frame->pc++;
+}
 
  /**
  * @brief Empilha a constante float 1.0 na pilha de operandos
@@ -701,184 +702,184 @@ void InstructionImpl::nop(Frame * this_frame) {
  * @param *this_frame Ponteiro para o frame atual
  * @return void
  */
- void InstructionImpl::lload_0(Frame * this_frame){
-    
-    auto op = this_frame->local_variables.at(0);
-    this_frame->operand_stack.push(op);
-    this_frame->pc++;
- }
+void InstructionImpl::lload_0(Frame * this_frame){
+   
+   auto op = this_frame->local_variables.at(0);
+   this_frame->operand_stack.push(op);
+   this_frame->pc++;
+}
 
 /**
  * @brief Empilha long indicado no indice 1 do array de variáveis locais na pilha de operandos
  * @param *this_frame Ponteiro para o frame atual
  * @return void
  */
- void InstructionImpl::lload_1(Frame * this_frame){
-    
-    auto op = this_frame->local_variables.at(1);
-    this_frame->operand_stack.push(op);
-    this_frame->pc++;
- }
+void InstructionImpl::lload_1(Frame * this_frame){
+   
+   auto op = this_frame->local_variables.at(1);
+   this_frame->operand_stack.push(op);
+   this_frame->pc++;
+}
 
  /**
  * @brief Empilha long indicado no indice 2 do array de variáveis locais na pilha de operandos
  * @param *this_frame Ponteiro para o frame atual
  * @return void
  */
- void InstructionImpl::lload_2(Frame * this_frame){
+void InstructionImpl::lload_2(Frame * this_frame){
 
-    auto op = this_frame->local_variables.at(2);
-    this_frame->operand_stack.push(op);
-    this_frame->pc++;
- }
+   auto op = this_frame->local_variables.at(2);
+   this_frame->operand_stack.push(op);
+   this_frame->pc++;
+}
 
  /**
  * @brief Empilha long indicado no indice 3 do array de variáveis locais na pilha de operandos
  * @param *this_frame Ponteiro para o frame atual
  * @return void
  */
- void InstructionImpl::lload_3(Frame * this_frame){
-    
-    auto op = this_frame->local_variables.at(3);
-    this_frame->operand_stack.push(op);
-    this_frame->pc++;
- }
+void InstructionImpl::lload_3(Frame * this_frame){
+   
+   auto op = this_frame->local_variables.at(3);
+   this_frame->operand_stack.push(op);
+   this_frame->pc++;
+}
 
 /**
  * @brief Empilha float indicado no indice 0 do array de variáveis locais na pilha de operandos
  * @param *this_frame Ponteiro para o frame atual
  * @return void
  */
- void InstructionImpl::fload_0(Frame * this_frame){
+void InstructionImpl::fload_0(Frame * this_frame){
 
-    auto op    = this_frame->local_variables.at(0);
-    this_frame->operand_stack.push(op);
-    this_frame->pc++;   
- }
+   auto op    = this_frame->local_variables.at(0);
+   this_frame->operand_stack.push(op);
+   this_frame->pc++;   
+}
 
 /**
  * @brief Empilha float indicado no indice 1 do array de variáveis locais na pilha de operandos
  * @param *this_frame Ponteiro para o frame atual
  * @return void
  */
- void InstructionImpl::fload_1(Frame * this_frame){
-    
-    auto op    = this_frame->local_variables.at(1);
-    this_frame->operand_stack.push(op);
-    this_frame->pc++; 
- }
+void InstructionImpl::fload_1(Frame * this_frame){
+   
+   auto op    = this_frame->local_variables.at(1);
+   this_frame->operand_stack.push(op);
+   this_frame->pc++; 
+}
 
  /**
  * @brief Empilha float indicado no indice 2 do array de variáveis locais na pilha de operandos
  * @param *this_frame Ponteiro para o frame atual
  * @return void
  */
- void InstructionImpl::fload_2(Frame * this_frame){
-    
-    auto op    = this_frame->local_variables.at(2);
-    this_frame->operand_stack.push(op);
-    this_frame->pc++;
- }
+void InstructionImpl::fload_2(Frame * this_frame){
+   
+   auto op    = this_frame->local_variables.at(2);
+   this_frame->operand_stack.push(op);
+   this_frame->pc++;
+}
 
 /**
  * @brief Empilha float indicado no indice 3 do array de variáveis locais na pilha de operandos
  * @param *this_frame Ponteiro para o frame atual
  * @return void
  */
- void InstructionImpl::fload_3(Frame * this_frame){
-    auto op    = this_frame->local_variables.at(3);
-    this_frame->operand_stack.push(op);
-    this_frame->pc++;
- }
+void InstructionImpl::fload_3(Frame * this_frame){
+   auto op    = this_frame->local_variables.at(3);
+   this_frame->operand_stack.push(op);
+   this_frame->pc++;
+}
 
 /** @brief Carrega um long das variáveis locais
  * @param *this_frame ponteiro que aponta para o frame atual
  * @return void
  */ 
- void InstructionImpl::lload(Frame * this_frame){
+void InstructionImpl::lload(Frame * this_frame){
    this_frame->pc++;
    uint8_t index = this_frame->method_code.code[this_frame->pc++];
    Operand * op = this_frame->local_variables.at(index-1);
    this_frame->operand_stack.push(op);
- }
+}
 
 /** @brief Dá push em um valor de preciso dupla de uma variável local para a
  *  pilha de operandos.
  * @param *this_frame ponteiro que aponta para o frame atual
  * @return void
  */
- void InstructionImpl::dload(Frame * this_frame){
-    this_frame->pc++; // NÃO ESTOU CERTO DISTO.
+void InstructionImpl::dload(Frame * this_frame){
+   this_frame->pc++; // NÃO ESTOU CERTO DISTO.
 
-    auto index = this_frame->method_code.code[this_frame->pc++];
-    auto op    = this_frame->local_variables.at((int)index);
+   auto index = this_frame->method_code.code[this_frame->pc++];
+   auto op    = this_frame->local_variables.at((int)index);
 
-    this_frame->operand_stack.push(op);    
- }
+   this_frame->operand_stack.push(op);    
+}
 
- /**
+/**
  * @brief empilha double  indicado no indice 0 do array de variaveis locais na pilha de operandos
  * @param *this_frame Ponteiro para o frame atual
  * @return void
  */
- void InstructionImpl::dload_0(Frame * this_frame){
+void InstructionImpl::dload_0(Frame * this_frame){
 
-    auto op    = this_frame->local_variables.at(0);
-    this_frame->operand_stack.push(op);
-    this_frame->pc++;  
- }
+   auto op    = this_frame->local_variables.at(0);
+   this_frame->operand_stack.push(op);
+   this_frame->pc++;  
+}
 
- /**
+/**
  * @brief empilha double  indicado no indice 1 do array de variaveis locais na pilha de operandos
  * @param *this_frame Ponteiro para o frame atual
  * @return void
  */
- void InstructionImpl::dload_1(Frame * this_frame){
+void InstructionImpl::dload_1(Frame * this_frame){
 
-    auto op    = this_frame->local_variables.at(1);
-    this_frame->operand_stack.push(op);
-    this_frame->pc++;       
- }
+   auto op    = this_frame->local_variables.at(1);
+   this_frame->operand_stack.push(op);
+   this_frame->pc++;       
+}
 
- /**
+/**
  * @brief empilha double  indicado no indice 2 do array de variaveis locais na pilha de operandos
  * @param *this_frame Ponteiro para o frame atual
  * @return void
  */
- void InstructionImpl::dload_2(Frame * this_frame){
+void InstructionImpl::dload_2(Frame * this_frame){
 
-    auto op    = this_frame->local_variables.at(2);
-    this_frame->operand_stack.push(op);
-    this_frame->pc++;  
- }
+   auto op    = this_frame->local_variables.at(2);
+   this_frame->operand_stack.push(op);
+   this_frame->pc++;  
+}
 
- /**
+/**
  * @brief empilha double  indicado no indice 3 do array de variaveis locais na pilha de operandos
  * @param *this_frame Ponteiro para o frame atual
  * @return void
  */
- void InstructionImpl::dload_3(Frame * this_frame){
+void InstructionImpl::dload_3(Frame * this_frame){
 
-    auto op    = this_frame->local_variables.at(3);
-    this_frame->operand_stack.push(op);
-    this_frame->pc++;  
- }
+   auto op    = this_frame->local_variables.at(3);
+   this_frame->operand_stack.push(op);
+   this_frame->pc++;  
+}
 
- /**
+/**
  * @brief Armazena valor double da pilha de operandos no array de variaveis
  *  locais no indice index
  * @param *this_frame Ponteiro para o frame atual
  * @return void
  */
- void InstructionImpl::dstore(Frame * this_frame){
-    this_frame->pc++; // NÃO ESTOU SEGURO DISTO.
+void InstructionImpl::dstore(Frame * this_frame){
+   this_frame->pc++; // NÃO ESTOU SEGURO DISTO.
 
-    auto index = this_frame->method_code.code[this_frame->pc++];
-    auto op    = this_frame->operand_stack.top();
-    this_frame->operand_stack.pop();
+   auto index = this_frame->method_code.code[this_frame->pc++];
+   auto op    = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
 
-    this_frame->local_variables.at((int)index) = op;   
- }
+   this_frame->local_variables.at((int)index) = op;   
+}
 
  /**
  * @brief Armazena valor double da pilha de operandos no array de variaveis locais no indice 0
@@ -1145,30 +1146,90 @@ void InstructionImpl::nop(Frame * this_frame) {
     InstructionImpl::nop(this_frame);
      
  }
- void InstructionImpl::l2d(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+
+/**
+*   @brief void l2f(Frame* this_frame)
+*   @brief Função que desempilha um long, converte para um float e empilha novamente.
+*   @param this_frame Frame corrente.
+*   @return
+*/
+void InstructionImpl::l2d(Frame * this_frame){
+   Operand * op = this_frame->operand_stack.top();
+   double converted_value = (double) op->type_long;
+   memcpy(&op->type_double,&converted_value,sizeof(uint64_t));
+   this_frame->operand_stack.push(op);
+   this_frame->pc++;
+}
+
+/**
+*   @brief void l2f(Frame* this_frame)
+*   @brief Função que desempilha um long, converte para um float e empilha novamente.
+*   @param this_frame Frame corrente.
+*   @return
+*/
+void InstructionImpl::l2f(Frame * this_frame){
+   Operand * op = this_frame->operand_stack.top();
+   float converted_value = (float) op->type_long;
+   memcpy(&op->type_float,&converted_value,sizeof(uint32_t));
+   this_frame->operand_stack.push(op);
+   this_frame->pc++;
+}
+
+/**
+*   @brief void l2i(Frame* this_frame)
+*   @brief Função que desempilha um long, converte para inteiro e empilha novamente.
+*   @param frame Frame corrente.
+*   @return
+*/
+void InstructionImpl::l2i(Frame * this_frame){
+   Operand * op = this_frame->operand_stack.top();
+   int converted_value = (long) op->type_long;
+   memcpy(&op->type_int,&converted_value,sizeof(uint32_t));
+   this_frame->operand_stack.push(op);
+   this_frame->pc++;
+}
+
+/**
+* @brief Converte de inteiro para float
+* @param *this_frame ponteiro para o frame atual
+* @return void
+*/
+void InstructionImpl::i2f(Frame * this_frame){
+   Operand * op = this_frame->operand_stack.top();
+   int converted_value = (int) op->type_int;
+   memcpy(&op->type_short,&converted_value,sizeof(uint32_t));
+   this_frame->operand_stack.push(op);
+   this_frame->pc++;
+}
+
+/**
+*   @brief void i2s(Frame* frame)
+*   @brief Função que desempilha um inteiro, converte para short e empilha novamente.
+*   @param frame Frame corrente.
+*   @return
+*/
+void InstructionImpl::i2s(Frame * this_frame){
+   Operand * op = this_frame->operand_stack.top();
+   short converted_value = (short) op->type_int;
+   memcpy(&op->type_short,&converted_value,sizeof(uint32_t));
+   this_frame->operand_stack.push(op);
+   this_frame->pc++;
+
+}
+
+/**
+* @brief Converte de double para float
+* @param *this_frame ponteiro para o frame atual
+* @return void
+*/
+void InstructionImpl::d2f(Frame * this_frame){
+   Operand * op = this_frame->operand_stack.top();
+   float converted_value = (float) op->type_double;
+   memcpy(&op->type_float,&converted_value,sizeof(uint64_t));
+   this_frame->operand_stack.push(op);
+   this_frame->pc++;
      
- }
- void InstructionImpl::l2f(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
- }
- void InstructionImpl::l2i(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
- }
- void InstructionImpl::i2f(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
- }
- void InstructionImpl::i2s(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
- }
- void InstructionImpl::d2f(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
- }
+}
  /*
  * @brief Desempilha 2 inteiros da pilha de operandos e empilha a soma deles.
  * @param *this_frame ponteiro para o frame atual
@@ -1194,14 +1255,35 @@ void InstructionImpl::nop(Frame * this_frame) {
     InstructionImpl::nop(this_frame);
      
  }
- void InstructionImpl::d2l(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
- }
- void InstructionImpl::d2i(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
- }
+
+/**
+* @brief Converte de double para long
+* @param *this_frame ponteiro para o frame atual
+* @return void
+*/
+void InstructionImpl::d2l(Frame * this_frame){
+   Operand * op = this_frame->operand_stack.top();
+   long converted_value = (long) op->type_double;
+   memcpy(&op->type_long,&converted_value,sizeof(uint64_t));
+   this_frame->operand_stack.push(op);
+   this_frame->pc++;
+   
+}
+
+/**
+*   @brief void d2i(Frame* this_frame)
+*   @brief Função que desempilha um double, converte para inteiro e empilha novamente.
+*   @param this_frame Frame corrente.
+*   @return
+*/
+void InstructionImpl::d2i(Frame * this_frame){
+   Operand * op = this_frame->operand_stack.top();
+   int converted_value = (int) op->type_double;
+   memcpy(&op->type_int,&converted_value,sizeof(uint32_t));
+   this_frame->operand_stack.push(op);
+   this_frame->pc++;
+}
+
  void InstructionImpl::ior(Frame * this_frame){
     InstructionImpl::nop(this_frame);
      
@@ -1475,14 +1557,35 @@ void InstructionImpl::baload(Frame * this_frame){
     InstructionImpl::nop(this_frame);
      
  }
+
+/**
+*   @brief void i2l(Frame* this_frame)
+*   @brief Função convert operando inteiro long e empilha novamente.
+*   @param *this_frame ponteiro para frame atual.
+*   @return
+*/
  void InstructionImpl::i2l(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
+   Operand * op = this_frame->operand_stack.top();
+   uint64_t converted_value = (uint64_t) op->type_int;
+   memcpy(&op->type_long,&converted_value,sizeof(uint64_t));
+   this_frame->operand_stack.push(op);
+   this_frame->pc++;
  }
+
+/**
+*   @brief void i2d(Frame* this_frame)
+*   @brief Função que desempilha um inteiro, converte para double e empilha novamente.
+*   @param this_frame Frame corrente.
+*   @return
+*/
  void InstructionImpl::i2d(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
+   Operand * op = this_frame->operand_stack.top();
+   double converted_value = (double) op->type_int;
+   memcpy(&op->type_double,&converted_value,sizeof(uint64_t));
+   this_frame->operand_stack.push(op);
+   this_frame->pc++;
  }
+
  /*
  * @brief Invoca um método de classe.
  * @param *this_frame ponteiro para o frame atual
@@ -1641,7 +1744,7 @@ void InstructionImpl::putfield(Frame * this_frame){
          class_variable->type_string = var_operand->type_string;
          break;
       case CONSTANT_Class:
-         class_variable->c_instance = var_operand->c_instance;
+         class_variable->class_instance = var_operand->class_instance;
          break;
       case CONSTANT_Array:
          class_variable->array_type = var_operand->array_type;
@@ -1751,6 +1854,7 @@ void InstructionImpl::putfield(Frame * this_frame){
 
      
  }
+
  void InstructionImpl::areturn(Frame * this_frame){
     InstructionImpl::nop(this_frame);
      
@@ -2103,15 +2207,34 @@ void InstructionImpl::putfield(Frame * this_frame){
      
  }
 
- void InstructionImpl::i2b(Frame * this_frame) {
-    InstructionImpl::nop(this_frame);
-     
- }
+/**
+*   @brief void i2b(Frame* this_frame)
+*   @brief Função convert um inteiro  para byte.
+*   @param *this_frame Ponteiro para frame corrente.
+*   @return
+*/
+void InstructionImpl::i2b(Frame * this_frame) {
+   Operand * op = this_frame->operand_stack.top();
+   uint32_t converted_value = (uint32_t) op->type_int;
+   memcpy(&op->type_byte,&converted_value,sizeof(uint32_t));
+   this_frame->operand_stack.push(op);
+   this_frame->pc++;
+   
+}
 
- void InstructionImpl::i2c(Frame * this_frame) {
-    InstructionImpl::nop(this_frame);
-     
- }
+/**
+*   @brief void i2c(Frame* frame)
+*   @brief Função que desempilha um inteiro, converte para char e empilha novamente.
+*   @param frame Frame corrente.
+*   @return
+*/
+void InstructionImpl::i2c(Frame * this_frame) {
+   Operand * op = this_frame->operand_stack.top();
+   char converted_value = (char) op->type_int;
+   memcpy(&op->type_char,&converted_value,sizeof(uint32_t));
+   this_frame->operand_stack.push(op);
+   this_frame->pc++;
+}
 
  void InstructionImpl::lcmp(Frame * this_frame) {
     InstructionImpl::nop(this_frame);
