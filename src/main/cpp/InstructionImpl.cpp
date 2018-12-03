@@ -1155,6 +1155,7 @@ void InstructionImpl::dstore(Frame * this_frame){
 */
 void InstructionImpl::l2d(Frame * this_frame){
    Operand * op = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
    double converted_value = (double) op->type_long;
    memcpy(&op->type_double,&converted_value,sizeof(uint64_t));
    this_frame->operand_stack.push(op);
@@ -1169,6 +1170,7 @@ void InstructionImpl::l2d(Frame * this_frame){
 */
 void InstructionImpl::l2f(Frame * this_frame){
    Operand * op = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
    float converted_value = (float) op->type_long;
    memcpy(&op->type_float,&converted_value,sizeof(uint32_t));
    this_frame->operand_stack.push(op);
@@ -1183,6 +1185,7 @@ void InstructionImpl::l2f(Frame * this_frame){
 */
 void InstructionImpl::l2i(Frame * this_frame){
    Operand * op = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
    int converted_value = (long) op->type_long;
    memcpy(&op->type_int,&converted_value,sizeof(uint32_t));
    this_frame->operand_stack.push(op);
@@ -1196,6 +1199,7 @@ void InstructionImpl::l2i(Frame * this_frame){
 */
 void InstructionImpl::i2f(Frame * this_frame){
    Operand * op = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
    int converted_value = (int) op->type_int;
    memcpy(&op->type_short,&converted_value,sizeof(uint32_t));
    this_frame->operand_stack.push(op);
@@ -1210,6 +1214,7 @@ void InstructionImpl::i2f(Frame * this_frame){
 */
 void InstructionImpl::i2s(Frame * this_frame){
    Operand * op = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
    short converted_value = (short) op->type_int;
    memcpy(&op->type_short,&converted_value,sizeof(uint32_t));
    this_frame->operand_stack.push(op);
@@ -1224,6 +1229,7 @@ void InstructionImpl::i2s(Frame * this_frame){
 */
 void InstructionImpl::d2f(Frame * this_frame){
    Operand * op = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
    float converted_value = (float) op->type_double;
    memcpy(&op->type_float,&converted_value,sizeof(uint64_t));
    this_frame->operand_stack.push(op);
@@ -1263,6 +1269,7 @@ void InstructionImpl::d2f(Frame * this_frame){
 */
 void InstructionImpl::d2l(Frame * this_frame){
    Operand * op = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
    long converted_value = (long) op->type_double;
    memcpy(&op->type_long,&converted_value,sizeof(uint64_t));
    this_frame->operand_stack.push(op);
@@ -1278,6 +1285,7 @@ void InstructionImpl::d2l(Frame * this_frame){
 */
 void InstructionImpl::d2i(Frame * this_frame){
    Operand * op = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
    int converted_value = (int) op->type_double;
    memcpy(&op->type_int,&converted_value,sizeof(uint32_t));
    this_frame->operand_stack.push(op);
@@ -1566,6 +1574,7 @@ void InstructionImpl::baload(Frame * this_frame){
 */
  void InstructionImpl::i2l(Frame * this_frame){
    Operand * op = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
    uint64_t converted_value = (uint64_t) op->type_int;
    memcpy(&op->type_long,&converted_value,sizeof(uint64_t));
    this_frame->operand_stack.push(op);
@@ -1580,6 +1589,7 @@ void InstructionImpl::baload(Frame * this_frame){
 */
  void InstructionImpl::i2d(Frame * this_frame){
    Operand * op = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
    double converted_value = (double) op->type_int;
    memcpy(&op->type_double,&converted_value,sizeof(uint64_t));
    this_frame->operand_stack.push(op);
@@ -2215,6 +2225,7 @@ void InstructionImpl::putfield(Frame * this_frame){
 */
 void InstructionImpl::i2b(Frame * this_frame) {
    Operand * op = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
    uint32_t converted_value = (uint32_t) op->type_int;
    memcpy(&op->type_byte,&converted_value,sizeof(uint32_t));
    this_frame->operand_stack.push(op);
@@ -2230,6 +2241,7 @@ void InstructionImpl::i2b(Frame * this_frame) {
 */
 void InstructionImpl::i2c(Frame * this_frame) {
    Operand * op = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
    char converted_value = (char) op->type_int;
    memcpy(&op->type_char,&converted_value,sizeof(uint32_t));
    this_frame->operand_stack.push(op);
