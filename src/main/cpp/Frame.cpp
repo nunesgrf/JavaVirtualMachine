@@ -43,11 +43,12 @@ void Frame::run() {
     
     bool flag = true;
 
-    do {
+    //do {
         uint8_t opCode = this->method_code.code[pc];
-        //std::cout << "FRAME::RUN() : " << this->pc << " : " << this->instructions[opCode].name << std::endl;
+        //std::cout << this->pc << " : " << this->instructions[opCode].name << std::endl;
         this->instructions[opCode].func(this);
-        if(this->instructions[opCode].name == "return") flag = false;    
-    } while(flag);
+        if(this->instructions[opCode].name == "return") flag = false; 
+        //std::cout << flag << std::endl;   
+    //} while(flag);
 
 }

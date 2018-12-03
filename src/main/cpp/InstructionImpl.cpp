@@ -4,6 +4,7 @@
 #include "../hpp/Interpreter.hpp"
 #include <iostream>
 #include <string>
+#include <cmath>
 
 /*
  * @brief Incrementa o program counter.
@@ -17,7 +18,7 @@ void InstructionImpl::nop(Frame * this_frame) {
  void InstructionImpl::ldc(Frame * this_frame){
 
    this_frame->pc++;
-   Operand * op = (Operand*)calloc(1,sizeof(op));
+   Operand * op = (Operand*)calloc(1,sizeof(Operand));
    CpAttributeInterface cpAttrAux;
    
    /* Pegando o indice do para acessar a constante no pool de constantes */
@@ -86,15 +87,20 @@ void InstructionImpl::nop(Frame * this_frame) {
    std::string method_name = cpAttrAux.getUTF8(this_frame->cp_reference,name_and_type->NameAndType.name_index-1);
    std::string method_deor = cpAttrAux.getUTF8(this_frame->cp_reference,name_and_type->NameAndType.descriptor_index-1);
   
+  /*std::cout << "class_name = " << class_name << std::endl; 
+  std::cout << "method_name = " << method_name << std::endl; 
+  std::cout << "method_deor = " << method_deor << std::endl;
+  getchar();*/
    /* Inicia-se o procedimento para verificar se o metodo a ser chamado é um print f */
-   if((class_name == "java/io/PrintStream") && (method_name == "println" || method_deor == "print")){
+   if((class_name == "java/io/PrintStream") && (method_name == "println" || method_name == "print")){
+    
       if(method_deor != "()V"){
          Operand * op = this_frame->operand_stack.top();
          this_frame->operand_stack.pop();
-
+       
          switch(op->tag) {
             case CONSTANT_String:
-               std::cout << (*op->type_string);
+               std::cout << *(op->type_string);
                break;
             case CONSTANT_Integer:
                std::cout << op->type_int;
@@ -140,6 +146,73 @@ void InstructionImpl::nop(Frame * this_frame) {
          if(method_name == "println") std::cout << std::endl;
       }
    }
+   else if(class_name == "java/lang/StringBuilder" && method_name == "append") {
+     
+   }
+   else if(class_name == "java/lang/String" && method_name == "length") {
+     auto strOp = this_frame->operand_stack.top();
+     this_frame->operand_stack.pop();
+
+     Operand * strLen = (Operand*)calloc(1,sizeof(Operand));
+     strLen->tag = CONSTANT_Integer;
+     strLen->type_int = strOp->type_string->size();
+     
+     this_frame->operand_stack.push(strLen);
+   }
+   /*else {
+     std::cout << "Entrou no Else do invokevirtual" << std::endl; getchar();
+     int argsCount  = 0;
+     uint16_t count = 1;
+    
+     while(method_deor[count] != ')') {
+       char type = method_deor[count];
+       
+       if(type == 'L') {
+         argsCount++;
+         while(method_deor[++count] != ';');
+       }
+       else if(type == '[') {
+         argsCount++;
+         while(method_deor[++count] != ';');
+         if(method_deor[++count] == 'L') while(method_deor[++count] != ';');
+       }
+       else argsCount++;
+       count++;
+     }
+
+     std::vector<Operand*> args;
+    
+     for(int i = 0; i < argsCount; ++i) {
+       auto arg = this_frame->operand_stack.top();
+       this_frame->operand_stack.pop();
+       args.insert(args.begin(),arg);
+
+       if(arg->tag == CONSTANT_Double || arg->tag == CONSTANT_Long) args.insert(args.begin()+1, Interpreter::createType("P"));
+     }
+     
+     auto opThisClass = this_frame->operand_stack.top();
+     this_frame->operand_stack.pop();
+
+     args.insert(args.begin(),opThisClass);
+     //std::cout << "Nome = " << (int)opThisClass->tag; 
+     auto instance = opThisClass->class_instance;
+
+     MethodsArea * auxMeth;
+
+     
+     //std::cout <<"flag " <<method_name << " "<< method_deor<< std::endl; 
+     auto methods = auxMeth->findMethodByNameOrDeor(instance->classe,method_name,method_deor);
+     //std::cout <<"flag" << std::endl; 
+     //std::cout << methods << std::endl; 
+     //auto methods = (MethodInfo*)calloc(1,sizeof(MethodInfo));
+     auto newFrame = new Frame(instance->classe->getConstPool(),methods);    
+
+     for(unsigned i = 0; i < args.size(); ++i) {
+        newFrame->local_variables.at(i) = args.at(i);
+     }
+     Interpreter auxInter;
+     auxInter.frame_stack.push(newFrame);
+   }*/
  }
 
 /*
@@ -183,6 +256,12 @@ void InstructionImpl::nop(Frame * this_frame) {
    this_frame->pc++;
      
  }
+
+ /**
+  * @brief Carrega as classes estáticas na pilha para a execução.
+  * @param *this_frame ponteiro para o frame atual.
+  * @return void 
+  */
  void InstructionImpl::getstatic(Frame * this_frame){
 
     this_frame->pc++;
@@ -375,8 +454,10 @@ void InstructionImpl::nop(Frame * this_frame) {
      
  }
  void InstructionImpl::void_return(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
+    Interpreter auxInter;
+
+    this_frame->pc++;
+    auxInter.frame_stack.pop();
  }
 
  /**
@@ -1164,16 +1245,97 @@ void InstructionImpl::nop(Frame * this_frame) {
     this_frame->pc++;
      
  }
+ 
+ /**
+  * @brief Realiza uma duplicação b, a -> a, b, a
+  * @param *this_frame ponteiro para frame atual.
+  * @return void
+  */
  void InstructionImpl::dup_x1(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+
+    MethodsArea methAux;
+
+    this_frame->pc++;
+    Operand *op1 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+    Operand *op2 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+    if (op1->tag == CONSTANT_Double || op1->tag == CONSTANT_Long || op2->tag == CONSTANT_Double || op2->tag == CONSTANT_Long) {
+        this_frame->operand_stack.push(op2);
+        this_frame->operand_stack.push(op1);
+    } 
+    else {
+        Operand *tipo = methAux.copyOperand(op1);
+        this_frame->operand_stack.push(tipo);
+        this_frame->operand_stack.push(op2);
+        this_frame->operand_stack.push(op1);
+    }
      
  }
  void InstructionImpl::dup_x2(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+
+    MethodsArea methAux;
+
+    this_frame->pc++;
+    auto op1 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+    auto op2 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+
+    if (op1->tag != CONSTANT_Double && op1->tag != CONSTANT_Long) {
+        if (op2->tag == CONSTANT_Double || op2->tag == CONSTANT_Long) {
+            auto copy = methAux.copyOperand(op1);
+            this_frame->operand_stack.push(copy);
+            this_frame->operand_stack.push(op2);
+            this_frame->operand_stack.push(op1);
+
+        }
+        else {
+            auto op3 = this_frame->operand_stack.top();
+            this_frame->operand_stack.pop();
+            if (op3->tag != CONSTANT_Double && op3->tag != CONSTANT_Long) {
+                auto copy = methAux.copyOperand(op1);
+                this_frame->operand_stack.push(copy);
+                this_frame->operand_stack.push(op3);
+                this_frame->operand_stack.push(op2);
+                this_frame->operand_stack.push(op1);
+            }
+        }
+    }
      
  }
+ 
+ /**
+ * @brief Duplica um ou dois valores da pilha de operandos e insere os valores duplicados na ordem original
+ * @param *this_frame ponteiro para o frame atual
+ * @return void
+ */
  void InstructionImpl::dup2(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+
+    MethodsArea methAux;
+
+    this_frame->pc++;
+    auto op = this_frame->operand_stack.top();
+    auto another = methAux.copyOperand(op);
+
+    this_frame->operand_stack.pop();
+
+    if(op->tag == CONSTANT_Double || op->tag == CONSTANT_Float) {
+      
+      this_frame->operand_stack.push(another);
+      this_frame->operand_stack.push(op);
+    }
+    else {
+      auto op2 = this_frame->operand_stack.top();
+      this_frame->operand_stack.pop();
+      
+      auto another2 = methAux.copyOperand(op2);
+
+      this_frame->operand_stack.push(another2);
+      this_frame->operand_stack.push(another);
+      this_frame->operand_stack.push(op2);
+      this_frame->operand_stack.push(op);
+    }
      
  }
  void InstructionImpl::dup2_x1(Frame * this_frame){
@@ -1328,6 +1490,11 @@ void InstructionImpl::nop(Frame * this_frame) {
      
  }
 
+/**
+ * @brief Guarda um objeto em uma na posição 0 do vetor de variáveis. 
+ * @param *this_frame ponteiro para o frame atual.
+ * @void
+ */
  void InstructionImpl::astore_0(Frame * this_frame){
     InstructionImpl::nop(this_frame);
 
@@ -1344,7 +1511,7 @@ void InstructionImpl::nop(Frame * this_frame) {
  */
  void InstructionImpl::if_icmpge(Frame * this_frame){
 
-    uint16_t offset;
+    int16_t offset;
 
     auto op1 = this_frame->operand_stack.top();
     this_frame->operand_stack.pop();
@@ -1359,6 +1526,12 @@ void InstructionImpl::nop(Frame * this_frame) {
     this_frame->pc += offset;
 
  }
+
+ /**
+ * @brief Realiza um falto baseado em um offset.
+ * @param *this_frame ponteiro para o frame atual.
+ * @void
+ */
  void InstructionImpl::ins_goto(Frame * this_frame){
     uint16_t offset = this_frame->method_code.code[this_frame->pc+1];
     offset = (offset << 8) + this_frame->method_code.code[this_frame->pc+2];
@@ -1381,17 +1554,39 @@ void InstructionImpl::nop(Frame * this_frame) {
     InstructionImpl::nop(this_frame);
      
  }
+  /**
+ * @brief Retorna long de um método.
+ * @param *this_frame ponteiro para o frame atual
+ * @return void
+ */
  void InstructionImpl::lreturn(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+    Interpreter AuxInter;
+
+    this_frame->pc++;
+    auto longVal = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+
+    AuxInter.frame_stack.pop();
+    AuxInter.frame_stack.top()->operand_stack.push(longVal);
      
  }
  void InstructionImpl::new_obj(Frame * this_frame){
     InstructionImpl::nop(this_frame);
      
  }
+
+ /**
+ * @brief Duplica um valor da pilha de operandos e insere os valores duplicados na ordem original
+ * @param *this_frame ponteiro para o frame atual
+ * @return void
+ */
  void InstructionImpl::dup(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
+
+    MethodsArea methAux;
+
+    this_frame->pc++;
+    auto copy = methAux.copyOperand(this_frame->operand_stack.top()); 
+    this_frame->operand_stack.push(copy);
  }
 
  void InstructionImpl::putfield(Frame * this_frame){
@@ -1437,26 +1632,75 @@ void InstructionImpl::nop(Frame * this_frame) {
     InstructionImpl::nop(this_frame);
      
  }
- void InstructionImpl::areturn(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
- }
- void InstructionImpl::dreturn(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
 
+ /**
+ * @brief retorna um objeto para o frame anterior.
+ * @param *this_frame ponteiro para o frame atual.
+ * @return void
+ */
+ void InstructionImpl::areturn(Frame * this_frame){
+    Interpreter AuxInter;
+
+    this_frame->pc++;
+    auto object = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+
+    AuxInter.frame_stack.pop();
+    AuxInter.frame_stack.top()->operand_stack.push(object);
+     
  }
+
+ /**
+ * @brief Retorna double de um método.
+ * @param *this_frame ponteiro para o frame atual
+ * @return void
+ */
+ void InstructionImpl::dreturn(Frame * this_frame){
+    Interpreter AuxInter;
+
+    this_frame->pc++;
+    auto dValue = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+
+    AuxInter.frame_stack.pop();
+    AuxInter.frame_stack.top()->operand_stack.push(dValue);
+ }
+
+ /**
+ * @brief Retorna float de um método.
+ * @param *this_frame ponteiro para o frame atual
+ * @return void
+ */
  void InstructionImpl::freturn(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+    Interpreter AuxInter;
+
+    this_frame->pc++;
+    auto pontoFloat = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+
+    AuxInter.frame_stack.pop();
+    AuxInter.frame_stack.top()->operand_stack.push(pontoFloat);
      
  }
+ /**
+ * @brief Retorna int de um método.
+ * @param *this_frame ponteiro para o frame atual
+ * @return void
+ */
  void InstructionImpl::ireturn(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
+    
+    Interpreter AuxInter;
+
+    this_frame->pc++;
+    auto integer = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+
+    AuxInter.frame_stack.pop();
+    AuxInter.frame_stack.top()->operand_stack.push(integer);
  }
 
  /* 
- * @brief Desempilha dois floats da pilha e empilha adição deles.
+ * @brief Desempilha dois float da pilha e empilha adição deles.
  * @param *this_frame ponteiro para o frame atual
  * @return void
  */
@@ -1517,7 +1761,7 @@ void InstructionImpl::nop(Frame * this_frame) {
  * @return void
  */
  void InstructionImpl::if_icmpne(Frame * this_frame){
-    uint16_t offset;
+    int16_t offset;
 
     auto op1 = this_frame->operand_stack.top();
     this_frame->operand_stack.pop();
@@ -1539,7 +1783,7 @@ void InstructionImpl::nop(Frame * this_frame) {
  * @return void
  */
  void InstructionImpl::if_icmpeq(Frame * this_frame){
-    uint16_t offset;
+    int16_t offset;
 
     auto op1 = this_frame->operand_stack.top();
     this_frame->operand_stack.pop();
@@ -1678,7 +1922,7 @@ void InstructionImpl::nop(Frame * this_frame) {
  * @return void
  */
  void InstructionImpl::if_icmplt(Frame * this_frame){
-    uint16_t offset;
+    int16_t offset;
 
     auto op1 = this_frame->operand_stack.top();
     this_frame->operand_stack.pop();
@@ -1738,12 +1982,48 @@ void InstructionImpl::nop(Frame * this_frame) {
     this_frame->pc += offset;
      
  }
+
+ /**
+  * @brief Compara dois objetos e realiza um salto condicional caso obj_1 == obj_2.
+  * @param *this_frame ponteiro para o frame atual.
+  * @return void.
+  */
  void InstructionImpl::if_acmpeq(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
+
+   uint16_t offset;
+
+   auto op1 = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   auto op2 = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+
+   if(op1->class_instance == op2->class_instance) {
+     offset = this_frame->method_code.code[this_frame->pc +1];
+     offset = (offset << 8) | this_frame->method_code.code[this_frame->pc +2];
+   }
+   else offset = 3;
+   this_frame->pc += offset;
  }
+
+ /**
+  * @brief Compara dois objetos e realiza um salto condicional caso obj_1 != obj_2.
+  * @param *this_frame ponteiro para o frame atual.
+  * @return void.
+  */
  void InstructionImpl::if_acmpne(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+    uint16_t offset;
+
+   auto op1 = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   auto op2 = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+
+   if(op1->class_instance != op2->class_instance) {
+     offset = this_frame->method_code.code[this_frame->pc +1];
+     offset = (offset << 8) | this_frame->method_code.code[this_frame->pc +2];
+   }
+   else offset = 3;
+   this_frame->pc += offset;
      
  }
 
@@ -1876,33 +2156,159 @@ void InstructionImpl::nop(Frame * this_frame) {
     InstructionImpl::nop(this_frame);
      
  }
+
+ /**
+ * @brief Calcula o valor negativo de int. Retira o operando do topo da pilha, nega o valor do
+ * operando e o salva o resultado no topo da pilha.
+ * @param *curr_frame Ponteiro para o frame atual
+ * @return void
+ */
  void InstructionImpl::ineg(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
+    this_frame->pc++;
+
+    Interpreter aux;
+
+    auto op = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+
+    auto result  = aux.createType("I");
+    result->type_int = -(uint32_t)op->type_int;
+
+    this_frame->operand_stack.push(result);  
  }
+ /**
+ * @brief Calcula o valor negativo de long. Retira o operando do topo da pilha, nega o valor do
+ * operando e o salva o resultado no topo da pilha.
+ * @param *curr_frame Ponteiro para o frame atual
+ * @return void
+ */
  void InstructionImpl::lneg(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
+    this_frame->pc++;
+
+    Interpreter aux;
+
+    auto op = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+
+    auto result  = aux.createType("J");
+    result->type_int = -(uint64_t)op->type_int;
+
+    this_frame->operand_stack.push(result);  
  }
+
  void InstructionImpl::dneg(Frame * this_frame){
     InstructionImpl::nop(this_frame);
      
  }
+
+ /**
+ * @brief Calcula o valor do shift left lógico para inteiro. Retira dois operandos do topo da pilha
+ * e faz o shift left do primeiro operando por s posições, onde s são os 5 bits menos significativos
+ * do segundo operando. O resultado é colocado no topo da pilha.
+ * @param *this_frame Ponteiro para o frame atual
+ * @return void
+ */
  void InstructionImpl::ishl(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
+    this_frame->pc++;
+
+    Interpreter aux;
+
+    auto op1 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+    auto op2 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+
+    auto val1 = op1->type_int;
+    auto val2 = op2->type_int;
+
+    val2 &= 0x0000003f;
+
+    auto valResult = val1 << val2;
+
+    auto result = aux.createType("I");
+
+    result->type_long = valResult;
+    this_frame->operand_stack.push(result);
  }
+
+ /**
+ * @brief Calcula o valor do shift left lógico para long. Retira dois operandos do topo da pilha
+ * e faz o shift left do primeiro operando por s posições, onde s são os 5 bits menos significativos
+ * do segundo operando. O resultado é colocado no topo da pilha.
+ * @param *this_frame Ponteiro para o frame atual
+ * @return void
+ */
  void InstructionImpl::lshl(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
+    this_frame->pc++;
+
+    Interpreter aux;
+
+    auto op1 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+    auto op2 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+
+    auto val1 = op1->type_long;
+    auto val2 = op2->type_long;
+
+    val2 &= 0x0000003f;
+
+    auto l_result = val1 << val2;
+
+    auto result = aux.createType("J");
+
+    result->type_long = l_result;
+    this_frame->operand_stack.push(result);
+
  }
+
+ /**
+ * @brief Calcula o valor do shift right lógico para inteiro. Retira dois operandos do topo da pilha
+ * e faz o shift right do primeiro operando por s posições, onde s são os 5 bits menos significativos
+ * do segundo operando. O resultado é colocado no topo da pilha.
+ * @param *this_frame Ponteiro para o frame atual
+ * @return void
+ */
  void InstructionImpl::ishr(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+
+    Interpreter aux;
+    auto op1 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+    auto op2 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+
+    auto opResult   = aux.createType("I");
+    uint32_t result = (uint32_t)(op1->type_int/pow(2,op2->type_int));
+
+    opResult->type_int = result;
+
+    this_frame->operand_stack.push(opResult);
+    this_frame->pc++;
      
  }
+
+ /**
+ * @brief Calcula o valor do shift right lógico para long. Retira dois operandos do topo da pilha
+ * e faz o shift right do primeiro operando por s posições, onde s são os 5 bits menos significativos
+ * do segundo operando. O resultado é colocado no topo da pilha.
+ * @param *this_frame Ponteiro para o frame atual
+ * @return void
+ */
  void InstructionImpl::lshr(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-     
+    this_frame->pc++;
+
+    Interpreter aux;
+    auto operand_1 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+    auto op2 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+
+    uint64_t l_result = (uint64_t) (operand_1->type_long / pow(2, op2->type_long & 0x3f));
+
+    auto result = aux.createType("J");
+    result->type_long = (uint64_t) l_result;
+
+    this_frame->operand_stack.push(result);
  }
  void InstructionImpl::iushr(Frame * this_frame){
     InstructionImpl::nop(this_frame);
@@ -1929,7 +2335,11 @@ void InstructionImpl::nop(Frame * this_frame) {
      
  }
 
-
+/**
+ * @brief Verifica se é null, caso sim, realiza um salto baseado em um offset.
+ * @param *this_frame ponteiro para o frame atual.
+ * @void
+ */
  void InstructionImpl::ifnull(Frame * this_frame){
     
     int shift;
@@ -1945,6 +2355,11 @@ void InstructionImpl::nop(Frame * this_frame) {
     this_frame->pc += shift;
  }
 
+/**
+ * @brief Verifica se é null, caso não, realiza um salto baseado em um offset.
+ * @param *this_frame ponteiro para o frame atual.
+ * @void
+ */
  void InstructionImpl::ifnonnull(Frame * this_frame){
 
     int shift;
