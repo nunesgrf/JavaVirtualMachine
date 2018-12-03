@@ -4,7 +4,7 @@
 #include "../hpp/Interpreter.hpp"
 #include <iostream>
 #include <string>
-
+#include <math.h>
 /*
  * @brief Incrementa o program counter.
  * @param *this_frame ponteiro para o frame atual
@@ -1150,7 +1150,7 @@ void InstructionImpl::dstore(Frame * this_frame){
 /**
 *   @brief void l2f(Frame* this_frame)
 *   @brief Função que desempilha um long, converte para um float e empilha novamente.
-*   @param this_frame Frame corrente.
+*   @param this_frame Ponteiro para frame.
 *   @return
 */
 void InstructionImpl::l2d(Frame * this_frame){
@@ -1165,7 +1165,7 @@ void InstructionImpl::l2d(Frame * this_frame){
 /**
 *   @brief void l2f(Frame* this_frame)
 *   @brief Função que desempilha um long, converte para um float e empilha novamente.
-*   @param this_frame Frame corrente.
+*   @param this_frame Ponteiro para frame.
 *   @return
 */
 void InstructionImpl::l2f(Frame * this_frame){
@@ -1180,7 +1180,7 @@ void InstructionImpl::l2f(Frame * this_frame){
 /**
 *   @brief void l2i(Frame* this_frame)
 *   @brief Função que desempilha um long, converte para inteiro e empilha novamente.
-*   @param frame Frame corrente.
+*   @param frame Ponteiro para frame.
 *   @return
 */
 void InstructionImpl::l2i(Frame * this_frame){
@@ -1209,7 +1209,7 @@ void InstructionImpl::i2f(Frame * this_frame){
 /**
 *   @brief void i2s(Frame* frame)
 *   @brief Função que desempilha um inteiro, converte para short e empilha novamente.
-*   @param frame Frame corrente.
+*   @param frame Ponteiro para frame.
 *   @return
 */
 void InstructionImpl::i2s(Frame * this_frame){
@@ -1280,7 +1280,7 @@ void InstructionImpl::d2l(Frame * this_frame){
 /**
 *   @brief void d2i(Frame* this_frame)
 *   @brief Função que desempilha um double, converte para inteiro e empilha novamente.
-*   @param this_frame Frame corrente.
+*   @param this_frame Ponteiro para frame.
 *   @return
 */
 void InstructionImpl::d2i(Frame * this_frame){
@@ -1584,7 +1584,7 @@ void InstructionImpl::baload(Frame * this_frame){
 /**
 *   @brief void i2d(Frame* this_frame)
 *   @brief Função que desempilha um inteiro, converte para double e empilha novamente.
-*   @param this_frame Frame corrente.
+*   @param this_frame Ponteiro para frame.
 *   @return
 */
  void InstructionImpl::i2d(Frame * this_frame){
@@ -2220,7 +2220,7 @@ void InstructionImpl::putfield(Frame * this_frame){
 /**
 *   @brief void i2b(Frame* this_frame)
 *   @brief Função convert um inteiro  para byte.
-*   @param *this_frame Ponteiro para frame corrente.
+*   @param *this_frame Ponteiro para Ponteiro para frame.
 *   @return
 */
 void InstructionImpl::i2b(Frame * this_frame) {
@@ -2236,7 +2236,7 @@ void InstructionImpl::i2b(Frame * this_frame) {
 /**
 *   @brief void i2c(Frame* frame)
 *   @brief Função que desempilha um inteiro, converte para char e empilha novamente.
-*   @param frame Frame corrente.
+*   @param frame Ponteiro para frame.
 *   @return
 */
 void InstructionImpl::i2c(Frame * this_frame) {
@@ -2248,27 +2248,135 @@ void InstructionImpl::i2c(Frame * this_frame) {
    this_frame->pc++;
 }
 
- void InstructionImpl::lcmp(Frame * this_frame) {
-    InstructionImpl::nop(this_frame);
-     
- }
+/**
+*   @brief void lcmp(Frame* this_frame)
+*   @brief Função desempilha dois longs, compara os memos e empilha o resultado da comparação. 0 se forem iguais, 
+*   se o segund número for maior empilha 1, caso contrário empilha -1.
+*   @param this_frame Ponteiro para frame.
+*   @return
+*/
+void InstructionImpl::lcmp(Frame * this_frame) {
+   Operand * op1 = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   Operand * op2 = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   int result = 0;
+   if (op1->type_long < op2->type_long) {
+      result = 1;
+   } else if (op1->type_long > op2->type_long) {
+      result = -1;
+   } 
+   memcpy(&op1->type_int,&result,sizeof(uint32_t));
+   this_frame->operand_stack.push(op1);
+   this_frame->pc++;
+}
 
- void InstructionImpl::fcmpl(Frame * this_frame) {
-    InstructionImpl::nop(this_frame);
+/**
+*   @brief void fcmpl(Frame* this_frame)
+*   @brief Função que desempilha dois floats, compara ambos e empilha o resultado da comparação. 0 se forem iguais,
+*   se o segundo número for maior empilha 1, caso contrário empilha -1. Caso algum dos números seja NaN, empilha 1.
+*   @param *this_frame Frame corrente.
+*   @return
+*/
+void InstructionImpl::fcmpl(Frame * this_frame) {
+   Operand * op1 = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   Operand * op2 = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   int result = 0;
+   if (!isnan(op1->type_float) || !isnan(op1->type_float)) {
+      result = 1;
+   } else if (op1->type_float < op2->type_float) {
+      result = 1;
+   } else if (op1->type_float > op2->type_float) {
+      result = -1;
+   } 
+   memcpy(&op1->type_int,&result,sizeof(uint32_t));
+   this_frame->operand_stack.push(op1);
+   this_frame->pc++;
      
- }
- void InstructionImpl::fcmpg(Frame * this_frame) {
-    InstructionImpl::nop(this_frame);
+}
+
+/**
+*   @brief void fcmpg(Frame* this_frame)
+*   @brief Função desempilha dois floats, compara ambos e empilha o resultado da comparação. Se são iguais empilha 0, 
+*   se o segundo número for maior empilha 1, caso contrário empilha -1. Caso algum dos números seja NaN, empilha 1.
+*   @param *this_frame Ponteiro para frame
+*   @return
+*/
+void InstructionImpl::fcmpg(Frame * this_frame) {
+   Operand * op1 = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   Operand * op2 = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   int result = 0;
+   
+   if (!isnan(op1->type_float) || !isnan(op1->type_float)) {
+      result = 1;
+   } else if (op1->type_float < op2->type_float) {
+      result = 1;
+   } else if (op1->type_float > op2->type_float) {
+      result = -1;
+   } 
+   memcpy(&op1->type_int,&result,sizeof(uint32_t));
+   this_frame->operand_stack.push(op1);
+   this_frame->pc++;
      
- }
- void InstructionImpl::dcmpl(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+}
+
+/**
+*   @brief void dcmpl(Frame* this_frame)
+*   @brief Função desempilha dois doubles, compara os memos e empilha o resultado da comparação. 0 se forem iguais, 
+*   se o segundo número for maior empilha 1, caso contrário empilha -1. Caso algum dos números seja NaN, empilha 0.
+*   @param this_frame Ponteiro para frame.
+*   @return
+*/
+void InstructionImpl::dcmpl(Frame * this_frame){
+   Operand * op1 = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   Operand * op2 = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   int result = 0;
+   
+   if (!isnan(op1->type_double) || !isnan(op1->type_double)) {
+      result = 0;
+   } else if (op1->type_double < op2->type_double) {
+      result = 1;
+   } else if (op1->type_double > op2->type_double) {
+      result = -1;
+   } 
+   memcpy(&op1->type_int,&result,sizeof(uint32_t));
+   this_frame->operand_stack.push(op1);
+   this_frame->pc++;
      
- }
- void InstructionImpl::dcmpg(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+}
+
+/**
+*   @brief void dcmpg(Frame* this_frame)
+*   @brief Função desempilha dois doubles, compara os memos e empilha o resultado da comparação. 0 se forem iguais, 
+*   se o segundo número for maior empilha 1, caso contrário empilha -1. Caso algum dos números seja NaN, empilha 1.
+*   @param this_frame Ponteiro para frame.
+*   @return
+*/
+void InstructionImpl::dcmpg(Frame * this_frame){
+   Operand * op1 = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   Operand * op2 = this_frame->operand_stack.top();
+   this_frame->operand_stack.pop();
+   int result = 0;
+   
+   if (!isnan(op1->type_double) || !isnan(op1->type_double)) {
+      result = 1;
+   } else if (op1->type_double < op2->type_double) {
+      result = 1;
+   } else if (op1->type_double > op2->type_double) {
+      result = -1;
+   } 
+   memcpy(&op1->type_int,&result,sizeof(uint32_t));
+   this_frame->operand_stack.push(op1);
+   this_frame->pc++;
      
- }
+}
 
 /*
  * @brief Instruçao que executa o desvio para determinado endereco.
