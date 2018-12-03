@@ -1450,7 +1450,21 @@ void InstructionImpl::nop(Frame * this_frame) {
 
  }
  void InstructionImpl::new_obj(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+
+     this_frame->pc++;
+     CpAttributeInterface cpAttrAux;
+     uint8_t index1 = this_frame->method_code.code[this_frame->pc++];
+     uint8_t index2 = this_frame->method_code.code[this_frame->pc++];
+     uint16_t index = (index1 << 8) + index2;
+
+     CpInfo * Cp = this_frame->cp_reference[index-1];
+     std::string class_name = cpAttrAux.getUTF8(this_frame->cp_reference,Cp->Class.name_index-1);
+     Operand * op = (Operand *) malloc(sizeof(Operand));
+     if(class_name == "java/lang/StringBuilder") {
+         op->tag = CONSTANT_String;
+         op->type_string = new std::string("");
+     }
+     this_frame->pc++;
 
  }
  void InstructionImpl::dup(Frame * this_frame){
@@ -1475,7 +1489,7 @@ void InstructionImpl::nop(Frame * this_frame) {
  void InstructionImpl::ldc2_w(Frame * this_frame){
     this_frame->pc++;
 
-    Operand * op = (Operand*)calloc(1,sizeof(op));
+    Operand * op = (Operand*)calloc(1,sizeof(Operand));
     uint8_t index1 = this_frame->method_code.code[this_frame->pc++];
     uint8_t index2 = this_frame->method_code.code[this_frame->pc++];
     uint16_t index = (index1 << 8) + index2;
@@ -1543,10 +1557,9 @@ void InstructionImpl::nop(Frame * this_frame) {
  * @return void
  */
  void InstructionImpl::fadd(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+     this_frame->pc++;
 
     float value_1, value_2;
-    std::cout << "INIT" << std::endl;
 
 
     Operand * op1 = this_frame->operand_stack.top();
@@ -1554,7 +1567,7 @@ void InstructionImpl::nop(Frame * this_frame) {
     Operand * op2 = this_frame->operand_stack.top();
     this_frame->operand_stack.pop();
 
-    Operand * result = (Operand*) calloc(1,sizeof(result));
+    Operand * result = (Operand*) calloc(1,sizeof(Operand));
 
     std::memcpy(&value_1,&op1->type_float,sizeof(float));
     std::memcpy(&value_2,&op2->type_float,sizeof(float));
@@ -1566,19 +1579,91 @@ void InstructionImpl::nop(Frame * this_frame) {
 
  }
  void InstructionImpl::fsub(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+     this_frame->pc++;
+
+    float value_1, value_2;
+
+
+    Operand * op1 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+    Operand * op2 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+
+    Operand * result = (Operand*) calloc(1,sizeof(Operand));
+
+    std::memcpy(&value_1,&op1->type_float,sizeof(float));
+    std::memcpy(&value_2,&op2->type_float,sizeof(float));
+    value_1 -= value_2;
+
+    result->tag = CONSTANT_Float;
+    std::memcpy(&result->type_float,&value_1,sizeof(float));
+    this_frame->operand_stack.push(result);
 
  }
  void InstructionImpl::fdiv(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+     this_frame->pc++;
+
+    float value_1, value_2;
+
+
+    Operand * op1 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+    Operand * op2 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+
+    Operand * result = (Operand*) calloc(1,sizeof(Operand));
+
+    std::memcpy(&value_1,&op1->type_float,sizeof(float));
+    std::memcpy(&value_2,&op2->type_float,sizeof(float));
+    value_1 /= value_2;
+
+    result->tag = CONSTANT_Float;
+    std::memcpy(&result->type_float,&value_1,sizeof(float));
+    this_frame->operand_stack.push(result);
 
  }
  void InstructionImpl::fmul(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+     this_frame->pc++;
+
+    float value_1, value_2;
+
+
+    Operand * op1 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+    Operand * op2 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+
+    Operand * result = (Operand*) calloc(1,sizeof(Operand));
+
+    std::memcpy(&value_1,&op1->type_float,sizeof(float));
+    std::memcpy(&value_2,&op2->type_float,sizeof(float));
+    value_1 *= value_2;
+
+    result->tag = CONSTANT_Float;
+    std::memcpy(&result->type_float,&value_1,sizeof(float));
+    this_frame->operand_stack.push(result);
 
  }
  void InstructionImpl::frem(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+     this_frame->pc++;
+
+    float value_1, value_2;
+
+
+    Operand * op1 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+    Operand * op2 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+
+    Operand * result = (Operand*) calloc(1,sizeof(Operand));
+
+    std::memcpy(&value_1,&op1->type_float,sizeof(float));
+    std::memcpy(&value_2,&op2->type_float,sizeof(float));
+    value_1 = fmod(value_2, value_1);
+
+    result->tag = CONSTANT_Float;
+    std::memcpy(&result->type_float,&value_1,sizeof(float));
+    this_frame->operand_stack.push(result);
 
  }
  void InstructionImpl::drem(Frame * this_frame){
@@ -1594,18 +1679,30 @@ void InstructionImpl::nop(Frame * this_frame) {
      memcpy(&value_2,&operand_2->type_double, sizeof(double));
      value_3 = fmod(value_2, value_1);
      Operand *result = (Operand *) malloc(sizeof(Operand));
-     printf("valor1 = %lf\n", value_1);
-     printf("valor2 = %lf\n", value_2);
 
      result->tag = CONSTANT_Double;
      memcpy(&result->type_double,&value_3, sizeof(double));
-     printf("resultado = %lf\n", value_3);
 
      this_frame->operand_stack.push(result);
 
  }
  void InstructionImpl::fneg(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+     this_frame->pc++;
+
+     Operand *operand_1 = this_frame->operand_stack.top();
+     this_frame->operand_stack.pop();
+
+     float value_1, value_2;
+     memcpy(&value_1,&operand_1->type_float, sizeof(float));
+     value_2 = -value_1;
+     Operand *result = (Operand *) malloc(sizeof(Operand));
+     printf("valor1 = %f\n", value_1);
+
+     result->tag = CONSTANT_Double;
+     memcpy(&result->type_float,&value_2, sizeof(float));
+     printf("resultado = %f\n", value_2);
+
+     this_frame->operand_stack.push(result);
 
  }
  void InstructionImpl::lookupswitch(Frame * this_frame){
@@ -1667,7 +1764,29 @@ void InstructionImpl::nop(Frame * this_frame) {
  }
 
  void InstructionImpl::newarray(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+     Operand * count = this_frame->operand_stack.top();
+     this_frame->operand_stack.pop();
+
+     uint8_t type =  this_frame->method_code.code[this_frame->pc++];
+
+     switch (type) {
+         case T_BOOLEAN:
+            break;
+         case T_CHAR:
+            break;
+         case T_FLOAT:
+            break;
+         case T_DOUBLE:
+            break;
+         case T_BYTE:
+            break;
+         case T_SHORT:
+            break;
+         case T_INT:
+            break;
+         case T_LONG:
+            break;
+     }
 
  }
  void InstructionImpl::anewarray(Frame * this_frame){
