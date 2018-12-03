@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <fstream>
 
+
 #include "../hpp/ClassLoader.hpp"
 #include "../hpp/AttributeInfo.hpp"
 #include "../hpp/CpInfo.hpp"
@@ -36,8 +37,8 @@ void classReader(ClassLoader classloader) {
     std::cout << "MajorVersion : " << dec << classloader.getMajor() << endl;
     std::cout << "PoolCounter  : " << dec << classloader.getConstCount() << endl;
     std::cout << "AcessFlag    : "<< "0x" << setw(4) << setfill('0') << hex << classloader.getFlag() << endl;
-    std::cout << "ThisClass    : " <<"constantpool[" << dec << classloader.getThisClass()<<"] " <<"<"<<x.getUTF8(classloader.getConstPool(),classloader.getThisClass()-1)<<">"<< endl;
-    std::cout << "SuperClass   : " <<"constantpool[" << dec << classloader.getSuper()<<"] " <<"<"<<x.getUTF8(classloader.getConstPool(),classloader.getSuper()-1)<<">"<< endl;
+    std::cout << "ThisClass    : " <<"cp info #" << dec << classloader.getThisClass() <<" <"<<x.getUTF8(classloader.getConstPool(),classloader.getThisClass()-1)<<">"<< endl;
+    std::cout << "SuperClass   : " <<"cp info #" << dec << classloader.getSuper() <<" <"<<x.getUTF8(classloader.getConstPool(),classloader.getSuper()-1)<<">"<< endl;
     std::cout << "InterfaceCou : " << dec << classloader.getInterCounter() << endl;
     std::cout << "FieldsCount  : " << dec << classloader.getFieldCount() << dec << endl;
     std::cout << "MethodCount  : " << dec << classloader.getMethoCount() << dec << endl;
@@ -48,68 +49,69 @@ void classReader(ClassLoader classloader) {
     for(unsigned i = 0; i < a.size(); i++) {
       switch (a[i]->tag){
         case CONSTANT_Fieldref:
-          std::cout << "Fieldref" <<endl;
-          std::cout << setw(2) << setfill('0') << i+1 << " : " << setw(2) << setfill('0') << "Class name = constantpool["  << a[i]->Fieldref.class_index <<"] ";
-          std::cout <<"<" << a[a[a[i]->Fieldref.class_index-1]->Class.name_index -1]->UTF8.bytes << ">" << endl;
-          std::cout << setw(2) << setfill('0') << i+1 << " : " << setw(2) << setfill('0') << "Name and Type = constantpool["  << a[i]->Fieldref.name_and_type_index<<"] ";
-          std::cout << "<" << a[a[a[i]->Fieldref.name_and_type_index-1]->NameAndType.name_index -1]->UTF8.bytes << " : " << a[a[a[i]->Fieldref.name_and_type_index-1]->NameAndType.descriptor_index -1]->UTF8.bytes << ">" << endl << endl;
+          std::cout << "["<< setw(2) << setfill('0') << i+1 << "] " << "CONSTANT_Fieldref_info" <<endl;
+          std::cout << "\tClass name: cp info #"  << a[i]->Fieldref.class_index;
+          std::cout <<" <" << a[a[a[i]->Fieldref.class_index-1]->Class.name_index -1]->UTF8.bytes << ">" << endl;
+          std::cout <<"\tName and Type: cp info #"  << a[i]->Fieldref.name_and_type_index;
+          std::cout << " <" << a[a[a[i]->Fieldref.name_and_type_index-1]->NameAndType.name_index -1]->UTF8.bytes << " : " << a[a[a[i]->Fieldref.name_and_type_index-1]->NameAndType.descriptor_index -1]->UTF8.bytes << ">" << endl << endl;
           break;
 
         case CONSTANT_Methodref:
-          std::cout << "Methodref" <<endl;
-          std::cout << setw(2) << setfill('0') << i+1 << " : " << setw(2) << setfill('0') << "Class name = constantpool["  << a[i]->Methodref.class_index  << "] ";
-          std::cout <<"<" << a[a[a[i]->Methodref.class_index-1]->Class.name_index -1]->UTF8.bytes << ">" << endl;
-          std::cout << setw(2) << setfill('0') << i+1 << " : " << setw(2) << setfill('0')  <<"Name and Type = constantpool[" << a[i]->Methodref.name_and_type_index  << "] ";
-          std::cout << "<" << a[a[a[i]->Methodref.name_and_type_index-1]->NameAndType.name_index -1]->UTF8.bytes << " : " << a[a[a[i]->Methodref.name_and_type_index-1]->NameAndType.descriptor_index -1]->UTF8.bytes << ">" << endl << endl;
+          std::cout << "["<< setw(2) << setfill('0') << i+1 << "] " << "CONSTANT_Methodref_info" <<endl;
+          std::cout << "\tClass name: cp info #"  << a[i]->Methodref.class_index ;
+          std::cout <<" <" << a[a[a[i]->Methodref.class_index-1]->Class.name_index -1]->UTF8.bytes << ">" << endl;
+          std::cout <<"\tName and Type: cp info #" << a[i]->Methodref.name_and_type_index ;
+          std::cout << " <" << a[a[a[i]->Methodref.name_and_type_index-1]->NameAndType.name_index -1]->UTF8.bytes << " : " << a[a[a[i]->Methodref.name_and_type_index-1]->NameAndType.descriptor_index -1]->UTF8.bytes << ">" << endl << endl;
           break;
 
         case CONSTANT_NameAndType:
-          std::cout << "NameAndType" <<endl;
-          std::cout << setw(2) << setfill('0') << i+1 << " : " << setw(2) << setfill('0') << "Name = constantpool["  << a[i]->NameAndType.name_index <<"] " ;
-          std::cout << "<"<< a[a[i]->NameAndType.name_index-1]->UTF8.bytes <<  ">"  <<endl;
-          std::cout << setw(2) << setfill('0') << i+1 << " : " << setw(2) << setfill('0') << "Descriptor = constantpool["  << a[i]->NameAndType.descriptor_index <<"] " ;
-          std::cout << "<"<< a[a[i]->NameAndType.descriptor_index-1]->UTF8.bytes <<  ">" << endl << endl;
+          std::cout << "["<< setw(2) << setfill('0') << i+1 << "] " << "CONSTANT_NameAndType_info" <<endl;
+          std::cout << "\tName: cp info #"  << a[i]->NameAndType.name_index ;
+          std::cout << " <"<< a[a[i]->NameAndType.name_index-1]->UTF8.bytes <<  ">"  <<endl;
+          std::cout << "\tDescriptor: cp info #"  << a[i]->NameAndType.descriptor_index ;
+          std::cout << " <"<< a[a[i]->NameAndType.descriptor_index-1]->UTF8.bytes <<  ">" << endl << endl;
           break;
 
         case CONSTANT_String:
-          std::cout << "String" << endl;
-          std::cout << setw(2) << setfill('0') << i+1 << " : " << setw(2) << setfill('0') << "String = constantpool["  << a[i]->String.string_index << "] ";
-          std::cout << "<"<< a[a[i]->String.string_index-1]->UTF8.bytes <<  ">"  <<endl << endl;
+          std::cout << "["<< setw(2) << setfill('0') << i+1 << "] "<< "CONSTANT_String_info" << endl;
+          std::cout << "\tString: cp info #"  << a[i]->String.string_index;
+          std::cout << " <"<< a[a[i]->String.string_index-1]->UTF8.bytes <<  ">"  <<endl << endl;
           break;
 
         case CONSTANT_Utf8:
-          std::cout << "UTF8" << endl;
-          std::cout << setw(2) << setfill('0') << i+1 << " : " << setw(2) << setfill('0') << "Length of byte array = "  << a[i]->UTF8.length <<endl;
-          std::cout << setw(2) << setfill('0') << i+1 << " : " << setw(2) << setfill('0') << "String = "  << a[i]->UTF8.bytes << endl << endl;
+          std::cout << "["<< setw(2) << setfill('0') << i+1 << "] "<< "CONSTANT_UTF8_info" << endl;
+          std::cout << "\tLength of byte array: "  << a[i]->UTF8.length <<endl;
+          std::cout << "\tLength of string: "  << a[i]->UTF8.length <<endl;
+          std::cout << "\tString: "  << a[i]->UTF8.bytes << endl << endl;
           // std::cout << setw(2) << setfill('0') << i+1 << " : " << setw(2) << setfill('0') << "String = "  << a[i]->UTF8.length << endl<<endl;
           break;
 
         case CONSTANT_Class:
-          std::cout << "Class" << endl;
-          std::cout << setw(2) << setfill('0') << i+1 << " : " << setw(2) << setfill('0') << "Class name = "  << a[i]->Class.name_index ;
+          std::cout << "["<< setw(2) << setfill('0') << i+1 << "] "<< "CONSTANT_Class_info" << endl;
+          std::cout << "\tClass name: cp info #"  << a[i]->Class.name_index ;
           std::cout << " <"<< a[a[i]->Class.name_index-1]->UTF8.bytes <<  ">"  <<endl << endl;
           break;
 
         case CONSTANT_InterfaceMethodref:
-          std::cout <<  "InterfaceMethodref" << endl;
-          std::cout << setw(2) << setfill('0') << i+1 << " : " << setw(2) << setfill('0') << "Class name = "  << a[i]->InterfaceMethodref.class_index << endl;
-          std::cout << setw(2) << setfill('0') << i+1 << " : " << setw(2) << setfill('0') << "Name and Type = "  << a[i]->InterfaceMethodref.name_and_type_index << endl << endl;
+          std::cout << "["<< setw(2) << setfill('0') << i+1 << "] " <<  "CONSTANT_InterfaceMethodref_info" << endl;
+          std::cout << "\tClass name: "  << a[i]->InterfaceMethodref.class_index << endl;
+          std::cout << "\tName and Type: "  << a[i]->InterfaceMethodref.name_and_type_index << endl << endl;
           break;
 
         case CONSTANT_Integer:
-          std::cout <<  "Integer" << endl;
-          std::cout << setw(2) << setfill('0') << i+1 << " : " << setw(2) << setfill('0') << "Bytes = "  << a[i]->Integer.bytes << endl << endl;
+          std::cout << "["<< setw(2) << setfill('0') << i+1 << "] " <<  "CONSTANT_Integer_info" << endl;
+          std::cout << "\tBytes: "  << a[i]->Integer.bytes << endl << endl;
           break;
 
         case CONSTANT_Float:
-          std::cout << "Float" << endl;
-          std::cout << setw(2) << setfill('0') << i+1 << " : " << setw(2) << setfill('0') << "Bytes = "  << a[i]->Float.bytes << endl << endl;
+          std::cout << "["<< setw(2) << setfill('0') << i+1 << "] " << "CONTANT_Float_info" << endl;
+          std::cout << "\tBytes: "  << a[i]->Float.bytes << endl << endl;
           break;
 
         case CONSTANT_Long:
-          std::cout << "Long" << endl;
-          std::cout << setw(2) << setfill('0') << i+1 << " : " << setw(2) << setfill('0') << "High Bytes = "  << a[i]->Long.high_bytes << endl;
-          std::cout << setw(2) << setfill('0') << i+1 << " : " << setw(2) << setfill('0') << "Low Bytes = "  << a[i]->Long.low_bytes << endl << endl;
+          std::cout << "["<< setw(2) << setfill('0') << i+1 << "] " << "CONSTANT_Long_info" << endl;
+          std::cout << "\tHigh Bytes: "  << a[i]->Long.high_bytes << endl;
+          std::cout << "\tLow Bytes: "  << a[i]->Long.low_bytes << endl << endl;
           break;
 
         case CONSTANT_Double:
@@ -117,14 +119,17 @@ void classReader(ClassLoader classloader) {
           uint64_t aux;
           aux = ((uint64_t)a[i]->Double.high_bytes << 32) | a[i]->Double.low_bytes;
           memcpy(&print_double, &aux, sizeof(double));
-          std::cout << "Double" << endl;
-          std::cout << setw(2) << setfill('0') << i+1 << " : " << setw(2) << setfill('0') << "High Bytes = "  << a[i]->Double.high_bytes << endl;
-          std::cout << setw(2) << setfill('0') << i+1 << " : " << setw(2) << setfill('0') << "Low Bytes = "  << a[i]->Double.low_bytes << endl;
-          std::cout << setw(2) << setfill('0') << i+1 << " : " << setw(2) << setfill('0') << "Double = "  << print_double << endl << endl;
+          std::cout << "["<< setw(2) << setfill('0') << i+1 << "] " << "CONSTANT_Double_info" << endl;
+          std::cout << "\tHigh Bytes: 0x";
+          printf("%x\n",a[i]->Double.high_bytes );
+           
+          std::cout << "\tLow Bytes: 0x";
+          printf("%x\n",a[i]->Double.low_bytes );
+          std::cout << "\tDouble: "  << print_double << endl << endl;
           break;
 
         case CONSTANT_Empty:
-          std::cout << setw(2) << setfill('0') << i+1 << " : " << setw(2) << setfill('0') << "(large numeric continued)" << endl << endl;
+          std::cout <<"[" <<setw(2) << setfill('0') << i+1 << "] (large numeric continued)" << endl << endl;
           break;
         default :
           std::cout << "Non-type" << endl;
@@ -160,10 +165,10 @@ void classReader(ClassLoader classloader) {
     vector<MethodInfo *> methods = classloader.getMethods();
     int countMethod = methods.size();
     for(int i=0;i<countMethod;i++){
-      std::cout << "[" << i << "]" << endl;
-      std::cout <<"Name = constantpool[" << methods[i]->name_index<<"] " <<"<"<<a[methods[i]->name_index-1]->UTF8.bytes<<">"<< endl;
-      std::cout <<"Descriptor = constantpool[" << methods[i]->descriptor_index<<"] "<< "<"<< a[methods[i]->descriptor_index-1]->UTF8.bytes<<">"<<endl;
-      std::cout <<"Access flag = " << "0x" << setw(4) << setfill('0') << methods[i]->access_flags <<endl << endl;
+      std::cout << "\n[" << i << "]" << a[methods[i]->name_index-1]->UTF8.bytes << endl;
+      std::cout <<"Name: cp info #" << methods[i]->name_index <<" <"<<a[methods[i]->name_index-1]->UTF8.bytes<<">"<< endl;
+      std::cout <<"Descriptor: cp info #" << methods[i]->descriptor_index<<" <"<< a[methods[i]->descriptor_index-1]->UTF8.bytes<<">"<<endl;
+      std::cout <<"Access flag: " << "0x" << setw(4) << setfill('0') << methods[i]->access_flags <<endl << endl;
       for(int j=0;j<methods[i]->attributes_count; j++){
         methods[i]->attributes[j].print(a);
       }
@@ -175,12 +180,13 @@ void classReader(ClassLoader classloader) {
     vector<AttributeInfo *> attributes = classloader.getAttributes();
     std::cout << "\n------------------------------Attributes------------------------------" << endl << endl;
     for (unsigned k = 0 ; k < attributes.size(); k++) {
-        std::cout << "[" << k << "]" << endl;
+        std::cout << "[" << k << "]" ;
         attributes[k]->print(a);
     }
 
     /* Fim do print attributes */
     //fclose(fp);
+  exit(0);
 }
 
 /**
@@ -219,4 +225,5 @@ int main(int argc, char * argv[]) {
         case 'i': classInterpreter(classloader); break;
         case 'e': classReader(classloader);      break;
     }
+  exit(0);
 }
