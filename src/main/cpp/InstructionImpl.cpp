@@ -1651,15 +1651,49 @@ void InstructionImpl::nop(Frame * this_frame) {
      
  }
  void InstructionImpl::lor(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+    
+    this_frame->pc++;    
+     
+    Operand * result = (Operand*)calloc(1,sizeof(Operand));
+    auto op1 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+    auto op2 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+
+    result->tag = CONSTANT_Long;
+    result->type_long = op2->type_long | op1->type_long;
+
+    this_frame->operand_stack.push(result);
      
  }
  void InstructionImpl::ixor(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+    Operand *operand_1 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+    Operand *operand_2 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+
+    Operand *result = (Operand *) malloc(sizeof(Operand));
+
+    result->tag = CONSTANT_Integer;
+    result->type_int = operand_2->type_int ^ operand_1->type_int;
+
+    this_frame->operand_stack.push(result);
+    this_frame->pc++;
      
  }
  void InstructionImpl::lxor(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+    this_frame->pc++;    
+     
+    Operand * result = (Operand*)calloc(1,sizeof(Operand));
+    auto op1 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+    auto op2 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+
+    result->tag = CONSTANT_Long;
+    result->type_long = op2->type_long ^ op1->type_long;
+
+    this_frame->operand_stack.push(result);
      
  }
 
