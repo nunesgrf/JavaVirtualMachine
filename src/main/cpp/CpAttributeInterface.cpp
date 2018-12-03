@@ -1,3 +1,8 @@
+/** @file CpAttributeInterface.cpp
+*   @brief Funções que verificam, a partir da tag, qual o tipo do bytecode que está sendo lido;
+*
+*/
+
 #include "../hpp/CpAttributeInterface.hpp"
 
 #define CONSTANT_Utf8 1

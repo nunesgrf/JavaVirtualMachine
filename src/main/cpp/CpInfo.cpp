@@ -1,3 +1,7 @@
+/** @file CpInfo.cpp
+    @brief Ocorre os set's a partir dos bytes lidos no problema;
+*/
+
 #ifndef CPP_CPINFO
 #define CPP_CPINFO
 

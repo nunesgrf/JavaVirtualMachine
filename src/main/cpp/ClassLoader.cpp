@@ -1,6 +1,6 @@
 /** @file ClassLoader.cpp
-    @brief Arquivo que obtém os bytecodes do .class e realiza o carregamento dessas informações;
-    
+*    @brief Arquivo que obtém os bytecodes do .class e realiza o carregamento dessas informações;
+*    
 */
 
 #include "../hpp/ClassLoader.hpp"

@@ -1,3 +1,8 @@
+/** @file FieldInfo.cpp
+    @brief Funções que mexerão com as informações das fields, armazendo os mesmos a partir da leitura dos bytecodes;
+
+*/
+
 #include "../hpp/FieldInfo.hpp"
 #include "../hpp/ByteReader.hpp"
 
