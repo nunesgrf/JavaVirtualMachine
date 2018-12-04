@@ -9,10 +9,13 @@
  * @param *classloader ponteiro para ClassLoader
  * @return void
  */
+
+std::stack<Frame*> Interpreter::frame_stack;
+
 void Interpreter::execute(ClassLoader * classloader) {
 
     Interpreter::loadInMemo(classloader);
-    
+
     Frame toRun(classloader->getConstPool(),this->mainFinder(classloader));
     Interpreter::frame_stack.push(&toRun);
 
@@ -29,10 +32,10 @@ void Interpreter::execute(ClassLoader * classloader) {
 ClassLoader * Interpreter::getClassInfo(std::string className) {
 
     std::cout << "Interpreter::getClassInfo BEGIN" <<std::endl;
-    
+
     MethodsArea container;
     Instance * instance = container.GLOBAL_staticClasses[className];
-    
+
     if(instance == NULL) {
         FILE * fp = fopen((container.path + className + ".class").c_str(),"r");
         ClassLoader new_class(fp);
@@ -62,16 +65,43 @@ Operand * Interpreter::createType(std::string type) {
         case 'J':
             toReturn->tag = CONSTANT_Long; break;
         case 'D':
-            toReturn->tag = CONSTANT_Double; break;      
+            toReturn->tag = CONSTANT_Double; break;
+        case 'Z':
+            toReturn->tag = CONSTANT_Boolean; break;
+        case 'B':
+            toReturn->tag = CONSTANT_Byte; break;
+        case 'C':
+            toReturn->tag = CONSTANT_Char; break;
+        case 'S':
+            toReturn->tag = CONSTANT_Short; break;
+        case '[':
+            toReturn->tag = CONSTANT_Array;
+            toReturn->array_type = (ArrayType*)calloc(1,sizeof(ArrayType));
+            toReturn->array_type->array = new std::vector<Operand*>(); break;
         case 'P':
             toReturn->tag = CONSTANT_Empty; break;
-        //case CONSTANT_String:
-        //    toReturn->tag = CONSTANT_String;
-        //    toReturn->type_string = "";
+        case CONSTANT_String:
+            toReturn->tag = CONSTANT_String;
+            toReturn->type_string = new std::string(""); break;
+        case 'L':
+            if(type == "Ljava/lang/String;") {
+                toReturn->tag = CONSTANT_String;
+                toReturn->type_string = new std::string("");
+            }
+            else {
+                toReturn->tag = CONSTANT_Class;
+                toReturn->class_instance = (Instance*)calloc(1,sizeof(Instance));
 
-        //IMPLEMENTAR DEMAIS MÉTODOS.
+                std::string className  = type.substr(1,type.size());
+                ClassLoader * newClass = Interpreter::getClassInfo(className);
+
+                toReturn->class_instance->classe = newClass;
+                toReturn->class_instance->name   = className;
+
+                Interpreter::loadVariables(toReturn->class_instance);
+            }
+            break;
     }
-
     return toReturn;
 }
 
@@ -93,12 +123,12 @@ void Interpreter::loadVariables(Instance * instance) {
         for(auto fpointer : currClass->getFields()) {
             std::string nameField = cpAt.getUTF8(currClass->getConstPool(),fpointer->name_index-1);
             std::string typeVariable = cpAt.getUTF8(currClass->getConstPool(),fpointer->descriptor_index-1);
-            instance->references[nameField] = Interpreter::createType(typeVariable); 
+            instance->references[nameField] = Interpreter::createType(typeVariable);
         }
 
         if(superClassName != "java/lang/Object" && superClassName != "") currClass = Interpreter::getClassInfo(superClassName); //IMPLEMENTAR O MÉTODO getClassInfo();
 
-    } 
+    }
 }
 
 /** @brief Realiza o carregamento do ClassLoader em memória e retorna a instância.
@@ -108,13 +138,13 @@ void Interpreter::loadVariables(Instance * instance) {
 Instance * Interpreter::loadInMemo(ClassLoader * javaclass) {
 
     MethodsArea dump;
-    Instance * inst_LC = new Instance(javaclass);  
+    Instance * inst_LC = new Instance(javaclass);
     Instance * inst_SC = new Instance(javaclass);
 
     dump.GLOBAL_loadedClasses.insert(std::pair<std::string, Instance*>(inst_LC->name,inst_LC));
-    dump.GLOBAL_staticClasses.insert(std::pair<std::string, Instance*>(inst_SC->name,inst_SC)); 
+    dump.GLOBAL_staticClasses.insert(std::pair<std::string, Instance*>(inst_SC->name,inst_SC));
 
-    Interpreter::loadVariables(inst_LC);    
+    Interpreter::loadVariables(inst_LC);
     return inst_LC;
 }
 
@@ -123,21 +153,21 @@ Instance * Interpreter::loadInMemo(ClassLoader * javaclass) {
  * @return MethodInfo*
  */
 MethodInfo * Interpreter::mainFinder(ClassLoader * javaclass) {
-    
-    
+
+
     auto methods = javaclass->getMethods();
     CpAttributeInterface CpAtAux;
 
     for(auto m : methods) {
-        
+
         std::string descriptor = "";
         std::string name = CpAtAux.getUTF8(javaclass->getConstPool(),m->name_index-1);
-        
+
         if(name == "main") descriptor = CpAtAux.getUTF8(javaclass->getConstPool(),m->descriptor_index-1);
         if(descriptor == "([Ljava/lang/String;)V") return m;
     }
     std::cout << "Arquivo não possui main " << std::endl;
-    
+
     MethodInfo * toReturn = (MethodInfo*)calloc(1,sizeof(toReturn));
     return toReturn; // ARRUMAR ESTA SAIDA;
 }

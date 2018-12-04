@@ -44,6 +44,7 @@
         "iomanip": "cpp",
         "cinttypes": "cpp",
         "typeindex": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "cstdarg": "cpp"
     }
 }

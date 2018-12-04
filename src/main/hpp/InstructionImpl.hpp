@@ -138,7 +138,7 @@ public:
     static void pop(Frame *);
     static void pop2(Frame *);
 
-    static void astore(Frame *, int n);
+    static void astore(Frame *);
     static void astore_0(Frame *);
 
     static void if_icmpge(Frame *);

@@ -15,6 +15,8 @@ class MethodsArea {
     static std::string path;
         
     static Operand * getStaticfield(std::string className, std::string varName);
+    static MethodInfo * findMethodByNameOrDeor(ClassLoader*,std::string,std::string);
+    static Operand    * copyOperand(Operand*);
 };
 
 #endif

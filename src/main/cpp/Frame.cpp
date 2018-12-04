@@ -31,6 +31,8 @@ Frame::Frame(std::vector<CpInfo*> cp, MethodInfo * methd) {
         if(cpAtAux.getUTF8(cp,at.name_index-1) == "Code") this->method_code = at.code;
     }
     this->local_variables.resize(method_code.max_locals);
+    Operand * op = (Operand*)calloc(1,sizeof(op));
+    std::fill(this->local_variables.begin(),this->local_variables.end(),op);
 }
 
 /** @brief método de execução do código armazenado em um frame.
@@ -41,11 +43,12 @@ void Frame::run() {
     
     bool flag = true;
 
-    do {
+    //do {
         uint8_t opCode = this->method_code.code[pc];
+        //std::cout << this->pc << " : " << this->instructions[opCode].name << std::endl;
         this->instructions[opCode].func(this);
-        //std::cout << this->instructions[opCode].name << std::endl;
-        if(this->instructions[opCode].name == "return") flag = false;    
-    } while(flag);
+        if(this->instructions[opCode].name == "return") flag = false; 
+        //std::cout << flag << std::endl;   
+    //} while(flag);
 
 }
