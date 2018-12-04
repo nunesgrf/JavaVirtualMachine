@@ -178,7 +178,7 @@ MethodInfo * Interpreter::mainFinder(ClassLoader * javaclass) {
  * @param string que representa o descritor do metodo.
  * @return MethodInfo*
  */
-MethodInfo * findMethodByNameOrDescriptor(ClassLoader* classloader,std::string method_name,std::string method_desc){
+MethodInfo * Interpreter::findMethodByNameOrDescriptor(ClassLoader* classloader,std::string method_name,std::string method_desc){
     std::vector<MethodInfo*> methods = classloader->getMethods();
     std::vector<CpInfo*> constantPool = classloader->getConstPool();
     CpAttributeInterface cpAttrAux;
