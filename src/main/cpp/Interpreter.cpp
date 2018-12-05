@@ -21,7 +21,6 @@ void Interpreter::execute(ClassLoader * classloader) {
 
     while(!Interpreter::frame_stack.empty()) {
         Interpreter::frame_stack.top()->run();
-        Interpreter::frame_stack.pop();
     }
 }
 
