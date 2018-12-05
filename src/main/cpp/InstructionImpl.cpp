@@ -875,7 +875,7 @@ void InstructionImpl::fload_3(Frame * this_frame){
 void InstructionImpl::lload(Frame * this_frame){
    this_frame->pc++;
    uint8_t index = this_frame->method_code.code[this_frame->pc++];
-   Operand * op = this_frame->local_variables.at(index-1);
+   Operand * op = this_frame->local_variables.at((int)index);
    this_frame->operand_stack.push(op);
 }
 
@@ -1568,7 +1568,7 @@ void InstructionImpl::ior(Frame * this_frame){
    auto op2 = this_frame->operand_stack.top();
    this_frame->operand_stack.pop();
 
-   Operand * result = (Operand*)calloc(1,sizeof(result));
+   Operand * result = (Operand*)calloc(1,sizeof(Operand));
 
    result->type_int = op2->type_int | op1->type_int;
 
@@ -1742,7 +1742,7 @@ void InstructionImpl::dup2_x2(Frame * this_frame){
  */
  void InstructionImpl::ladd(Frame * this_frame){
 
-    Operand * result = (Operand*)calloc(1,sizeof(result));
+    Operand * result = (Operand*)calloc(1,sizeof(Operand));
     auto op1 = this_frame->operand_stack.top();
     this_frame->operand_stack.pop();
     auto op2 = this_frame->operand_stack.top();
@@ -1763,7 +1763,7 @@ void InstructionImpl::dup2_x2(Frame * this_frame){
  */
  void InstructionImpl::lsub(Frame * this_frame){
 
-    Operand * result = (Operand*)calloc(1,sizeof(result));
+    Operand * result = (Operand*)calloc(1,sizeof(Operand));
     auto op1 = this_frame->operand_stack.top();
     this_frame->operand_stack.pop();
     auto op2 = this_frame->operand_stack.top();
@@ -1784,7 +1784,7 @@ void InstructionImpl::dup2_x2(Frame * this_frame){
  */
  void InstructionImpl::ldiv(Frame * this_frame){
 
-    Operand * result = (Operand*)calloc(1,sizeof(result));
+    Operand * result = (Operand*)calloc(1,sizeof(Operand));
     auto op1 = this_frame->operand_stack.top();
     this_frame->operand_stack.pop();
     auto op2 = this_frame->operand_stack.top();
@@ -3085,7 +3085,7 @@ void InstructionImpl::iastore(Frame * this_frame){
  */
  void InstructionImpl::lmul(Frame * this_frame){
 
-    Operand * result = (Operand*)calloc(1,sizeof(result));
+    Operand * result = (Operand*)calloc(1,sizeof(Operand));
     auto op1 = this_frame->operand_stack.top();
     this_frame->operand_stack.pop();
     auto op2 = this_frame->operand_stack.top();
