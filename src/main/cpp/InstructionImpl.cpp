@@ -188,10 +188,6 @@ void InstructionImpl::nop(Frame * this_frame) {
    std::string method_name = cpAttrAux.getUTF8(this_frame->cp_reference,name_and_type->NameAndType.name_index-1);
    std::string method_deor = cpAttrAux.getUTF8(this_frame->cp_reference,name_and_type->NameAndType.descriptor_index-1);
 
-  /*std::cout << "class_name = " << class_name << std::endl;
-  std::cout << "method_name = " << method_name << std::endl;
-  std::cout << "method_deor = " << method_deor << std::endl;
-  getchar();*/
    /* Inicia-se o procedimento para verificar se o metodo a ser chamado é um print f */
    if((class_name == "java/io/PrintStream") && (method_name == "println" || method_name == "print")){
 
@@ -1509,6 +1505,7 @@ void InstructionImpl::iadd(Frame * this_frame){
    result->type_int = operand_1->type_int + operand_2->type_int;
 
    this_frame->operand_stack.push(result);
+   this_frame->pc++;
 
  }
 
@@ -3636,9 +3633,9 @@ void InstructionImpl::dcmpg(Frame * this_frame){
  * @return void
  */
  void InstructionImpl::i_goto(Frame * this_frame){
-   uint16_t branchbyte1 = this_frame->method_code.code[this_frame->pc++];
-   uint16_t branchbyte2 = this_frame->method_code.code[this_frame->pc++];
-   uint16_t offset = (branchbyte1 << 8) | branchbyte2;
+   int16_t branchbyte1 = this_frame->method_code.code[this_frame->pc+1];
+   int16_t branchbyte2 = this_frame->method_code.code[this_frame->pc+2];
+   int16_t offset = (branchbyte1 << 8) | branchbyte2;
    this_frame->pc +=offset;
 
  }
@@ -3649,10 +3646,10 @@ void InstructionImpl::dcmpg(Frame * this_frame){
  * @return void
  */
  void InstructionImpl::goto_w(Frame * this_frame){
-   uint32_t branchbyte1 = this_frame->method_code.code[this_frame->pc++];
-   uint32_t branchbyte2 = this_frame->method_code.code[this_frame->pc++];
-   uint32_t branchbyte3 = this_frame->method_code.code[this_frame->pc++];
-   uint32_t branchbyte4 = this_frame->method_code.code[this_frame->pc++];
+   uint32_t branchbyte1 = this_frame->method_code.code[this_frame->pc+1];
+   uint32_t branchbyte2 = this_frame->method_code.code[this_frame->pc+2];
+   uint32_t branchbyte3 = this_frame->method_code.code[this_frame->pc+3];
+   uint32_t branchbyte4 = this_frame->method_code.code[this_frame->pc+4];
    uint32_t offset = (branchbyte1 << 24) | (branchbyte2 << 16) | (branchbyte3 << 8) | branchbyte4;
    this_frame->pc +=offset;
 
@@ -3723,8 +3720,8 @@ void InstructionImpl::jsr(Frame * this_frame){
    Operand * op = (Operand*)calloc(1,sizeof(Operand));
    op->type_byte = this_frame->pc;
    this_frame->operand_stack.push(op);
-   uint16_t branchbyte1 = this_frame->method_code.code[this_frame->pc++];
-   uint16_t branchbyte2 = this_frame->method_code.code[this_frame->pc++];
+   uint16_t branchbyte1 = this_frame->method_code.code[this_frame->pc+1];
+   uint16_t branchbyte2 = this_frame->method_code.code[this_frame->pc+2];
    uint16_t offset = (branchbyte1 << 8) | (branchbyte2);
 
    this_frame->pc += offset;
@@ -3739,10 +3736,10 @@ void InstructionImpl::jsr_w(Frame * this_frame){
    Operand * op = (Operand*)calloc(1,sizeof(Operand));
    op->type_byte = this_frame->pc;
    this_frame->operand_stack.push(op);
-   uint32_t branchbyte1 = this_frame->method_code.code[this_frame->pc++];
-   uint32_t branchbyte2 = this_frame->method_code.code[this_frame->pc++];
-   uint32_t branchbyte3 = this_frame->method_code.code[this_frame->pc++];
-   uint32_t branchbyte4 = this_frame->method_code.code[this_frame->pc++];
+   uint32_t branchbyte1 = this_frame->method_code.code[this_frame->pc+1];
+   uint32_t branchbyte2 = this_frame->method_code.code[this_frame->pc+2];
+   uint32_t branchbyte3 = this_frame->method_code.code[this_frame->pc+3];
+   uint32_t branchbyte4 = this_frame->method_code.code[this_frame->pc+4];
    uint32_t offset = (branchbyte1 << 24) | (branchbyte2 << 16) | (branchbyte3 << 8) | branchbyte4;
 
    this_frame->pc += offset;
