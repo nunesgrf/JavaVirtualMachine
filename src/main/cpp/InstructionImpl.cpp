@@ -88,7 +88,7 @@ void InstructionImpl::nop(Frame * this_frame) {
    /* Para descobrir o qual o metodo, pegamos o nome da classe, nome do metodo e descritor dele */
    std::string class_name = cpAttrAux.getUTF8(this_frame->cp_reference,method_reference->Methodref.class_index-1);
    std::string method_name = cpAttrAux.getUTF8(this_frame->cp_reference,name_and_type->NameAndType.name_index-1);
-   std::string method_desc = cpAttrAux.getUTF8(this_frame->cp_reference,name_and_type->NameAndType.name_index-1);
+   std::string method_desc = cpAttrAux.getUTF8(this_frame->cp_reference,name_and_type->NameAndType.descriptor_index-1);
 
 	if ( ((class_name == "java/lang/Object" || class_name == "java/lang/String") && method_name == "<init>") || (class_name == "java/lang/StringBuilder" && method_name == "<init>")) {
       /* Caso seja uma classe String ou StringBuilder, desempilhar (dispensar) o operando do topo da pilha de operandos */
@@ -2224,21 +2224,25 @@ void InstructionImpl::astore(Frame * this_frame){
  }
  void InstructionImpl::new_obj(Frame * this_frame){
 
-     this_frame->pc++;
-     CpAttributeInterface cpAttrAux;
-     uint8_t index1 = this_frame->method_code.code[this_frame->pc++];
-     uint8_t index2 = this_frame->method_code.code[this_frame->pc++];
-     uint16_t index = (index1 << 8) + index2;
+   CpAttributeInterface cpAttrAux;
+   Interpreter auxInterpreter;
+   this_frame->pc++;
+   uint8_t index1 = this_frame->method_code.code[this_frame->pc++];
+   uint8_t index2 = this_frame->method_code.code[this_frame->pc++];
+   uint16_t index = (index1 << 8) | index2;
 
-     CpInfo * Cp = this_frame->cp_reference[index-1];
-     std::string class_name = cpAttrAux.getUTF8(this_frame->cp_reference,Cp->Class.name_index-1);
-     Operand * op = (Operand *) malloc(sizeof(Operand));
-     if(class_name == "java/lang/StringBuilder") {
-         op->tag = CONSTANT_String;
-         op->type_string = new std::string("");
-     }
-     this_frame->pc++;
-
+   CpInfo * Cp = this_frame->cp_reference[index-1];
+   std::string class_name = cpAttrAux.getUTF8(this_frame->cp_reference,Cp->Class.name_index-1);
+   Operand * op = (Operand*)calloc(1,sizeof(Operand));
+   if(class_name == "java/lang/StringBuilder") {
+      op->tag = CONSTANT_String;
+      op->type_string = new std::string("");
+   }
+   else {
+      op = auxInterpreter.createType("L" + class_name);
+   }
+   this_frame->operand_stack.push(op);
+   
  }
 
  /**
