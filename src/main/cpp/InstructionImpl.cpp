@@ -157,10 +157,8 @@ void InstructionImpl::nop(Frame * this_frame) {
          }
       }
 
-      std::cout << "pilha vazia ? " << this_frame->operand_stack.empty() << std::endl;
       /* Desempilhamos o operando que refere-se a propria classe */
       Operand * current_class = this_frame->operand_stack.top();
-      std::cout << (int)current_class->tag << std::endl;
       this_frame->operand_stack.pop();
       
       instance_arguments.insert(instance_arguments.begin(), current_class);
@@ -175,7 +173,6 @@ void InstructionImpl::nop(Frame * this_frame) {
 
       auxInterpreter.frame_stack.push(new_frame);
    }
-   std::cout << "InvokeSpecial END" << std::endl;
  }
 
 
@@ -592,9 +589,13 @@ void InstructionImpl::nop(Frame * this_frame) {
     InstructionImpl::nop(this_frame);
 
  }
+/** @brief Uma referencia do objeto na posicao 0 do vetor de variaveis locais é colocada na pilha de operandos
+ * @param *this_frame ponteiro para o frame atual
+ * @return void
+ */
  void InstructionImpl::aload_0(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-
+   this_frame->pc++;
+   this_frame->operand_stack.push(this_frame->local_variables.at(0));
  }
 
   /** @brief Uma referencia do objeto na posicao 1 do vetor de variaveis locais é colocada na pilha de operandos
@@ -605,13 +606,22 @@ void InstructionImpl::nop(Frame * this_frame) {
    this_frame->pc++;
    this_frame->operand_stack.push(this_frame->local_variables.at(1));
  }
+
+/** @brief Uma referencia do objeto na posicao 2 do vetor de variaveis locais é colocada na pilha de operandos
+ * @param *this_frame ponteiro para o frame atual
+ * @return void
+ */
  void InstructionImpl::aload_2(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-
+   this_frame->pc++;
+   this_frame->operand_stack.push(this_frame->local_variables.at(2));
  }
+ /** @brief Uma referencia do objeto na posicao 3 do vetor de variaveis locais é colocada na pilha de operandos
+ * @param *this_frame ponteiro para o frame atual
+ * @return void
+ */
  void InstructionImpl::aload_3(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
-
+   this_frame->pc++;
+   this_frame->operand_stack.push(this_frame->local_variables.at(3));
  }
  void InstructionImpl::void_return(Frame * this_frame){
     Interpreter auxInter;
@@ -2320,8 +2330,6 @@ void InstructionImpl::astore(Frame * this_frame){
     auto toCopy = this_frame->operand_stack.top();
     //auto copy = methAux.copyOperand(toCopy);
     auto copy = toCopy;
-    std::cout << toCopy->class_instance->classe->getConstPool().size() << std::endl;
-    getchar();
     this_frame->operand_stack.push(copy);
  }
 

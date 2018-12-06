@@ -14,7 +14,6 @@ Operand * MethodsArea::getStaticfield(std::string className, std::string varName
 }
 
 MethodInfo * MethodsArea::findMethodByNameOrDeor(ClassLoader* classloader,std::string method_name,std::string method_desc){
-    std::cout <<"flag" << std::endl; 
     
     std::vector<MethodInfo*> methods = classloader->getMethods();
     std::vector<CpInfo*> constantPool = classloader->getConstPool();
@@ -28,7 +27,6 @@ MethodInfo * MethodsArea::findMethodByNameOrDeor(ClassLoader* classloader,std::s
         }
     }
   std::cout << "Método nao encontrado, ponteiro retornado nulo";
-  getchar();
   return NULL;
 }
 
@@ -36,7 +34,6 @@ Operand * MethodsArea::copyOperand(Operand * toCopy) {
 
     Operand * toReturn = (Operand*)calloc(1,sizeof(Operand));
 
-    std::cout << "copyOperand : " << toCopy->class_instance->classe->getConstPool().size() << std::endl;
     toReturn->tag = toCopy->tag;
     
     switch((int)toCopy->tag) {
@@ -64,12 +61,8 @@ Operand * MethodsArea::copyOperand(Operand * toCopy) {
             //toReturn->class_instance->classe = (ClassLoader*)calloc(1,sizeof(ClassLoader));
             //toReturn->class_instance->classe = new ClassLoader()
             toReturn->class_instance->classe = toCopy->class_instance->classe;
-            std::cout << toReturn->class_instance->classe->getConstPool().size() << std::endl;
-            getchar();
             toReturn->class_instance->references = new std::map<std::string, Operand*>();
             toReturn->class_instance->references = toCopy->class_instance->references;
-            std::cout << "Entrei aqui" << std::endl;
-            getchar();
             break;
 
         case CONSTANT_Array:
