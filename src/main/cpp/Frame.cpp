@@ -1,3 +1,8 @@
+/** @file Frame.cpp
+    @brief Contrutor, destrutor e metodos para o funcionamento da lógica do frame;
+
+*/
+
 #include "../hpp/Frame.hpp"
 #include "../hpp/CpAttributeInterface.hpp"
 

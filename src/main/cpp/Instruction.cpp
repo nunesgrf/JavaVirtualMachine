@@ -1,8 +1,16 @@
+/** @file Instruction.cpp
+    @brief Métodos que servem para inicializar todas as intruções contidas na documentação;
+
+*/
 #include "../hpp/Instruction.hpp"
 #include "../hpp/InstructionImpl.hpp"
 
 #include <iostream>
-
+/**
+*   @brief Inilizar todas as instruções em uma array para facilitar o mapeamento;
+*   @param instructions Recebe a chave da instrução;
+*   @return void;
+*/
 void Instruction::init(Instruction* instructions) {
 
     instructions[0].name = "nop";

@@ -1,3 +1,7 @@
+/** @file Interpreter.cpp
+    @brief Métodos que fazem a atuação do interpretador;
+
+*/
 #include "../hpp/Interpreter.hpp"
 #include "../hpp/CpAttributeInterface.hpp"
 #include "GLOBAL_file.hpp"

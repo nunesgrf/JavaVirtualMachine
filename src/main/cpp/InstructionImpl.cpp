@@ -1,3 +1,8 @@
+/** @file InstructionImpl.cpp
+    @brief Métodos referentes a execução de cada instrução ;
+
+*/
+
 #include "../hpp/Frame.hpp"
 #include "../hpp/CpAttributeInterface.hpp"
 #include "../hpp/GLOBAL_file.hpp"

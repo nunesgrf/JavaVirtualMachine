@@ -1,3 +1,7 @@
+/** @file InterfaceInfo.cpp
+    @brief Método para carregar informações para a InterfaceInfo;
+
+*/
 #include "../hpp/InterfaceInfo.hpp"
 
 InterfaceInfo::~InterfaceInfo() {

@@ -1,3 +1,8 @@
+/** @file Instance.cpp
+    @brief Contém métodos para carregar as informações do Classloader na Instância;
+
+*/
+
 #include "../hpp/Instance.hpp"
 #include "../hpp/CpAttributeInterface.hpp"
 
