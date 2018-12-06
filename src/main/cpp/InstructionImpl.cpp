@@ -2767,11 +2767,9 @@ void InstructionImpl::putfield(Frame * this_frame){
      memcpy(&value_1,&operand_1->type_float, sizeof(float));
      value_2 = -value_1;
      Operand *result = (Operand *) malloc(sizeof(Operand));
-     printf("valor1 = %f\n", value_1);
 
      result->tag = CONSTANT_Double;
      memcpy(&result->type_float,&value_2, sizeof(float));
-     printf("resultado = %f\n", value_2);
 
      this_frame->operand_stack.push(result);
 
@@ -3531,7 +3529,7 @@ void InstructionImpl::iastore(Frame * this_frame){
 
  }
 
- }
+
 
 /**
  * @brief Verifica se é null, caso sim, realiza um salto baseado em um offset.

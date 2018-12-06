@@ -53,7 +53,7 @@ string Flag_names(int flag_byte, int parametro){
       break;
     case 16: flag_name = "[final]";
       break;
-    case 32: 
+    case 32:
       if(parametro == 1){
         flag_name = "[super]";
       }
@@ -74,12 +74,12 @@ string Flag_names(int flag_byte, int parametro){
     case 2048: flag_name = "[strict]";
       break;
     case 4096: flag_name = "[synthetic]";
-      break;      
+      break;
   }
   return flag_name;
 }
 
-/** 
+/**
  * @brief Chama o exibidor de ClassLoader
  * @param classloader Instancia da classe ClassLoader
  * @return void
@@ -88,7 +88,7 @@ void classReader(ClassLoader classloader) {
     CpAttributeInterface x;
     vector<CpInfo*> a = classloader.getConstPool();
 
- 
+
     /* Print de infomações genericas do .class */
 
     std::cout << "------------------------------General information------------------------------ \n\n\n";
@@ -105,7 +105,7 @@ void classReader(ClassLoader classloader) {
     std::cout << "AtributeCoun : " << dec << classloader.getAttriCount() << endl;
     /*Fim do Print de infomações genericas do .class */
     /* Print do vetor de constant pool */
-    
+
     std::cout << "------------------------------ConstantPool------------------------------ \n\n\n";
     for(unsigned i = 0; i < a.size(); i++) {
       switch (a[i]->tag){
@@ -183,7 +183,7 @@ void classReader(ClassLoader classloader) {
           std::cout << "["<< setw(2) << setfill('0') << i+1 << "] " << "CONSTANT_Double_info" << endl;
           std::cout << "\tHigh Bytes: 0x";
           printf("%x\n",a[i]->Double.high_bytes );
-           
+
           std::cout << "\tLow Bytes: 0x";
           printf("%x\n",a[i]->Double.low_bytes );
           std::cout << "\tDouble: "  << print_double << endl << endl;
@@ -263,7 +263,7 @@ void getPath(char * toConvert) {
 
     auto pos  = toEdit.find_last_of('/');
     auto path = toEdit.substr(0,pos+1);
-    
+
     dump.path = path;
 }
 /** @brief Função main
@@ -271,7 +271,7 @@ void getPath(char * toConvert) {
  * @return void
  */
 int main(int argc, char * argv[]) {
- 
+
     if(argc != 3) {
         std::cout << ERROR_MESSAGE << "Necerrário(s) argumentos.\n" << std::endl;
         std::cout << "Ex leitor: ./jvm e path_to_class_file " << std::endl;
@@ -281,7 +281,12 @@ int main(int argc, char * argv[]) {
 
     FILE * fp = fopen(argv[2],"r");
     ClassLoader classloader(fp);
-    
+
+    if(classloader.getMagic() != 0xcafebabe) {
+        std::cout << ERROR_MESSAGE << "Número magico incorreto.\n" << std::endl;
+        return ERROR;
+    }
+
     getPath(argv[2]);
     fclose(fp);
 
