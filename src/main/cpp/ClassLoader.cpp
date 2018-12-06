@@ -10,7 +10,7 @@
 #include <iomanip>
 using namespace std;
 
-/**
+/**@fn Classloader
  * @brief Construtor da classe da ClassLoader;
  * A ideia é chamar todos os Set's aqui de maneira
  * garantir a qualidade dos dados.
@@ -41,7 +41,7 @@ ClassLoader::ClassLoader(FILE * fp) {
     else std::cout << "invalid file pointer" << std::endl; // TODO: Modificar esse Else para algum throw ou retorno.
 }
 
-/**
+/**@fn ~ClassLoader
   @brief Aqui são feitas as desalocações da ClassLoader;
   @param fp =  destructor;
   @return destructor;
@@ -77,7 +77,7 @@ ClassLoader::~ClassLoader() {
     //std::cout << "ClassLoader::~ClassLoader end" << std::endl;
 }
 
-/**
+/** @class ClassLoader::setMagic
  *  @brief Método que busca identificar o formato da classe. Tem o valor de 0xCAFEBABE;
  *  @param Arquivo .class
  *  @return void;
@@ -86,7 +86,7 @@ void ClassLoader::setMagic(FILE * fp) {
     ByteReader<typeof(magicNumber)> bReader;
     magicNumber = bReader.byteCatch(fp);
 }
-/**
+/*! @class Class::setMinor
  *  @brief Método como Minor busca identificar a menor versão acessivel do formato do arquivo de classe;
  *  @param Arquivo .class
  *  @return void; 
@@ -95,7 +95,7 @@ void ClassLoader::setMinor(FILE * fp) {
     ByteReader<typeof(minorVersion)> bReader;
     minorVersion = bReader.byteCatch(fp);
 }
-/**
+/*! @class setMajor
  *  @brief Método como Major busca identificar a maior versão acessivel do formato do arquivo de classe;
  *  @param Arquivo .class
  *  @return void;

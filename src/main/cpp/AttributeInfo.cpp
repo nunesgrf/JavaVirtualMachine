@@ -1,3 +1,9 @@
+/**
+*	@file AttributeInfo.cpp
+*	@brief Tem os métodos para adiquirir as informações dos atributos; 
+*
+*/
+
 #include "../hpp/Instruction.hpp"
 #include "../hpp/AttributeInfo.hpp"
 #include "../hpp/ByteReader.hpp"
@@ -15,7 +21,7 @@ ByteReader<uint8_t> OneByte;
 ByteReader<uint16_t> TwoByte;
 ByteReader<uint32_t> FourByte;
 
-/**
+/** @class AttributeInfo::~AttributeInfo
 *   @brief Destrutor Attribute_info
 *
 */
@@ -24,7 +30,7 @@ AttributeInfo::~AttributeInfo() {
     //this->code.~CodeAttribute();
     //this->exception.~Exception();
 }
-/**
+/** @class CodeAttribute::~CodeAttribute
 *   @brief Destrutor CodeAttribute
 *
 */
@@ -33,26 +39,36 @@ CodeAttribute::~CodeAttribute() {
     //free(this->code_exception_table);
     //free(this->attributes);
 }
-/**
+/** @class Exception::~Exception
 *   @brief Destrutor exception_index_table
 *
 */
 Exception::~Exception() {
     //free(this->exception_index_table);
 }
-/**
-*   @brief Destrutor Attribute_info
-*
+/** @class ConstantValue::read
+*   @brief Leitor de constantes;
+*   @param fp arquivo .class;
+*   @return void;
 */
 void ConstantValue::read(FILE *fp) {
     constvalue_index = TwoByte.byteCatch(fp);
 }
+/** @class ConstantValue::print
+*   @brief print dos valores das constantes;
+*   @param fp arquivo .class;
+*   @return void;
+*/
 void ConstantValue::print(std::vector<CpInfo*> trueCpInfo) {
     CpAttributeInterface utf8Getter;
 
     cout << "Constante Value Index: cp info #" << this->constvalue_index << " " << utf8Getter.getUTF8(trueCpInfo, this->constvalue_index - 1) << endl;
 }
-
+/** @class NumberTableAttribute::read
+*   @brief Leitor da NumberTable dos atributos;
+*   @param fp arquivo .class;
+*   @return void;
+*/
 void NumberTableAttribute::read(FILE *fp) {
     length = TwoByte.byteCatch(fp);
     line_number_table = (NumberTableAttribute_lineNumber *)malloc(length*sizeof(NumberTableAttribute_lineNumber));
@@ -61,6 +77,11 @@ void NumberTableAttribute::read(FILE *fp) {
         line_number_table[i].lineNumber = TwoByte.byteCatch(fp);
     }
 }
+/** @class NumberTableAttribute::print
+*   @brief Print da NumberTable dos atributos;
+*   @param fp arquivo .class;
+*   @return void;
+*/
 void NumberTableAttribute::print() {
     cout << "\nLine Number Table" << endl;
     for(int i=0;i < this->length ; i++ ){
@@ -68,7 +89,11 @@ void NumberTableAttribute::print() {
     }
     cout << "\n\n";
 }
-
+/** @class CodeAttribute::read
+*   @brief Leitor dos atributos dos methods;
+*   @param fp arquivo .class;
+*   @return void;
+*/
 void CodeAttribute::read(FILE *fp, std::vector<CpInfo*> trueCpInfo) {
     unsigned int i, j, k;
 
@@ -98,7 +123,11 @@ void CodeAttribute::read(FILE *fp, std::vector<CpInfo*> trueCpInfo) {
     }
 }
 
-
+/** @class CodeAttribute::print
+*   @brief Print dos atributos dos methods;
+*   @param fp arquivo .class;
+*   @return void;
+*/
 void CodeAttribute::print(std::vector<CpInfo*> trueCpInfo) {
     unsigned int j, k;
     CpAttributeInterface utf8Getter;
@@ -199,14 +228,28 @@ void CodeAttribute::print(std::vector<CpInfo*> trueCpInfo) {
         attributes[k].print(trueCpInfo);
     }
 }
+/** @class InnerClass::read
+*   @brief Leitura do tamanho da Class;
+*   @param fp arquivo .class;
+*   @return void;
+*/
 void InnerClass::read(FILE *fp) {
     class_length = TwoByte.byteCatch(fp);
 }
-
+/** @class InnerClass::print
+*   @brief Print do tamanho da class;
+*   @param fp arquivo .class;
+*   @return void;
+*/
 void InnerClass::print(std::vector<CpInfo*> trueCpInfo) {
     cout << "Class length: " << this->class_length<<endl;
 }
 
+/** @class Exception::read
+*   @brief É feito a leitura dos number_exceptions;
+*   @param fp arquivo .class;
+*   @return void;
+*/
 void Exception::read(FILE *fp) {
     int i;
 
@@ -217,6 +260,11 @@ void Exception::read(FILE *fp) {
     }
 }
 
+/** @class Exception::print
+*   @brief É feito o print dos number_exceptions;
+*   @param fp arquivo .class;
+*   @return void;
+*/
 void Exception::print(std::vector<CpInfo*> trueCpInfo) {
     int i;
     CpAttributeInterface utf8Getter;
@@ -226,20 +274,32 @@ void Exception::print(std::vector<CpInfo*> trueCpInfo) {
         cout << setw(2) << setfill('0') << "Exception Index Table: cp info #" << this->exception_index_table[i]<< " " << utf8Getter.getUTF8(trueCpInfo, exception_index_table[i]-1) << endl;
     }
 }
-
+/** @class SourceFile::read
+*   @brief É lido o index do arquivo fonte;
+*   @param fp arquivo .class;
+*   @return void;
+*/
 void SourceFile::read(FILE *fp) {
 
     sourceFileIndex = TwoByte.byteCatch(fp);
 
 }
-
+/** @class SourceFile::read
+*   @brief É printado o index do arquivo fonte;
+*   @param fp arquivo .class;
+*   @return void;
+*/
 void SourceFile::print(std::vector<CpInfo*> trueCpInfo) {
     CpAttributeInterface utf8Getter;
 
     cout <<"Source file name index: cp info #" << this->sourceFileIndex <<" <" << utf8Getter.getUTF8(trueCpInfo, this->sourceFileIndex - 1)<< ">" << endl;
 }
 
-
+/** @class  AttributeInfo::read
+*   @brief É lido as informações dos atributos;
+*   @param fp arquivo .class;
+*   @return void;
+*/
 void AttributeInfo::read(FILE * fp, std::vector<CpInfo *> trueCpInfo){
 
     CpAttributeInterface utf8Getter;
@@ -280,6 +340,11 @@ void AttributeInfo::read(FILE * fp, std::vector<CpInfo *> trueCpInfo){
     }
 }
 
+/** @class  AttributeInfo::print
+*   @brief É printado as informações dos atributos;
+*   @param fp arquivo .class;
+*   @return void;
+*/
 void AttributeInfo::print(std::vector<CpInfo *> trueCpInfo) {
     CpAttributeInterface utf8Getter;
     std::string attribute_name = utf8Getter.getUTF8(trueCpInfo, this->name_index-1);

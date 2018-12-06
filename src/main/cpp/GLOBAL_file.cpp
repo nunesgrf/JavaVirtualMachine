@@ -7,7 +7,8 @@
 std::map<std::string, Instance*> MethodsArea::GLOBAL_staticClasses;
 std::map<std::string, Instance*> MethodsArea::GLOBAL_loadedClasses;
 std::string MethodsArea::path;
-/** @brief Retorna uma variável de uma classe especifica.
+/**@class  MethodsArea::getStaticfield 
+ * @brief Retorna uma variável de uma classe especifica.
  * @param className nome da classe @param varName nome da variável.
  * @return Operand*
  */

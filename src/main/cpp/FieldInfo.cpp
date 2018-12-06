@@ -6,7 +6,8 @@
 #include "../hpp/FieldInfo.hpp"
 #include "../hpp/ByteReader.hpp"
 
-/** @brief Destrutor de FieldInfo.
+/** @class FieldInfo::~FieldInfo
+ * @brief Destrutor de FieldInfo.
  * @param sem parâmetros.
  * @return void
  */
@@ -18,7 +19,8 @@ FieldInfo::~FieldInfo() {
     }
 }
 
-/** @brief setting inicial do FieldInfo a partir de um arquivo.
+/** @class FieldInfo::read
+ *   @brief setting inicial do FieldInfo a partir de um arquivo.
  * @param *fp ponteiro de arquivo @param trueCpInfo vetor de cpInfo.
  * @return void
  */

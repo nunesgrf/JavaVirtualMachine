@@ -8,7 +8,8 @@ InterfaceInfo::~InterfaceInfo() {
 
 }
 
-/** @brief Carrega as informações de um arquivo na instância de InterfaceInfo.
+/**@class  InterfaceInfo::setInterfaceInfo
+ * @brief Carrega as informações de um arquivo na instância de InterfaceInfo.
  * @param *fp ponteiro de arquivo
  * @return void
  */

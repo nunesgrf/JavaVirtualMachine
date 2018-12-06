@@ -6,7 +6,7 @@
 #include "../hpp/InstructionImpl.hpp"
 
 #include <iostream>
-/**
+/** @class Instruction::init
 *   @brief Inilizar todas as instruções em uma array para facilitar o mapeamento;
 *   @param instructions Recebe a chave da instrução;
 *   @return void;

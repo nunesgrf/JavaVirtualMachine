@@ -10,7 +10,7 @@
 #include <iostream>
 #include <string>
 
-/*
+/* @class InstructionImpl::nop
  * @brief Incrementa o program counter.
  * @param *this_frame ponteiro para o frame atual
  * @return void
@@ -19,7 +19,7 @@ void InstructionImpl::nop(Frame * this_frame) {
     this_frame->pc++;
 }
 
- void InstructionImpl::ldc(Frame * this_frame){
+void InstructionImpl::ldc(Frame * this_frame){
 
    this_frame->pc++;
    Operand * op = (Operand*)calloc(1,sizeof(op));
