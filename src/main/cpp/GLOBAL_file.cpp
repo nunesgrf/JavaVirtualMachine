@@ -36,6 +36,7 @@ Operand * MethodsArea::copyOperand(Operand * toCopy) {
 
     Operand * toReturn = (Operand*)calloc(1,sizeof(Operand));
 
+    std::cout << "copyOperand : " << toCopy->class_instance->classe->getConstPool().size() << std::endl;
     toReturn->tag = toCopy->tag;
     
     switch((int)toCopy->tag) {
@@ -56,12 +57,19 @@ Operand * MethodsArea::copyOperand(Operand * toCopy) {
         case CONSTANT_String:
             toReturn->type_string = new std::string(*toCopy->type_string); break;
         case CONSTANT_Class:
-
+            
             toReturn->class_instance = (Instance*)calloc(1,sizeof(Instance));
             toReturn->class_instance->name = toCopy->class_instance->name;
+            
+            //toReturn->class_instance->classe = (ClassLoader*)calloc(1,sizeof(ClassLoader));
+            //toReturn->class_instance->classe = new ClassLoader()
             toReturn->class_instance->classe = toCopy->class_instance->classe;
+            std::cout << toReturn->class_instance->classe->getConstPool().size() << std::endl;
+            getchar();
             toReturn->class_instance->references = new std::map<std::string, Operand*>();
             toReturn->class_instance->references = toCopy->class_instance->references;
+            std::cout << "Entrei aqui" << std::endl;
+            getchar();
             break;
 
         case CONSTANT_Array:

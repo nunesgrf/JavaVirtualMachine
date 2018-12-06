@@ -68,6 +68,7 @@ void InstructionImpl::nop(Frame * this_frame) {
  * @return void
  */
  void InstructionImpl::invokespecial(Frame * this_frame){
+
    CpAttributeInterface cpAttrAux;
    Interpreter auxInterpreter;
    std::vector<Operand*> instance_arguments;
@@ -110,6 +111,7 @@ void InstructionImpl::nop(Frame * this_frame) {
       exit(1);
    }
    else {
+
       /* Conta-se os argumentos presentes na inicializaçao da instancia */
       int count_args = 0;
       uint8_t counter = 1;
@@ -146,22 +148,25 @@ void InstructionImpl::nop(Frame * this_frame) {
          }
       }
 
+      std::cout << "pilha vazia ? " << this_frame->operand_stack.empty() << std::endl;
       /* Desempilhamos o operando que refere-se a propria classe */
       Operand * current_class = this_frame->operand_stack.top();
+      std::cout << (int)current_class->tag << std::endl;
       this_frame->operand_stack.pop();
-
+      
       instance_arguments.insert(instance_arguments.begin(), current_class);
-
+      std::cout << current_class->class_instance->classe->getConstPool().size() << std::endl;
       Instance * reference_class = current_class->class_instance;
 
-      MethodInfo * searched_method_info = auxInterpreter.findMethodByNameOrDescriptor(reference_class->classe, method_name, method_desc);
-      Frame *new_frame = new Frame(reference_class->classe->getConstPool(),searched_method_info);
-
+      MethodInfo * searched_method_info = auxInterpreter.findMethodByNameOrDescriptor(current_class->class_instance->classe, method_name, method_desc);
+      Frame *new_frame = new Frame(current_class->class_instance->classe->getConstPool(),searched_method_info);
+      
       for (int j = 0; (unsigned)j < instance_arguments.size(); ++j)
          new_frame->local_variables.at(j) = instance_arguments.at(j);
 
       auxInterpreter.frame_stack.push(new_frame);
    }
+   std::cout << "InvokeSpecial END" << std::endl;
  }
 
 
@@ -256,60 +261,52 @@ void InstructionImpl::nop(Frame * this_frame) {
 
      this_frame->operand_stack.push(strLen);
    }
-   /*else {
-     std::cout << "Entrou no Else do invokevirtual" << std::endl; getchar();
-     int argsCount  = 0;
-     uint16_t count = 1;
+   else {
+   
+      int argsCount  = 0;
+      uint16_t count = 1;
+      while(method_deor.at(count) != ')') {
 
-     while(method_deor[count] != ')') {
-       char type = method_deor[count];
+         if(method_deor.at(count) == 'L') {
+            while(method_deor.at(++count) != ';');
+         }
 
-       if(type == 'L') {
+         else if (method_deor.at(count) == '[') {
+            while(method_deor.at(++count) != '[');
+
+            if(method_deor[count] == 'L') while(method_deor.at(++count) != ';');
+         }
          argsCount++;
-         while(method_deor[++count] != ';');
-       }
-       else if(type == '[') {
-         argsCount++;
-         while(method_deor[++count] != ';');
-         if(method_deor[++count] == 'L') while(method_deor[++count] != ';');
-       }
-       else argsCount++;
-       count++;
-     }
+         count++;
+      }
 
-     std::vector<Operand*> args;
+      std::vector<Operand*> args;
+      
+      for(int i = 0; i <argsCount; ++i) { //verificar esta linha.
+         
+         auto arg = this_frame->operand_stack.top();
+         this_frame->operand_stack.pop();
 
-     for(int i = 0; i < argsCount; ++i) {
-       auto arg = this_frame->operand_stack.top();
-       this_frame->operand_stack.pop();
-       args.insert(args.begin(),arg);
+         args.insert(args.begin(),arg);
+         if (arg->tag == CONSTANT_Double || arg->tag == CONSTANT_Long) args.insert(args.begin()+1, Interpreter::createType("P"));
+      }
+      auto this_class = this_frame->operand_stack.top();
+      this_frame->operand_stack.pop();
 
-       if(arg->tag == CONSTANT_Double || arg->tag == CONSTANT_Long) args.insert(args.begin()+1, Interpreter::createType("P"));
-     }
+      args.insert(args.begin(),this_class);
+      auto instance = this_class->class_instance;
 
-     auto opThisClass = this_frame->operand_stack.top();
-     this_frame->operand_stack.pop();
+      MethodsArea auxMeth;
 
-     args.insert(args.begin(),opThisClass);
-     //std::cout << "Nome = " << (int)opThisClass->tag;
-     auto instance = opThisClass->class_instance;
+      auto methods = auxMeth.findMethodByNameOrDeor(instance->classe,method_name,method_deor);
+      auto newFrame = new Frame(instance->classe->getConstPool(),methods);
 
-     MethodsArea * auxMeth;
-
-
-     //std::cout <<"flag " <<method_name << " "<< method_deor<< std::endl;
-     auto methods = auxMeth->findMethodByNameOrDeor(instance->classe,method_name,method_deor);
-     //std::cout <<"flag" << std::endl;
-     //std::cout << methods << std::endl;
-     //auto methods = (MethodInfo*)calloc(1,sizeof(MethodInfo));
-     auto newFrame = new Frame(instance->classe->getConstPool(),methods);
-
-     for(unsigned i = 0; i < args.size(); ++i) {
+      for(unsigned i = 0; i < args.size(); ++i) {
         newFrame->local_variables.at(i) = args.at(i);
-     }
-     Interpreter auxInter;
-     auxInter.frame_stack.push(newFrame);
-   }*/
+      }
+      Interpreter auxInter;
+      auxInter.frame_stack.push(newFrame);
+   }
  }
 
 /*
@@ -2242,7 +2239,6 @@ void InstructionImpl::astore(Frame * this_frame){
       op = auxInterpreter.createType("L" + class_name);
    }
    this_frame->operand_stack.push(op);
-   
  }
 
  /**
@@ -2255,7 +2251,11 @@ void InstructionImpl::astore(Frame * this_frame){
     MethodsArea methAux;
 
     this_frame->pc++;
-    auto copy = methAux.copyOperand(this_frame->operand_stack.top());
+    auto toCopy = this_frame->operand_stack.top();
+    //auto copy = methAux.copyOperand(toCopy);
+    auto copy = toCopy;
+    std::cout << toCopy->class_instance->classe->getConstPool().size() << std::endl;
+    getchar();
     this_frame->operand_stack.push(copy);
  }
 

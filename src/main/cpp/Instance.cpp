@@ -7,8 +7,8 @@
  */
 Instance::Instance(ClassLoader * toLoad) {
     
-    CpAttributeInterface cpAtAux;
     
+    CpAttributeInterface cpAtAux;
     this->name   = cpAtAux.getUTF8(toLoad->getConstPool(),toLoad->getThisClass()-1);
     this->classe = toLoad;   
     //this->references = new std::map< std::string, Operand* >();

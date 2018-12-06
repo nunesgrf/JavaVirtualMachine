@@ -19,6 +19,8 @@ void Interpreter::execute(ClassLoader * classloader) {
     Interpreter::frame_stack.push(&toRun);
 
     while(!Interpreter::frame_stack.empty()) {
+
+        
         Interpreter::frame_stack.top()->run();
     }
 }
@@ -29,20 +31,22 @@ void Interpreter::execute(ClassLoader * classloader) {
  */
 ClassLoader * Interpreter::getClassInfo(std::string className) {
 
-    std::cout << "Interpreter::getClassInfo BEGIN" <<std::endl;
-
     MethodsArea container;
+
+    
     Instance * instance = container.GLOBAL_staticClasses[className];
 
     if(instance == NULL) {
+        
         FILE * fp = fopen((container.path + className + ".class").c_str(),"r");
         ClassLoader new_class(fp);
+        
         instance = Interpreter::loadInMemo(&new_class);
+        
         fclose(fp);
     }
-
-    std::cout << "Interpreter::getClassInfo END" <<std::endl;
-
+    
+    ;
     return instance->classe;
 }
 
@@ -91,12 +95,14 @@ Operand * Interpreter::createType(std::string type) {
                 toReturn->class_instance = (Instance*)calloc(1,sizeof(Instance));
 
                 std::string className  = type.substr(1,type.size());
+                
+                
                 ClassLoader * newClass = Interpreter::getClassInfo(className);
-
+                
                 toReturn->class_instance->classe = newClass;
                 toReturn->class_instance->name   = className;
 
-                Interpreter::loadVariables(toReturn->class_instance);
+                //Interpreter::loadVariables(toReturn->class_instance); // Essa linha miserável.
             }
             break;
     }
@@ -108,25 +114,31 @@ Operand * Interpreter::createType(std::string type) {
  * @return void
  */
 void Interpreter::loadVariables(Instance * instance) {
+    
+    instance->references = new std::map<std::string, Operand*>();
 
     CpAttributeInterface cpAt;
     auto currClass = instance->classe;
     auto superInfo = currClass->getConstPool()[currClass->getSuper()-1];
     auto superClassName = cpAt.getUTF8(currClass->getConstPool(),superInfo->Class.name_index-1);
 
-    while(superClassName != "java/lang/Object") {
+    do {
 
-        superClassName = cpAt.getUTF8(currClass->getConstPool(),currClass->getThisClass()-1);
-        //
+        superClassName = cpAt.getUTF8(currClass->getConstPool(),currClass->getSuper()-1);
+
         for(auto fpointer : currClass->getFields()) {
             std::string nameField = cpAt.getUTF8(currClass->getConstPool(),fpointer->name_index-1);
+            
             std::string typeVariable = cpAt.getUTF8(currClass->getConstPool(),fpointer->descriptor_index-1);
             instance->references->operator[](nameField) = Interpreter::createType(typeVariable);
         }
-
+            
         if(superClassName != "java/lang/Object" && superClassName != "") currClass = Interpreter::getClassInfo(superClassName); //IMPLEMENTAR O MÉTODO getClassInfo();
 
-    }
+                
+
+    } while(superClassName != "java/lang/Object");
+    
 }
 
 /** @brief Realiza o carregamento do ClassLoader em memória e retorna a instância.
@@ -139,12 +151,12 @@ Instance * Interpreter::loadInMemo(ClassLoader * javaclass) {
     Instance * inst_LC = new Instance(javaclass);
     Instance * inst_SC = new Instance(javaclass);
 
-    std::cout << inst_LC->classe << std::endl;
-
     dump.GLOBAL_loadedClasses.insert(std::pair<std::string, Instance*>(inst_LC->name,inst_LC));
     dump.GLOBAL_staticClasses.insert(std::pair<std::string, Instance*>(inst_SC->name,inst_SC));
 
+    
     Interpreter::loadVariables(inst_LC);
+    
     return inst_LC;
 }
 
@@ -179,9 +191,15 @@ MethodInfo * Interpreter::mainFinder(ClassLoader * javaclass) {
  * @return MethodInfo*
  */
 MethodInfo * Interpreter::findMethodByNameOrDescriptor(ClassLoader* classloader,std::string method_name,std::string method_desc){
-    std::vector<MethodInfo*> methods = classloader->getMethods();
+    
+    
+    auto methods = classloader->getMethods();
+     std::cout << "Instrução acima " << std::endl;
+
+    std::cout << "inicio" << std::endl;
     std::vector<CpInfo*> constantPool = classloader->getConstPool();
     CpAttributeInterface cpAttrAux;
+
     for (int i = 0; i < classloader->getMethoCount(); i++) {
         std::string searched_method_name = cpAttrAux.getUTF8(constantPool,methods.at(i)->name_index-1);
 
