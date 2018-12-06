@@ -3531,7 +3531,7 @@ void InstructionImpl::iastore(Frame * this_frame){
 
  }
 
- }
+ 
 
 /**
  * @brief Verifica se é null, caso sim, realiza um salto baseado em um offset.
