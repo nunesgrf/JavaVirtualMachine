@@ -170,10 +170,10 @@ void CodeAttribute::print(std::vector<CpInfo*> trueCpInfo) {
                     code_num == c_ifne || code_num == c_iflt || code_num == c_ifge ||
                     code_num == c_ifgt || code_num == c_ifle || code_num == c_ifnonull ||
                     code_num == c_ifnull || code_num == c_jsr) {
-                uint8_t branchbyte1 = code[i];
-                uint8_t branchbyte2 = code[i+1];
-                uint16_t address = (branchbyte1 << 8) + branchbyte2;
-                cout << " " << i+address <<" "<< "("<<address<<")" << " ";
+                int16_t branchbyte1 = code[i];
+                int16_t branchbyte2 = code[i+1];
+                int16_t address = (branchbyte1 << 8) | branchbyte2;
+                cout << " " << i+address-1 <<" "<< "("<<address<<")" << " ";
                 i++;
                 j++;
             }
