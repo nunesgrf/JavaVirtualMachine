@@ -3,8 +3,17 @@
 #include "../hpp/GLOBAL_file.hpp"
 #include "../hpp/Interpreter.hpp"
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <cmath>
+
+namespace patch {
+  template < typename T > std::string to_string( const T& n ) {
+    std::ostringstream stm ;
+    stm << n ;
+    return stm.str() ;
+  }
+}
 
 /*
  * @brief Incrementa o program counter.
@@ -249,7 +258,59 @@ void InstructionImpl::nop(Frame * this_frame) {
       }
    }
    else if(class_name == "java/lang/StringBuilder" && method_name == "append") {
+      MethodsArea maux;
+      Operand * op = this_frame->operand_stack.top();
+      this_frame->operand_stack.pop();
+      Operand * string_operand = this_frame->operand_stack.top();
+      this_frame->operand_stack.pop();
 
+      switch(op->tag){
+         case CONSTANT_String:
+            *string_operand->type_string += (*op->type_string);
+            break;
+         case CONSTANT_Integer:
+            *string_operand->type_string += (
+                                 patch::to_string(op->type_int));
+            break;
+         case CONSTANT_Long:
+            *string_operand->type_string += (
+                                 patch::to_string(op->type_long));
+            break;
+         case CONSTANT_Float:
+            *string_operand->type_string += (
+                              patch::to_string(op->type_float));
+            break;
+         case CONSTANT_Double:
+            *string_operand->type_string += (
+                              patch::to_string(op->type_double));
+            break;
+         case CONSTANT_Short:
+            *string_operand->type_string += (
+                                 patch::to_string(op->type_short));
+            break;
+         case CONSTANT_Char:
+            *string_operand->type_string += (
+                                 patch::to_string(op->type_char));
+            break;
+         case CONSTANT_Byte:
+            *string_operand->type_string += (
+                                 patch::to_string(op->type_byte));
+            break;
+         case CONSTANT_Boolean:
+            if (op->type_bool == 0)
+               *string_operand->type_string += "false";
+            else
+               *string_operand->type_string += "true";
+            break;
+         case CONSTANT_Class:
+            // @TODO colocar enderec
+            *string_operand->type_string += op->class_instance->name+"@";
+            break;
+         case CONSTANT_Array:
+            *string_operand->type_string += "Array[]";
+            break;
+      }
+            this_frame->operand_stack.push(string_operand);
    }
    else if(class_name == "java/lang/String" && method_name == "length") {
      auto strOp = this_frame->operand_stack.top();
@@ -391,7 +452,7 @@ void InstructionImpl::nop(Frame * this_frame) {
    this_frame->operand_stack.pop();
 
    if(array == NULL) std::cout << "NullPointerException" << std::endl;
-   if(index->type_int < 0 ||  index->type_int >= array->array_type->array->size()) std::cout << "ArrayIndexOutOfBoundsException" << std::endl;
+   if((int)index->type_int < 0 ||  index->type_int >= array->array_type->array->size()) std::cout << "ArrayIndexOutOfBoundsException" << std::endl;
 
    Operand * op = array->array_type->array->at(index->type_int);
    this_frame->operand_stack.push(op);
@@ -535,9 +596,14 @@ void InstructionImpl::nop(Frame * this_frame) {
     InstructionImpl::nop(this_frame);
 
  }
- void InstructionImpl::aload_1(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
 
+  /** @brief Uma referencia do objeto na posicao 1 do vetor de variaveis locais é colocada na pilha de operandos
+ * @param *this_frame ponteiro para o frame atual
+ * @return void
+ */
+ void InstructionImpl::aload_1(Frame * this_frame){
+   this_frame->pc++;
+   this_frame->operand_stack.push(this_frame->local_variables.at(1));
  }
  void InstructionImpl::aload_2(Frame * this_frame){
     InstructionImpl::nop(this_frame);
@@ -560,12 +626,12 @@ void InstructionImpl::nop(Frame * this_frame) {
  * @return void
  */
  void InstructionImpl::iinc(Frame * this_frame){
+   this_frame->pc++;    
+   int8_t  field = this_frame->method_code.code[this_frame->pc++];
+   int32_t value = this_frame->method_code.code[this_frame->pc++];
 
-     int8_t  field = this_frame->method_code.code[this_frame->pc+1];
-     int32_t value = this_frame->method_code.code[this_frame->pc+2];
+     this_frame->local_variables.at((int)field) += value;
 
-     this_frame->local_variables.at((int)field)->type_int += value;
-     for(int i = 0; i < 3; i++) this_frame->pc++;
  }
 
  /**
@@ -1518,7 +1584,7 @@ void InstructionImpl::iand(Frame * this_frame){
    this_frame->operand_stack.pop();
    Operand *op2 = this_frame->operand_stack.top();
    this_frame->operand_stack.pop();
-   int result = op1->type_int && op1->type_int;
+   int result = op1->type_int && op2->type_int;
    memcpy(&op1->type_int,&result,sizeof(int));
    this_frame->operand_stack.push(op1);
    this_frame->pc++;
@@ -2855,8 +2921,9 @@ void InstructionImpl::putfield(Frame * this_frame){
 
     auto op = this_frame->operand_stack.top();
     this_frame->operand_stack.pop();
+    int value = (int) op->type_int;
 
-    if((int)op->type_int <= 0) {
+   if(value <= 0) {
       offset = this_frame->method_code.code[this_frame->pc + 1];
       offset = (offset << 8 ) | this_frame->method_code.code[this_frame->pc + 2];
     }
@@ -3165,7 +3232,7 @@ void InstructionImpl::iastore(Frame * this_frame){
  /**
  * @brief Calcula o valor negativo de int. Retira o operando do topo da pilha, nega o valor do
  * operando e o salva o resultado no topo da pilha.
- * @param *curr_frame Ponteiro para o frame atual
+ * @param *this_frame Ponteiro para o frame atual
  * @return void
  */
  void InstructionImpl::ineg(Frame * this_frame){
@@ -3184,7 +3251,7 @@ void InstructionImpl::iastore(Frame * this_frame){
  /**
  * @brief Calcula o valor negativo de long. Retira o operando do topo da pilha, nega o valor do
  * operando e o salva o resultado no topo da pilha.
- * @param *curr_frame Ponteiro para o frame atual
+ * @param *this_frame Ponteiro para o frame atual
  * @return void
  */
  void InstructionImpl::lneg(Frame * this_frame){
@@ -3640,7 +3707,7 @@ void InstructionImpl::dcmpg(Frame * this_frame){
    int16_t branchbyte1 = this_frame->method_code.code[this_frame->pc+1];
    int16_t branchbyte2 = this_frame->method_code.code[this_frame->pc+2];
    int16_t offset = (branchbyte1 << 8) | branchbyte2;
-   this_frame->pc +=offset;
+   this_frame->pc += offset;
 
  }
 
