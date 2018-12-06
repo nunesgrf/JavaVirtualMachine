@@ -27,7 +27,7 @@ struct Instance;
 *    @brief tem como base um tipo de vetor de um tipo de struct Operand;
 */
 typedef struct {
-    std::vector<Operand*> array;
+    std::vector<Operand*> * array;
 } ArrayType;
 /**
 *   @struct Operand
@@ -48,7 +48,7 @@ struct Operand {
     };
     std::string * type_string;
     Instance * class_instance;
-    ArrayType array_type;
+    ArrayType * array_type;
 };
 /**
 *   @struct Frame

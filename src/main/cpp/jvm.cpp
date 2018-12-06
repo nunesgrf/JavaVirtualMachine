@@ -289,4 +289,5 @@ int main(int argc, char * argv[]) {
         case 'i': classInterpreter(classloader); break;
         case 'e': classReader(classloader);      break;
     }
+  exit(0);
 }
