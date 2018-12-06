@@ -41,10 +41,10 @@ Frame::Frame(std::vector<CpInfo*> cp, MethodInfo * methd) {
  */
 void Frame::run() {
     
-    bool flag = true;
 
     uint8_t opCode = this->method_code.code[pc];
-    std::cout << (int)this->pc << " : " << this->instructions[opCode].name << std::endl;
+    //std::cout << (int)this->pc << " : " << this->instructions[opCode].name << std::endl;
+    //getchar();
     this->instructions[opCode].func(this);
     
 }

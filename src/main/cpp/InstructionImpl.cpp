@@ -148,14 +148,11 @@ void InstructionImpl::nop(Frame * this_frame) {
          }
       }
 
-      std::cout << "pilha vazia ? " << this_frame->operand_stack.empty() << std::endl;
       /* Desempilhamos o operando que refere-se a propria classe */
       Operand * current_class = this_frame->operand_stack.top();
-      std::cout << (int)current_class->tag << std::endl;
       this_frame->operand_stack.pop();
       
       instance_arguments.insert(instance_arguments.begin(), current_class);
-      std::cout << current_class->class_instance->classe->getConstPool().size() << std::endl;
       Instance * reference_class = current_class->class_instance;
 
       MethodInfo * searched_method_info = auxInterpreter.findMethodByNameOrDescriptor(current_class->class_instance->classe, method_name, method_desc);
@@ -166,7 +163,6 @@ void InstructionImpl::nop(Frame * this_frame) {
 
       auxInterpreter.frame_stack.push(new_frame);
    }
-   std::cout << "InvokeSpecial END" << std::endl;
  }
 
 
@@ -205,11 +201,13 @@ void InstructionImpl::nop(Frame * this_frame) {
                std::cout << *(op->type_string);
                break;
             case CONSTANT_Integer:
-               std::cout << op->type_int;
+
+               std::cout << (int32_t)op->type_int;
                break;
             case CONSTANT_Float:
                float converted_operand;
                memcpy(&converted_operand,&op->type_float,sizeof(float));
+               
                std::cout << converted_operand;
                break;
             case CONSTANT_Byte:
@@ -233,7 +231,7 @@ void InstructionImpl::nop(Frame * this_frame) {
             case CONSTANT_Double: {
                double converted_operand;
                memcpy(&converted_operand, &op->type_double, sizeof(double));
-               std::cout << converted_operand;
+               std::cout << (double)converted_operand;
                break;
             }
             case CONSTANT_Class: {
@@ -297,7 +295,7 @@ void InstructionImpl::nop(Frame * this_frame) {
       auto instance = this_class->class_instance;
 
       MethodsArea auxMeth;
-
+//fdasfds
       auto methods = auxMeth.findMethodByNameOrDeor(instance->classe,method_name,method_deor);
       auto newFrame = new Frame(instance->classe->getConstPool(),methods);
 
@@ -532,19 +530,23 @@ void InstructionImpl::nop(Frame * this_frame) {
 
  }
  void InstructionImpl::aload_0(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+    this_frame->pc++;
+    this_frame->operand_stack.push(this_frame->local_variables.at(0));
 
  }
  void InstructionImpl::aload_1(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+    this_frame->pc++;
+    this_frame->operand_stack.push(this_frame->local_variables.at(1));
 
  }
  void InstructionImpl::aload_2(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+    this_frame->pc++;
+    this_frame->operand_stack.push(this_frame->local_variables.at(2));
 
  }
  void InstructionImpl::aload_3(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+    this_frame->pc++;
+    this_frame->operand_stack.push(this_frame->local_variables.at(3));
 
  }
  void InstructionImpl::void_return(Frame * this_frame){
@@ -2254,8 +2256,6 @@ void InstructionImpl::astore(Frame * this_frame){
     auto toCopy = this_frame->operand_stack.top();
     //auto copy = methAux.copyOperand(toCopy);
     auto copy = toCopy;
-    std::cout << toCopy->class_instance->classe->getConstPool().size() << std::endl;
-    getchar();
     this_frame->operand_stack.push(copy);
  }
 
@@ -3447,15 +3447,16 @@ void InstructionImpl::iastore(Frame * this_frame){
  void InstructionImpl::ifnonnull(Frame * this_frame){
 
     int shift;
+
     auto op = this_frame->operand_stack.top();
     this_frame->operand_stack.pop();
-
+    
     if(op->type_int) {
       shift = this_frame->method_code.code[this_frame->pc + 1];
       shift = (shift << 8) | this_frame->method_code.code[this_frame->pc + 2];
     }
     else shift = 3;
-
+    
     this_frame->pc += shift;
 
  }
