@@ -143,7 +143,6 @@ void InstructionImpl::nop(Frame * this_frame) {
          else count_args++;
          counter++;
       }
-
       for (int i = 0; i < count_args; ++i) {
          /* Para o numero de argumentos, desempilhamos um operando da pilha de operandos */
          Operand * instance_argument = this_frame->operand_stack.top();
@@ -162,10 +161,9 @@ void InstructionImpl::nop(Frame * this_frame) {
       this_frame->operand_stack.pop();
       
       instance_arguments.insert(instance_arguments.begin(), current_class);
-      std::cout << current_class->class_instance->classe->getConstPool().size() << std::endl;
       Instance * reference_class = current_class->class_instance;
-
-      MethodInfo * searched_method_info = auxInterpreter.findMethodByNameOrDescriptor(current_class->class_instance->classe, method_name, method_desc);
+   MethodInfo * searched_method_info = auxInterpreter.findMethodByNameOrDescriptor(current_class->class_instance->classe, method_name, method_desc);
+      
       Frame *new_frame = new Frame(current_class->class_instance->classe->getConstPool(),searched_method_info);
       
       for (int j = 0; (unsigned)j < instance_arguments.size(); ++j)
@@ -640,7 +638,7 @@ void InstructionImpl::nop(Frame * this_frame) {
    int8_t  field = this_frame->method_code.code[this_frame->pc++];
    int32_t value = this_frame->method_code.code[this_frame->pc++];
 
-     this_frame->local_variables.at((int)field) += value;
+   this_frame->local_variables.at((int)field) += value;
 
  }
 
