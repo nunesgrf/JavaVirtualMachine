@@ -2165,7 +2165,6 @@ void InstructionImpl::nop(Frame * this_frame) {
     result->tag = CONSTANT_Long;
 
     this_frame->operand_stack.push(result);
-     
  }
 
  /**
