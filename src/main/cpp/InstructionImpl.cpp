@@ -630,10 +630,10 @@ void InstructionImpl::nop(Frame * this_frame) {
  */
  void InstructionImpl::iinc(Frame * this_frame){
    this_frame->pc++;    
-     int8_t  field = this_frame->method_code.code[this_frame->pc++];
-     int32_t value = this_frame->method_code.code[this_frame->pc++];
+   int8_t  field = this_frame->method_code.code[this_frame->pc++];
+   int32_t value = this_frame->method_code.code[this_frame->pc++];
 
-     this_frame->local_variables.at((int)field)->type_int += value;
+     this_frame->local_variables.at((int)field) += value;
 
  }
 
