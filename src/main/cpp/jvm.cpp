@@ -27,6 +27,58 @@ void classInterpreter(ClassLoader classloader) {
     engine.execute(&classloader);
 }
 
+/**
+* @brief Verifica qual o access_flag
+* @param flag_byte É enviado o valor da flag
+* @param parametro verificar se a flag 32 é classloader ou method
+* @return flag_name É retornado o nome para a flag setada
+*/
+
+string Flag_names(int flag_byte, int parametro){
+  string flag_name;
+  switch(flag_byte) {
+    case 0: flag_name = "";
+      break;
+    case 1: flag_name = "[public]";
+      break;
+    case 33: flag_name = "[public]";
+      break;
+    case 9: flag_name = "[public static]";
+      break;
+    case 2: flag_name = "[private]";
+      break;
+    case 4: flag_name = "[protect]";
+      break;
+    case 8: flag_name = "[static]";
+      break;
+    case 16: flag_name = "[final]";
+      break;
+    case 32: 
+      if(parametro == 1){
+        flag_name = "[super]";
+      }
+      else{
+        flag_name = "[synchronized]";
+      }
+      break;
+    case 512: flag_name = "[interface]";
+      break;
+    case 1024: flag_name = "[abstract]";
+      break;
+    case 64:  flag_name = "[bridge]";
+      break;
+    case 128: flag_name = "[varargs]";
+      break;
+    case 256: flag_name = "[native]";
+      break;
+    case 2048: flag_name = "[strict]";
+      break;
+    case 4096: flag_name = "[synthetic]";
+      break;      
+  }
+  return flag_name;
+}
+
 /** 
  * @brief Chama o exibidor de ClassLoader
  * @param classloader Instancia da classe ClassLoader
@@ -35,6 +87,8 @@ void classInterpreter(ClassLoader classloader) {
 void classReader(ClassLoader classloader) {
     CpAttributeInterface x;
     vector<CpInfo*> a = classloader.getConstPool();
+
+ 
     /* Print de infomações genericas do .class */
 
     std::cout << "------------------------------General information------------------------------ \n\n\n";
@@ -42,7 +96,7 @@ void classReader(ClassLoader classloader) {
     std::cout << "MinorVersion : " << dec << classloader.getMinor() << endl;
     std::cout << "MajorVersion : " << dec << classloader.getMajor() << endl;
     std::cout << "PoolCounter  : " << dec << classloader.getConstCount() << endl;
-    std::cout << "AcessFlag    : "<< "0x" << setw(4) << setfill('0') << hex << classloader.getFlag() << endl;
+    std::cout << "AcessFlag    : "<< "0x" << setw(4) << setfill('0') << hex << classloader.getFlag() << Flag_names(classloader.getFlag(), 1) << endl;
     std::cout << "ThisClass    : " <<"cp info #" << dec << classloader.getThisClass() <<" <"<<x.getUTF8(classloader.getConstPool(),classloader.getThisClass()-1)<<">"<< endl;
     std::cout << "SuperClass   : " <<"cp info #" << dec << classloader.getSuper() <<" <"<<x.getUTF8(classloader.getConstPool(),classloader.getSuper()-1)<<">"<< endl;
     std::cout << "InterfaceCou : " << dec << classloader.getInterCounter() << endl;
@@ -151,7 +205,7 @@ void classReader(ClassLoader classloader) {
       std::cout << "[" << i << "]" << endl;
       std::cout <<"Name = constantpool[" << fieldInfo[i]->name_index<<"] " <<"<"<<a[fieldInfo[i]->name_index-1]->UTF8.bytes<<">"<< endl;
       std::cout <<"Descriptor = constantpool[" << fieldInfo[i]->descriptor_index<<"] "<< "<"<< a[fieldInfo[i]->descriptor_index-1]->UTF8.bytes<<">"<<endl;
-      std::cout <<"Access flag = " << "0x" << setw(4) << setfill('0') << fieldInfo[i]->access_flags <<endl << endl;
+      std::cout <<"Access flag = " << "0x" << setw(4) << setfill('0') << fieldInfo[i]->access_flags  << Flag_names(fieldInfo[i]->access_flags, 0) <<endl << endl;
     }
     if(countFields == 0 ){
       std::cout << "EMPTY" << endl;
@@ -175,7 +229,7 @@ void classReader(ClassLoader classloader) {
       std::cout << "\n[" << i << "]" << a[methods[i]->name_index-1]->UTF8.bytes << endl;
       std::cout <<"Name: cp info #" << methods[i]->name_index <<" <"<<a[methods[i]->name_index-1]->UTF8.bytes<<">"<< endl;
       std::cout <<"Descriptor: cp info #" << methods[i]->descriptor_index<<" <"<< a[methods[i]->descriptor_index-1]->UTF8.bytes<<">"<<endl;
-      std::cout <<"Access flag: " << "0x" << setw(4) << setfill('0') << methods[i]->access_flags <<endl << endl;
+      std::cout <<"Access flag: " << "0x" << setw(4) << setfill('0') << methods[i]->access_flags<< Flag_names(methods[i]->access_flags, 0) <<endl  << endl;
       for(int j=0;j<methods[i]->attributes_count; j++){
         methods[i]->attributes[j].print(a);
       }
