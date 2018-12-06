@@ -14,7 +14,7 @@ struct Operand;
 
 struct Instance {
     std::string name;
-    std::map< std::string, Operand* > references;
+    std::map< std::string, Operand* > * references;
     ClassLoader * classe;
 
     Instance(ClassLoader*);

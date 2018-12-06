@@ -15,7 +15,6 @@ std::stack<Frame*> Interpreter::frame_stack;
 void Interpreter::execute(ClassLoader * classloader) {
 
     Interpreter::loadInMemo(classloader);
-
     Frame toRun(classloader->getConstPool(),this->mainFinder(classloader));
     Interpreter::frame_stack.push(&toRun);
 
@@ -54,7 +53,7 @@ ClassLoader * Interpreter::getClassInfo(std::string className) {
 Operand * Interpreter::createType(std::string type) {
 
     char toSwitch      = type[0];
-    Operand * toReturn = (Operand*)calloc(1,sizeof(toReturn));
+    Operand * toReturn = (Operand*)calloc(1,sizeof(Operand));
 
     switch(toSwitch) {
         case 'I':
@@ -122,7 +121,7 @@ void Interpreter::loadVariables(Instance * instance) {
         for(auto fpointer : currClass->getFields()) {
             std::string nameField = cpAt.getUTF8(currClass->getConstPool(),fpointer->name_index-1);
             std::string typeVariable = cpAt.getUTF8(currClass->getConstPool(),fpointer->descriptor_index-1);
-            instance->references[nameField] = Interpreter::createType(typeVariable);
+            instance->references->operator[](nameField) = Interpreter::createType(typeVariable);
         }
 
         if(superClassName != "java/lang/Object" && superClassName != "") currClass = Interpreter::getClassInfo(superClassName); //IMPLEMENTAR O MÉTODO getClassInfo();
@@ -139,6 +138,8 @@ Instance * Interpreter::loadInMemo(ClassLoader * javaclass) {
     MethodsArea dump;
     Instance * inst_LC = new Instance(javaclass);
     Instance * inst_SC = new Instance(javaclass);
+
+    std::cout << inst_LC->classe << std::endl;
 
     dump.GLOBAL_loadedClasses.insert(std::pair<std::string, Instance*>(inst_LC->name,inst_LC));
     dump.GLOBAL_staticClasses.insert(std::pair<std::string, Instance*>(inst_SC->name,inst_SC));

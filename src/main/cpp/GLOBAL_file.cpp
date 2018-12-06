@@ -9,7 +9,7 @@ std::string MethodsArea::path;
  * @return Operand*
  */
 Operand * MethodsArea::getStaticfield(std::string className, std::string varName) {
-    auto staticField = GLOBAL_staticClasses.at(className)->references.at(varName);
+    auto staticField = GLOBAL_staticClasses.at(className)->references->at(varName);
     return staticField;
 }
 
@@ -60,7 +60,7 @@ Operand * MethodsArea::copyOperand(Operand * toCopy) {
             toReturn->class_instance = (Instance*)calloc(1,sizeof(Instance));
             toReturn->class_instance->name = toCopy->class_instance->name;
             toReturn->class_instance->classe = toCopy->class_instance->classe;
-            toReturn->class_instance->references = std::map<std::string, Operand*>();
+            toReturn->class_instance->references = new std::map<std::string, Operand*>();
             toReturn->class_instance->references = toCopy->class_instance->references;
             break;
 

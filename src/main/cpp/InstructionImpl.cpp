@@ -2290,7 +2290,7 @@ void InstructionImpl::putfield(Frame * this_frame){
    Operand *class_instance = this_frame->operand_stack.top();
    this_frame->operand_stack.pop();
 
-   Operand *class_variable = class_instance->class_instance->references.at(field_name);
+   Operand *class_variable = class_instance->class_instance->references->at(field_name);
 
    switch (var_operand->tag) {
       case CONSTANT_Integer:
