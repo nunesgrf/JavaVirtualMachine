@@ -9,6 +9,13 @@
 #include "AttributeInfo.hpp"
 #include <cstdint>
 
+/**
+* @class FieldInfo
+* @brief classe para tratar as fields do .class
+*		contém access_flags, name_index, descriptor_index, attributes_count e uma array dos atributos a ele designados - tirando a array, todos do tipo uint16
+*		Além disso contém destructor e leitor;
+*/
+
 class FieldInfo {
     public:
         uint16_t access_flags;

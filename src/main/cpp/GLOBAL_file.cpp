@@ -1,3 +1,7 @@
+/** @file GLOBAL_file.cpp
+    @brief Contém métodos que serão utilizados de forma global, ao invés de termos que setar o mesmo para todos os arquivos;
+
+*/
 #include "../hpp/GLOBAL_file.hpp"
 #include "../hpp/CpAttributeInterface.hpp"
 

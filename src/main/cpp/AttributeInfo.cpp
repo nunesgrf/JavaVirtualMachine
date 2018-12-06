@@ -15,21 +15,35 @@ ByteReader<uint8_t> OneByte;
 ByteReader<uint16_t> TwoByte;
 ByteReader<uint32_t> FourByte;
 
+/**
+*   @brief Destrutor Attribute_info
+*
+*/
 AttributeInfo::~AttributeInfo() {
     //free(this->info);
     //this->code.~CodeAttribute();
     //this->exception.~Exception();
 }
-
+/**
+*   @brief Destrutor CodeAttribute
+*
+*/
 CodeAttribute::~CodeAttribute() {
     //free(this->code);
     //free(this->code_exception_table);
     //free(this->attributes);
 }
-
+/**
+*   @brief Destrutor exception_index_table
+*
+*/
 Exception::~Exception() {
     //free(this->exception_index_table);
 }
+/**
+*   @brief Destrutor Attribute_info
+*
+*/
 void ConstantValue::read(FILE *fp) {
     constvalue_index = TwoByte.byteCatch(fp);
 }
@@ -103,7 +117,7 @@ void CodeAttribute::print(std::vector<CpInfo*> trueCpInfo) {
               uint8_t index = code[i];
               uint16_t index_utf8 = 0x00|index;
               std::cout << " #" << (int)index << " "
-                        << utf8Getter.getUTF8(trueCpInfo, index_utf8-1);
+                        <<"<" <<utf8Getter.getUTF8(trueCpInfo, index_utf8-1)<< ">";
               j++;
             }
             else if (code_num == c_newarray) {
@@ -143,7 +157,7 @@ void CodeAttribute::print(std::vector<CpInfo*> trueCpInfo) {
                 uint8_t byte2 = code[i+1];
                 uint16_t index = (byte1<<8)|byte2;
                 std::cout << " #" << std::dec << index << " "
-                          << utf8Getter.getUTF8(trueCpInfo, index-1);
+                          <<"<" << utf8Getter.getUTF8(trueCpInfo, index-1)<<">";
 
                 i++;
                 j++;
@@ -156,10 +170,10 @@ void CodeAttribute::print(std::vector<CpInfo*> trueCpInfo) {
                     code_num == c_ifne || code_num == c_iflt || code_num == c_ifge ||
                     code_num == c_ifgt || code_num == c_ifle || code_num == c_ifnonull ||
                     code_num == c_ifnull || code_num == c_jsr) {
-                uint8_t branchbyte1 = code[i];
-                uint8_t branchbyte2 = code[i+1];
-                uint16_t address = (branchbyte1 << 8) | branchbyte2;
-                cout << " " << i+address <<" "<< "("<<address<<")" << " ";
+                int16_t branchbyte1 = code[i];
+                int16_t branchbyte2 = code[i+1];
+                int16_t address = (branchbyte1 << 8) | branchbyte2;
+                cout << " " << i+address-1 <<" "<< "("<<address<<")" << " ";
                 i++;
                 j++;
             }
@@ -177,11 +191,10 @@ void CodeAttribute::print(std::vector<CpInfo*> trueCpInfo) {
         cout << "End PC: " << this->code_exception_table[j].end_pc<< endl;
         cout << "Handler PC: " << this->code_exception_table[j].handler_pc<< endl;
         if(code_exception_table[j].catch_type) {
-            cout << "Catch type: cp info #" << this->code_exception_table[j].catch_type<< " " << utf8Getter.getUTF8(trueCpInfo, this->code_exception_table[j].catch_type-1) << endl;
+        cout << "Catch type: cp info #" << this->code_exception_table[j].catch_type<< " <" <<utf8Getter.getUTF8(trueCpInfo, this->code_exception_table[j].catch_type-1)<<">" << endl;
         }
     }
 
-    cout << "Attributes Count: " << this->attributes_count << endl;
     for (k = 0; k < this->attributes_count; k++){
         attributes[k].print(trueCpInfo);
     }

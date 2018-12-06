@@ -1,3 +1,8 @@
+/** @file InstructionImpl.cpp
+    @brief Métodos referentes a execução de cada instrução ;
+
+*/
+
 #include "../hpp/Frame.hpp"
 #include "../hpp/CpAttributeInterface.hpp"
 #include "../hpp/GLOBAL_file.hpp"
@@ -159,13 +164,13 @@ void InstructionImpl::nop(Frame * this_frame) {
       /* Desempilhamos o operando que refere-se a propria classe */
       Operand * current_class = this_frame->operand_stack.top();
       this_frame->operand_stack.pop();
-      
+
       instance_arguments.insert(instance_arguments.begin(), current_class);
       Instance * reference_class = current_class->class_instance;
    MethodInfo * searched_method_info = auxInterpreter.findMethodByNameOrDescriptor(current_class->class_instance->classe, method_name, method_desc);
-      
+
       Frame *new_frame = new Frame(current_class->class_instance->classe->getConstPool(),searched_method_info);
-      
+
       for (int j = 0; (unsigned)j < instance_arguments.size(); ++j)
          new_frame->local_variables.at(j) = instance_arguments.at(j);
 
@@ -318,7 +323,7 @@ void InstructionImpl::nop(Frame * this_frame) {
      this_frame->operand_stack.push(strLen);
    }
    else {
-   
+
       int argsCount  = 0;
       uint16_t count = 1;
       while(method_deor.at(count) != ')') {
@@ -337,9 +342,9 @@ void InstructionImpl::nop(Frame * this_frame) {
       }
 
       std::vector<Operand*> args;
-      
+
       for(int i = 0; i <argsCount; ++i) { //verificar esta linha.
-         
+
          auto arg = this_frame->operand_stack.top();
          this_frame->operand_stack.pop();
 
@@ -634,7 +639,7 @@ void InstructionImpl::nop(Frame * this_frame) {
  * @return void
  */
  void InstructionImpl::iinc(Frame * this_frame){
-   this_frame->pc++;    
+   this_frame->pc++;
    int8_t  field = this_frame->method_code.code[this_frame->pc++];
    int32_t value = this_frame->method_code.code[this_frame->pc++];
 
@@ -3480,15 +3485,51 @@ void InstructionImpl::iastore(Frame * this_frame){
  }
 
  void InstructionImpl::lor(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+
+    this_frame->pc++;
+
+    Operand * result = (Operand*)calloc(1,sizeof(Operand));
+    auto op1 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+    auto op2 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+
+    result->tag = CONSTANT_Long;
+    result->type_long = op2->type_long | op1->type_long;
+
+    this_frame->operand_stack.push(result);
 
  }
  void InstructionImpl::ixor(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+    Operand *operand_1 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+    Operand *operand_2 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+
+    Operand *result = (Operand *) malloc(sizeof(Operand));
+
+    result->tag = CONSTANT_Integer;
+    result->type_int = operand_2->type_int ^ operand_1->type_int;
+
+    this_frame->operand_stack.push(result);
+    this_frame->pc++;
 
  }
  void InstructionImpl::lxor(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+    this_frame->pc++;
+
+    Operand * result = (Operand*)calloc(1,sizeof(Operand));
+    auto op1 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+    auto op2 = this_frame->operand_stack.top();
+    this_frame->operand_stack.pop();
+
+    result->tag = CONSTANT_Long;
+    result->type_long = op2->type_long ^ op1->type_long;
+
+    this_frame->operand_stack.push(result);
+
+ }
 
  }
 

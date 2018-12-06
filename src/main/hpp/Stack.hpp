@@ -1,9 +1,18 @@
+/** @file Stack.hpp
+ *  @brief Simular uma pilha com todos os métodos provenientes para seu funcionamento.
+ *  @bug No known bugs.
+ */
 #ifndef _STACK_H_
 #define _STACK_H_
 
 #include <vector>
 
 template <class T>
+
+/**
+*   @class Stack
+*   @brief Serve para simular uma pilha, assim, contendo todos os métodos necessários para manipular a mesma.
+*/
 class Stack {
 
     private:

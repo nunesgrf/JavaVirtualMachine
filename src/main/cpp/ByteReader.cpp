@@ -1,3 +1,8 @@
+/**
+*	@file ByteReader.cpp
+*	@brief Intuito é buscar obinário a partir do .class passado pelo arquivo 
+*
+*/
 #include "../hpp/ByteReader.hpp"
 
 #define NEUTRAL_BYTE_FOR_OR 0x00;

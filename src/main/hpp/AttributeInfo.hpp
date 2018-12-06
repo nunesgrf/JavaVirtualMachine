@@ -13,6 +13,7 @@
 
 using namespace std;
 
+
 class AttributeInfo;
 class CodeException;
 class CodeAttribute;
@@ -20,7 +21,10 @@ class Synthetic;
 class ConstantValue;
 class ClassLoader;
 class NumberTableAttribute_lineNumber;
-
+/** @class CodeException
+*   @brief classe contém start_pc, end_pc, handler_pc e catch_type - todos uint16; 
+*
+*/
 class CodeException
 {
   public:
@@ -29,7 +33,11 @@ class CodeException
     uint16_t handler_pc;
     uint16_t catch_type;
 };
-
+/** @class Exception
+*   @brief classe contém number_exceptions e exception_index_table - todos uint16;
+*       Além contém métodos como destrutor, leitor e print    
+*
+*/
 class Exception
 {
   public:
@@ -37,11 +45,15 @@ class Exception
     uint16_t number_exceptions;
     uint16_t* exception_index_table;
 
-    ~Exception();
+    ~Exception();   
     void read(FILE *);
     void print(std::vector<CpInfo *>);
 };
-
+/** @class CodeAttribute
+*   @brief classe Atributos que consiste em max_stacks, max_locals, code_length(uint32), ponteiro para code(uint8), exception_table_length, attribute_count e attributes - restante uint16;
+*       Além contém métodos como destrutor, leitor e print    
+*
+*/
 class CodeAttribute
 {
   public:
@@ -62,7 +74,10 @@ class CodeAttribute
     void read(FILE*,std::vector<CpInfo*>);
     void print(std::vector<CpInfo*>);
 };
-
+/** @class InnerClassData
+*   @brief classe contém inner_class_info_index, outer_class_info_index, inner_name_index e inner_class_access_flag; 
+*
+*/
 class InnerClassData
 {
   public:
@@ -71,7 +86,10 @@ class InnerClassData
     uint16_t inner_name_index;
     uint16_t inner_class_access_flag;
 };
-
+/** @class InnerClass
+*   @brief classe contém class_length e ponteiro para inner_class_data - todos uint16;
+*       Além disso contém metodos como read e print
+*/
 class InnerClass
 {
   public:
@@ -81,7 +99,11 @@ class InnerClass
     void print(std::vector<CpInfo*>);
 };
 
-
+/** @class ConstantValue
+*   @brief classe contém 
+*       Além contém métodos como destrutor, leitor e print    
+*
+*/
 class ConstantValue
 {
   public:
@@ -89,7 +111,11 @@ class ConstantValue
     void read(FILE *);
     void print(std::vector<CpInfo*>);
 };
-
+/** @class SourceFile
+*   @brief classe contém sourceFileIndex - todos uint16;
+*       Além contém métodos como  leitor e print;    
+*
+*/
 class SourceFile 
 {
   public:
@@ -98,7 +124,11 @@ class SourceFile
     void read(FILE *);
     void print(std::vector<CpInfo*>);
 };
-
+/** @class NumberTableAttribute
+*   @brief classe contém length e ponteiro para line_number_table- todos uint16;
+*       Além contém métodos como leitor e print;    
+*
+*/
 class NumberTableAttribute
 {
   public:
@@ -110,6 +140,10 @@ class NumberTableAttribute
     void read(FILE *);
     void print();
 };
+/** @class NumberTableAttribute_lineNumber
+*   @brief classe contém strat_pc e lineNumber - todos uint16;
+*
+*/
 class NumberTableAttribute_lineNumber
 {
   public:
@@ -118,7 +152,12 @@ class NumberTableAttribute_lineNumber
     uint16_t lineNumber;
 
 };
-
+/** @class AttributeInfo
+*   @brief classe contém name_index e length(uint32) - todos uint16;
+*        Há também uma union que tem como principio variar de acordo com o que for chamado, assim seu tipo irá depender do name_index enviado;   
+*       Além contém métodos como destrutor, leitor e print    
+*
+*/
 class AttributeInfo
 {
   public:
