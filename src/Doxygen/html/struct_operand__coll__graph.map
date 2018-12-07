@@ -1,0 +1,5 @@
+<map id="Operand" name="Operand">
+<area shape="rect" id="node2" href="$struct_instance.html" title="tipo que determinará o nome e o tipo de operando através do Operand class; Álém contém o método Insta..." alt="" coords="17,95,89,121"/>
+<area shape="rect" id="node3" href="$class_class_loader.html" title="Todo funcionamento do classLoader em relação ao local de armazenamento enquanto é feito a leitura..." alt="" coords="5,5,100,32"/>
+<area shape="rect" id="node4" href="$struct_array_type.html" title="tem como base um tipo de vetor de um tipo de struct Operand; " alt="" coords="134,95,217,121"/>
+</map>

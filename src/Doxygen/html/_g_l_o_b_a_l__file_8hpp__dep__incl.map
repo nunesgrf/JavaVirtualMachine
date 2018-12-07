@@ -1,0 +1,6 @@
+<map id="GLOBAL_file.hpp" name="GLOBAL_file.hpp">
+<area shape="rect" id="node2" href="$_g_l_o_b_a_l__file_8cpp.html" title="Contém métodos que serão utilizados de forma global, ao invés de termos que setar o mesmo para todos ..." alt="" coords="5,80,128,107"/>
+<area shape="rect" id="node3" href="$_instruction_impl_8cpp.html" title="Métodos referentes a execução de cada instrução ;. " alt="" coords="152,80,285,107"/>
+<area shape="rect" id="node4" href="$_interpreter_8cpp.html" title="Métodos que fazem a atuação do interpretador;. " alt="" coords="309,80,416,107"/>
+<area shape="rect" id="node5" href="$jvm_8cpp.html" title="Arquivo inicial em que é selecionado ou a exibição do leitor ou do interpretador dependendo da chamad..." alt="" coords="441,80,509,107"/>
+</map>

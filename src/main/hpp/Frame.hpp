@@ -22,10 +22,17 @@
 struct Operand;
 struct Instruction;
 struct Instance;
-
+/**
+*   @struct ArrayType
+*    @brief tem como base um tipo de vetor de um tipo de struct Operand;
+*/
 typedef struct {
     std::vector<Operand*> * array;
 } ArrayType;
+/**
+*   @struct Operand
+*   @brief  intuito de ligar aos tipos possíveis para variáveis que serão utilizadas; 
+*/
 
 struct Operand {
     uint8_t tag;
@@ -43,6 +50,11 @@ struct Operand {
     Instance * class_instance;
     ArrayType * array_type;
 };
+/**
+*   @struct Frame
+*   @brief  objetivo de estruturar o tipo Frame;
+*       Além disso, contém destrutor e run(para rodar o frame);     
+*/
 
 struct Frame {
     

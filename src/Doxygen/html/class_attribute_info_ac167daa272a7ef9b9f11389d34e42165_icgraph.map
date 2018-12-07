@@ -1,0 +1,7 @@
+<map id="AttributeInfo::read" name="AttributeInfo::read">
+<area shape="rect" id="node2" href="$class_class_loader.html#adac675675241b8c2892ebfbf5b902d33" title="ClassLoader::setAttributes" alt="" coords="180,5,357,32"/>
+<area shape="rect" id="node3" href="$class_field_info.html#acb85db9ce893bc3e2617138fd46a8ad6" title="FieldInfo::read" alt="" coords="216,56,321,83"/>
+<area shape="rect" id="node5" href="$struct_method_info.html#a96fbb8de441ef2af032c20d36d41eb7a" title="Serve para preencher os valores de uma instância de MethodInfo. " alt="" coords="209,107,329,133"/>
+<area shape="rect" id="node4" href="$class_class_loader.html#a3a544b1a25a445bbf4ce7e5d84a2a90a" title="ClassLoader::setFields" alt="" coords="413,56,569,83"/>
+<area shape="rect" id="node6" href="$class_class_loader.html#ab47e37f5d359a067182c1a181e9db54e" title="ClassLoader::setMethods" alt="" coords="405,107,576,133"/>
+</map>

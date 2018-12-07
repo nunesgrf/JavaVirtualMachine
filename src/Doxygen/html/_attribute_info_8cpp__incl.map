@@ -1,0 +1,15 @@
+<map id="AttributeInfo.cpp" name="AttributeInfo.cpp">
+<area shape="rect" id="node2" href="$_instruction_8hpp.html" title="Declarações das instruçoes referentes ao interpretador da JVM. " alt="" coords="815,80,923,107"/>
+<area shape="rect" id="node14" href="$_attribute_info_8hpp.html" title="Declarações das funções do AttributeInfo para tratamento dos atributos do arquivo ..." alt="" coords="563,528,682,555"/>
+<area shape="rect" id="node21" href="$_byte_reader_8hpp.html" title="Declarações das funções do ByteReader para leitura dos bytes no arquivo .class. " alt="" coords="1218,528,1334,555"/>
+<area shape="rect" id="node24" href="$_byte_reader_8cpp.html" title="Intuito é buscar obinário a partir do .class passado pelo arquivo. " alt="" coords="1219,155,1335,181"/>
+<area shape="rect" id="node25" href="$_cp_attribute_interface_8hpp.html" title="Declarações da interface entre ConstantPool e AttributeInfo para traduzir as strings UTF8..." alt="" coords="950,304,1114,331"/>
+<area shape="rect" id="node4" href="$_instruction_impl_8hpp.html" title="Declarações das funções do ClassLoader para salvar todos os bytes de .class corretamente. " alt="" coords="583,155,716,181"/>
+<area shape="rect" id="node5" href="$_frame_8hpp.html" title="Declarações das funções e da estrutura do Frame, utilizado para salvar resultados parciais..." alt="" coords="571,229,655,256"/>
+<area shape="rect" id="node11" href="$_cp_info_8hpp.html" title="Declarações das funções e dos atributos do Pool de constantes. " alt="" coords="878,603,965,629"/>
+<area shape="rect" id="node13" href="$_method_info_8hpp.html" title="Declarações das funções do MethodInfo estrutura responsável por guardas as informaçoes dos metodos do..." alt="" coords="781,453,893,480"/>
+<area shape="rect" id="node15" href="$_class_loader_8hpp.html" title="Declarações das funções do ClassLoader para salvar todos os bytes de .class corretamente. " alt="" coords="561,379,681,405"/>
+<area shape="rect" id="node23" href="$_instance_8hpp.html" title="Declaração da struct Instance. " alt="" coords="565,304,662,331"/>
+<area shape="rect" id="node20" href="$_interface_info_8hpp.html" title="Declarações das funções e atributos de InterfaceInfo. " alt="" coords="1069,453,1189,480"/>
+<area shape="rect" id="node22" href="$_field_info_8hpp.html" title="Declarações das funções do FieldInfo para tratamento dos fields do arquivo .class. " alt="" coords="659,453,757,480"/>
+</map>

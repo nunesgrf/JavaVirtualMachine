@@ -1,3 +1,8 @@
+/** @file CpAttributeInterface.cpp
+*   @brief Funções que verificam, a partir da tag, qual o tipo do bytecode que está sendo lido;
+*
+*/
+
 #include "../hpp/CpAttributeInterface.hpp"
 
 #define CONSTANT_Utf8 1
@@ -13,7 +18,8 @@
 #define CONSTANT_NameAndType 12
 #define CONSTANT_Empty 0
 
-/** @brief Função que realiza buscas recursivas dentro do CpInfo de um bytecode.
+/** @class CpAttributeInterface::getUTF8
+ * @brief Função que realiza buscas recursivas dentro do CpInfo de um bytecode.
  * @param alpha vetor de CpInfo* @param beta index de início da busca.
  * @return std::string
  */

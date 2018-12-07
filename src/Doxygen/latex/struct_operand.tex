@@ -1,0 +1,94 @@
+\hypertarget{struct_operand}{}\section{Referência à estrutura Operand}
+\label{struct_operand}\index{Operand@{Operand}}
+
+
+intuito de ligar aos tipos possíveis para variáveis que serão utilizadas;  
+
+
+
+
+{\ttfamily \#include $<$Frame.\+hpp$>$}
+
+
+
+Diagrama de colaboração para Operand\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{struct_operand__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Atributos Públicos}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \hyperlink{struct_operand_a551b2888783546b27f90b70f5ceeafee}{tag}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>uint32\_t \hyperlink{struct_operand_a0705136abc78d06866591f4a1304163b}{type\_bool}\\
+\>uint32\_t \hyperlink{struct_operand_a8590d48387a47c99940dec06f4262c88}{type\_byte}\\
+\>uint32\_t \hyperlink{struct_operand_a7d323bb935c240911633677c632d967b}{type\_char}\\
+\>uint32\_t \hyperlink{struct_operand_a9a95367e26a5d3016da0b6d9fc9f0359}{type\_short}\\
+\>uint32\_t \hyperlink{struct_operand_a5aa568fddb9132272a9c4e9870825a13}{type\_int}\\
+\>uint32\_t \hyperlink{struct_operand_a323c9442608ba57c5556a67dece11c92}{type\_float}\\
+\>uint64\_t \hyperlink{struct_operand_acba3d813258f86827e414fb6e6fb6963}{type\_long}\\
+\>uint64\_t \hyperlink{struct_operand_a2bae1001957062fa9e95bb13a0afe2a3}{type\_double}\\
+\}; \\
+
+\end{tabbing}\item 
+std\+::string $\ast$ \hyperlink{struct_operand_ab339ad43cfc3f1c32be042769846f049}{type\+\_\+string}
+\item 
+\hyperlink{struct_instance}{Instance} $\ast$ \hyperlink{struct_operand_a9afc0307304efd6930acb371bdabe4c2}{class\+\_\+instance}
+\item 
+\hyperlink{struct_array_type}{Array\+Type} $\ast$ \hyperlink{struct_operand_a79ddf8db90ba729dcee75f0f6669a8ca}{array\+\_\+type}
+\end{DoxyCompactItemize}
+
+
+\subsection{Descrição detalhada}
+intuito de ligar aos tipos possíveis para variáveis que serão utilizadas; 
+
+\subsection{Documentação dos dados membro}
+\subsubsection[{\texorpdfstring{"@16}{@16}}]{\setlength{\rightskip}{0pt plus 5cm}union \{ ... \} }\hypertarget{struct_operand_aadc70ab04271d71be5ac82ac2a896e74}{}\label{struct_operand_aadc70ab04271d71be5ac82ac2a896e74}
+\index{Operand@{Operand}!array\+\_\+type@{array\+\_\+type}}
+\index{array\+\_\+type@{array\+\_\+type}!Operand@{Operand}}
+\subsubsection[{\texorpdfstring{array\+\_\+type}{array_type}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Array\+Type}$\ast$ Operand\+::array\+\_\+type}\hypertarget{struct_operand_a79ddf8db90ba729dcee75f0f6669a8ca}{}\label{struct_operand_a79ddf8db90ba729dcee75f0f6669a8ca}
+\index{Operand@{Operand}!class\+\_\+instance@{class\+\_\+instance}}
+\index{class\+\_\+instance@{class\+\_\+instance}!Operand@{Operand}}
+\subsubsection[{\texorpdfstring{class\+\_\+instance}{class_instance}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Instance}$\ast$ Operand\+::class\+\_\+instance}\hypertarget{struct_operand_a9afc0307304efd6930acb371bdabe4c2}{}\label{struct_operand_a9afc0307304efd6930acb371bdabe4c2}
+\index{Operand@{Operand}!tag@{tag}}
+\index{tag@{tag}!Operand@{Operand}}
+\subsubsection[{\texorpdfstring{tag}{tag}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t Operand\+::tag}\hypertarget{struct_operand_a551b2888783546b27f90b70f5ceeafee}{}\label{struct_operand_a551b2888783546b27f90b70f5ceeafee}
+\index{Operand@{Operand}!type\+\_\+bool@{type\+\_\+bool}}
+\index{type\+\_\+bool@{type\+\_\+bool}!Operand@{Operand}}
+\subsubsection[{\texorpdfstring{type\+\_\+bool}{type_bool}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t Operand\+::type\+\_\+bool}\hypertarget{struct_operand_a0705136abc78d06866591f4a1304163b}{}\label{struct_operand_a0705136abc78d06866591f4a1304163b}
+\index{Operand@{Operand}!type\+\_\+byte@{type\+\_\+byte}}
+\index{type\+\_\+byte@{type\+\_\+byte}!Operand@{Operand}}
+\subsubsection[{\texorpdfstring{type\+\_\+byte}{type_byte}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t Operand\+::type\+\_\+byte}\hypertarget{struct_operand_a8590d48387a47c99940dec06f4262c88}{}\label{struct_operand_a8590d48387a47c99940dec06f4262c88}
+\index{Operand@{Operand}!type\+\_\+char@{type\+\_\+char}}
+\index{type\+\_\+char@{type\+\_\+char}!Operand@{Operand}}
+\subsubsection[{\texorpdfstring{type\+\_\+char}{type_char}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t Operand\+::type\+\_\+char}\hypertarget{struct_operand_a7d323bb935c240911633677c632d967b}{}\label{struct_operand_a7d323bb935c240911633677c632d967b}
+\index{Operand@{Operand}!type\+\_\+double@{type\+\_\+double}}
+\index{type\+\_\+double@{type\+\_\+double}!Operand@{Operand}}
+\subsubsection[{\texorpdfstring{type\+\_\+double}{type_double}}]{\setlength{\rightskip}{0pt plus 5cm}uint64\+\_\+t Operand\+::type\+\_\+double}\hypertarget{struct_operand_a2bae1001957062fa9e95bb13a0afe2a3}{}\label{struct_operand_a2bae1001957062fa9e95bb13a0afe2a3}
+\index{Operand@{Operand}!type\+\_\+float@{type\+\_\+float}}
+\index{type\+\_\+float@{type\+\_\+float}!Operand@{Operand}}
+\subsubsection[{\texorpdfstring{type\+\_\+float}{type_float}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t Operand\+::type\+\_\+float}\hypertarget{struct_operand_a323c9442608ba57c5556a67dece11c92}{}\label{struct_operand_a323c9442608ba57c5556a67dece11c92}
+\index{Operand@{Operand}!type\+\_\+int@{type\+\_\+int}}
+\index{type\+\_\+int@{type\+\_\+int}!Operand@{Operand}}
+\subsubsection[{\texorpdfstring{type\+\_\+int}{type_int}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t Operand\+::type\+\_\+int}\hypertarget{struct_operand_a5aa568fddb9132272a9c4e9870825a13}{}\label{struct_operand_a5aa568fddb9132272a9c4e9870825a13}
+\index{Operand@{Operand}!type\+\_\+long@{type\+\_\+long}}
+\index{type\+\_\+long@{type\+\_\+long}!Operand@{Operand}}
+\subsubsection[{\texorpdfstring{type\+\_\+long}{type_long}}]{\setlength{\rightskip}{0pt plus 5cm}uint64\+\_\+t Operand\+::type\+\_\+long}\hypertarget{struct_operand_acba3d813258f86827e414fb6e6fb6963}{}\label{struct_operand_acba3d813258f86827e414fb6e6fb6963}
+\index{Operand@{Operand}!type\+\_\+short@{type\+\_\+short}}
+\index{type\+\_\+short@{type\+\_\+short}!Operand@{Operand}}
+\subsubsection[{\texorpdfstring{type\+\_\+short}{type_short}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t Operand\+::type\+\_\+short}\hypertarget{struct_operand_a9a95367e26a5d3016da0b6d9fc9f0359}{}\label{struct_operand_a9a95367e26a5d3016da0b6d9fc9f0359}
+\index{Operand@{Operand}!type\+\_\+string@{type\+\_\+string}}
+\index{type\+\_\+string@{type\+\_\+string}!Operand@{Operand}}
+\subsubsection[{\texorpdfstring{type\+\_\+string}{type_string}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string$\ast$ Operand\+::type\+\_\+string}\hypertarget{struct_operand_ab339ad43cfc3f1c32be042769846f049}{}\label{struct_operand_ab339ad43cfc3f1c32be042769846f049}
+
+
+A documentação para esta estrutura foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_frame_8hpp}{Frame.\+hpp}\end{DoxyCompactItemize}

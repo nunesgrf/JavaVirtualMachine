@@ -16,6 +16,11 @@
 #include "Frame.hpp"
 struct Frame;
 
+/**
+*   @class InstructionImpl
+*   @brief Objetivo incluir todos os metodos para a ação de cada instrução achada pelo interpretador;    
+*/
+
 class InstructionImpl {
 
 public:
@@ -237,6 +242,10 @@ public:
     static void multianewarray(Frame *);
 
     static void tableswitch(Frame *);
+
+    static void impdep1(Frame *);
+    static void impdep2(Frame *);
+    static void breakpoint(Frame *);
 };
 
 #endif

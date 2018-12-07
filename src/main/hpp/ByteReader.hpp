@@ -8,6 +8,10 @@
 #include <fstream>
 
 template <class T>
+/**	@class ByteReader
+*	@brief Contém o método byteCatch - busca fazer a leitura dos bytes do .class;
+*
+*/
 class ByteReader {   
     public:
     T byteCatch(FILE * fp);

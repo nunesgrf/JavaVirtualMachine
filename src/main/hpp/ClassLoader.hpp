@@ -44,6 +44,11 @@ class MethodInfo;
 class AttributeInfo;
 class InterfaceInfo;
 
+/**
+* @class ClassLoader
+* @brief Todo funcionamento do classLoader em relação ao local de armazenamento enquanto é feito a leitura, separando de acordo com que for chamado os metodos de set e get;
+*     Além disso, contém destructor;
+*/
 class ClassLoader {
 
     private:
@@ -79,9 +84,9 @@ class ClassLoader {
        index into the constant_pool table */
       std::vector<InterfaceInfo*> interfaces;
 
-      /* The value of the fields_count item gives the number
+     
+      uint16_t fieldsCounter; /* The value of the fields_count item gives the number
        of field_info structures in the fields table */
-      uint16_t fieldsCounter;
 
       /* The fields table includes only those fields that are declared by this class or interface.
       It does not include items representing fields that are

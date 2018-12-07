@@ -1,0 +1,1670 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>JVM: Referência à classe ClassLoader</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">JVM
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="pages.html"><span>Páginas&#160;relacionadas</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Estruturas&#160;de&#160;dados</span></a></li>
+      <li><a href="files.html"><span>Ficheiros</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Localizar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>Estruturas&#160;de&#160;dados</span></a></li>
+      <li><a href="classes.html"><span>Índice&#160;das&#160;estruturas&#160;de&#160;dados</span></a></li>
+      <li><a href="functions.html"><span>Campos&#160;de&#160;dados</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Estruturas de Dados</a> &#124;
+<a href="#pub-methods">Membros públicos</a> &#124;
+<a href="#pub-attribs">Campos de Dados</a> &#124;
+<a href="#pri-methods">Membros privados</a> &#124;
+<a href="#pri-attribs">Atributos Privados</a>  </div>
+  <div class="headertitle">
+<div class="title">Referência à classe ClassLoader</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Todo funcionamento do classLoader em relação ao local de armazenamento enquanto é feito a leitura, separando de acordo com que for chamado os metodos de set e get; Além disso, contém destructor;.  
+ <a href="class_class_loader.html#details">Mais...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_class_loader_8hpp_source.html">ClassLoader.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Estruturas de Dados</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader_1_1_class_loader.html">ClassLoader</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construtor da classe da <a class="el" href="class_class_loader_1_1_class_loader.html" title="Construtor da classe da ClassLoader; A ideia é chamar todos os Set&#39;s aqui de maneira garantir a quali...">ClassLoader</a>; A ideia é chamar todos os Set's aqui de maneira garantir a qualidade dos dados.  <a href="class_class_loader_1_1_class_loader.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader_1_1get_attributes.html">getAttributes</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método que retona os attributes_info ;.  <a href="class_class_loader_1_1get_attributes.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader_1_1get_fields.html">getFields</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método que retona os field_info ;.  <a href="class_class_loader_1_1get_fields.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader_1_1get_methods.html">getMethods</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método que retona os methods_info ;.  <a href="class_class_loader_1_1get_methods.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader_1_1set_access_flag.html">setAccessFlag</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">O valor setado através desse método é uma mascara de flags que denotam o acesso das propriedades da classe ou interface;.  <a href="class_class_loader_1_1set_access_flag.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader_1_1set_attributes.html">setAttributes</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método que seta uma array de attribute_info ;.  <a href="class_class_loader_1_1set_attributes.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader_1_1set_attributes_count.html">setAttributesCount</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método que seta a quantidade de estruturas attribute_info ;.  <a href="class_class_loader_1_1set_attributes_count.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader_1_1set_const_count.html">setConstCount</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método com o objetivo de setar a quantidade de constant pool mais 1;.  <a href="class_class_loader_1_1set_const_count.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader_1_1set_const_pool.html">setConstPool</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método com o objetivo de representar uma tebela de estruturas como strings, classes, interfaces, entre outros; O formato para cada constant pool na tabela é indicado com uma tag;.  <a href="class_class_loader_1_1set_const_pool.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader_1_1set_field_count.html">setFieldCount</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método com o objetivo de setar a quantidade de estruturas do tipo field_info na tabela de fields ;.  <a href="class_class_loader_1_1set_field_count.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader_1_1set_fields.html">setFields</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método que seta uma array de field_info ;.  <a href="class_class_loader_1_1set_fields.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader_1_1set_inter_count.html">setInterCount</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método que seta a quantidade de superinterfaces e tipo interface;.  <a href="class_class_loader_1_1set_inter_count.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader_1_1set_interface.html">setInterface</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método que seta uma array contendo as interfaces pegas a partir de index válidos no contant_poll;.  <a href="class_class_loader_1_1set_interface.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader_1_1set_magic.html">setMagic</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método que busca identificar o formato da classe. Tem o valor de 0xCAFEBABE;.  <a href="class_class_loader_1_1set_magic.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader_1_1set_major.html">setMajor</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método como Major busca identificar a maior versão acessivel do formato do arquivo de classe;.  <a href="class_class_loader_1_1set_major.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader_1_1set_method_count.html">setMethodCount</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método seta a quantidade de estruturas method_info ;.  <a href="class_class_loader_1_1set_method_count.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader_1_1set_methods.html">setMethods</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método que seta uma array de methods_info ;.  <a href="class_class_loader_1_1set_methods.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader_1_1set_minor.html">setMinor</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método como Minor busca identificar a menor versão acessivel do formato do arquivo de classe;.  <a href="class_class_loader_1_1set_minor.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader_1_1set_super_class.html">setSuperClass</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Caso o valor do index passado seja diferente de zero, é tratado como uma CONSTANT_Class_info, caso contrário é tratado como objeto;.  <a href="class_class_loader_1_1set_super_class.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader_1_1set_this_class.html">setThisClass</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método que seta um index valido pego da tabela de constatnt pool que indica uma CONSTANT_Class_info;.  <a href="class_class_loader_1_1set_this_class.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader_1_1~_class_loader.html">~ClassLoader</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aqui são feitas as desalocações da <a class="el" href="class_class_loader_1_1_class_loader.html" title="Construtor da classe da ClassLoader; A ideia é chamar todos os Set&#39;s aqui de maneira garantir a quali...">ClassLoader</a>;.  <a href="class_class_loader_1_1~_class_loader.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Membros públicos</h2></td></tr>
+<tr class="memitem:a31dd114820bfdbfe628f2efb5effe963"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#a31dd114820bfdbfe628f2efb5effe963">getMagic</a> ()</td></tr>
+<tr class="separator:a31dd114820bfdbfe628f2efb5effe963"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc67f7bffc1f2b8ffd61b1dd217f62ad"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#afc67f7bffc1f2b8ffd61b1dd217f62ad">getMajor</a> ()</td></tr>
+<tr class="separator:afc67f7bffc1f2b8ffd61b1dd217f62ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9bed0bf2ac88a23118e67777a14c0553"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#a9bed0bf2ac88a23118e67777a14c0553">getMinor</a> ()</td></tr>
+<tr class="separator:a9bed0bf2ac88a23118e67777a14c0553"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a292f4c53de8057b6cb24f8b2e0839807"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#a292f4c53de8057b6cb24f8b2e0839807">getConstCount</a> ()</td></tr>
+<tr class="separator:a292f4c53de8057b6cb24f8b2e0839807"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f3dc8367a76e7a4594bd5e8206d3977"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_cp_info.html">CpInfo</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#a8f3dc8367a76e7a4594bd5e8206d3977">getConstPool</a> ()</td></tr>
+<tr class="separator:a8f3dc8367a76e7a4594bd5e8206d3977"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6154ac807d01c4281f9ccf6b23378197"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#a6154ac807d01c4281f9ccf6b23378197">getFlag</a> ()</td></tr>
+<tr class="separator:a6154ac807d01c4281f9ccf6b23378197"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3346ccdf7148ea48826d858326c4de00"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#a3346ccdf7148ea48826d858326c4de00">getThisClass</a> ()</td></tr>
+<tr class="separator:a3346ccdf7148ea48826d858326c4de00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a390d1849bd7686e618a84eae6a7f60cf"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#a390d1849bd7686e618a84eae6a7f60cf">getSuper</a> ()</td></tr>
+<tr class="separator:a390d1849bd7686e618a84eae6a7f60cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbc3563bd386c769b5beb3352e761e0a"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#acbc3563bd386c769b5beb3352e761e0a">getInterCounter</a> ()</td></tr>
+<tr class="separator:acbc3563bd386c769b5beb3352e761e0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a357668e5a1442f1fb7618f04c1e0a951"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_interface_info.html">InterfaceInfo</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#a357668e5a1442f1fb7618f04c1e0a951">getInterfaces</a> ()</td></tr>
+<tr class="separator:a357668e5a1442f1fb7618f04c1e0a951"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58c1c2b982f56c630946408d1425f6f4"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#a58c1c2b982f56c630946408d1425f6f4">getFieldCount</a> ()</td></tr>
+<tr class="separator:a58c1c2b982f56c630946408d1425f6f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a868fdfc297bfc310b21b3a41cdceb7b9"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_field_info.html">FieldInfo</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#a868fdfc297bfc310b21b3a41cdceb7b9">getFields</a> ()</td></tr>
+<tr class="separator:a868fdfc297bfc310b21b3a41cdceb7b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acad870c7b405146242912190e1e71f7c"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#acad870c7b405146242912190e1e71f7c">getMethoCount</a> ()</td></tr>
+<tr class="separator:acad870c7b405146242912190e1e71f7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4733587ddbe1ae25500c13181bfb5ca"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="struct_method_info.html">MethodInfo</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#ad4733587ddbe1ae25500c13181bfb5ca">getMethods</a> ()</td></tr>
+<tr class="separator:ad4733587ddbe1ae25500c13181bfb5ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a047f5d93000be571f23484c809ab9b2d"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#a047f5d93000be571f23484c809ab9b2d">getAttriCount</a> ()</td></tr>
+<tr class="separator:a047f5d93000be571f23484c809ab9b2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a988add3569e32d42bc841f526d978e68"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_attribute_info.html">AttributeInfo</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#a988add3569e32d42bc841f526d978e68">getAttributes</a> ()</td></tr>
+<tr class="separator:a988add3569e32d42bc841f526d978e68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62db678abd7f6954fa2f32a6f5a0b157"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#a62db678abd7f6954fa2f32a6f5a0b157">~ClassLoader</a> ()</td></tr>
+<tr class="separator:a62db678abd7f6954fa2f32a6f5a0b157"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94dec2f34055621437170b6a5fb74d0a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#a94dec2f34055621437170b6a5fb74d0a">ClassLoader</a> (FILE *fp)</td></tr>
+<tr class="separator:a94dec2f34055621437170b6a5fb74d0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Campos de Dados</h2></td></tr>
+<tr class="memitem:a0aa9112b221bbc7680236be7eb5b4c45"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#a0aa9112b221bbc7680236be7eb5b4c45">DEBUG</a> = true</td></tr>
+<tr class="separator:a0aa9112b221bbc7680236be7eb5b4c45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Membros privados</h2></td></tr>
+<tr class="memitem:a9e756ef58a13aab63472a9b343710327"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#a9e756ef58a13aab63472a9b343710327">setMagic</a> (FILE *fp)</td></tr>
+<tr class="separator:a9e756ef58a13aab63472a9b343710327"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd21ab61a4ea4d2fda29319e37a7886e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#afd21ab61a4ea4d2fda29319e37a7886e">setMajor</a> (FILE *fp)</td></tr>
+<tr class="separator:afd21ab61a4ea4d2fda29319e37a7886e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2bd2b993bdbc080f77a9f5e76744fd7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#ad2bd2b993bdbc080f77a9f5e76744fd7">setMinor</a> (FILE *fp)</td></tr>
+<tr class="separator:ad2bd2b993bdbc080f77a9f5e76744fd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22735292f1ed1c1b101111f013524a06"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#a22735292f1ed1c1b101111f013524a06">setConstCount</a> (FILE *fp)</td></tr>
+<tr class="separator:a22735292f1ed1c1b101111f013524a06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09a097315d78f50dc7522811e256978f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#a09a097315d78f50dc7522811e256978f">setConstPool</a> (FILE *fp)</td></tr>
+<tr class="separator:a09a097315d78f50dc7522811e256978f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78a667283feda0933eabf1d8f601fa30"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#a78a667283feda0933eabf1d8f601fa30">setAccessFlag</a> (FILE *fp)</td></tr>
+<tr class="separator:a78a667283feda0933eabf1d8f601fa30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa089d3175ca27ac5e0efa2f6c26c4df5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#aa089d3175ca27ac5e0efa2f6c26c4df5">setThisClass</a> (FILE *fp)</td></tr>
+<tr class="separator:aa089d3175ca27ac5e0efa2f6c26c4df5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a011a4cfdd1995fa34718a549ca467b0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#a011a4cfdd1995fa34718a549ca467b0a">setSuperClass</a> (FILE *fp)</td></tr>
+<tr class="separator:a011a4cfdd1995fa34718a549ca467b0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25c897efbe0542a8603f2dfa29943881"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#a25c897efbe0542a8603f2dfa29943881">setInterCount</a> (FILE *fp)</td></tr>
+<tr class="separator:a25c897efbe0542a8603f2dfa29943881"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18bc96df21925d9da172c64205736ea5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#a18bc96df21925d9da172c64205736ea5">setInterface</a> (FILE *fp)</td></tr>
+<tr class="separator:a18bc96df21925d9da172c64205736ea5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aedeaf814e3cf232978ce7e0b135c93b0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#aedeaf814e3cf232978ce7e0b135c93b0">setFieldCount</a> (FILE *fp)</td></tr>
+<tr class="separator:aedeaf814e3cf232978ce7e0b135c93b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a544b1a25a445bbf4ce7e5d84a2a90a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#a3a544b1a25a445bbf4ce7e5d84a2a90a">setFields</a> (FILE *fp)</td></tr>
+<tr class="separator:a3a544b1a25a445bbf4ce7e5d84a2a90a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa744ed99b82e912547af903ea13fa3dd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#aa744ed99b82e912547af903ea13fa3dd">setMethodCount</a> (FILE *fp)</td></tr>
+<tr class="separator:aa744ed99b82e912547af903ea13fa3dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab47e37f5d359a067182c1a181e9db54e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#ab47e37f5d359a067182c1a181e9db54e">setMethods</a> (FILE *fp)</td></tr>
+<tr class="separator:ab47e37f5d359a067182c1a181e9db54e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1dff6712251163173291991f52ac8fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#ae1dff6712251163173291991f52ac8fa">setAttributesCount</a> (FILE *fp)</td></tr>
+<tr class="separator:ae1dff6712251163173291991f52ac8fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adac675675241b8c2892ebfbf5b902d33"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#adac675675241b8c2892ebfbf5b902d33">setAttributes</a> (FILE *fp)</td></tr>
+<tr class="separator:adac675675241b8c2892ebfbf5b902d33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Atributos Privados</h2></td></tr>
+<tr class="memitem:a7442307ca76e7d8a9be304db4e33b66d"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#a7442307ca76e7d8a9be304db4e33b66d">magicNumber</a></td></tr>
+<tr class="separator:a7442307ca76e7d8a9be304db4e33b66d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abdd2cd7ba1f788bc38cb337f5ae5b5a5"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#abdd2cd7ba1f788bc38cb337f5ae5b5a5">minorVersion</a></td></tr>
+<tr class="separator:abdd2cd7ba1f788bc38cb337f5ae5b5a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a02cc0f6fe77ff6e5f9309ab4bc31b5"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#a7a02cc0f6fe77ff6e5f9309ab4bc31b5">majorVersion</a></td></tr>
+<tr class="separator:a7a02cc0f6fe77ff6e5f9309ab4bc31b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af45f7e190304e384793dda63d127503f"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#af45f7e190304e384793dda63d127503f">constantPoolCounter</a></td></tr>
+<tr class="separator:af45f7e190304e384793dda63d127503f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ed8e2522a4648fee01751f80be2cbd2"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_cp_info.html">CpInfo</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#a5ed8e2522a4648fee01751f80be2cbd2">constantPool</a></td></tr>
+<tr class="separator:a5ed8e2522a4648fee01751f80be2cbd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5d88fdb250c1d7b0e315afd32edf2d5"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#ab5d88fdb250c1d7b0e315afd32edf2d5">accessFlags</a></td></tr>
+<tr class="separator:ab5d88fdb250c1d7b0e315afd32edf2d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4ec421aef6d619f8e2ae86ea08d62f2"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#ab4ec421aef6d619f8e2ae86ea08d62f2">thisClass</a></td></tr>
+<tr class="separator:ab4ec421aef6d619f8e2ae86ea08d62f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab15e6151a14afaa40e3f5ff63fa72106"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#ab15e6151a14afaa40e3f5ff63fa72106">superClass</a></td></tr>
+<tr class="separator:ab15e6151a14afaa40e3f5ff63fa72106"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10b6072e3219bf2c62bde208923a8bd5"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#a10b6072e3219bf2c62bde208923a8bd5">interfaceCounter</a></td></tr>
+<tr class="separator:a10b6072e3219bf2c62bde208923a8bd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae80a739acf39382233e56bac10559a5b"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_interface_info.html">InterfaceInfo</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#ae80a739acf39382233e56bac10559a5b">interfaces</a></td></tr>
+<tr class="separator:ae80a739acf39382233e56bac10559a5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a2f6f9c57e378dd5c36f6bb61116ce3"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#a6a2f6f9c57e378dd5c36f6bb61116ce3">fieldsCounter</a></td></tr>
+<tr class="separator:a6a2f6f9c57e378dd5c36f6bb61116ce3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f4f63df7b9b46194c9f843de8b2cdfd"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_field_info.html">FieldInfo</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#a4f4f63df7b9b46194c9f843de8b2cdfd">fields</a></td></tr>
+<tr class="separator:a4f4f63df7b9b46194c9f843de8b2cdfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68f4e0b040607cea6a56960ed05ae364"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#a68f4e0b040607cea6a56960ed05ae364">methodsCounter</a></td></tr>
+<tr class="separator:a68f4e0b040607cea6a56960ed05ae364"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a003398daa2f1cb3e48c6efbd1a273b17"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="struct_method_info.html">MethodInfo</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#a003398daa2f1cb3e48c6efbd1a273b17">methods</a></td></tr>
+<tr class="separator:a003398daa2f1cb3e48c6efbd1a273b17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d223edb7107eaa9824fdee870944d9b"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#a0d223edb7107eaa9824fdee870944d9b">attributesCounter</a></td></tr>
+<tr class="separator:a0d223edb7107eaa9824fdee870944d9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b9e4949bbf3a2bf2e0c7b830044c653"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_attribute_info.html">AttributeInfo</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class_loader.html#a1b9e4949bbf3a2bf2e0c7b830044c653">attributes</a></td></tr>
+<tr class="separator:a1b9e4949bbf3a2bf2e0c7b830044c653"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descrição detalhada</h2>
+<div class="textblock"><p>Todo funcionamento do classLoader em relação ao local de armazenamento enquanto é feito a leitura, separando de acordo com que for chamado os metodos de set e get; Além disso, contém destructor;. </p>
+</div><h2 class="groupheader">Documentação dos Construtores &amp; Destrutor</h2>
+<a class="anchor" id="a62db678abd7f6954fa2f32a6f5a0b157"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_class_loader_1_1~_class_loader.html">ClassLoader::~ClassLoader</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a94dec2f34055621437170b6a5fb74d0a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_class_loader_1_1_class_loader.html">ClassLoader::ClassLoader</a> </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>fp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Documentação dos métodos</h2>
+<a class="anchor" id="a988add3569e32d42bc841f526d978e68"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="class_attribute_info.html">AttributeInfo</a> * &gt; <a class="el" href="class_class_loader_1_1get_attributes.html">ClassLoader::getAttributes</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Este é o diagrama das funções que utilizam esta função:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_class_loader_a988add3569e32d42bc841f526d978e68_icgraph.svg" width="658" height="63"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a047f5d93000be571f23484c809ab9b2d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t ClassLoader::getAttriCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Grafo de chamadas desta função:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_class_loader_a047f5d93000be571f23484c809ab9b2d_cgraph.svg" width="416" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+<p><div class="dynheader">
+Este é o diagrama das funções que utilizam esta função:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_class_loader_a047f5d93000be571f23484c809ab9b2d_icgraph.svg" width="432" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a292f4c53de8057b6cb24f8b2e0839807"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t ClassLoader::getConstCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Este é o diagrama das funções que utilizam esta função:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_class_loader_a292f4c53de8057b6cb24f8b2e0839807_icgraph.svg" width="443" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a8f3dc8367a76e7a4594bd5e8206d3977"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="class_cp_info.html">CpInfo</a>*&gt; ClassLoader::getConstPool </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Este é o diagrama das funções que utilizam esta função:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_class_loader_a8f3dc8367a76e7a4594bd5e8206d3977_icgraph.svg" width="1662" height="814"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a58c1c2b982f56c630946408d1425f6f4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t ClassLoader::getFieldCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Grafo de chamadas desta função:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_class_loader_a58c1c2b982f56c630946408d1425f6f4_cgraph.svg" width="399" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+<p><div class="dynheader">
+Este é o diagrama das funções que utilizam esta função:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_class_loader_a58c1c2b982f56c630946408d1425f6f4_icgraph.svg" width="436" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a868fdfc297bfc310b21b3a41cdceb7b9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="class_field_info.html">FieldInfo</a> * &gt; <a class="el" href="class_class_loader_1_1get_fields.html">ClassLoader::getFields</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Este é o diagrama das funções que utilizam esta função:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_class_loader_a868fdfc297bfc310b21b3a41cdceb7b9_icgraph.svg" width="640" height="63"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a6154ac807d01c4281f9ccf6b23378197"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t ClassLoader::getFlag </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Este é o diagrama das funções que utilizam esta função:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_class_loader_a6154ac807d01c4281f9ccf6b23378197_icgraph.svg" width="399" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="acbc3563bd386c769b5beb3352e761e0a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t ClassLoader::getInterCounter </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Este é o diagrama das funções que utilizam esta função:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_class_loader_acbc3563bd386c769b5beb3352e761e0a_icgraph.svg" width="446" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a357668e5a1442f1fb7618f04c1e0a951"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="class_interface_info.html">InterfaceInfo</a>*&gt; ClassLoader::getInterfaces </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Este é o diagrama das funções que utilizam esta função:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_class_loader_a357668e5a1442f1fb7618f04c1e0a951_icgraph.svg" width="431" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a31dd114820bfdbfe628f2efb5effe963"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t ClassLoader::getMagic </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Este é o diagrama das funções que utilizam esta função:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_class_loader_a31dd114820bfdbfe628f2efb5effe963_icgraph.svg" width="408" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="afc67f7bffc1f2b8ffd61b1dd217f62ad"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t ClassLoader::getMajor </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Este é o diagrama das funções que utilizam esta função:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_class_loader_afc67f7bffc1f2b8ffd61b1dd217f62ad_icgraph.svg" width="406" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="acad870c7b405146242912190e1e71f7c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t ClassLoader::getMethoCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Grafo de chamadas desta função:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_class_loader_acad870c7b405146242912190e1e71f7c_cgraph.svg" width="422" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+<p><div class="dynheader">
+Este é o diagrama das funções que utilizam esta função:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_class_loader_acad870c7b405146242912190e1e71f7c_icgraph.svg" width="1019" height="194"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ad4733587ddbe1ae25500c13181bfb5ca"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="struct_method_info.html">MethodInfo</a> * &gt; <a class="el" href="class_class_loader_1_1get_methods.html">ClassLoader::getMethods</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Este é o diagrama das funções que utilizam esta função:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_class_loader_ad4733587ddbe1ae25500c13181bfb5ca_icgraph.svg" width="1238" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a9bed0bf2ac88a23118e67777a14c0553"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t ClassLoader::getMinor </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Este é o diagrama das funções que utilizam esta função:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_class_loader_a9bed0bf2ac88a23118e67777a14c0553_icgraph.svg" width="406" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a390d1849bd7686e618a84eae6a7f60cf"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t ClassLoader::getSuper </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Este é o diagrama das funções que utilizam esta função:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_class_loader_a390d1849bd7686e618a84eae6a7f60cf_icgraph.svg" width="407" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a3346ccdf7148ea48826d858326c4de00"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t ClassLoader::getThisClass </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Este é o diagrama das funções que utilizam esta função:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_class_loader_a3346ccdf7148ea48826d858326c4de00_icgraph.svg" width="767" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a78a667283feda0933eabf1d8f601fa30"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_class_loader_1_1set_access_flag.html">ClassLoader::setAccessFlag</a> </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>fp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Grafo de chamadas desta função:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_class_loader_a78a667283feda0933eabf1d8f601fa30_cgraph.svg" width="408" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="adac675675241b8c2892ebfbf5b902d33"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_class_loader_1_1set_attributes.html">ClassLoader::setAttributes</a> </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>fp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Grafo de chamadas desta função:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_class_loader_adac675675241b8c2892ebfbf5b902d33_cgraph.svg" width="570" height="104"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ae1dff6712251163173291991f52ac8fa"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_class_loader_1_1set_attributes_count.html">ClassLoader::setAttributesCount</a> </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>fp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Grafo de chamadas desta função:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_class_loader_ae1dff6712251163173291991f52ac8fa_cgraph.svg" width="395" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a22735292f1ed1c1b101111f013524a06"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_class_loader_1_1set_const_count.html">ClassLoader::setConstCount</a> </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>fp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Grafo de chamadas desta função:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_class_loader_a22735292f1ed1c1b101111f013524a06_cgraph.svg" width="408" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a09a097315d78f50dc7522811e256978f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_class_loader_1_1set_const_pool.html">ClassLoader::setConstPool</a> </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>fp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Grafo de chamadas desta função:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_class_loader_a09a097315d78f50dc7522811e256978f_cgraph.svg" width="543" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="aedeaf814e3cf232978ce7e0b135c93b0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_class_loader_1_1set_field_count.html">ClassLoader::setFieldCount</a> </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>fp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Grafo de chamadas desta função:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_class_loader_aedeaf814e3cf232978ce7e0b135c93b0_cgraph.svg" width="402" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a3a544b1a25a445bbf4ce7e5d84a2a90a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_class_loader_1_1set_fields.html">ClassLoader::setFields</a> </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>fp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Grafo de chamadas desta função:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_class_loader_a3a544b1a25a445bbf4ce7e5d84a2a90a_cgraph.svg" width="702" height="104"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a25c897efbe0542a8603f2dfa29943881"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_class_loader_1_1set_inter_count.html">ClassLoader::setInterCount</a> </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>fp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Grafo de chamadas desta função:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_class_loader_a25c897efbe0542a8603f2dfa29943881_cgraph.svg" width="400" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a18bc96df21925d9da172c64205736ea5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_class_loader_1_1set_interface.html">ClassLoader::setInterface</a> </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>fp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Grafo de chamadas desta função:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_class_loader_a18bc96df21925d9da172c64205736ea5_cgraph.svg" width="632" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a9e756ef58a13aab63472a9b343710327"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_class_loader_1_1set_magic.html">ClassLoader::setMagic</a> </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>fp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Grafo de chamadas desta função:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_class_loader_a9e756ef58a13aab63472a9b343710327_cgraph.svg" width="374" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="afd21ab61a4ea4d2fda29319e37a7886e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_class_loader_1_1set_major.html">ClassLoader::setMajor</a> </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>fp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Grafo de chamadas desta função:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_class_loader_afd21ab61a4ea4d2fda29319e37a7886e_cgraph.svg" width="371" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="aa744ed99b82e912547af903ea13fa3dd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_class_loader_1_1set_method_count.html">ClassLoader::setMethodCount</a> </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>fp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Grafo de chamadas desta função:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_class_loader_aa744ed99b82e912547af903ea13fa3dd_cgraph.svg" width="416" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ab47e37f5d359a067182c1a181e9db54e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_class_loader_1_1set_methods.html">ClassLoader::setMethods</a> </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>fp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Grafo de chamadas desta função:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_class_loader_ab47e37f5d359a067182c1a181e9db54e_cgraph.svg" width="731" height="104"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ad2bd2b993bdbc080f77a9f5e76744fd7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_class_loader_1_1set_minor.html">ClassLoader::setMinor</a> </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>fp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Grafo de chamadas desta função:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_class_loader_ad2bd2b993bdbc080f77a9f5e76744fd7_cgraph.svg" width="371" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a011a4cfdd1995fa34718a549ca467b0a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_class_loader_1_1set_super_class.html">ClassLoader::setSuperClass</a> </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>fp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Grafo de chamadas desta função:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_class_loader_a011a4cfdd1995fa34718a549ca467b0a_cgraph.svg" width="407" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="aa089d3175ca27ac5e0efa2f6c26c4df5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_class_loader_1_1set_this_class.html">ClassLoader::setThisClass</a> </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>fp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Grafo de chamadas desta função:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_class_loader_aa089d3175ca27ac5e0efa2f6c26c4df5_cgraph.svg" width="398" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentação dos campos e atributos</h2>
+<a class="anchor" id="ab5d88fdb250c1d7b0e315afd32edf2d5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t ClassLoader::accessFlags</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a1b9e4949bbf3a2bf2e0c7b830044c653"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="class_attribute_info.html">AttributeInfo</a> *&gt; ClassLoader::attributes</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a0d223edb7107eaa9824fdee870944d9b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t ClassLoader::attributesCounter</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a5ed8e2522a4648fee01751f80be2cbd2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="class_cp_info.html">CpInfo</a>*&gt; ClassLoader::constantPool</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="af45f7e190304e384793dda63d127503f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t ClassLoader::constantPoolCounter</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a0aa9112b221bbc7680236be7eb5b4c45"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ClassLoader::DEBUG = true</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a4f4f63df7b9b46194c9f843de8b2cdfd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="class_field_info.html">FieldInfo</a> *&gt; ClassLoader::fields</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a6a2f6f9c57e378dd5c36f6bb61116ce3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t ClassLoader::fieldsCounter</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a10b6072e3219bf2c62bde208923a8bd5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t ClassLoader::interfaceCounter</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae80a739acf39382233e56bac10559a5b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="class_interface_info.html">InterfaceInfo</a>*&gt; ClassLoader::interfaces</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a7442307ca76e7d8a9be304db4e33b66d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t ClassLoader::magicNumber</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a7a02cc0f6fe77ff6e5f9309ab4bc31b5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t ClassLoader::majorVersion</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a003398daa2f1cb3e48c6efbd1a273b17"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="struct_method_info.html">MethodInfo</a> *&gt; ClassLoader::methods</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a68f4e0b040607cea6a56960ed05ae364"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t ClassLoader::methodsCounter</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="abdd2cd7ba1f788bc38cb337f5ae5b5a5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t ClassLoader::minorVersion</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab15e6151a14afaa40e3f5ff63fa72106"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t ClassLoader::superClass</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab4ec421aef6d619f8e2ae86ea08d62f2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t ClassLoader::thisClass</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>A documentação para esta classe foi gerada a partir dos seguintes ficheiros:<ul>
+<li><a class="el" href="_class_loader_8hpp_source.html">ClassLoader.hpp</a></li>
+<li><a class="el" href="_class_loader_8cpp.html">ClassLoader.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>

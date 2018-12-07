@@ -8,6 +8,10 @@
 #include <cstdint>
 #include "AttributeInfo.hpp"
 #include "CpInfo.hpp"
+/**
+* @struct MethodInfo
+* @brief Tipo para as informações dos metodos que serçao armazenados no methodArea
+*/
 
 struct MethodInfo
 {
