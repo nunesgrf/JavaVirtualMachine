@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>JVM: Código-Fonte de Interpreter.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">JVM
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="pages.html"><span>Páginas&#160;relacionadas</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
+      <li><a href="annotated.html"><span>Estruturas&#160;de&#160;dados</span></a></li>
+      <li class="current"><a href="files.html"><span>Ficheiros</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Localizar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Lista&#160;de&#160;ficheiros</span></a></li>
+      <li><a href="globals.html"><span>Globais</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">Interpreter.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_interpreter_8hpp.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifndef INTERPRETER_H</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define INTERPRETER_H</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_class_loader_8hpp.html">ClassLoader.hpp</a>&quot;</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_frame_8hpp.html">Frame.hpp</a>&quot;</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_instance_8hpp.html">Instance.hpp</a>&quot;</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;cstring&gt;</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span></div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">using namespace </span><a class="code" href="namespacestd.html">std</a>;</div><div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="class_interpreter.html">   22</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_interpreter.html">Interpreter</a> {</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;  <span class="keyword">public</span>:</div><div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="class_interpreter.html#aba201f836cc30ebda2cdab362e00a145">   25</a></span>&#160;    std::string <a class="code" href="class_interpreter.html#aba201f836cc30ebda2cdab362e00a145">current_path_folder</a>;</div><div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="class_interpreter.html#a58a07f0f8a916fdca9cd97fb220c55dc">   26</a></span>&#160;    <span class="keyword">static</span> std::stack&lt;Frame*&gt; <a class="code" href="class_interpreter.html#a58a07f0f8a916fdca9cd97fb220c55dc">frame_stack</a>;</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    </div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_interpreter_1_1execute.html">execute</a>(<a class="code" href="class_class_loader.html">ClassLoader</a>*);</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_interpreter_1_1load_variables.html">loadVariables</a>(<a class="code" href="struct_instance.html">Instance</a>*);</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_class_loader.html">ClassLoader</a> * <a class="code" href="class_interpreter_1_1get_class_info.html">getClassInfo</a>(std::string);</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="struct_method_info.html">MethodInfo</a> * <a class="code" href="class_interpreter_1_1main_finder.html">mainFinder</a>(<a class="code" href="class_class_loader.html">ClassLoader</a>*);</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="struct_method_info.html">MethodInfo</a> * findMethodByNameOrDescriptor(<a class="code" href="class_class_loader.html">ClassLoader</a>*,std::string,std::string);</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">static</span> <a class="code" href="struct_instance.html">Instance</a>    * <a class="code" href="class_interpreter_1_1load_in_memo.html">loadInMemo</a>(<a class="code" href="class_class_loader.html">ClassLoader</a>*);</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">static</span> <a class="code" href="struct_operand.html">Operand</a>     * <a class="code" href="class_interpreter_1_1create_type.html">createType</a>(std::string);</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;};</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#endif</span></div><div class="ttc" id="class_class_loader_html"><div class="ttname"><a href="class_class_loader.html">ClassLoader</a></div><div class="ttdoc">Todo funcionamento do classLoader em relação ao local de armazenamento enquanto é feito a leitura...</div><div class="ttdef"><b>Definition:</b> ClassLoader.hpp:52</div></div>
+<div class="ttc" id="struct_operand_html"><div class="ttname"><a href="struct_operand.html">Operand</a></div><div class="ttdoc">intuito de ligar aos tipos possíveis para variáveis que serão utilizadas; </div><div class="ttdef"><b>Definition:</b> Frame.hpp:37</div></div>
+<div class="ttc" id="class_interpreter_1_1main_finder_html"><div class="ttname"><a href="class_interpreter_1_1main_finder.html">Interpreter::mainFinder</a></div><div class="ttdoc">Busca a main de uma javaclass e retorna o método. </div></div>
+<div class="ttc" id="_class_loader_8hpp_html"><div class="ttname"><a href="_class_loader_8hpp.html">ClassLoader.hpp</a></div><div class="ttdoc">Declarações das funções do ClassLoader para salvar todos os bytes de .class corretamente. </div></div>
+<div class="ttc" id="class_interpreter_1_1create_type_html"><div class="ttname"><a href="class_interpreter_1_1create_type.html">Interpreter::createType</a></div><div class="ttdoc">Cria um operando settado em um tipo específico. </div></div>
+<div class="ttc" id="namespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div></div>
+<div class="ttc" id="class_interpreter_1_1load_variables_html"><div class="ttname"><a href="class_interpreter_1_1load_variables.html">Interpreter::loadVariables</a></div><div class="ttdoc">Carrega em memórias as variáveis de uma classe. </div></div>
+<div class="ttc" id="_instance_8hpp_html"><div class="ttname"><a href="_instance_8hpp.html">Instance.hpp</a></div><div class="ttdoc">Declaração da struct Instance. </div></div>
+<div class="ttc" id="class_interpreter_1_1load_in_memo_html"><div class="ttname"><a href="class_interpreter_1_1load_in_memo.html">Interpreter::loadInMemo</a></div><div class="ttdoc">Realiza o carregamento do ClassLoader em memória e retorna a instância. </div></div>
+<div class="ttc" id="struct_instance_html"><div class="ttname"><a href="struct_instance.html">Instance</a></div><div class="ttdoc">tipo que determinará o nome e o tipo de operando através do Operand class; Álém contém o método Insta...</div><div class="ttdef"><b>Definition:</b> Instance.hpp:20</div></div>
+<div class="ttc" id="class_interpreter_html_aba201f836cc30ebda2cdab362e00a145"><div class="ttname"><a href="class_interpreter.html#aba201f836cc30ebda2cdab362e00a145">Interpreter::current_path_folder</a></div><div class="ttdeci">std::string current_path_folder</div><div class="ttdef"><b>Definition:</b> Interpreter.hpp:25</div></div>
+<div class="ttc" id="_frame_8hpp_html"><div class="ttname"><a href="_frame_8hpp.html">Frame.hpp</a></div><div class="ttdoc">Declarações das funções e da estrutura do Frame, utilizado para salvar resultados parciais...</div></div>
+<div class="ttc" id="class_interpreter_1_1execute_html"><div class="ttname"><a href="class_interpreter_1_1execute.html">Interpreter::execute</a></div><div class="ttdoc">Carrega o classLoader na memória e na stack e executa-o. </div></div>
+<div class="ttc" id="struct_method_info_html"><div class="ttname"><a href="struct_method_info.html">MethodInfo</a></div><div class="ttdoc">Tipo para as informações dos metodos que serçao armazenados no methodArea. </div><div class="ttdef"><b>Definition:</b> MethodInfo.hpp:16</div></div>
+<div class="ttc" id="class_interpreter_html"><div class="ttname"><a href="class_interpreter.html">Interpreter</a></div><div class="ttdoc">cĺasse contém uma path para o arquivo e é feito uma &quot;pilha&quot; para os frames, chamada de frame_stack; A...</div><div class="ttdef"><b>Definition:</b> Interpreter.hpp:22</div></div>
+<div class="ttc" id="class_interpreter_1_1get_class_info_html"><div class="ttname"><a href="class_interpreter_1_1get_class_info.html">Interpreter::getClassInfo</a></div><div class="ttdoc">Acessa a memória em busca de uma classe, caso inexistente, carrega a classe buscada em memória...</div></div>
+<div class="ttc" id="class_interpreter_html_a58a07f0f8a916fdca9cd97fb220c55dc"><div class="ttname"><a href="class_interpreter.html#a58a07f0f8a916fdca9cd97fb220c55dc">Interpreter::frame_stack</a></div><div class="ttdeci">static std::stack&lt; Frame * &gt; frame_stack</div><div class="ttdef"><b>Definition:</b> Interpreter.hpp:26</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>

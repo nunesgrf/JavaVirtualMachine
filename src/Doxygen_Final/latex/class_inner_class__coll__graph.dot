@@ -1,8 +1,0 @@
-digraph "InnerClass"
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  Node1 [label="InnerClass",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
-  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" inner_class_data" ];
-  Node2 [label="InnerClassData",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_inner_class_data.html",tooltip="classe contém inner_class_info_index, outer_class_info_index, inner_name_index e inner_class_access_f..."];
-}

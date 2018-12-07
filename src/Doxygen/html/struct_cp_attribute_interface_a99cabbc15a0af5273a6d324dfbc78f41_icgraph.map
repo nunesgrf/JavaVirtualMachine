@@ -1,0 +1,32 @@
+<map id="CpAttributeInterface::getUTF8" name="CpAttributeInterface::getUTF8">
+<area shape="rect" id="node2" href="$class_constant_value.html#a99dd9b4165766a0347e126c580fa93d0" title="ConstantValue::print" alt="" coords="223,5,365,32"/>
+<area shape="rect" id="node3" href="$class_code_attribute.html#a380eb04a01b0a0db351cf74443067ba4" title="CodeAttribute::print" alt="" coords="905,343,1040,369"/>
+<area shape="rect" id="node4" href="$class_exception.html#a87cfd1bc8493cb4b22d9d92a07132779" title="Exception::print" alt="" coords="237,107,351,133"/>
+<area shape="rect" id="node5" href="$class_source_file.html#ab60e06ebfcc9d1c9d0dda817cca0fc10" title="SourceFile::print" alt="" coords="235,157,353,184"/>
+<area shape="rect" id="node6" href="$class_attribute_info.html#ac167daa272a7ef9b9f11389d34e42165" title="AttributeInfo::read" alt="" coords="231,208,357,235"/>
+<area shape="rect" id="node12" href="$class_attribute_info.html#ab9d036b005950e243e6375d49a533d58" title="AttributeInfo::print" alt="" coords="231,259,357,285"/>
+<area shape="rect" id="node13" href="$struct_frame.html#abe0b370087d05267cab997ecdc78c4bd" title="Frame::Frame" alt="" coords="921,789,1025,816"/>
+<area shape="rect" id="node14" href="$class_methods_area.html#ab8111f3fc9b55f1f8dbbbe0c1ca76d89" title="MethodsArea::findMethodBy\lNameOrDeor" alt="" coords="201,833,387,874"/>
+<area shape="rect" id="node15" href="$class_instruction_impl.html#a3d197a31eaa6bc79b6d882b0ac9f1a67" title="InstructionImpl::invokevirtual" alt="" coords="447,781,636,808"/>
+<area shape="rect" id="node17" href="$struct_instance.html#aca86b4cbc971ace708021f8ef2c6ce43" title="Instance::Instance" alt="" coords="229,477,359,504"/>
+<area shape="rect" id="node18" href="$class_instruction_impl.html#ade3ec2b9168ba2026599db6136e60d91" title="InstructionImpl::ldc" alt="" coords="475,865,608,892"/>
+<area shape="rect" id="node19" href="$class_instruction_impl.html#ae794ec480c5cd8809d1215aa9442501b" title="InstructionImpl::invokespecial" alt="" coords="444,419,639,445"/>
+<area shape="rect" id="node20" href="$class_instruction_impl.html#af10750df1ad4bf72ac80445dbbec068b" title="InstructionImpl::getstatic" alt="" coords="458,339,625,365"/>
+<area shape="rect" id="node21" href="$class_instruction_impl.html#aa95621b91e97134a4cb3c1c1e97fd31a" title="InstructionImpl::getfield" alt="" coords="462,579,621,605"/>
+<area shape="rect" id="node22" href="$class_instruction_impl.html#a1d155354287a5fa501cce5c39c341abc" title="InstructionImpl::invokestatic" alt="" coords="448,528,635,555"/>
+<area shape="rect" id="node23" href="$class_instruction_impl.html#a612a030680b27c4dc97e6feec3abd9d5" title="InstructionImpl::new_obj" alt="" coords="459,629,623,656"/>
+<area shape="rect" id="node24" href="$class_instruction_impl.html#ad561779f75082ceffc29cb00219c4a8b" title="InstructionImpl::putfield" alt="" coords="462,680,621,707"/>
+<area shape="rect" id="node25" href="$class_instruction_impl.html#a87ff225e6ed77e1a956d3c6a572e5352" title="InstructionImpl::invokeinterface" alt="" coords="192,731,396,757"/>
+<area shape="rect" id="node26" href="$class_interpreter.html#a9be1f0faf7df7c81dc180da22ea08fa5" title="Interpreter::mainFinder" alt="" coords="217,1051,371,1077"/>
+<area shape="rect" id="node30" href="$class_interpreter.html#a16752843b70549dac6ed661365e95ae3" title="Busca um metodo pelo seu descritor ou nome e o retorna. " alt="" coords="209,411,379,453"/>
+<area shape="rect" id="node31" href="$jvm_8cpp.html#a893044ba12149c5e0ed3b4a19474fc4a" title="Chama o exibidor de ClassLoader. " alt="" coords="725,1000,819,1027"/>
+<area shape="rect" id="node7" href="$class_class_loader.html#adac675675241b8c2892ebfbf5b902d33" title="ClassLoader::setAttributes" alt="" coords="453,208,630,235"/>
+<area shape="rect" id="node8" href="$class_field_info.html#acb85db9ce893bc3e2617138fd46a8ad6" title="FieldInfo::read" alt="" coords="489,259,594,285"/>
+<area shape="rect" id="node10" href="$struct_method_info.html#a96fbb8de441ef2af032c20d36d41eb7a" title="Serve para preencher os valores de uma instância de MethodInfo. " alt="" coords="481,157,601,184"/>
+<area shape="rect" id="node9" href="$class_class_loader.html#a3a544b1a25a445bbf4ce7e5d84a2a90a" title="ClassLoader::setFields" alt="" coords="694,259,850,285"/>
+<area shape="rect" id="node11" href="$class_class_loader.html#ab47e37f5d359a067182c1a181e9db54e" title="ClassLoader::setMethods" alt="" coords="687,157,857,184"/>
+<area shape="rect" id="node16" href="$class_instruction.html#a145a172552303c9cbd8a5856e31a701b" title="Instruction::init" alt="" coords="718,629,826,656"/>
+<area shape="rect" id="node27" href="$class_interpreter.html#aaa34fcc8ece810597cd2fea359b65220" title="Interpreter::execute" alt="" coords="474,1051,609,1077"/>
+<area shape="rect" id="node28" href="$jvm_8cpp.html#a4f4a24852257f7259f906828eec5c11c" title="Chama o interpretador para classloader. " alt="" coords="716,1051,828,1077"/>
+<area shape="rect" id="node29" href="$jvm_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="Função main. " alt="" coords="947,1025,998,1052"/>
+</map>

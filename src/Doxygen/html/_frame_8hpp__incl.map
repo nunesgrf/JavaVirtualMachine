@@ -1,0 +1,12 @@
+<map id="Frame.hpp" name="Frame.hpp">
+<area shape="rect" id="node8" href="$_cp_info_8hpp.html" title="Declarações das funções e dos atributos do Pool de constantes. " alt="" coords="707,379,794,405"/>
+<area shape="rect" id="node10" href="$_method_info_8hpp.html" title="Declarações das funções do MethodInfo estrutura responsável por guardas as informaçoes dos metodos do..." alt="" coords="245,229,357,256"/>
+<area shape="rect" id="node11" href="$_attribute_info_8hpp.html" title="Declarações das funções do AttributeInfo para tratamento dos atributos do arquivo ..." alt="" coords="462,304,581,331"/>
+<area shape="rect" id="node12" href="$_class_loader_8hpp.html" title="Declarações das funções do ClassLoader para salvar todos os bytes de .class corretamente. " alt="" coords="544,155,664,181"/>
+<area shape="rect" id="node20" href="$_instruction_8hpp.html" title="Declarações das instruçoes referentes ao interpretador da JVM. " alt="" coords="809,80,917,107"/>
+<area shape="rect" id="node22" href="$_instance_8hpp.html" title="Declaração da struct Instance. " alt="" coords="534,80,631,107"/>
+<area shape="rect" id="node17" href="$_interface_info_8hpp.html" title="Declarações das funções e atributos de InterfaceInfo. " alt="" coords="1013,304,1133,331"/>
+<area shape="rect" id="node19" href="$_field_info_8hpp.html" title="Declarações das funções do FieldInfo para tratamento dos fields do arquivo .class. " alt="" coords="611,229,709,256"/>
+<area shape="rect" id="node18" href="$_byte_reader_8hpp.html" title="Declarações das funções do ByteReader para leitura dos bytes no arquivo .class. " alt="" coords="1003,379,1119,405"/>
+<area shape="rect" id="node21" href="$_instruction_impl_8hpp.html" title="Declarações das funções do ClassLoader para salvar todos os bytes de .class corretamente. " alt="" coords="863,155,996,181"/>
+</map>
