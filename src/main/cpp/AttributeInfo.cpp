@@ -9,6 +9,7 @@
 
 #include <iomanip>
 #include <iostream>
+#include <malloc.h>
 using namespace std;
 
 ByteReader<uint8_t> OneByte;
@@ -21,15 +22,15 @@ AttributeInfo::~AttributeInfo() {
     //this->exception.~Exception();
 }
 
-CodeAttribute::~CodeAttribute() {
+//CodeAttribute::~CodeAttribute() {
     //free(this->code);
     //free(this->code_exception_table);
     //free(this->attributes);
-}
+//}
 
-Exception::~Exception() {
+//Exception::~Exception() {
     //free(this->exception_index_table);
-}
+//}
 void ConstantValue::read(FILE *fp) {
     constvalue_index = TwoByte.byteCatch(fp);
 }

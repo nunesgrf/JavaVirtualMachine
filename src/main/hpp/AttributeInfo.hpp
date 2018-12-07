@@ -37,7 +37,7 @@ class Exception
     uint16_t number_exceptions;
     uint16_t* exception_index_table;
 
-    ~Exception();
+    //~Exception();
     void read(FILE *);
     void print(std::vector<CpInfo *>);
 };
@@ -58,7 +58,7 @@ class CodeAttribute
     /* It must have this length ^ */
     AttributeInfo *attributes;
 
-    ~CodeAttribute();
+    //~CodeAttribute();
     void read(FILE*,std::vector<CpInfo*>);
     void print(std::vector<CpInfo*>);
 };

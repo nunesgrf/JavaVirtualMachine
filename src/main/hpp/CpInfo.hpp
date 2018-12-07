@@ -7,6 +7,7 @@
 
 //#include "ClassLoader.hpp"
 #include <cstdint>
+#include <stdint.h>
 #include <fstream>
 
 class CpInfo

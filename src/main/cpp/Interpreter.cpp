@@ -1,6 +1,6 @@
 #include "../hpp/Interpreter.hpp"
 #include "../hpp/CpAttributeInterface.hpp"
-#include "GLOBAL_file.hpp"
+#include "../hpp/GLOBAL_file.hpp"
 #include <stdio.h>
 #include <iostream>
 #include <string>
@@ -38,7 +38,7 @@ ClassLoader * Interpreter::getClassInfo(std::string className) {
 
     if(instance == NULL) {
         
-        FILE * fp = fopen((container.path + className + ".class").c_str(),"r");
+        FILE * fp = fopen((container.path + className + ".class").c_str(),"rb");
         ClassLoader new_class(fp);
         
         instance = Interpreter::loadInMemo(&new_class);
@@ -180,7 +180,7 @@ MethodInfo * Interpreter::mainFinder(ClassLoader * javaclass) {
     }
     std::cout << "Arquivo não possui main " << std::endl;
 
-    MethodInfo * toReturn = (MethodInfo*)calloc(1,sizeof(toReturn));
+    MethodInfo * toReturn = (MethodInfo*)calloc(1,sizeof(MethodInfo));
     return toReturn; // ARRUMAR ESTA SAIDA;
 }
 

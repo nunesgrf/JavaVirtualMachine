@@ -18,9 +18,11 @@ Frame::~Frame() {
 Frame::Frame(std::vector<CpInfo*> cp, MethodInfo * methd) {
 
     CpAttributeInterface cpAtAux;
-    
-    this->instructions = (Instruction*)calloc(256,sizeof(Instruction));
-    this->instructions->init(this->instructions); // Inicializa as instruções.
+    Instruction instructions[256];
+    Instruction::init(instructions);
+    //this->instructions = (Instruction*)calloc(256,sizeof(Instruction));
+    this->instructions = instructions;
+    //this->instructions->init(this->instructions); // Inicializa as instruções.
 
     this->pc = 0;
     this->method_reference = methd;
@@ -31,7 +33,7 @@ Frame::Frame(std::vector<CpInfo*> cp, MethodInfo * methd) {
         if(cpAtAux.getUTF8(cp,at.name_index-1) == "Code") this->method_code = at.code;
     }
     this->local_variables.resize(method_code.max_locals);
-    Operand * op = (Operand*)calloc(1,sizeof(op));
+    Operand * op = (Operand*)calloc(1,sizeof(Operand));
     std::fill(this->local_variables.begin(),this->local_variables.end(),op);
 }
 

@@ -93,11 +93,11 @@ void ClassLoader::setConstPool(FILE * fp) {
 
     for(int i = 0; i < this->getConstCount() - 1; i++) {
 
-        CpInfo * cp = (CpInfo *)calloc(1, sizeof(*cp)); /* Allocate a constante pool */
+        CpInfo * cp = (CpInfo *)calloc(1, sizeof(CpInfo)); /* Allocate a constante pool */
         cp->read(fp);
         this->constantPool.push_back(cp); /* Puts into the vector of constant pools  */
         if ((cp->tag == CONSTANT_Double) || (cp->tag == CONSTANT_Long)) { 
-            CpInfo * cp2 = (CpInfo *)calloc(1, sizeof(*cp));
+            CpInfo * cp2 = (CpInfo *)calloc(1, sizeof(CpInfo));
             cp2->tag = CONSTANT_Empty;
             this->constantPool.push_back(cp2);
             i++;
@@ -132,7 +132,7 @@ void ClassLoader::setInterface(FILE * fp) {
     for(int i = 0; i < this->getInterCounter(); i++) {
 
         /* Allocate a interface */
-        InterfaceInfo * interface = (InterfaceInfo *)calloc(1, sizeof(*interface));
+        InterfaceInfo * interface = (InterfaceInfo *)calloc(1, sizeof(InterfaceInfo));
 
         /* Puts into the vector of interfaces  */
         this->interfaces.push_back(interface);
@@ -180,7 +180,7 @@ void ClassLoader::setAttributesCount(FILE * fp) {
 
 void ClassLoader::setAttributes(FILE * fp) {
    for(int j = 0; j < this->getAttriCount(); j++){
-        AttributeInfo *attribute = (AttributeInfo *)calloc(1, sizeof(*attribute));
+        AttributeInfo *attribute = (AttributeInfo *)calloc(1, sizeof(AttributeInfo));
         attribute->read(fp,this->constantPool);
         this->attributes.push_back(attribute);
    }

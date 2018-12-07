@@ -215,15 +215,22 @@ int main(int argc, char * argv[]) {
         return ERROR;
     }
 
-    FILE * fp = fopen(argv[2],"r");
-    ClassLoader classloader(fp);
-    
-    getPath(argv[2]);
-    fclose(fp);
-
-    switch(*argv[1]) {
-        case 'i': classInterpreter(classloader); break;
-        case 'e': classReader(classloader);      break;
-    }
-  exit(0);
+    FILE * fp = fopen(argv[2],"rb");
+    if (fp != NULL) {
+    	
+    	cout << endl << "Arquivo aberto" << endl;
+    	ClassLoader classloader(fp);
+    	getPath(argv[2]);
+    	fclose(fp);
+    	switch(*argv[1]) {
+        	case 'i': classInterpreter(classloader); break;
+        	case 'e': classReader(classloader);      break;
+    	}
+    	
+	} else {
+		cout << "Nao foi possivel abrir o arquivo" << endl;
+		return -1;
+	}
+   
+	exit(0);
 }
