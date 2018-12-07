@@ -595,10 +595,6 @@ void InstructionImpl::nop(Frame * this_frame) {
     this_frame->operand_stack.push(this_frame->local_variables.at(0));
 
  }
- void InstructionImpl::aload_1(Frame * this_frame){
-    this_frame->pc++;
-    this_frame->operand_stack.push(this_frame->local_variables.at(1));
-
   /** @brief Uma referencia do objeto na posicao 1 do vetor de variaveis locais é colocada na pilha de operandos
  * @param *this_frame ponteiro para o frame atual
  * @return void
@@ -631,15 +627,13 @@ void InstructionImpl::nop(Frame * this_frame) {
  */
  void InstructionImpl::iinc(Frame * this_frame){
    this_frame->pc++;    
-   int8_t  field = this_frame->method_code.code[this_frame->pc++];
-   int32_t value = this_frame->method_code.code[this_frame->pc++];
 
-     int8_t  field = this_frame->method_code.code[this_frame->pc+1];
-     int8_t value = this_frame->method_code.code[this_frame->pc+2];
+	int8_t  field = this_frame->method_code.code[this_frame->pc+1];
+	int8_t value = this_frame->method_code.code[this_frame->pc+2];
 
-     this_frame->local_variables.at((int)field)->type_int += value;
+	this_frame->local_variables.at((int)field)->type_int += value;
      
-     for(int i = 0; i < 3; i++) this_frame->pc++;
+    for(int i = 0; i < 3; i++) this_frame->pc++;
  }
 
  /**
