@@ -564,9 +564,10 @@ void InstructionImpl::nop(Frame * this_frame) {
  void InstructionImpl::iinc(Frame * this_frame){
 
      int8_t  field = this_frame->method_code.code[this_frame->pc+1];
-     int32_t value = this_frame->method_code.code[this_frame->pc+2];
+     int8_t value = this_frame->method_code.code[this_frame->pc+2];
 
      this_frame->local_variables.at((int)field)->type_int += value;
+     
      for(int i = 0; i < 3; i++) this_frame->pc++;
  }
 
@@ -604,6 +605,7 @@ void InstructionImpl::nop(Frame * this_frame) {
     auto op = this_frame->local_variables.at(1);
     this_frame->operand_stack.push(op);
     this_frame->pc++;
+
  }
 
  /**
@@ -715,10 +717,11 @@ void InstructionImpl::fconst_0(Frame * this_frame){
      Operand *op   = (Operand*)malloc(sizeof(Operand));
 
      op->tag = CONSTANT_Double;
-     op->type_float = 0.0;
+     op->type_double = 0.0;
 
      this_frame->operand_stack.push(op);
      this_frame->pc++;
+
  }
 
  /**
@@ -734,6 +737,7 @@ void InstructionImpl::fconst_0(Frame * this_frame){
 
      this_frame->operand_stack.push(op);
      this_frame->pc++;
+
  }
 
 /**
@@ -749,7 +753,7 @@ void InstructionImpl::fconst_0(Frame * this_frame){
 
     op->tag      = CONSTANT_Integer;
     op->type_int = (int8_t)byte;
-
+    
     this_frame->operand_stack.push(op);
  }
 
@@ -926,6 +930,7 @@ void InstructionImpl::dload_2(Frame * this_frame){
    auto op    = this_frame->local_variables.at(2);
    this_frame->operand_stack.push(op);
    this_frame->pc++;
+
 }
 
 /**
@@ -981,7 +986,7 @@ void InstructionImpl::dstore(Frame * this_frame){
     this_frame->operand_stack.pop();
     Operand *operand_2 = this_frame->operand_stack.top();
     this_frame->operand_stack.pop();
-
+    
     double value_1, value_2, value_3;
     memcpy(&value_1,&operand_1->type_double, sizeof(double));
     memcpy(&value_2,&operand_2->type_double, sizeof(double));
@@ -1063,14 +1068,15 @@ void InstructionImpl::dstore(Frame * this_frame){
      double value_1, value_2, value_3;
      memcpy(&value_1,&operand_1->type_double, sizeof(double));
      memcpy(&value_2,&operand_2->type_double, sizeof(double));
-     value_3 = value_1 / value_2;
+     
+     value_3 = (double((double)value_2/(double)value_1));
      Operand *result = (Operand *) malloc(sizeof(Operand));
 
-     result->tag = CONSTANT_Double;
-     memcpy(&result->type_double,&value_3, sizeof(double));
+     result->tag = CONSTANT_Double;  
+     memcpy(&result->type_double,&value_3, sizeof(uint64_t));
 
      this_frame->operand_stack.push(result);
-
+    
  }
 
  /**
@@ -1085,6 +1091,8 @@ void InstructionImpl::dstore(Frame * this_frame){
 
     this_frame->local_variables.at(1) = op;
     this_frame->pc++;
+
+
  }
 
  /**
@@ -1099,6 +1107,7 @@ void InstructionImpl::dstore(Frame * this_frame){
 
     this_frame->local_variables.at(2) = op;
     this_frame->pc++;
+
  }
 
 /**
@@ -1305,7 +1314,7 @@ void InstructionImpl::dstore(Frame * this_frame){
     this_frame->operand_stack.pop();
     this_frame->local_variables.at(0) = op;
     this_frame->pc++;
-
+   
  }
 
  /**
@@ -1320,6 +1329,7 @@ void InstructionImpl::dstore(Frame * this_frame){
 
     this_frame->local_variables.at(1) = op;
     this_frame->pc++;
+
  }
 
  /**
@@ -2113,11 +2123,15 @@ void InstructionImpl::astore(Frame * this_frame){
 */
  void InstructionImpl::i2d(Frame * this_frame){
    Operand * op = this_frame->operand_stack.top();
+   op->tag = CONSTANT_Double;
+
    this_frame->operand_stack.pop();
    double converted_value = (double) op->type_int;
-   memcpy(&op->type_double,&converted_value,sizeof(uint64_t));
+   memcpy(&converted_value,&op->type_double,sizeof(uint64_t));
    this_frame->operand_stack.push(op);
    this_frame->pc++;
+
+
  }
 
  /*
@@ -2861,6 +2875,7 @@ void InstructionImpl::putfield(Frame * this_frame){
       offset = (offset << 8 ) | this_frame->method_code.code[this_frame->pc + 2];
     }
     else offset = 3;
+
     this_frame->pc+=offset;
 
  }
