@@ -1595,7 +1595,7 @@ void InstructionImpl::iand(Frame * this_frame){
    this_frame->operand_stack.pop();
    Operand *op2 = this_frame->operand_stack.top();
    this_frame->operand_stack.pop();
-   int result = op1->type_int && op2->type_int;
+   int result = op1->type_int & op2->type_int;
    memcpy(&op1->type_int,&result,sizeof(int));
    this_frame->operand_stack.push(op1);
    this_frame->pc++;
@@ -3207,7 +3207,7 @@ void InstructionImpl::iastore(Frame * this_frame){
     Operand *result = (Operand *) malloc(sizeof(Operand));
 
     result->tag = CONSTANT_Integer;
-    result->type_int = operand_2->type_int / operand_1->type_int;
+    result->type_int = floor(operand_2->type_int / operand_1->type_int);
 
     this_frame->operand_stack.push(result);
 
@@ -3335,13 +3335,13 @@ void InstructionImpl::iastore(Frame * this_frame){
     auto val1 = op1->type_int;
     auto val2 = op2->type_int;
 
-    val2 &= 0x0000003f;
+    val2 &= 0x0000001f;
 
     auto valResult = val1 << val2;
 
     auto result = aux.createType("I");
 
-    result->type_long = valResult;
+    result->type_int = valResult;
     this_frame->operand_stack.push(result);
  }
 
@@ -3654,7 +3654,7 @@ void InstructionImpl::fcmpg(Frame * this_frame) {
    this_frame->operand_stack.pop();
    int result = 0;
 
-   if (!isnan(op1->type_float) || !isnan(op1->type_float)) {
+   if (isnan(op1->type_float) || isnan(op2->type_float)) {
       result = 1;
    } else if (op1->type_float < op2->type_float) {
       result = 1;
