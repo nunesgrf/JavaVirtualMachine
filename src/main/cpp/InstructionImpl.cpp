@@ -147,15 +147,20 @@ void InstructionImpl::nop(Frame * this_frame) {
             instance_arguments.insert(instance_arguments.begin()+1,new_op);
          }
       }
-
+      
+      MethodsArea auxmeth;
       /* Desempilhamos o operando que refere-se a propria classe */
       Operand * current_class = this_frame->operand_stack.top();
       this_frame->operand_stack.pop();
-      
+      auto a = auxmeth.GLOBAL_staticClasses[current_class->class_instance->name];
+      std::cout << a->name << std::endl;
       instance_arguments.insert(instance_arguments.begin(), current_class);
       Instance * reference_class = current_class->class_instance;
 
+            std::cout << "to aqui" << std::endl;
+
       MethodInfo * searched_method_info = auxInterpreter.findMethodByNameOrDescriptor(current_class->class_instance->classe, method_name, method_desc);
+      std::cout << "to aqui" << std::endl;
       Frame *new_frame = new Frame(current_class->class_instance->classe->getConstPool(),searched_method_info);
       
       for (int j = 0; (unsigned)j < instance_arguments.size(); ++j)
@@ -188,7 +193,7 @@ void InstructionImpl::nop(Frame * this_frame) {
    std::string class_name = cpAttrAux.getUTF8(this_frame->cp_reference,method_reference->Methodref.class_index-1);
    std::string method_name = cpAttrAux.getUTF8(this_frame->cp_reference,name_and_type->NameAndType.name_index-1);
    std::string method_deor = cpAttrAux.getUTF8(this_frame->cp_reference,name_and_type->NameAndType.descriptor_index-1);
-
+   
    /* Inicia-se o procedimento para verificar se o metodo a ser chamado é um print f */
    if((class_name == "java/io/PrintStream") && (method_name == "println" || method_name == "print")){
 
@@ -278,6 +283,7 @@ void InstructionImpl::nop(Frame * this_frame) {
          count++;
       }
 
+      
       std::vector<Operand*> args;
       
       for(int i = 0; i <argsCount; ++i) { //verificar esta linha.
@@ -295,7 +301,7 @@ void InstructionImpl::nop(Frame * this_frame) {
       auto instance = this_class->class_instance;
 
       MethodsArea auxMeth;
-//fdasfds
+      
       auto methods = auxMeth.findMethodByNameOrDeor(instance->classe,method_name,method_deor);
       auto newFrame = new Frame(instance->classe->getConstPool(),methods);
 
@@ -2265,12 +2271,23 @@ void InstructionImpl::astore(Frame * this_frame){
  void InstructionImpl::dup(Frame * this_frame){
 
     MethodsArea methAux;
+    Interpreter auxInterpreter;
 
     this_frame->pc++;
     auto toCopy = this_frame->operand_stack.top();
-    //auto copy = methAux.copyOperand(toCopy);
-    auto copy = toCopy;
-    this_frame->operand_stack.push(copy);
+    
+    if(toCopy->tag == 7) {
+        
+       Operand * op = (Operand*)calloc(1,sizeof(Operand));
+       op->tag = CONSTANT_Class;
+       op->class_instance = toCopy->class_instance;
+       this_frame->operand_stack.push(op);
+    }
+    else {
+       auto op = methAux.copyOperand(toCopy);
+       this_frame->operand_stack.push(op);
+    }
+    
  }
 
 

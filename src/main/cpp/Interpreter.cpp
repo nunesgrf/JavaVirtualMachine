@@ -47,7 +47,6 @@ ClassLoader * Interpreter::getClassInfo(std::string className) {
         fclose(fp);
     }
     
-    ;
     return instance->classe;
 }
 
