@@ -60,7 +60,11 @@ Operand * MethodsArea::copyOperand(Operand * toCopy) {
             
             //toReturn->class_instance->classe = (ClassLoader*)calloc(1,sizeof(ClassLoader));
             //toReturn->class_instance->classe = new ClassLoader()
+
             toReturn->class_instance->classe = toCopy->class_instance->classe;
+            std::cout << toReturn->class_instance->classe->getConstPool().size() << std::endl;
+            getchar();
+            
             toReturn->class_instance->references = new std::map<std::string, Operand*>();
             toReturn->class_instance->references = toCopy->class_instance->references;
             break;

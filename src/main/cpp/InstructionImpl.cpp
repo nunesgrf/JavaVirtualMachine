@@ -157,14 +157,11 @@ void InstructionImpl::nop(Frame * this_frame) {
          }
       }
 
-      std::cout << "pilha vazia ? " << this_frame->operand_stack.empty() << std::endl;
       /* Desempilhamos o operando que refere-se a propria classe */
       Operand * current_class = this_frame->operand_stack.top();
-      std::cout << (int)current_class->tag << std::endl;
       this_frame->operand_stack.pop();
       
       instance_arguments.insert(instance_arguments.begin(), current_class);
-      std::cout << current_class->class_instance->classe->getConstPool().size() << std::endl;
       Instance * reference_class = current_class->class_instance;
 
       MethodInfo * searched_method_info = auxInterpreter.findMethodByNameOrDescriptor(current_class->class_instance->classe, method_name, method_desc);
@@ -175,7 +172,6 @@ void InstructionImpl::nop(Frame * this_frame) {
 
       auxInterpreter.frame_stack.push(new_frame);
    }
-   std::cout << "InvokeSpecial END" << std::endl;
  }
 
 
@@ -214,12 +210,14 @@ void InstructionImpl::nop(Frame * this_frame) {
                std::cout << *(op->type_string);
                break;
             case CONSTANT_Integer:
-               std::cout << op->type_int;
+
+               std::cout << (int32_t)op->type_int;
                break;
             case CONSTANT_Float:
                float converted_operand;
                memcpy(&converted_operand,&op->type_float,sizeof(float));
-               std::cout << converted_operand;
+               
+               std::cout << (float)converted_operand;
                break;
             case CONSTANT_Byte:
                std::cout << (int) op->type_byte;
@@ -242,7 +240,7 @@ void InstructionImpl::nop(Frame * this_frame) {
             case CONSTANT_Double: {
                double converted_operand;
                memcpy(&converted_operand, &op->type_double, sizeof(double));
-               std::cout << converted_operand;
+               std::cout << (double)converted_operand;
                break;
             }
             case CONSTANT_Class: {
@@ -358,7 +356,7 @@ void InstructionImpl::nop(Frame * this_frame) {
       auto instance = this_class->class_instance;
 
       MethodsArea auxMeth;
-
+//fdasfds
       auto methods = auxMeth.findMethodByNameOrDeor(instance->classe,method_name,method_deor);
       auto newFrame = new Frame(instance->classe->getConstPool(),methods);
 
@@ -593,9 +591,13 @@ void InstructionImpl::nop(Frame * this_frame) {
 
  }
  void InstructionImpl::aload_0(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+    this_frame->pc++;
+    this_frame->operand_stack.push(this_frame->local_variables.at(0));
 
  }
+ void InstructionImpl::aload_1(Frame * this_frame){
+    this_frame->pc++;
+    this_frame->operand_stack.push(this_frame->local_variables.at(1));
 
   /** @brief Uma referencia do objeto na posicao 1 do vetor de variaveis locais é colocada na pilha de operandos
  * @param *this_frame ponteiro para o frame atual
@@ -606,11 +608,13 @@ void InstructionImpl::nop(Frame * this_frame) {
    this_frame->operand_stack.push(this_frame->local_variables.at(1));
  }
  void InstructionImpl::aload_2(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+    this_frame->pc++;
+    this_frame->operand_stack.push(this_frame->local_variables.at(2));
 
  }
  void InstructionImpl::aload_3(Frame * this_frame){
-    InstructionImpl::nop(this_frame);
+    this_frame->pc++;
+    this_frame->operand_stack.push(this_frame->local_variables.at(3));
 
  }
  void InstructionImpl::void_return(Frame * this_frame){
@@ -630,8 +634,12 @@ void InstructionImpl::nop(Frame * this_frame) {
    int8_t  field = this_frame->method_code.code[this_frame->pc++];
    int32_t value = this_frame->method_code.code[this_frame->pc++];
 
-     this_frame->local_variables.at((int)field) += value;
+     int8_t  field = this_frame->method_code.code[this_frame->pc+1];
+     int8_t value = this_frame->method_code.code[this_frame->pc+2];
 
+     this_frame->local_variables.at((int)field)->type_int += value;
+     
+     for(int i = 0; i < 3; i++) this_frame->pc++;
  }
 
  /**
@@ -668,6 +676,7 @@ void InstructionImpl::nop(Frame * this_frame) {
     auto op = this_frame->local_variables.at(1);
     this_frame->operand_stack.push(op);
     this_frame->pc++;
+
  }
 
  /**
@@ -779,10 +788,11 @@ void InstructionImpl::fconst_0(Frame * this_frame){
      Operand *op   = (Operand*)malloc(sizeof(Operand));
 
      op->tag = CONSTANT_Double;
-     op->type_float = 0.0;
+     op->type_double = 0.0;
 
      this_frame->operand_stack.push(op);
      this_frame->pc++;
+
  }
 
  /**
@@ -798,6 +808,7 @@ void InstructionImpl::fconst_0(Frame * this_frame){
 
      this_frame->operand_stack.push(op);
      this_frame->pc++;
+
  }
 
 /**
@@ -813,7 +824,7 @@ void InstructionImpl::fconst_0(Frame * this_frame){
 
     op->tag      = CONSTANT_Integer;
     op->type_int = (int8_t)byte;
-
+    
     this_frame->operand_stack.push(op);
  }
 
@@ -990,6 +1001,7 @@ void InstructionImpl::dload_2(Frame * this_frame){
    auto op    = this_frame->local_variables.at(2);
    this_frame->operand_stack.push(op);
    this_frame->pc++;
+
 }
 
 /**
@@ -1045,7 +1057,7 @@ void InstructionImpl::dstore(Frame * this_frame){
     this_frame->operand_stack.pop();
     Operand *operand_2 = this_frame->operand_stack.top();
     this_frame->operand_stack.pop();
-
+    
     double value_1, value_2, value_3;
     memcpy(&value_1,&operand_1->type_double, sizeof(double));
     memcpy(&value_2,&operand_2->type_double, sizeof(double));
@@ -1127,14 +1139,15 @@ void InstructionImpl::dstore(Frame * this_frame){
      double value_1, value_2, value_3;
      memcpy(&value_1,&operand_1->type_double, sizeof(double));
      memcpy(&value_2,&operand_2->type_double, sizeof(double));
-     value_3 = value_1 / value_2;
+     
+     value_3 = (double((double)value_2/(double)value_1));
      Operand *result = (Operand *) malloc(sizeof(Operand));
 
-     result->tag = CONSTANT_Double;
-     memcpy(&result->type_double,&value_3, sizeof(double));
+     result->tag = CONSTANT_Double;  
+     memcpy(&result->type_double,&value_3, sizeof(uint64_t));
 
      this_frame->operand_stack.push(result);
-
+    
  }
 
  /**
@@ -1149,6 +1162,8 @@ void InstructionImpl::dstore(Frame * this_frame){
 
     this_frame->local_variables.at(1) = op;
     this_frame->pc++;
+
+
  }
 
  /**
@@ -1163,6 +1178,7 @@ void InstructionImpl::dstore(Frame * this_frame){
 
     this_frame->local_variables.at(2) = op;
     this_frame->pc++;
+
  }
 
 /**
@@ -1369,7 +1385,7 @@ void InstructionImpl::dstore(Frame * this_frame){
     this_frame->operand_stack.pop();
     this_frame->local_variables.at(0) = op;
     this_frame->pc++;
-
+   
  }
 
  /**
@@ -1384,6 +1400,7 @@ void InstructionImpl::dstore(Frame * this_frame){
 
     this_frame->local_variables.at(1) = op;
     this_frame->pc++;
+
  }
 
  /**
@@ -2177,11 +2194,15 @@ void InstructionImpl::astore(Frame * this_frame){
 */
  void InstructionImpl::i2d(Frame * this_frame){
    Operand * op = this_frame->operand_stack.top();
+   op->tag = CONSTANT_Double;
+
    this_frame->operand_stack.pop();
    double converted_value = (double) op->type_int;
-   memcpy(&op->type_double,&converted_value,sizeof(uint64_t));
+   memcpy(&converted_value,&op->type_double,sizeof(uint64_t));
    this_frame->operand_stack.push(op);
    this_frame->pc++;
+
+
  }
 
  /*
@@ -2320,8 +2341,6 @@ void InstructionImpl::astore(Frame * this_frame){
     auto toCopy = this_frame->operand_stack.top();
     //auto copy = methAux.copyOperand(toCopy);
     auto copy = toCopy;
-    std::cout << toCopy->class_instance->classe->getConstPool().size() << std::endl;
-    getchar();
     this_frame->operand_stack.push(copy);
  }
 
@@ -2629,10 +2648,10 @@ void InstructionImpl::putfield(Frame * this_frame){
 
     std::memcpy(&value_1,&op1->type_float,sizeof(float));
     std::memcpy(&value_2,&op2->type_float,sizeof(float));
-    value_1 -= value_2;
+    value_2 -= value_1;
 
     result->tag = CONSTANT_Float;
-    std::memcpy(&result->type_float,&value_1,sizeof(float));
+    std::memcpy(&result->type_float,&value_2,sizeof(float));
     this_frame->operand_stack.push(result);
 
  }
@@ -2656,10 +2675,10 @@ void InstructionImpl::putfield(Frame * this_frame){
 
     std::memcpy(&value_1,&op1->type_float,sizeof(float));
     std::memcpy(&value_2,&op2->type_float,sizeof(float));
-    value_1 /= value_2;
+    value_2 /= value_1;
 
     result->tag = CONSTANT_Float;
-    std::memcpy(&result->type_float,&value_1,sizeof(float));
+    std::memcpy(&result->type_float,&value_2,sizeof(float));
     this_frame->operand_stack.push(result);
 
  }
@@ -2756,11 +2775,9 @@ void InstructionImpl::putfield(Frame * this_frame){
      memcpy(&value_1,&operand_1->type_float, sizeof(float));
      value_2 = -value_1;
      Operand *result = (Operand *) malloc(sizeof(Operand));
-     printf("valor1 = %f\n", value_1);
 
      result->tag = CONSTANT_Double;
      memcpy(&result->type_float,&value_2, sizeof(float));
-     printf("resultado = %f\n", value_2);
 
      this_frame->operand_stack.push(result);
 
@@ -2928,6 +2945,7 @@ void InstructionImpl::putfield(Frame * this_frame){
       offset = (offset << 8 ) | this_frame->method_code.code[this_frame->pc + 2];
     }
     else offset = 3;
+
     this_frame->pc+=offset;
 
  }
@@ -3085,12 +3103,22 @@ void InstructionImpl::putfield(Frame * this_frame){
 *   @return
 */
 void InstructionImpl::arraylength(Frame * this_frame){
+
+   Interpreter AuxInter;
+
    auto arrayRef = this_frame->operand_stack.top();
    this_frame->operand_stack.pop();
-   int size = sizeof(arrayRef);
-   memcpy(&arrayRef->type_int,&size,sizeof(int));
-   this_frame->operand_stack.push(arrayRef);
+
+   auto size      = AuxInter.createType("I");
+
+   if(arrayRef->tag != CONSTANT_Array) size->type_int = 0;
+   else size->type_int = arrayRef->array_type->array->size();
+   
+   this_frame->operand_stack.push(size);
    this_frame->pc++;
+
+   std::cout << (int)size->type_int << std::endl;
+   getchar();
 }
 
 /**
@@ -3514,15 +3542,16 @@ void InstructionImpl::iastore(Frame * this_frame){
  void InstructionImpl::ifnonnull(Frame * this_frame){
 
     int shift;
+
     auto op = this_frame->operand_stack.top();
     this_frame->operand_stack.pop();
-
+    
     if(op->type_int) {
       shift = this_frame->method_code.code[this_frame->pc + 1];
       shift = (shift << 8) | this_frame->method_code.code[this_frame->pc + 2];
     }
     else shift = 3;
-
+    
     this_frame->pc += shift;
 
  }

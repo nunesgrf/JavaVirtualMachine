@@ -14,13 +14,14 @@ std::stack<Frame*> Interpreter::frame_stack;
 
 void Interpreter::execute(ClassLoader * classloader) {
 
+
     Interpreter::loadInMemo(classloader);
+
     Frame toRun(classloader->getConstPool(),this->mainFinder(classloader));
     Interpreter::frame_stack.push(&toRun);
 
     while(!Interpreter::frame_stack.empty()) {
 
-        
         Interpreter::frame_stack.top()->run();
     }
 }
@@ -133,6 +134,7 @@ void Interpreter::loadVariables(Instance * instance) {
             instance->references->operator[](nameField) = Interpreter::createType(typeVariable);
         }
             
+
         if(superClassName != "java/lang/Object" && superClassName != "") currClass = Interpreter::getClassInfo(superClassName); //IMPLEMENTAR O MÉTODO getClassInfo();
 
                 
@@ -148,15 +150,16 @@ void Interpreter::loadVariables(Instance * instance) {
 Instance * Interpreter::loadInMemo(ClassLoader * javaclass) {
 
     MethodsArea dump;
+
     Instance * inst_LC = new Instance(javaclass);
     Instance * inst_SC = new Instance(javaclass);
 
     dump.GLOBAL_loadedClasses.insert(std::pair<std::string, Instance*>(inst_LC->name,inst_LC));
     dump.GLOBAL_staticClasses.insert(std::pair<std::string, Instance*>(inst_SC->name,inst_SC));
 
-    
     Interpreter::loadVariables(inst_LC);
     
+
     return inst_LC;
 }
 
@@ -178,10 +181,9 @@ MethodInfo * Interpreter::mainFinder(ClassLoader * javaclass) {
         if(name == "main") descriptor = CpAtAux.getUTF8(javaclass->getConstPool(),m->descriptor_index-1);
         if(descriptor == "([Ljava/lang/String;)V") return m;
     }
-    std::cout << "Arquivo não possui main " << std::endl;
-
-    MethodInfo * toReturn = (MethodInfo*)calloc(1,sizeof(MethodInfo));
-    return toReturn; // ARRUMAR ESTA SAIDA;
+    std::cout << std::endl << "Arquivo não possui main " << std::endl;
+    getchar();
+    exit(-1);
 }
 
 /** @brief Busca um metodo pelo seu descritor ou nome e o retorna.
