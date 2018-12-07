@@ -242,6 +242,10 @@ public:
     static void multianewarray(Frame *);
 
     static void tableswitch(Frame *);
+
+    static void impdep1(Frame *);
+    static void impdep2(Frame *);
+    static void breakpoint(Frame *);
 };
 
 #endif
