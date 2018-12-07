@@ -1,0 +1,9 @@
+<map id="ClassLoader::getThisClass" name="ClassLoader::getThisClass">
+<area shape="rect" id="node2" href="$struct_instance.html#aca86b4cbc971ace708021f8ef2c6ce43" title="Instance::Instance" alt="" coords="263,5,393,32"/>
+<area shape="rect" id="node3" href="$class_instruction_impl.html#a3d197a31eaa6bc79b6d882b0ac9f1a67" title="InstructionImpl::invokevirtual" alt="" coords="233,56,423,83"/>
+<area shape="rect" id="node7" href="$jvm_8cpp.html#a893044ba12149c5e0ed3b4a19474fc4a" title="Chama o exibidor de ClassLoader. " alt="" coords="281,107,375,133"/>
+<area shape="rect" id="node4" href="$class_instruction.html#a145a172552303c9cbd8a5856e31a701b" title="Instruction::init" alt="" coords="471,56,579,83"/>
+<area shape="rect" id="node5" href="$class_code_attribute.html#a380eb04a01b0a0db351cf74443067ba4" title="CodeAttribute::print" alt="" coords="627,31,761,57"/>
+<area shape="rect" id="node6" href="$struct_frame.html#abe0b370087d05267cab997ecdc78c4bd" title="Frame::Frame" alt="" coords="642,81,746,108"/>
+<area shape="rect" id="node8" href="$jvm_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="Função main. " alt="" coords="499,107,550,133"/>
+</map>

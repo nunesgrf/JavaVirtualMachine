@@ -1,3 +1,8 @@
+/** @file Stack.cpp
+    @brief Métodos que simulam a estrura de dados "pilha";
+
+*/
+
 #include "../hpp/Stack.hpp"
 
 template <class T>

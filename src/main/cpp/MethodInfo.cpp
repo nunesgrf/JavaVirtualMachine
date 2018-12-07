@@ -1,3 +1,8 @@
+/** @file MethodInfo.cpp
+    @brief Métodos que simulam as a leitura dos methods assim como um destrutor;
+
+*/
+
 #include "../hpp/MethodInfo.hpp"
 #include "../hpp/ByteReader.hpp"
 

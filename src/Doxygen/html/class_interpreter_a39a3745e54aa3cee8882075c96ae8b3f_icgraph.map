@@ -1,0 +1,25 @@
+<map id="Interpreter::loadVariables" name="Interpreter::loadVariables">
+<area shape="rect" id="node2" href="$class_instruction_impl.html#ae794ec480c5cd8809d1215aa9442501b" title="InstructionImpl::invokespecial" alt="" coords="858,659,1053,685"/>
+<area shape="rect" id="node6" href="$class_interpreter.html#ab8fa17a7a73d119f3a3113555aef9702" title="Interpreter::loadInMemo" alt="" coords="220,431,380,457"/>
+<area shape="rect" id="node3" href="$class_instruction.html#a145a172552303c9cbd8a5856e31a701b" title="Instruction::init" alt="" coords="1105,329,1213,356"/>
+<area shape="rect" id="node4" href="$class_code_attribute.html#a380eb04a01b0a0db351cf74443067ba4" title="CodeAttribute::print" alt="" coords="1261,304,1396,331"/>
+<area shape="rect" id="node5" href="$struct_frame.html#abe0b370087d05267cab997ecdc78c4bd" title="Frame::Frame" alt="" coords="1277,355,1381,381"/>
+<area shape="rect" id="node7" href="$class_interpreter.html#aaa34fcc8ece810597cd2fea359b65220" title="Interpreter::execute" alt="" coords="442,431,577,457"/>
+<area shape="rect" id="node10" href="$class_interpreter.html#a99a623bb05c66632d0ab034ebaf2cf51" title="Interpreter::getClassInfo" alt="" coords="428,380,591,407"/>
+<area shape="rect" id="node8" href="$jvm_8cpp.html#a4f4a24852257f7259f906828eec5c11c" title="Chama o interpretador para classloader. " alt="" coords="666,431,778,457"/>
+<area shape="rect" id="node9" href="$jvm_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="Função main. " alt="" coords="930,709,981,736"/>
+<area shape="rect" id="node11" href="$class_instruction_impl.html#af10750df1ad4bf72ac80445dbbec068b" title="InstructionImpl::getstatic" alt="" coords="639,152,805,179"/>
+<area shape="rect" id="node12" href="$class_interpreter.html#a8ff3509dcc0f48200724b8ae04467495" title="Interpreter::createType" alt="" coords="645,380,799,407"/>
+<area shape="rect" id="node13" href="$class_instruction_impl.html#a3d197a31eaa6bc79b6d882b0ac9f1a67" title="InstructionImpl::invokevirtual" alt="" coords="861,608,1050,635"/>
+<area shape="rect" id="node14" href="$class_instruction_impl.html#a1d155354287a5fa501cce5c39c341abc" title="InstructionImpl::invokestatic" alt="" coords="862,51,1049,77"/>
+<area shape="rect" id="node15" href="$class_instruction_impl.html#a612a030680b27c4dc97e6feec3abd9d5" title="InstructionImpl::new_obj" alt="" coords="873,101,1037,128"/>
+<area shape="rect" id="node16" href="$class_instruction_impl.html#a87ff225e6ed77e1a956d3c6a572e5352" title="InstructionImpl::invokeinterface" alt="" coords="853,152,1057,179"/>
+<area shape="rect" id="node17" href="$class_instruction_impl.html#a458635a5e0a0e1599931831243861ad5" title="InstructionImpl::ineg" alt="" coords="885,203,1025,229"/>
+<area shape="rect" id="node18" href="$class_instruction_impl.html#aab88cff85d05d447ba7e29f7fa5889b4" title="InstructionImpl::lneg" alt="" coords="885,253,1025,280"/>
+<area shape="rect" id="node19" href="$class_instruction_impl.html#a4eb37fe85c3ef86ccbd90c49a60b00ab" title="InstructionImpl::ishl" alt="" coords="887,304,1023,331"/>
+<area shape="rect" id="node20" href="$class_instruction_impl.html#ae967a67c9b37f6c225c8443c4b85748e" title="InstructionImpl::lshl" alt="" coords="887,355,1023,381"/>
+<area shape="rect" id="node21" href="$class_instruction_impl.html#ac68d41636161f33b4d65462b91264548" title="InstructionImpl::ishr" alt="" coords="887,405,1024,432"/>
+<area shape="rect" id="node22" href="$class_instruction_impl.html#aecca1e5322ed2ae9a3cf21a7b5716f77" title="InstructionImpl::lshr" alt="" coords="887,456,1024,483"/>
+<area shape="rect" id="node23" href="$class_instruction_impl.html#a23b84075b24e2a750e1d6cc6b22a9adb" title="InstructionImpl::lushr" alt="" coords="883,507,1027,533"/>
+<area shape="rect" id="node24" href="$class_instruction_impl.html#a4b4d6991094076af98ce5a5c4a2fedfa" title="InstructionImpl::land" alt="" coords="885,557,1025,584"/>
+</map>

@@ -1,0 +1,13 @@
+<map id="InstructionImpl::invokevirtual" name="InstructionImpl::invokevirtual">
+<area shape="rect" id="node2" href="$struct_cp_attribute_interface.html#a99cabbc15a0af5273a6d324dfbc78f41" title="CpAttributeInterface\l::getUTF8" alt="" coords="504,168,643,210"/>
+<area shape="rect" id="node3" href="$class_class_loader.html#a8f3dc8367a76e7a4594bd5e8206d3977" title="ClassLoader::getConstPool" alt="" coords="1151,74,1333,101"/>
+<area shape="rect" id="node4" href="$class_class_loader.html#a3346ccdf7148ea48826d858326c4de00" title="ClassLoader::getThisClass" alt="" coords="246,100,426,126"/>
+<area shape="rect" id="node5" href="$namespacepatch.html#a54d2400c78aef13e3748a87cd7c86ede" title="patch::to_string" alt="" coords="280,150,392,177"/>
+<area shape="rect" id="node6" href="$class_interpreter.html#a8ff3509dcc0f48200724b8ae04467495" title="Interpreter::createType" alt="" coords="259,49,413,76"/>
+<area shape="rect" id="node10" href="$class_methods_area.html#ab8111f3fc9b55f1f8dbbbe0c1ca76d89" title="MethodsArea::findMethodBy\lNameOrDeor" alt="" coords="243,252,429,294"/>
+<area shape="rect" id="node7" href="$class_interpreter.html#a99a623bb05c66632d0ab034ebaf2cf51" title="Interpreter::getClassInfo" alt="" coords="492,49,655,76"/>
+<area shape="rect" id="node8" href="$class_interpreter.html#ab8fa17a7a73d119f3a3113555aef9702" title="Interpreter::loadInMemo" alt="" coords="723,49,883,76"/>
+<area shape="rect" id="node9" href="$class_interpreter.html#a39a3745e54aa3cee8882075c96ae8b3f" title="Interpreter::loadVariables" alt="" coords="936,74,1103,101"/>
+<area shape="rect" id="node11" href="$class_class_loader.html#ad4733587ddbe1ae25500c13181bfb5ca" title="ClassLoader::getMethods" alt="" coords="717,310,888,337"/>
+<area shape="rect" id="node12" href="$class_class_loader.html#acad870c7b405146242912190e1e71f7c" title="ClassLoader::getMethoCount" alt="" coords="477,336,669,362"/>
+</map>

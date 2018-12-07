@@ -1,8 +1,16 @@
+/** @file Instruction.cpp
+    @brief MÃ©todos que servem para inicializar todas as intruÃ§Ãµes contidas na documentaÃ§Ã£o;
+
+*/
 #include "../hpp/Instruction.hpp"
 #include "../hpp/InstructionImpl.hpp"
 
 #include <iostream>
-
+/** @class Instruction::init
+*   @brief Inilizar todas as instruÃ§Ãµes em uma array para facilitar o mapeamento;
+*   @param instructions Recebe a chave da instruÃ§Ã£o;
+*   @return void;
+*/
 void Instruction::init(Instruction* instructions, int flag) {
     if(flag == 1){
 
@@ -689,12 +697,12 @@ void Instruction::init(Instruction* instructions, int flag) {
         instructions[169].bytes = 1;
         instructions[169].func = InstructionImpl::ret;
 
-        // instrução tem tamanho variável
+        // instruï¿½ï¿½o tem tamanho variï¿½vel
         instructions[170].name = "tableswitch";
         instructions[170].bytes = 34;
         instructions[170].func = InstructionImpl::tableswitch;
 
-        // instrução tem tamanho variável
+        // instruï¿½ï¿½o tem tamanho variï¿½vel
         instructions[171].name = "lookupswitch";
         instructions[171].bytes = 26;
         instructions[171].func = InstructionImpl::lookupswitch;
@@ -819,7 +827,7 @@ void Instruction::init(Instruction* instructions, int flag) {
         instructions[201].bytes = 4;
         instructions[201].func = InstructionImpl::jsr_w;
 
-        /* Reservados para debugg não deve aparece em nenhum class file */
+        /* Reservados para debugg nï¿½o deve aparece em nenhum class file */
         instructions[202].name = "breakpoint";
         instructions[202].bytes = 0;
 
@@ -1514,12 +1522,12 @@ void Instruction::init(Instruction* instructions, int flag) {
     instructions[169].bytes = 1;
     instructions[169].func = InstructionImpl::ret;
 
-    // instrução tem tamanho variável
+    // instruï¿½ï¿½o tem tamanho variï¿½vel
     
     instructions[170].bytes = 34;
     instructions[170].func = InstructionImpl::tableswitch;
 
-    // instrução tem tamanho variável
+    // instruï¿½ï¿½o tem tamanho variï¿½vel
     
     instructions[171].bytes = 26;
     instructions[171].func = InstructionImpl::lookupswitch;
@@ -1644,7 +1652,7 @@ void Instruction::init(Instruction* instructions, int flag) {
     instructions[201].bytes = 4;
     instructions[201].func = InstructionImpl::jsr_w;
 
-    /* Reservados para debugg não deve aparece em nenhum class file */
+    /* Reservados para debugg nï¿½o deve aparece em nenhum class file */
     
     instructions[202].bytes = 0;
 

@@ -9,6 +9,11 @@
 #include <vector>
 #include "CpInfo.hpp"
 
+/**
+* @class CpAttributeInterface
+* @brief Declarações da interface entre ConstantPool e AttributeInfo para traduzir as strings UTF8
+*/
+
 struct CpAttributeInterface {
 
     std::string getUTF8(std::vector<CpInfo*>, uint16_t);

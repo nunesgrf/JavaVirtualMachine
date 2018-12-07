@@ -1,7 +1,12 @@
+/**
+*	@file ByteReader.cpp
+*	@brief Intuito é buscar obinário a partir do .class passado pelo arquivo 
+*
+*/
 #include "../hpp/ByteReader.hpp"
 
 #define NEUTRAL_BYTE_FOR_OR 0x00;
-/**
+/** @class ByteReader<T>::byteCatch
  * @brief byteCatch(FILE * fp) busca o binário correspondendo ao tipo T.
  * @param FILE * fp : arquivo de acesso.
  * @return T

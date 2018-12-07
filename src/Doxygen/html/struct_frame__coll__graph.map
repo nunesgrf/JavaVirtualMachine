@@ -1,0 +1,14 @@
+<map id="Frame" name="Frame">
+<area shape="rect" id="node2" href="$struct_method_info.html" title="Tipo para as informações dos metodos que serçao armazenados no methodArea. " alt="" coords="364,288,451,315"/>
+<area shape="rect" id="node3" href="$class_attribute_info.html" title="classe contém name_index e length(uint32) &#45; todos uint16; Há também uma union que tem como principio ..." alt="" coords="309,199,402,225"/>
+<area shape="rect" id="node11" href="$class_code_attribute.html" title="classe Atributos que consiste em max_stacks, max_locals, code_length(uint32), ponteiro para code(uint..." alt="" coords="225,288,328,315"/>
+<area shape="rect" id="node4" href="$class_inner_class.html" title="classe contém class_length e ponteiro para inner_class_data &#45; todos uint16; Além disso contém metodos..." alt="" coords="26,109,111,136"/>
+<area shape="rect" id="node5" href="$class_inner_class_data.html" title="classe contém inner_class_info_index, outer_class_info_index, inner_name_index e inner_class_access_f..." alt="" coords="5,13,119,39"/>
+<area shape="rect" id="node6" href="$class_number_table_attribute.html" title="classe contém length e ponteiro para line_number_table&#45; todos uint16; Além contém métodos como leitor..." alt="" coords="139,109,289,136"/>
+<area shape="rect" id="node7" href="$class_number_table_attribute__line_number.html" title="classe contém strat_pc e lineNumber &#45; todos uint16; " alt="" coords="143,5,293,47"/>
+<area shape="rect" id="node8" href="$class_source_file.html" title="classe contém sourceFileIndex &#45; todos uint16; Além contém métodos como leitor e print; ..." alt="" coords="313,109,397,136"/>
+<area shape="rect" id="node9" href="$class_constant_value.html" title="classe contém Além contém métodos como destrutor, leitor e print " alt="" coords="421,109,529,136"/>
+<area shape="rect" id="node10" href="$class_exception.html" title="classe contém number_exceptions e exception_index_table &#45; todos uint16; Além contém métodos como dest..." alt="" coords="557,109,637,136"/>
+<area shape="rect" id="node12" href="$class_code_exception.html" title="classe contém start_pc, end_pc, handler_pc e catch_type &#45; todos uint16; " alt="" coords="49,199,160,225"/>
+<area shape="rect" id="node13" href="$class_instruction.html" title="Determina a instrução de acordo com o interpretador;. " alt="" coords="501,288,583,315"/>
+</map>
