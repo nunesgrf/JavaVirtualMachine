@@ -284,6 +284,10 @@ int main(int argc, char * argv[]) {
     	
     	cout << endl << "Arquivo aberto" << endl;
     	ClassLoader classloader(fp);
+      if(classloader.getMagic() != 0xcafebabe) {
+        std::cout << ERROR_MESSAGE << "Número magico incorreto.\n" << std::endl;
+        return ERROR;
+      }
     	getPath(argv[2]);
     	fclose(fp);
     	switch(*argv[1]) {
