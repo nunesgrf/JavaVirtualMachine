@@ -1,3 +1,7 @@
+/** @file Interpreter.cpp
+    @brief Métodos que fazem a atuação do interpretador;
+
+*/
 #include "../hpp/Interpreter.hpp"
 #include "../hpp/CpAttributeInterface.hpp"
 #include "../hpp/GLOBAL_file.hpp"
@@ -5,7 +9,8 @@
 #include <iostream>
 #include <string>
 
-/** @brief Carrega o classLoader na memória e na stack e executa-o.
+/** @class Interpreter::execute
+ *   @brief Carrega o classLoader na memória e na stack e executa-o.
  * @param *classloader ponteiro para ClassLoader
  * @return void
  */
@@ -26,7 +31,8 @@ void Interpreter::execute(ClassLoader * classloader) {
     }
 }
 
-/** @brief Acessa a memória em busca de uma classe, caso inexistente, carrega a classe buscada em memória.
+/** @class Interpreter::getClassInfo
+ *   @brief Acessa a memória em busca de uma classe, caso inexistente, carrega a classe buscada em memória.
  * @param className nome da classe buscada.
  * @return void
  */
@@ -51,7 +57,8 @@ ClassLoader * Interpreter::getClassInfo(std::string className) {
     return instance->classe;
 }
 
-/** @brief Cria um operando settado em um tipo específico.
+/** @class Interpreter::createType
+  *  @brief Cria um operando settado em um tipo específico.
  * @param type string contendo a informação de qual novo tipo.
  * @return Operand*
  */
@@ -110,7 +117,8 @@ Operand * Interpreter::createType(std::string type) {
     return toReturn;
 }
 
-/** @brief Carrega em memórias as variáveis de uma classe.
+/** @class Interpreter::loadVariables
+  *  @brief Carrega em memórias as variáveis de uma classe.
  * @param *instance ponteiro para Instance.
  * @return void
  */
@@ -143,7 +151,8 @@ void Interpreter::loadVariables(Instance * instance) {
     
 }
 
-/** @brief Realiza o carregamento do ClassLoader em memória e retorna a instância.
+/** @class Interpreter::loadInMemo
+ * @brief Realiza o carregamento do ClassLoader em memória e retorna a instância.
  * @param *javaclass ponteiro de ClassLoader
  * @return Instance*
  */
@@ -163,7 +172,8 @@ Instance * Interpreter::loadInMemo(ClassLoader * javaclass) {
     return inst_LC;
 }
 
-/** @brief Busca a main de uma javaclass e retorna o método.
+/** @class Interpreter::mainFinder
+ * @brief Busca a main de uma javaclass e retorna o método.
  * @param *javaclass ponteiro para ClassLoader.
  * @return MethodInfo*
  */

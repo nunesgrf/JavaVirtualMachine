@@ -1,0 +1,8 @@
+<map id="MethodsArea::copyOperand" name="MethodsArea::copyOperand">
+<area shape="rect" id="node2" href="$class_instruction_impl.html#a79c7b953ad51131ac015eb14dfdfe53e" title="InstructionImpl::dup_x1" alt="" coords="237,5,396,32"/>
+<area shape="rect" id="node6" href="$class_instruction_impl.html#ac3a59efe8fba23274bc8375ef6505b79" title="InstructionImpl::dup_x2" alt="" coords="237,56,396,83"/>
+<area shape="rect" id="node7" href="$class_instruction_impl.html#a9847d6132f46fb58988b30003e7191b4" title="InstructionImpl::dup2" alt="" coords="245,107,389,133"/>
+<area shape="rect" id="node3" href="$class_instruction.html#a145a172552303c9cbd8a5856e31a701b" title="Instruction::init" alt="" coords="444,56,552,83"/>
+<area shape="rect" id="node4" href="$class_code_attribute.html#a380eb04a01b0a0db351cf74443067ba4" title="CodeAttribute::print" alt="" coords="600,31,735,57"/>
+<area shape="rect" id="node5" href="$struct_frame.html#abe0b370087d05267cab997ecdc78c4bd" title="Frame::Frame" alt="" coords="615,81,719,108"/>
+</map>

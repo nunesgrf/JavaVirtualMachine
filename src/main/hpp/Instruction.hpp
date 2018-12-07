@@ -54,7 +54,10 @@
 #define c_return_original 177
 
 struct Frame;
-
+/**
+*	@class Instruction
+*	@brief Determina a instrução de acordo com o interpretador;	
+*/
 class Instruction {
     public:
         std::string name;

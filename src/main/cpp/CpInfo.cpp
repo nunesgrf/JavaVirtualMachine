@@ -1,3 +1,7 @@
+/** @file CpInfo.cpp
+    @brief Ocorre os set's a partir dos bytes lidos no problema;
+*/
+
 #ifndef CPP_CPINFO
 #define CPP_CPINFO
 
@@ -18,10 +22,8 @@
 #define CONSTANT_NameAndType 12
 #define CONSTANT_Empty 0
 
-
-
-
-/** @brief Destrutor de CpInfo, desaloca o que foi alocado.
+/** @class CpInfo::~CpInfo
+ * @brief Destrutor de CpInfo, desaloca o que foi alocado.
  * @param sem parâmetros
  * @return void
  */
@@ -29,7 +31,8 @@ CpInfo::~CpInfo() {
     //if(this->tag == 1) free(this->UTF8.bytes);
 }
 
-/** @brief realiza o set inicial das variáveis a partir do @param *fp
+/**@class CpInfo::read
+ * @brief realiza o set inicial das variáveis a partir do @param *fp
  * @param *fp ponteiro de arquivo
  * @return void
  */

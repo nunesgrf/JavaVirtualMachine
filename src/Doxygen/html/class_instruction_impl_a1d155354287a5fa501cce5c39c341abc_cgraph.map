@@ -1,0 +1,11 @@
+<map id="InstructionImpl::invokestatic" name="InstructionImpl::invokestatic">
+<area shape="rect" id="node2" href="$struct_cp_attribute_interface.html#a99cabbc15a0af5273a6d324dfbc78f41" title="CpAttributeInterface\l::getUTF8" alt="" coords="484,158,623,199"/>
+<area shape="rect" id="node3" href="$class_interpreter.html#a8ff3509dcc0f48200724b8ae04467495" title="Interpreter::createType" alt="" coords="247,56,402,83"/>
+<area shape="rect" id="node7" href="$class_class_loader.html#a8f3dc8367a76e7a4594bd5e8206d3977" title="ClassLoader::getConstPool" alt="" coords="1131,107,1313,133"/>
+<area shape="rect" id="node8" href="$class_interpreter.html#a16752843b70549dac6ed661365e95ae3" title="Busca um metodo pelo seu descritor ou nome e o retorna. " alt="" coords="240,217,409,258"/>
+<area shape="rect" id="node4" href="$class_interpreter.html#a99a623bb05c66632d0ab034ebaf2cf51" title="Interpreter::getClassInfo" alt="" coords="472,56,635,83"/>
+<area shape="rect" id="node5" href="$class_interpreter.html#ab8fa17a7a73d119f3a3113555aef9702" title="Interpreter::loadInMemo" alt="" coords="703,5,863,32"/>
+<area shape="rect" id="node6" href="$class_interpreter.html#a39a3745e54aa3cee8882075c96ae8b3f" title="Interpreter::loadVariables" alt="" coords="916,56,1083,83"/>
+<area shape="rect" id="node9" href="$class_class_loader.html#ad4733587ddbe1ae25500c13181bfb5ca" title="ClassLoader::getMethods" alt="" coords="697,300,868,327"/>
+<area shape="rect" id="node10" href="$class_class_loader.html#acad870c7b405146242912190e1e71f7c" title="ClassLoader::getMethoCount" alt="" coords="457,325,649,352"/>
+</map>

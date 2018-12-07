@@ -9,6 +9,10 @@
 #include <cstdint>
 #include <stdint.h>
 #include <fstream>
+/**
+*   @class CpInfo
+*   @brief Classe contém tag(uint8) e union que será um tipo diferente dependendo de qual tag que será passada;
+*/
 
 class CpInfo
 {

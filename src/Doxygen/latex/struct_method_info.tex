@@ -1,0 +1,139 @@
+\hypertarget{struct_method_info}{}\section{Referência à estrutura Method\+Info}
+\label{struct_method_info}\index{Method\+Info@{Method\+Info}}
+
+
+Tipo para as informações dos metodos que serçao armazenados no method\+Area.  
+
+
+
+
+{\ttfamily \#include $<$Method\+Info.\+hpp$>$}
+
+
+
+Diagrama de colaboração para Method\+Info\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{struct_method_info__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{struct_method_info_a96fbb8de441ef2af032c20d36d41eb7a}{read} (F\+I\+LE $\ast$fp, std\+::vector$<$ \hyperlink{class_cp_info}{Cp\+Info} $\ast$ $>$)
+\begin{DoxyCompactList}\small\item\em Serve para preencher os valores de uma instância de \hyperlink{struct_method_info}{Method\+Info}. \end{DoxyCompactList}\item 
+\hyperlink{struct_method_info_ab2a081a2855eec567e82adfff26059cd}{$\sim$\+Method\+Info} ()
+\begin{DoxyCompactList}\small\item\em Destrutor da classe \hyperlink{struct_method_info}{Method\+Info}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Atributos Públicos}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t \hyperlink{struct_method_info_ab24f22a8b4e3dcae351b0aa9dc6b7051}{access\+\_\+flags}
+\item 
+uint16\+\_\+t \hyperlink{struct_method_info_afaa8591bae9244b2b47609e4919e4dbe}{name\+\_\+index}
+\item 
+uint16\+\_\+t \hyperlink{struct_method_info_a427ffc223f3b52b4d83fa6ee9e411089}{descriptor\+\_\+index}
+\item 
+uint16\+\_\+t \hyperlink{struct_method_info_ac7a3912757dd3af6ac55988fd42305f4}{attributes\+\_\+count}
+\item 
+\hyperlink{class_attribute_info}{Attribute\+Info} $\ast$ \hyperlink{struct_method_info_af480b7ee48a3812864ef16e3f0b44051}{attributes}
+\end{DoxyCompactItemize}
+
+
+\subsection{Descrição detalhada}
+Tipo para as informações dos metodos que serçao armazenados no method\+Area. 
+
+\subsection{Documentação dos Construtores \& Destrutor}
+\index{Method\+Info@{Method\+Info}!````~Method\+Info@{$\sim$\+Method\+Info}}
+\index{````~Method\+Info@{$\sim$\+Method\+Info}!Method\+Info@{Method\+Info}}
+\subsubsection[{\texorpdfstring{$\sim$\+Method\+Info()}{~MethodInfo()}}]{\setlength{\rightskip}{0pt plus 5cm}Method\+Info\+::$\sim$\+Method\+Info (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{struct_method_info_ab2a081a2855eec567e82adfff26059cd}{}\label{struct_method_info_ab2a081a2855eec567e82adfff26059cd}
+
+
+Destrutor da classe \hyperlink{struct_method_info}{Method\+Info}. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sem} & parâmetros. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+destructor. 
+\end{DoxyReturn}
+
+
+\subsection{Documentação dos métodos}
+\index{Method\+Info@{Method\+Info}!read@{read}}
+\index{read@{read}!Method\+Info@{Method\+Info}}
+\subsubsection[{\texorpdfstring{read(\+F\+I\+L\+E $\ast$fp, std\+::vector$<$ Cp\+Info $\ast$ $>$)}{read(FILE *fp, std::vector< CpInfo * >)}}]{\setlength{\rightskip}{0pt plus 5cm}void Method\+Info\+::read (
+\begin{DoxyParamCaption}
+\item[{F\+I\+LE $\ast$}]{fp, }
+\item[{std\+::vector$<$ {\bf Cp\+Info} $\ast$ $>$}]{true\+Cp\+Info}
+\end{DoxyParamCaption}
+)}\hypertarget{struct_method_info_a96fbb8de441ef2af032c20d36d41eb7a}{}\label{struct_method_info_a96fbb8de441ef2af032c20d36d41eb7a}
+
+
+Serve para preencher os valores de uma instância de \hyperlink{struct_method_info}{Method\+Info}. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em $\ast$fp} & ponteiro para arquivo \\
+\hline
+{\em true\+Cp\+Info} & vetor de Cp\+Info$\ast$ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+void 
+\end{DoxyReturn}
+
+
+Grafo de chamadas desta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{struct_method_info_a96fbb8de441ef2af032c20d36d41eb7a_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Este é o diagrama das funções que utilizam esta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{struct_method_info_a96fbb8de441ef2af032c20d36d41eb7a_icgraph}
+\end{center}
+\end{figure}
+
+
+
+
+\subsection{Documentação dos dados membro}
+\index{Method\+Info@{Method\+Info}!access\+\_\+flags@{access\+\_\+flags}}
+\index{access\+\_\+flags@{access\+\_\+flags}!Method\+Info@{Method\+Info}}
+\subsubsection[{\texorpdfstring{access\+\_\+flags}{access_flags}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t Method\+Info\+::access\+\_\+flags}\hypertarget{struct_method_info_ab24f22a8b4e3dcae351b0aa9dc6b7051}{}\label{struct_method_info_ab24f22a8b4e3dcae351b0aa9dc6b7051}
+\index{Method\+Info@{Method\+Info}!attributes@{attributes}}
+\index{attributes@{attributes}!Method\+Info@{Method\+Info}}
+\subsubsection[{\texorpdfstring{attributes}{attributes}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Attribute\+Info}$\ast$ Method\+Info\+::attributes}\hypertarget{struct_method_info_af480b7ee48a3812864ef16e3f0b44051}{}\label{struct_method_info_af480b7ee48a3812864ef16e3f0b44051}
+\index{Method\+Info@{Method\+Info}!attributes\+\_\+count@{attributes\+\_\+count}}
+\index{attributes\+\_\+count@{attributes\+\_\+count}!Method\+Info@{Method\+Info}}
+\subsubsection[{\texorpdfstring{attributes\+\_\+count}{attributes_count}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t Method\+Info\+::attributes\+\_\+count}\hypertarget{struct_method_info_ac7a3912757dd3af6ac55988fd42305f4}{}\label{struct_method_info_ac7a3912757dd3af6ac55988fd42305f4}
+\index{Method\+Info@{Method\+Info}!descriptor\+\_\+index@{descriptor\+\_\+index}}
+\index{descriptor\+\_\+index@{descriptor\+\_\+index}!Method\+Info@{Method\+Info}}
+\subsubsection[{\texorpdfstring{descriptor\+\_\+index}{descriptor_index}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t Method\+Info\+::descriptor\+\_\+index}\hypertarget{struct_method_info_a427ffc223f3b52b4d83fa6ee9e411089}{}\label{struct_method_info_a427ffc223f3b52b4d83fa6ee9e411089}
+\index{Method\+Info@{Method\+Info}!name\+\_\+index@{name\+\_\+index}}
+\index{name\+\_\+index@{name\+\_\+index}!Method\+Info@{Method\+Info}}
+\subsubsection[{\texorpdfstring{name\+\_\+index}{name_index}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t Method\+Info\+::name\+\_\+index}\hypertarget{struct_method_info_afaa8591bae9244b2b47609e4919e4dbe}{}\label{struct_method_info_afaa8591bae9244b2b47609e4919e4dbe}
+
+
+A documentação para esta estrutura foi gerada a partir dos seguintes ficheiros\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_method_info_8hpp}{Method\+Info.\+hpp}\item 
+\hyperlink{_method_info_8cpp}{Method\+Info.\+cpp}\end{DoxyCompactItemize}

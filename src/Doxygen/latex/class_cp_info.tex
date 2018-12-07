@@ -1,0 +1,199 @@
+\hypertarget{class_cp_info}{}\section{Referência à classe Cp\+Info}
+\label{class_cp_info}\index{Cp\+Info@{Cp\+Info}}
+
+
+Classe contém tag(uint8) e union que será um tipo diferente dependendo de qual tag que será passada;.  
+
+
+
+
+{\ttfamily \#include $<$Cp\+Info.\+hpp$>$}
+
+\subsection*{Componentes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_cp_info_1_1read}{read}
+\begin{DoxyCompactList}\small\item\em realiza o set inicial das variáveis a partir do \end{DoxyCompactList}\item 
+class \hyperlink{class_cp_info_1_1~_cp_info}{$\sim$\+Cp\+Info}
+\begin{DoxyCompactList}\small\item\em Destrutor de \hyperlink{class_cp_info}{Cp\+Info}, desaloca o que foi alocado. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_cp_info_a67ca1fe35f94943081010ec05cb7d464}{$\sim$\+Cp\+Info} ()
+\item 
+void \hyperlink{class_cp_info_ab8c89df973cc40b407e0cdd4911923f1}{read} (F\+I\+LE $\ast$fp)
+\end{DoxyCompactItemize}
+\subsection*{Atributos Públicos}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \hyperlink{class_cp_info_ac20d96c33f871bde2e903708a215a2dc}{tag}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>struct \{\\
+\>\>uint16\_t \hyperlink{class_cp_info_a8337463c52221eaead88f232ded768a7}{name\_index}\\
+\>\} \hyperlink{class_cp_info_a8e42eb58082f93477cecc14d96c50689}{Class}\\
+\>struct \{\\
+\>\>uint16\_t \hyperlink{class_cp_info_abde12c60f120eb082631fd0554fbe2f3}{class\_index}\\
+\>\>uint16\_t \hyperlink{class_cp_info_a3007bcc993f983836f419c3d8f8cb835}{name\_and\_type\_index}\\
+\>\} \hyperlink{class_cp_info_a9f594a9412a1d3bfc086efc127fb528a}{Fieldref}\\
+\>struct \{\\
+\>\>uint16\_t \hyperlink{class_cp_info_abde12c60f120eb082631fd0554fbe2f3}{class\_index}\\
+\>\>uint16\_t \hyperlink{class_cp_info_a3007bcc993f983836f419c3d8f8cb835}{name\_and\_type\_index}\\
+\>\} \hyperlink{class_cp_info_ac86976e076271c25fb990d34cbf93eb1}{Methodref}\\
+\>struct \{\\
+\>\>uint16\_t \hyperlink{class_cp_info_abde12c60f120eb082631fd0554fbe2f3}{class\_index}\\
+\>\>uint16\_t \hyperlink{class_cp_info_a3007bcc993f983836f419c3d8f8cb835}{name\_and\_type\_index}\\
+\>\} \hyperlink{class_cp_info_ad489482113b9905436258696227b9d21}{InterfaceMethodref}\\
+\>struct \{\\
+\>\>uint16\_t \hyperlink{class_cp_info_a4b2f7aa4ac461ac4d860d566c5e3323e}{string\_index}\\
+\>\} \hyperlink{class_cp_info_a9e47b825b6e22ad57a9b78cf430cd6bc}{String}\\
+\>struct \{\\
+\>\>uint32\_t \hyperlink{class_cp_info_aff3858879ad5feb452a5fc0504e99c1b}{bytes}\\
+\>\} \hyperlink{class_cp_info_a873ae1d00d8658008893f3397ad3535b}{Integer}\\
+\>struct \{\\
+\>\>uint32\_t \hyperlink{class_cp_info_aff3858879ad5feb452a5fc0504e99c1b}{bytes}\\
+\>\} \hyperlink{class_cp_info_a8dd439e3f1f235a10abf65991a89c0e0}{Float}\\
+\>struct \{\\
+\>\>uint32\_t \hyperlink{class_cp_info_a4ddca9fe1db833914bba6fccab4a4966}{high\_bytes}\\
+\>\>uint32\_t \hyperlink{class_cp_info_a361c4ed0f0ba7c54dec3469e1e2b67ce}{low\_bytes}\\
+\>\} \hyperlink{class_cp_info_a57c0bb8dfad66c7c75c552ab6ca45563}{Long}\\
+\>struct \{\\
+\>\>uint32\_t \hyperlink{class_cp_info_a4ddca9fe1db833914bba6fccab4a4966}{high\_bytes}\\
+\>\>uint32\_t \hyperlink{class_cp_info_a361c4ed0f0ba7c54dec3469e1e2b67ce}{low\_bytes}\\
+\>\} \hyperlink{class_cp_info_a8d321b2411c3720d3009722182a2fbd5}{Double}\\
+\>struct \{\\
+\>\>uint16\_t \hyperlink{class_cp_info_a8337463c52221eaead88f232ded768a7}{name\_index}\\
+\>\>uint16\_t \hyperlink{class_cp_info_a1e5f422fa619e06a2deb2728be023381}{descriptor\_index}\\
+\>\} \hyperlink{class_cp_info_af8ab428cfd1348391c7d3b26d94d6567}{NameAndType}\\
+\>struct \{\\
+\>\>uint16\_t \hyperlink{class_cp_info_a8876751cacc7818d9748366a35ef85f7}{length}\\
+\>\>uint8\_t $\ast$ \hyperlink{class_cp_info_acdf9242daedb1b37c82f24e6665edb10}{bytes}\\
+\>\} \hyperlink{class_cp_info_a1959c604c24ea0a8c2ab8a4f3094f3e0}{UTF8}\\
+\}; \\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+\subsection{Descrição detalhada}
+Classe contém tag(uint8) e union que será um tipo diferente dependendo de qual tag que será passada;. 
+
+\subsection{Documentação dos Construtores \& Destrutor}
+\index{Cp\+Info@{Cp\+Info}!````~Cp\+Info@{$\sim$\+Cp\+Info}}
+\index{````~Cp\+Info@{$\sim$\+Cp\+Info}!Cp\+Info@{Cp\+Info}}
+\subsubsection[{\texorpdfstring{$\sim$\+Cp\+Info()}{~CpInfo()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Cp\+Info\+::$\sim$\+Cp\+Info} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_cp_info_a67ca1fe35f94943081010ec05cb7d464}{}\label{class_cp_info_a67ca1fe35f94943081010ec05cb7d464}
+
+
+\subsection{Documentação dos métodos}
+\index{Cp\+Info@{Cp\+Info}!read@{read}}
+\index{read@{read}!Cp\+Info@{Cp\+Info}}
+\subsubsection[{\texorpdfstring{read(\+F\+I\+L\+E $\ast$fp)}{read(FILE *fp)}}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf Cp\+Info\+::read} (
+\begin{DoxyParamCaption}
+\item[{F\+I\+LE $\ast$}]{fp}
+\end{DoxyParamCaption}
+)}\hypertarget{class_cp_info_ab8c89df973cc40b407e0cdd4911923f1}{}\label{class_cp_info_ab8c89df973cc40b407e0cdd4911923f1}
+A alocação via calloc é feita aqui com o entuito de settar os valores como 0 inicialmente. Alocala-\/se um total de lenght+1 posições para que ao final possa se inserir o caractere \textquotesingle{}\textbackslash{}0\textquotesingle{} sem acessar uma região de memória não garantida para nosso programa.
+
+Grafo de chamadas desta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=306pt]{class_cp_info_ab8c89df973cc40b407e0cdd4911923f1_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Este é o diagrama das funções que utilizam esta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=324pt]{class_cp_info_ab8c89df973cc40b407e0cdd4911923f1_icgraph}
+\end{center}
+\end{figure}
+
+
+
+
+\subsection{Documentação dos dados membro}
+\subsubsection[{\texorpdfstring{"@3}{@3}}]{\setlength{\rightskip}{0pt plus 5cm}union \{ ... \} }\hypertarget{class_cp_info_ac48d2f19350cfd3fb1d0c6a6b1537803}{}\label{class_cp_info_ac48d2f19350cfd3fb1d0c6a6b1537803}
+\index{Cp\+Info@{Cp\+Info}!bytes@{bytes}}
+\index{bytes@{bytes}!Cp\+Info@{Cp\+Info}}
+\subsubsection[{\texorpdfstring{bytes}{bytes}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t Cp\+Info\+::bytes}\hypertarget{class_cp_info_aff3858879ad5feb452a5fc0504e99c1b}{}\label{class_cp_info_aff3858879ad5feb452a5fc0504e99c1b}
+\index{Cp\+Info@{Cp\+Info}!bytes@{bytes}}
+\index{bytes@{bytes}!Cp\+Info@{Cp\+Info}}
+\subsubsection[{\texorpdfstring{bytes}{bytes}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t$\ast$ Cp\+Info\+::bytes}\hypertarget{class_cp_info_acdf9242daedb1b37c82f24e6665edb10}{}\label{class_cp_info_acdf9242daedb1b37c82f24e6665edb10}
+\index{Cp\+Info@{Cp\+Info}!Class@{Class}}
+\index{Class@{Class}!Cp\+Info@{Cp\+Info}}
+\subsubsection[{\texorpdfstring{Class}{Class}}]{\setlength{\rightskip}{0pt plus 5cm}struct \{ ... \}   Cp\+Info\+::\+Class}\hypertarget{class_cp_info_a8e42eb58082f93477cecc14d96c50689}{}\label{class_cp_info_a8e42eb58082f93477cecc14d96c50689}
+\index{Cp\+Info@{Cp\+Info}!class\+\_\+index@{class\+\_\+index}}
+\index{class\+\_\+index@{class\+\_\+index}!Cp\+Info@{Cp\+Info}}
+\subsubsection[{\texorpdfstring{class\+\_\+index}{class_index}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t Cp\+Info\+::class\+\_\+index}\hypertarget{class_cp_info_abde12c60f120eb082631fd0554fbe2f3}{}\label{class_cp_info_abde12c60f120eb082631fd0554fbe2f3}
+\index{Cp\+Info@{Cp\+Info}!descriptor\+\_\+index@{descriptor\+\_\+index}}
+\index{descriptor\+\_\+index@{descriptor\+\_\+index}!Cp\+Info@{Cp\+Info}}
+\subsubsection[{\texorpdfstring{descriptor\+\_\+index}{descriptor_index}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t Cp\+Info\+::descriptor\+\_\+index}\hypertarget{class_cp_info_a1e5f422fa619e06a2deb2728be023381}{}\label{class_cp_info_a1e5f422fa619e06a2deb2728be023381}
+\index{Cp\+Info@{Cp\+Info}!Double@{Double}}
+\index{Double@{Double}!Cp\+Info@{Cp\+Info}}
+\subsubsection[{\texorpdfstring{Double}{Double}}]{\setlength{\rightskip}{0pt plus 5cm}struct \{ ... \}   Cp\+Info\+::\+Double}\hypertarget{class_cp_info_a8d321b2411c3720d3009722182a2fbd5}{}\label{class_cp_info_a8d321b2411c3720d3009722182a2fbd5}
+\index{Cp\+Info@{Cp\+Info}!Fieldref@{Fieldref}}
+\index{Fieldref@{Fieldref}!Cp\+Info@{Cp\+Info}}
+\subsubsection[{\texorpdfstring{Fieldref}{Fieldref}}]{\setlength{\rightskip}{0pt plus 5cm}struct \{ ... \}   Cp\+Info\+::\+Fieldref}\hypertarget{class_cp_info_a9f594a9412a1d3bfc086efc127fb528a}{}\label{class_cp_info_a9f594a9412a1d3bfc086efc127fb528a}
+\index{Cp\+Info@{Cp\+Info}!Float@{Float}}
+\index{Float@{Float}!Cp\+Info@{Cp\+Info}}
+\subsubsection[{\texorpdfstring{Float}{Float}}]{\setlength{\rightskip}{0pt plus 5cm}struct \{ ... \}   Cp\+Info\+::\+Float}\hypertarget{class_cp_info_a8dd439e3f1f235a10abf65991a89c0e0}{}\label{class_cp_info_a8dd439e3f1f235a10abf65991a89c0e0}
+\index{Cp\+Info@{Cp\+Info}!high\+\_\+bytes@{high\+\_\+bytes}}
+\index{high\+\_\+bytes@{high\+\_\+bytes}!Cp\+Info@{Cp\+Info}}
+\subsubsection[{\texorpdfstring{high\+\_\+bytes}{high_bytes}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t Cp\+Info\+::high\+\_\+bytes}\hypertarget{class_cp_info_a4ddca9fe1db833914bba6fccab4a4966}{}\label{class_cp_info_a4ddca9fe1db833914bba6fccab4a4966}
+\index{Cp\+Info@{Cp\+Info}!Integer@{Integer}}
+\index{Integer@{Integer}!Cp\+Info@{Cp\+Info}}
+\subsubsection[{\texorpdfstring{Integer}{Integer}}]{\setlength{\rightskip}{0pt plus 5cm}struct \{ ... \}   Cp\+Info\+::\+Integer}\hypertarget{class_cp_info_a873ae1d00d8658008893f3397ad3535b}{}\label{class_cp_info_a873ae1d00d8658008893f3397ad3535b}
+\index{Cp\+Info@{Cp\+Info}!Interface\+Methodref@{Interface\+Methodref}}
+\index{Interface\+Methodref@{Interface\+Methodref}!Cp\+Info@{Cp\+Info}}
+\subsubsection[{\texorpdfstring{Interface\+Methodref}{InterfaceMethodref}}]{\setlength{\rightskip}{0pt plus 5cm}struct \{ ... \}   Cp\+Info\+::\+Interface\+Methodref}\hypertarget{class_cp_info_ad489482113b9905436258696227b9d21}{}\label{class_cp_info_ad489482113b9905436258696227b9d21}
+\index{Cp\+Info@{Cp\+Info}!length@{length}}
+\index{length@{length}!Cp\+Info@{Cp\+Info}}
+\subsubsection[{\texorpdfstring{length}{length}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t Cp\+Info\+::length}\hypertarget{class_cp_info_a8876751cacc7818d9748366a35ef85f7}{}\label{class_cp_info_a8876751cacc7818d9748366a35ef85f7}
+\index{Cp\+Info@{Cp\+Info}!Long@{Long}}
+\index{Long@{Long}!Cp\+Info@{Cp\+Info}}
+\subsubsection[{\texorpdfstring{Long}{Long}}]{\setlength{\rightskip}{0pt plus 5cm}struct \{ ... \}   Cp\+Info\+::\+Long}\hypertarget{class_cp_info_a57c0bb8dfad66c7c75c552ab6ca45563}{}\label{class_cp_info_a57c0bb8dfad66c7c75c552ab6ca45563}
+\index{Cp\+Info@{Cp\+Info}!low\+\_\+bytes@{low\+\_\+bytes}}
+\index{low\+\_\+bytes@{low\+\_\+bytes}!Cp\+Info@{Cp\+Info}}
+\subsubsection[{\texorpdfstring{low\+\_\+bytes}{low_bytes}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t Cp\+Info\+::low\+\_\+bytes}\hypertarget{class_cp_info_a361c4ed0f0ba7c54dec3469e1e2b67ce}{}\label{class_cp_info_a361c4ed0f0ba7c54dec3469e1e2b67ce}
+\index{Cp\+Info@{Cp\+Info}!Methodref@{Methodref}}
+\index{Methodref@{Methodref}!Cp\+Info@{Cp\+Info}}
+\subsubsection[{\texorpdfstring{Methodref}{Methodref}}]{\setlength{\rightskip}{0pt plus 5cm}struct \{ ... \}   Cp\+Info\+::\+Methodref}\hypertarget{class_cp_info_ac86976e076271c25fb990d34cbf93eb1}{}\label{class_cp_info_ac86976e076271c25fb990d34cbf93eb1}
+\index{Cp\+Info@{Cp\+Info}!name\+\_\+and\+\_\+type\+\_\+index@{name\+\_\+and\+\_\+type\+\_\+index}}
+\index{name\+\_\+and\+\_\+type\+\_\+index@{name\+\_\+and\+\_\+type\+\_\+index}!Cp\+Info@{Cp\+Info}}
+\subsubsection[{\texorpdfstring{name\+\_\+and\+\_\+type\+\_\+index}{name_and_type_index}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t Cp\+Info\+::name\+\_\+and\+\_\+type\+\_\+index}\hypertarget{class_cp_info_a3007bcc993f983836f419c3d8f8cb835}{}\label{class_cp_info_a3007bcc993f983836f419c3d8f8cb835}
+\index{Cp\+Info@{Cp\+Info}!name\+\_\+index@{name\+\_\+index}}
+\index{name\+\_\+index@{name\+\_\+index}!Cp\+Info@{Cp\+Info}}
+\subsubsection[{\texorpdfstring{name\+\_\+index}{name_index}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t Cp\+Info\+::name\+\_\+index}\hypertarget{class_cp_info_a8337463c52221eaead88f232ded768a7}{}\label{class_cp_info_a8337463c52221eaead88f232ded768a7}
+\index{Cp\+Info@{Cp\+Info}!Name\+And\+Type@{Name\+And\+Type}}
+\index{Name\+And\+Type@{Name\+And\+Type}!Cp\+Info@{Cp\+Info}}
+\subsubsection[{\texorpdfstring{Name\+And\+Type}{NameAndType}}]{\setlength{\rightskip}{0pt plus 5cm}struct \{ ... \}   Cp\+Info\+::\+Name\+And\+Type}\hypertarget{class_cp_info_af8ab428cfd1348391c7d3b26d94d6567}{}\label{class_cp_info_af8ab428cfd1348391c7d3b26d94d6567}
+\index{Cp\+Info@{Cp\+Info}!String@{String}}
+\index{String@{String}!Cp\+Info@{Cp\+Info}}
+\subsubsection[{\texorpdfstring{String}{String}}]{\setlength{\rightskip}{0pt plus 5cm}struct \{ ... \}   Cp\+Info\+::\+String}\hypertarget{class_cp_info_a9e47b825b6e22ad57a9b78cf430cd6bc}{}\label{class_cp_info_a9e47b825b6e22ad57a9b78cf430cd6bc}
+\index{Cp\+Info@{Cp\+Info}!string\+\_\+index@{string\+\_\+index}}
+\index{string\+\_\+index@{string\+\_\+index}!Cp\+Info@{Cp\+Info}}
+\subsubsection[{\texorpdfstring{string\+\_\+index}{string_index}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t Cp\+Info\+::string\+\_\+index}\hypertarget{class_cp_info_a4b2f7aa4ac461ac4d860d566c5e3323e}{}\label{class_cp_info_a4b2f7aa4ac461ac4d860d566c5e3323e}
+\index{Cp\+Info@{Cp\+Info}!tag@{tag}}
+\index{tag@{tag}!Cp\+Info@{Cp\+Info}}
+\subsubsection[{\texorpdfstring{tag}{tag}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t Cp\+Info\+::tag}\hypertarget{class_cp_info_ac20d96c33f871bde2e903708a215a2dc}{}\label{class_cp_info_ac20d96c33f871bde2e903708a215a2dc}
+\index{Cp\+Info@{Cp\+Info}!U\+T\+F8@{U\+T\+F8}}
+\index{U\+T\+F8@{U\+T\+F8}!Cp\+Info@{Cp\+Info}}
+\subsubsection[{\texorpdfstring{U\+T\+F8}{UTF8}}]{\setlength{\rightskip}{0pt plus 5cm}struct \{ ... \}   Cp\+Info\+::\+U\+T\+F8}\hypertarget{class_cp_info_a1959c604c24ea0a8c2ab8a4f3094f3e0}{}\label{class_cp_info_a1959c604c24ea0a8c2ab8a4f3094f3e0}
+
+
+A documentação para esta classe foi gerada a partir dos seguintes ficheiros\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_cp_info_8hpp}{Cp\+Info.\+hpp}\item 
+\hyperlink{_cp_info_8cpp}{Cp\+Info.\+cpp}\end{DoxyCompactItemize}

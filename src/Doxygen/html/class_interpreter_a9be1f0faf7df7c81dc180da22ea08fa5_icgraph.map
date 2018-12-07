@@ -1,0 +1,5 @@
+<map id="Interpreter::mainFinder" name="Interpreter::mainFinder">
+<area shape="rect" id="node2" href="$class_interpreter.html#aaa34fcc8ece810597cd2fea359b65220" title="Interpreter::execute" alt="" coords="207,5,341,32"/>
+<area shape="rect" id="node3" href="$jvm_8cpp.html#a4f4a24852257f7259f906828eec5c11c" title="Chama o interpretador para classloader. " alt="" coords="389,5,501,32"/>
+<area shape="rect" id="node4" href="$jvm_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="Função main. " alt="" coords="549,5,600,32"/>
+</map>

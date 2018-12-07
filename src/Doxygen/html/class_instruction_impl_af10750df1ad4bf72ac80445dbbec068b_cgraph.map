@@ -1,0 +1,8 @@
+<map id="InstructionImpl::getstatic" name="InstructionImpl::getstatic">
+<area shape="rect" id="node2" href="$struct_cp_attribute_interface.html#a99cabbc15a0af5273a6d324dfbc78f41" title="CpAttributeInterface\l::getUTF8" alt="" coords="242,5,381,47"/>
+<area shape="rect" id="node3" href="$class_interpreter.html#a99a623bb05c66632d0ab034ebaf2cf51" title="Interpreter::getClassInfo" alt="" coords="230,71,393,98"/>
+<area shape="rect" id="node7" href="$class_methods_area.html#adf2c71d678e710c5fd1c357737b07f5b" title="MethodsArea::getStaticfield" alt="" coords="220,122,403,149"/>
+<area shape="rect" id="node4" href="$class_interpreter.html#ab8fa17a7a73d119f3a3113555aef9702" title="Interpreter::loadInMemo" alt="" coords="451,46,611,73"/>
+<area shape="rect" id="node5" href="$class_interpreter.html#a39a3745e54aa3cee8882075c96ae8b3f" title="Interpreter::loadVariables" alt="" coords="659,71,825,98"/>
+<area shape="rect" id="node6" href="$class_class_loader.html#a8f3dc8367a76e7a4594bd5e8206d3977" title="ClassLoader::getConstPool" alt="" coords="873,71,1056,98"/>
+</map>

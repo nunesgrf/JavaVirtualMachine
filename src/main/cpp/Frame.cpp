@@ -1,9 +1,15 @@
+/** @file Frame.cpp
+    @brief Contrutor, destrutor e metodos para o funcionamento da lógica do frame;
+
+*/
+
 #include "../hpp/Frame.hpp"
 #include "../hpp/CpAttributeInterface.hpp"
 
 #include <iostream>
 
-/** @brief Destrutor de frame, libera o que é alocado no construtor de frame.
+/**@class  Frame::~Frame
+ * @brief Destrutor de frame, libera o que é alocado no construtor de frame.
  * @param sem parâmetros
  * @return void
  */
@@ -11,7 +17,8 @@ Frame::~Frame() {
     free(this->instructions);
 }
 
-/** @brief Construtor de frame, faz a settagem das variáveis do frame.
+/** @class  Frame::Frame
+ * @brief Construtor de frame, faz a settagem das variáveis do frame.
  * @param cp vetor de de CpInfo* @param methd método sobre o qual o frame será criado.
  * @return 
  */
@@ -44,7 +51,8 @@ Frame::Frame(std::vector<CpInfo*> cp, MethodInfo * methd) {
     std::fill(this->local_variables.begin(),this->local_variables.end(),op);
 }
 
-/** @brief método de execução do código armazenado em um frame.
+/** @class Frame::run
+ * @brief método de execução do código armazenado em um frame.
  * @param sem parâmetros.
  * @return void
  */
