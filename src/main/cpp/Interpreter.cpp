@@ -194,9 +194,7 @@ MethodInfo * Interpreter::findMethodByNameOrDescriptor(ClassLoader* classloader,
     
     
     auto methods = classloader->getMethods();
-     std::cout << "Instrução acima " << std::endl;
 
-    std::cout << "inicio" << std::endl;
     std::vector<CpInfo*> constantPool = classloader->getConstPool();
     CpAttributeInterface cpAttrAux;
 
