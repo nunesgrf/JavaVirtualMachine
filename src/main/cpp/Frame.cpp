@@ -18,13 +18,20 @@ Frame::~Frame() {
 Frame::Frame(std::vector<CpInfo*> cp, MethodInfo * methd) {
 
     CpAttributeInterface cpAtAux;
-    Instruction instructions[256];
-    Instruction::init(instructions);
+    //Instruction instructions[256];
+    //Instruction::init(instructions);
     //this->instructions = (Instruction*)calloc(256,sizeof(Instruction));
-    this->instructions = instructions;
+    //this->instructions = instructions;
     //this->instructions->init(this->instructions); // Inicializa as instruções.
-
-    this->pc = 0;
+	
+	Instruction * instructions;
+    instructions = (Instruction *)calloc(256,sizeof(Instruction));
+    if (!instructions) {
+    	cout << "NULO" << endl;
+	}
+	Instruction::init(instructions, 0);
+    this->instructions = instructions;
+	this->pc = 0;
     this->method_reference = methd;
     this->cp_reference = cp;
 

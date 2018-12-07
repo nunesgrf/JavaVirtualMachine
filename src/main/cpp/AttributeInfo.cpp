@@ -90,7 +90,7 @@ void CodeAttribute::print(std::vector<CpInfo*> trueCpInfo) {
     unsigned int j, k;
     CpAttributeInterface utf8Getter;
     Instruction instructions[256];
-    Instruction::init(instructions);
+    Instruction::init(instructions, 1);
 
 
     cout << "\n[0]Code:" << endl<<endl;

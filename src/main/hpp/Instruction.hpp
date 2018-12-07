@@ -60,7 +60,7 @@ class Instruction {
         std::string name;
         uint32_t bytes;
         void (* func)(Frame * this_frame);
-        static void init(Instruction *);
+        static void init(Instruction *, int);
 };
 
 #endif
