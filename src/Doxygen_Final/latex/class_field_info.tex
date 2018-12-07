@@ -1,0 +1,98 @@
+\hypertarget{class_field_info}{}\section{Field\+Info Class Reference}
+\label{class_field_info}\index{Field\+Info@{Field\+Info}}
+
+
+classe para tratar as fields do .class contém access\+\_\+flags, name\+\_\+index, descriptor\+\_\+index, attributes\+\_\+count e uma array dos atributos a ele designados -\/ tirando a array, todos do tipo uint16 Além disso contém destructor e leitor;  
+
+
+
+
+{\ttfamily \#include $<$Field\+Info.\+hpp$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_field_info_1_1read}{read}
+\begin{DoxyCompactList}\small\item\em setting inicial do \hyperlink{class_field_info}{Field\+Info} a partir de um arquivo. \end{DoxyCompactList}\item 
+class \hyperlink{class_field_info_1_1~_field_info}{$\sim$\+Field\+Info}
+\begin{DoxyCompactList}\small\item\em Destrutor de \hyperlink{class_field_info}{Field\+Info}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_field_info_ae59d956e2a4ad2dc210d75f161d5eb31}{$\sim$\+Field\+Info} ()
+\item 
+void \hyperlink{class_field_info_acb85db9ce893bc3e2617138fd46a8ad6}{read} (F\+I\+LE $\ast$, std\+::vector$<$ \hyperlink{class_cp_info}{Cp\+Info} $\ast$ $>$)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t \hyperlink{class_field_info_a81205117e814694f690cee6271516dc0}{access\+\_\+flags}
+\item 
+uint16\+\_\+t \hyperlink{class_field_info_a97fd269599826fe99f61ae83311a909c}{name\+\_\+index}
+\item 
+uint16\+\_\+t \hyperlink{class_field_info_aff3935ae95047693cbe029db915944b9}{descriptor\+\_\+index}
+\item 
+uint16\+\_\+t \hyperlink{class_field_info_ae559a93403a28923c24eaaeabfcc63c8}{attributes\+\_\+count}
+\item 
+std\+::vector$<$ \hyperlink{class_attribute_info}{Attribute\+Info} $\ast$ $>$ \hyperlink{class_field_info_ab817d700b4c5cc6f39812c9374022372}{attributes}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+classe para tratar as fields do .class contém access\+\_\+flags, name\+\_\+index, descriptor\+\_\+index, attributes\+\_\+count e uma array dos atributos a ele designados -\/ tirando a array, todos do tipo uint16 Além disso contém destructor e leitor; 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Field\+Info@{Field\+Info}!````~Field\+Info@{$\sim$\+Field\+Info}}
+\index{````~Field\+Info@{$\sim$\+Field\+Info}!Field\+Info@{Field\+Info}}
+\subsubsection[{\texorpdfstring{$\sim$\+Field\+Info()}{~FieldInfo()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Field\+Info\+::$\sim$\+Field\+Info} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_field_info_ae59d956e2a4ad2dc210d75f161d5eb31}{}\label{class_field_info_ae59d956e2a4ad2dc210d75f161d5eb31}
+
+
+\subsection{Member Function Documentation}
+\index{Field\+Info@{Field\+Info}!read@{read}}
+\index{read@{read}!Field\+Info@{Field\+Info}}
+\subsubsection[{\texorpdfstring{read(\+F\+I\+L\+E $\ast$, std\+::vector$<$ Cp\+Info $\ast$ $>$)}{read(FILE *, std::vector< CpInfo * >)}}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf Field\+Info\+::read} (
+\begin{DoxyParamCaption}
+\item[{F\+I\+LE $\ast$}]{fp, }
+\item[{std\+::vector$<$ {\bf Cp\+Info} $\ast$ $>$}]{true\+Cp\+Info}
+\end{DoxyParamCaption}
+)}\hypertarget{class_field_info_acb85db9ce893bc3e2617138fd46a8ad6}{}\label{class_field_info_acb85db9ce893bc3e2617138fd46a8ad6}
+
+
+Here is the call graph for this function\+:
+% FIG 0
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 1
+
+
+
+
+\subsection{Member Data Documentation}
+\index{Field\+Info@{Field\+Info}!access\+\_\+flags@{access\+\_\+flags}}
+\index{access\+\_\+flags@{access\+\_\+flags}!Field\+Info@{Field\+Info}}
+\subsubsection[{\texorpdfstring{access\+\_\+flags}{access_flags}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t Field\+Info\+::access\+\_\+flags}\hypertarget{class_field_info_a81205117e814694f690cee6271516dc0}{}\label{class_field_info_a81205117e814694f690cee6271516dc0}
+\index{Field\+Info@{Field\+Info}!attributes@{attributes}}
+\index{attributes@{attributes}!Field\+Info@{Field\+Info}}
+\subsubsection[{\texorpdfstring{attributes}{attributes}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<${\bf Attribute\+Info} $\ast$$>$ Field\+Info\+::attributes}\hypertarget{class_field_info_ab817d700b4c5cc6f39812c9374022372}{}\label{class_field_info_ab817d700b4c5cc6f39812c9374022372}
+\index{Field\+Info@{Field\+Info}!attributes\+\_\+count@{attributes\+\_\+count}}
+\index{attributes\+\_\+count@{attributes\+\_\+count}!Field\+Info@{Field\+Info}}
+\subsubsection[{\texorpdfstring{attributes\+\_\+count}{attributes_count}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t Field\+Info\+::attributes\+\_\+count}\hypertarget{class_field_info_ae559a93403a28923c24eaaeabfcc63c8}{}\label{class_field_info_ae559a93403a28923c24eaaeabfcc63c8}
+\index{Field\+Info@{Field\+Info}!descriptor\+\_\+index@{descriptor\+\_\+index}}
+\index{descriptor\+\_\+index@{descriptor\+\_\+index}!Field\+Info@{Field\+Info}}
+\subsubsection[{\texorpdfstring{descriptor\+\_\+index}{descriptor_index}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t Field\+Info\+::descriptor\+\_\+index}\hypertarget{class_field_info_aff3935ae95047693cbe029db915944b9}{}\label{class_field_info_aff3935ae95047693cbe029db915944b9}
+\index{Field\+Info@{Field\+Info}!name\+\_\+index@{name\+\_\+index}}
+\index{name\+\_\+index@{name\+\_\+index}!Field\+Info@{Field\+Info}}
+\subsubsection[{\texorpdfstring{name\+\_\+index}{name_index}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t Field\+Info\+::name\+\_\+index}\hypertarget{class_field_info_a97fd269599826fe99f61ae83311a909c}{}\label{class_field_info_a97fd269599826fe99f61ae83311a909c}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_field_info_8hpp}{Field\+Info.\+hpp}\item 
+\hyperlink{_field_info_8cpp}{Field\+Info.\+cpp}\end{DoxyCompactItemize}

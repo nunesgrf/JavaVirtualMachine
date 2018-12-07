@@ -1,0 +1,16 @@
+digraph "ClassLoader::setMethods"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="ClassLoader::setMethods",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="MethodInfo::read",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$struct_method_info.html#a96fbb8de441ef2af032c20d36d41eb7a",tooltip="Serve para preencher os valores de uma instância de MethodInfo. "];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="ByteReader::byteCatch",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_byte_reader.html#ae570748805994596f51ae033183935d7"];
+  Node2 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="AttributeInfo::read",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_attribute_info.html#ac167daa272a7ef9b9f11389d34e42165"];
+  Node4 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node4 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="CpAttributeInterface\l::getUTF8",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$struct_cp_attribute_interface.html#a99cabbc15a0af5273a6d324dfbc78f41"];
+}

@@ -1,0 +1,45 @@
+\hypertarget{_attribute_info_8hpp}{}\section{Attribute\+Info.\+hpp File Reference}
+\label{_attribute_info_8hpp}\index{Attribute\+Info.\+hpp@{Attribute\+Info.\+hpp}}
+
+
+Declarações das funções do \hyperlink{class_attribute_info}{Attribute\+Info} para tratamento dos atributos do arquivo .class.  
+
+
+{\ttfamily \#include $<$cstdint$>$}\\*
+{\ttfamily \#include $<$vector$>$}\\*
+{\ttfamily \#include $<$fstream$>$}\\*
+{\ttfamily \#include \char`\"{}Cp\+Info.\+hpp\char`\"{}}\\*
+Include dependency graph for Attribute\+Info.\+hpp\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_code_exception}{Code\+Exception}
+\begin{DoxyCompactList}\small\item\em classe contém start\+\_\+pc, end\+\_\+pc, handler\+\_\+pc e catch\+\_\+type -\/ todos uint16; \end{DoxyCompactList}\item 
+class \hyperlink{class_exception}{Exception}
+\begin{DoxyCompactList}\small\item\em classe contém number\+\_\+exceptions e exception\+\_\+index\+\_\+table -\/ todos uint16; Além contém métodos como destrutor, leitor e print \end{DoxyCompactList}\item 
+class \hyperlink{class_code_attribute}{Code\+Attribute}
+\begin{DoxyCompactList}\small\item\em classe Atributos que consiste em max\+\_\+stacks, max\+\_\+locals, code\+\_\+length(uint32), ponteiro para code(uint8), exception\+\_\+table\+\_\+length, attribute\+\_\+count e attributes -\/ restante uint16; Além contém métodos como destrutor, leitor e print \end{DoxyCompactList}\item 
+class \hyperlink{class_inner_class_data}{Inner\+Class\+Data}
+\begin{DoxyCompactList}\small\item\em classe contém inner\+\_\+class\+\_\+info\+\_\+index, outer\+\_\+class\+\_\+info\+\_\+index, inner\+\_\+name\+\_\+index e inner\+\_\+class\+\_\+access\+\_\+flag; \end{DoxyCompactList}\item 
+class \hyperlink{class_inner_class}{Inner\+Class}
+\begin{DoxyCompactList}\small\item\em classe contém class\+\_\+length e ponteiro para inner\+\_\+class\+\_\+data -\/ todos uint16; Além disso contém metodos como read e print \end{DoxyCompactList}\item 
+class \hyperlink{class_constant_value}{Constant\+Value}
+\begin{DoxyCompactList}\small\item\em classe contém Além contém métodos como destrutor, leitor e print \end{DoxyCompactList}\item 
+class \hyperlink{class_source_file}{Source\+File}
+\begin{DoxyCompactList}\small\item\em classe contém source\+File\+Index -\/ todos uint16; Além contém métodos como leitor e print; \end{DoxyCompactList}\item 
+class \hyperlink{class_number_table_attribute}{Number\+Table\+Attribute}
+\begin{DoxyCompactList}\small\item\em classe contém length e ponteiro para line\+\_\+number\+\_\+table-\/ todos uint16; Além contém métodos como leitor e print; \end{DoxyCompactList}\item 
+class \hyperlink{class_number_table_attribute__line_number}{Number\+Table\+Attribute\+\_\+line\+Number}
+\begin{DoxyCompactList}\small\item\em classe contém strat\+\_\+pc e line\+Number -\/ todos uint16; \end{DoxyCompactList}\item 
+class \hyperlink{class_attribute_info}{Attribute\+Info}
+\begin{DoxyCompactList}\small\item\em classe contém name\+\_\+index e length(uint32) -\/ todos uint16; Há também uma union que tem como principio variar de acordo com o que for chamado, assim seu tipo irá depender do name\+\_\+index enviado; Além contém métodos como destrutor, leitor e print \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Declarações das funções do \hyperlink{class_attribute_info}{Attribute\+Info} para tratamento dos atributos do arquivo .class. 
+
+\begin{DoxyRefDesc}{Bug}
+\item[\hyperlink{bug__bug000001}{Bug}]No known bugs. \end{DoxyRefDesc}

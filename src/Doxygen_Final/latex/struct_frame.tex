@@ -1,0 +1,117 @@
+\hypertarget{struct_frame}{}\section{Frame Struct Reference}
+\label{struct_frame}\index{Frame@{Frame}}
+
+
+objetivo de estruturar o tipo \hyperlink{struct_frame}{Frame}; Além disso, contém destrutor e run(para rodar o frame);  
+
+
+
+
+{\ttfamily \#include $<$Frame.\+hpp$>$}
+
+
+
+Collaboration diagram for Frame\+:
+% FIG 0
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_frame_1_1_frame}{Frame}
+\begin{DoxyCompactList}\small\item\em Construtor de frame, faz a settagem das variáveis do frame. \end{DoxyCompactList}\item 
+class \hyperlink{class_frame_1_1run}{run}
+\begin{DoxyCompactList}\small\item\em método de execução do código armazenado em um frame. \end{DoxyCompactList}\item 
+class \hyperlink{class_frame_1_1~_frame}{$\sim$\+Frame}
+\begin{DoxyCompactList}\small\item\em Destrutor de frame, libera o que é alocado no construtor de frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_frame_abe0b370087d05267cab997ecdc78c4bd}{Frame} (std\+::vector$<$ \hyperlink{class_cp_info}{Cp\+Info} $\ast$ $>$, \hyperlink{struct_method_info}{Method\+Info} $\ast$)
+\item 
+\hyperlink{struct_frame_abec8c7bccdfc88cb4da137caae9f73d6}{$\sim$\+Frame} ()
+\item 
+void \hyperlink{struct_frame_a9aa2ef354e013a7cb95827c55a3b3a95}{run} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \hyperlink{struct_frame_a91e50d2091184efb52b6d7c0c21fd4b2}{pc}
+\item 
+std\+::stack$<$ \hyperlink{struct_operand}{Operand} $\ast$ $>$ \hyperlink{struct_frame_a30eaf6634fbadf9dd4c6a8c05b92d3a4}{operand\+\_\+stack}
+\item 
+\hyperlink{class_code_attribute}{Code\+Attribute} \hyperlink{struct_frame_a7eac6c489fcfc2de43409f405d360a3d}{method\+\_\+code}
+\item 
+\hyperlink{struct_method_info}{Method\+Info} $\ast$ \hyperlink{struct_frame_ad7c3164833be265d690a786a172ca80a}{method\+\_\+reference}
+\item 
+std\+::vector$<$ \hyperlink{class_cp_info}{Cp\+Info} $\ast$ $>$ \hyperlink{struct_frame_af1f36df4b5e662589ccf18d253318060}{cp\+\_\+reference}
+\item 
+std\+::vector$<$ \hyperlink{struct_operand}{Operand} $\ast$ $>$ \hyperlink{struct_frame_aed517b3bbbefabb20d8e990623ac3118}{local\+\_\+variables}
+\item 
+\hyperlink{class_instruction}{Instruction} $\ast$ \hyperlink{struct_frame_a831ef5a24bea9ba519495aa41e2f2a7e}{instructions}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+objetivo de estruturar o tipo \hyperlink{struct_frame}{Frame}; Além disso, contém destrutor e run(para rodar o frame); 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Frame@{Frame}!Frame@{Frame}}
+\index{Frame@{Frame}!Frame@{Frame}}
+\subsubsection[{\texorpdfstring{Frame(std\+::vector$<$ Cp\+Info $\ast$ $>$, Method\+Info $\ast$)}{Frame(std::vector< CpInfo * >, MethodInfo *)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Frame\+::\+Frame} (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ {\bf Cp\+Info} $\ast$ $>$}]{cp, }
+\item[{{\bf Method\+Info} $\ast$}]{methd}
+\end{DoxyParamCaption}
+)}\hypertarget{struct_frame_abe0b370087d05267cab997ecdc78c4bd}{}\label{struct_frame_abe0b370087d05267cab997ecdc78c4bd}
+
+
+Here is the call graph for this function\+:
+% FIG 1
+
+
+\index{Frame@{Frame}!````~Frame@{$\sim$\+Frame}}
+\index{````~Frame@{$\sim$\+Frame}!Frame@{Frame}}
+\subsubsection[{\texorpdfstring{$\sim$\+Frame()}{~Frame()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Frame\+::$\sim$\+Frame} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{struct_frame_abec8c7bccdfc88cb4da137caae9f73d6}{}\label{struct_frame_abec8c7bccdfc88cb4da137caae9f73d6}
+
+
+\subsection{Member Function Documentation}
+\index{Frame@{Frame}!run@{run}}
+\index{run@{run}!Frame@{Frame}}
+\subsubsection[{\texorpdfstring{run()}{run()}}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf Frame\+::run} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{struct_frame_a9aa2ef354e013a7cb95827c55a3b3a95}{}\label{struct_frame_a9aa2ef354e013a7cb95827c55a3b3a95}
+
+
+\subsection{Member Data Documentation}
+\index{Frame@{Frame}!cp\+\_\+reference@{cp\+\_\+reference}}
+\index{cp\+\_\+reference@{cp\+\_\+reference}!Frame@{Frame}}
+\subsubsection[{\texorpdfstring{cp\+\_\+reference}{cp_reference}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<${\bf Cp\+Info}$\ast$$>$ Frame\+::cp\+\_\+reference}\hypertarget{struct_frame_af1f36df4b5e662589ccf18d253318060}{}\label{struct_frame_af1f36df4b5e662589ccf18d253318060}
+\index{Frame@{Frame}!instructions@{instructions}}
+\index{instructions@{instructions}!Frame@{Frame}}
+\subsubsection[{\texorpdfstring{instructions}{instructions}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Instruction}$\ast$ Frame\+::instructions}\hypertarget{struct_frame_a831ef5a24bea9ba519495aa41e2f2a7e}{}\label{struct_frame_a831ef5a24bea9ba519495aa41e2f2a7e}
+\index{Frame@{Frame}!local\+\_\+variables@{local\+\_\+variables}}
+\index{local\+\_\+variables@{local\+\_\+variables}!Frame@{Frame}}
+\subsubsection[{\texorpdfstring{local\+\_\+variables}{local_variables}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ {\bf Operand}$\ast$ $>$ Frame\+::local\+\_\+variables}\hypertarget{struct_frame_aed517b3bbbefabb20d8e990623ac3118}{}\label{struct_frame_aed517b3bbbefabb20d8e990623ac3118}
+\index{Frame@{Frame}!method\+\_\+code@{method\+\_\+code}}
+\index{method\+\_\+code@{method\+\_\+code}!Frame@{Frame}}
+\subsubsection[{\texorpdfstring{method\+\_\+code}{method_code}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Code\+Attribute} Frame\+::method\+\_\+code}\hypertarget{struct_frame_a7eac6c489fcfc2de43409f405d360a3d}{}\label{struct_frame_a7eac6c489fcfc2de43409f405d360a3d}
+\index{Frame@{Frame}!method\+\_\+reference@{method\+\_\+reference}}
+\index{method\+\_\+reference@{method\+\_\+reference}!Frame@{Frame}}
+\subsubsection[{\texorpdfstring{method\+\_\+reference}{method_reference}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Method\+Info}$\ast$ Frame\+::method\+\_\+reference}\hypertarget{struct_frame_ad7c3164833be265d690a786a172ca80a}{}\label{struct_frame_ad7c3164833be265d690a786a172ca80a}
+\index{Frame@{Frame}!operand\+\_\+stack@{operand\+\_\+stack}}
+\index{operand\+\_\+stack@{operand\+\_\+stack}!Frame@{Frame}}
+\subsubsection[{\texorpdfstring{operand\+\_\+stack}{operand_stack}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::stack$<$ {\bf Operand}$\ast$$>$ Frame\+::operand\+\_\+stack}\hypertarget{struct_frame_a30eaf6634fbadf9dd4c6a8c05b92d3a4}{}\label{struct_frame_a30eaf6634fbadf9dd4c6a8c05b92d3a4}
+\index{Frame@{Frame}!pc@{pc}}
+\index{pc@{pc}!Frame@{Frame}}
+\subsubsection[{\texorpdfstring{pc}{pc}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t Frame\+::pc}\hypertarget{struct_frame_a91e50d2091184efb52b6d7c0c21fd4b2}{}\label{struct_frame_a91e50d2091184efb52b6d7c0c21fd4b2}
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_frame_8hpp}{Frame.\+hpp}\item 
+\hyperlink{_frame_8cpp}{Frame.\+cpp}\end{DoxyCompactItemize}

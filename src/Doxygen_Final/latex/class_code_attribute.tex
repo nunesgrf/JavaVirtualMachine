@@ -1,0 +1,128 @@
+\hypertarget{class_code_attribute}{}\section{Code\+Attribute Class Reference}
+\label{class_code_attribute}\index{Code\+Attribute@{Code\+Attribute}}
+
+
+classe Atributos que consiste em max\+\_\+stacks, max\+\_\+locals, code\+\_\+length(uint32), ponteiro para code(uint8), exception\+\_\+table\+\_\+length, attribute\+\_\+count e attributes -\/ restante uint16; Além contém métodos como destrutor, leitor e print  
+
+
+
+
+{\ttfamily \#include $<$Attribute\+Info.\+hpp$>$}
+
+
+
+Collaboration diagram for Code\+Attribute\+:
+% FIG 0
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_code_attribute_1_1print}{print}
+\begin{DoxyCompactList}\small\item\em Print dos atributos dos methods;. \end{DoxyCompactList}\item 
+class \hyperlink{class_code_attribute_1_1read}{read}
+\begin{DoxyCompactList}\small\item\em Leitor dos atributos dos methods;. \end{DoxyCompactList}\item 
+class \hyperlink{class_code_attribute_1_1~_code_attribute}{$\sim$\+Code\+Attribute}
+\begin{DoxyCompactList}\small\item\em Destrutor \hyperlink{class_code_attribute}{Code\+Attribute}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_code_attribute_a4053ae31518d02d7b374284b05217a7b}{$\sim$\+Code\+Attribute} ()
+\item 
+void \hyperlink{class_code_attribute_ae5c7888c59b2a2990798c597c014a2ac}{read} (F\+I\+LE $\ast$, std\+::vector$<$ \hyperlink{class_cp_info}{Cp\+Info} $\ast$ $>$)
+\item 
+void \hyperlink{class_code_attribute_a380eb04a01b0a0db351cf74443067ba4}{print} (std\+::vector$<$ \hyperlink{class_cp_info}{Cp\+Info} $\ast$ $>$)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t \hyperlink{class_code_attribute_aa98def02b93e04d31b8e5c1cc12458f8}{max\+\_\+stacks}
+\item 
+uint16\+\_\+t \hyperlink{class_code_attribute_a5e2d72942cf05feb8a512fcae6c3b2f3}{max\+\_\+locals}
+\item 
+uint32\+\_\+t \hyperlink{class_code_attribute_a78ee2a78d9310a51b91d07b39813bc73}{code\+\_\+length}
+\item 
+uint8\+\_\+t $\ast$ \hyperlink{class_code_attribute_a95d8e9c3e0b93220defcbc9852ec6c27}{code}
+\item 
+uint16\+\_\+t \hyperlink{class_code_attribute_a2ccde57be0af451e0bf4dcae05e67cc7}{exception\+\_\+table\+\_\+length}
+\item 
+\hyperlink{class_code_exception}{Code\+Exception} $\ast$ \hyperlink{class_code_attribute_abfc09247d38ec6d587a9059db38103ae}{code\+\_\+exception\+\_\+table}
+\item 
+uint16\+\_\+t \hyperlink{class_code_attribute_a7a5c471692a3376b19d7b55b034b7c45}{attributes\+\_\+count}
+\item 
+\hyperlink{class_attribute_info}{Attribute\+Info} $\ast$ \hyperlink{class_code_attribute_a99297a4945c876dd5615d84986043c21}{attributes}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+classe Atributos que consiste em max\+\_\+stacks, max\+\_\+locals, code\+\_\+length(uint32), ponteiro para code(uint8), exception\+\_\+table\+\_\+length, attribute\+\_\+count e attributes -\/ restante uint16; Além contém métodos como destrutor, leitor e print 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Code\+Attribute@{Code\+Attribute}!````~Code\+Attribute@{$\sim$\+Code\+Attribute}}
+\index{````~Code\+Attribute@{$\sim$\+Code\+Attribute}!Code\+Attribute@{Code\+Attribute}}
+\subsubsection[{\texorpdfstring{$\sim$\+Code\+Attribute()}{~CodeAttribute()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Code\+Attribute\+::$\sim$\+Code\+Attribute} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_code_attribute_a4053ae31518d02d7b374284b05217a7b}{}\label{class_code_attribute_a4053ae31518d02d7b374284b05217a7b}
+
+
+\subsection{Member Function Documentation}
+\index{Code\+Attribute@{Code\+Attribute}!print@{print}}
+\index{print@{print}!Code\+Attribute@{Code\+Attribute}}
+\subsubsection[{\texorpdfstring{print(std\+::vector$<$ Cp\+Info $\ast$ $>$)}{print(std::vector< CpInfo * >)}}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf Code\+Attribute\+::print} (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ {\bf Cp\+Info} $\ast$ $>$}]{true\+Cp\+Info}
+\end{DoxyParamCaption}
+)}\hypertarget{class_code_attribute_a380eb04a01b0a0db351cf74443067ba4}{}\label{class_code_attribute_a380eb04a01b0a0db351cf74443067ba4}
+
+
+Here is the call graph for this function\+:
+% FIG 1
+
+
+\index{Code\+Attribute@{Code\+Attribute}!read@{read}}
+\index{read@{read}!Code\+Attribute@{Code\+Attribute}}
+\subsubsection[{\texorpdfstring{read(\+F\+I\+L\+E $\ast$, std\+::vector$<$ Cp\+Info $\ast$ $>$)}{read(FILE *, std::vector< CpInfo * >)}}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf Code\+Attribute\+::read} (
+\begin{DoxyParamCaption}
+\item[{F\+I\+LE $\ast$}]{fp, }
+\item[{std\+::vector$<$ {\bf Cp\+Info} $\ast$ $>$}]{true\+Cp\+Info}
+\end{DoxyParamCaption}
+)}\hypertarget{class_code_attribute_ae5c7888c59b2a2990798c597c014a2ac}{}\label{class_code_attribute_ae5c7888c59b2a2990798c597c014a2ac}
+
+
+Here is the call graph for this function\+:
+% FIG 2
+
+
+
+
+\subsection{Member Data Documentation}
+\index{Code\+Attribute@{Code\+Attribute}!attributes@{attributes}}
+\index{attributes@{attributes}!Code\+Attribute@{Code\+Attribute}}
+\subsubsection[{\texorpdfstring{attributes}{attributes}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Attribute\+Info}$\ast$ Code\+Attribute\+::attributes}\hypertarget{class_code_attribute_a99297a4945c876dd5615d84986043c21}{}\label{class_code_attribute_a99297a4945c876dd5615d84986043c21}
+\index{Code\+Attribute@{Code\+Attribute}!attributes\+\_\+count@{attributes\+\_\+count}}
+\index{attributes\+\_\+count@{attributes\+\_\+count}!Code\+Attribute@{Code\+Attribute}}
+\subsubsection[{\texorpdfstring{attributes\+\_\+count}{attributes_count}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t Code\+Attribute\+::attributes\+\_\+count}\hypertarget{class_code_attribute_a7a5c471692a3376b19d7b55b034b7c45}{}\label{class_code_attribute_a7a5c471692a3376b19d7b55b034b7c45}
+\index{Code\+Attribute@{Code\+Attribute}!code@{code}}
+\index{code@{code}!Code\+Attribute@{Code\+Attribute}}
+\subsubsection[{\texorpdfstring{code}{code}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t$\ast$ Code\+Attribute\+::code}\hypertarget{class_code_attribute_a95d8e9c3e0b93220defcbc9852ec6c27}{}\label{class_code_attribute_a95d8e9c3e0b93220defcbc9852ec6c27}
+\index{Code\+Attribute@{Code\+Attribute}!code\+\_\+exception\+\_\+table@{code\+\_\+exception\+\_\+table}}
+\index{code\+\_\+exception\+\_\+table@{code\+\_\+exception\+\_\+table}!Code\+Attribute@{Code\+Attribute}}
+\subsubsection[{\texorpdfstring{code\+\_\+exception\+\_\+table}{code_exception_table}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Code\+Exception}$\ast$ Code\+Attribute\+::code\+\_\+exception\+\_\+table}\hypertarget{class_code_attribute_abfc09247d38ec6d587a9059db38103ae}{}\label{class_code_attribute_abfc09247d38ec6d587a9059db38103ae}
+\index{Code\+Attribute@{Code\+Attribute}!code\+\_\+length@{code\+\_\+length}}
+\index{code\+\_\+length@{code\+\_\+length}!Code\+Attribute@{Code\+Attribute}}
+\subsubsection[{\texorpdfstring{code\+\_\+length}{code_length}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t Code\+Attribute\+::code\+\_\+length}\hypertarget{class_code_attribute_a78ee2a78d9310a51b91d07b39813bc73}{}\label{class_code_attribute_a78ee2a78d9310a51b91d07b39813bc73}
+\index{Code\+Attribute@{Code\+Attribute}!exception\+\_\+table\+\_\+length@{exception\+\_\+table\+\_\+length}}
+\index{exception\+\_\+table\+\_\+length@{exception\+\_\+table\+\_\+length}!Code\+Attribute@{Code\+Attribute}}
+\subsubsection[{\texorpdfstring{exception\+\_\+table\+\_\+length}{exception_table_length}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t Code\+Attribute\+::exception\+\_\+table\+\_\+length}\hypertarget{class_code_attribute_a2ccde57be0af451e0bf4dcae05e67cc7}{}\label{class_code_attribute_a2ccde57be0af451e0bf4dcae05e67cc7}
+\index{Code\+Attribute@{Code\+Attribute}!max\+\_\+locals@{max\+\_\+locals}}
+\index{max\+\_\+locals@{max\+\_\+locals}!Code\+Attribute@{Code\+Attribute}}
+\subsubsection[{\texorpdfstring{max\+\_\+locals}{max_locals}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t Code\+Attribute\+::max\+\_\+locals}\hypertarget{class_code_attribute_a5e2d72942cf05feb8a512fcae6c3b2f3}{}\label{class_code_attribute_a5e2d72942cf05feb8a512fcae6c3b2f3}
+\index{Code\+Attribute@{Code\+Attribute}!max\+\_\+stacks@{max\+\_\+stacks}}
+\index{max\+\_\+stacks@{max\+\_\+stacks}!Code\+Attribute@{Code\+Attribute}}
+\subsubsection[{\texorpdfstring{max\+\_\+stacks}{max_stacks}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t Code\+Attribute\+::max\+\_\+stacks}\hypertarget{class_code_attribute_aa98def02b93e04d31b8e5c1cc12458f8}{}\label{class_code_attribute_aa98def02b93e04d31b8e5c1cc12458f8}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_attribute_info_8hpp}{Attribute\+Info.\+hpp}\item 
+\hyperlink{_attribute_info_8cpp}{Attribute\+Info.\+cpp}\end{DoxyCompactItemize}

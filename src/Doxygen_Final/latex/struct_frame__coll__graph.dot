@@ -1,0 +1,32 @@
+digraph "Frame"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="Frame",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" method_reference" ];
+  Node2 [label="MethodInfo",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$struct_method_info.html",tooltip="Tipo para as informações dos metodos que serçao armazenados no methodArea. "];
+  Node3 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" attributes" ];
+  Node3 [label="AttributeInfo",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_attribute_info.html",tooltip="classe contém name_index e length(uint32) - todos uint16; Há também uma union que tem como principio ..."];
+  Node4 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" inner_class" ];
+  Node4 [label="InnerClass",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_inner_class.html",tooltip="classe contém class_length e ponteiro para inner_class_data - todos uint16; Além disso contém metodos..."];
+  Node5 -> Node4 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" inner_class_data" ];
+  Node5 [label="InnerClassData",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_inner_class_data.html",tooltip="classe contém inner_class_info_index, outer_class_info_index, inner_name_index e inner_class_access_f..."];
+  Node6 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" lineNumber" ];
+  Node6 [label="NumberTableAttribute",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_number_table_attribute.html",tooltip="classe contém length e ponteiro para line_number_table- todos uint16; Além contém métodos como leitor..."];
+  Node7 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" line_number_table" ];
+  Node7 [label="NumberTableAttribute\l_lineNumber",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_number_table_attribute__line_number.html",tooltip="classe contém strat_pc e lineNumber - todos uint16; "];
+  Node8 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" sourceFile" ];
+  Node8 [label="SourceFile",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_source_file.html",tooltip="classe contém sourceFileIndex - todos uint16; Além contém métodos como leitor e print; ..."];
+  Node9 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" constant_value" ];
+  Node9 [label="ConstantValue",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_constant_value.html",tooltip="classe contém Além contém métodos como destrutor, leitor e print "];
+  Node10 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" exception" ];
+  Node10 [label="Exception",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_exception.html",tooltip="classe contém number_exceptions e exception_index_table - todos uint16; Além contém métodos como dest..."];
+  Node11 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" code" ];
+  Node11 [label="CodeAttribute",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_code_attribute.html",tooltip="classe Atributos que consiste em max_stacks, max_locals, code_length(uint32), ponteiro para code(uint..."];
+  Node3 -> Node11 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" attributes" ];
+  Node12 -> Node11 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" code_exception_table" ];
+  Node12 [label="CodeException",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_code_exception.html",tooltip="classe contém start_pc, end_pc, handler_pc e catch_type - todos uint16; "];
+  Node13 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" instructions" ];
+  Node13 [label="Instruction",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_instruction.html",tooltip="Determina a instrução de acordo com o interpretador;. "];
+  Node11 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" method_code" ];
+}

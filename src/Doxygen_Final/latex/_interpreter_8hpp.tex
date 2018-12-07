@@ -1,0 +1,29 @@
+\hypertarget{_interpreter_8hpp}{}\section{Interpreter.\+hpp File Reference}
+\label{_interpreter_8hpp}\index{Interpreter.\+hpp@{Interpreter.\+hpp}}
+
+
+Declarações das funções e atributos do Interpretador para interpretar o que foi lido do .class.  
+
+
+{\ttfamily \#include \char`\"{}Class\+Loader.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Frame.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Instance.\+hpp\char`\"{}}\\*
+{\ttfamily \#include $<$cstring$>$}\\*
+{\ttfamily \#include $<$map$>$}\\*
+{\ttfamily \#include $<$string$>$}\\*
+Include dependency graph for Interpreter.\+hpp\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_interpreter}{Interpreter}
+\begin{DoxyCompactList}\small\item\em cĺasse contém uma path para o arquivo e é feito uma \char`\"{}pilha\char`\"{} para os frames, chamada de frame\+\_\+stack; Além contém método execute para executar o interpretador do .class recebido, \hyperlink{class_interpreter_1_1load_variables}{load\+Variables} para garregar as variáveis, \hyperlink{class_interpreter_1_1get_class_info}{get\+Class\+Info} para pegar as informações das classes do .class, main\+F\+Inder para pegar os métodos da .class, \hyperlink{class_interpreter_1_1load_in_memo}{load\+In\+Memo} para armazenar as instancias do .class e por fim o \hyperlink{class_interpreter_1_1create_type}{create\+Type} para criar o tipo de acordo com as intruções que são passadas. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Declarações das funções e atributos do Interpretador para interpretar o que foi lido do .class. 
+
+\begin{DoxyRefDesc}{Bug}
+\item[\hyperlink{bug__bug000013}{Bug}]No known bugs. \end{DoxyRefDesc}

@@ -1,0 +1,106 @@
+\hypertarget{class_methods_area}{}\section{Methods\+Area Class Reference}
+\label{class_methods_area}\index{Methods\+Area@{Methods\+Area}}
+
+
+Armazenas classes estáticas para serem usadas por todo o código ;.  
+
+
+
+
+{\ttfamily \#include $<$G\+L\+O\+B\+A\+L\+\_\+file.\+hpp$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_methods_area_1_1get_staticfield}{get\+Staticfield}
+\begin{DoxyCompactList}\small\item\em Retorna uma variável de uma classe especifica. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{struct_operand}{Operand} $\ast$ \hyperlink{class_methods_area_adf2c71d678e710c5fd1c357737b07f5b}{get\+Staticfield} (std\+::string class\+Name, std\+::string var\+Name)
+\item 
+static \hyperlink{struct_method_info}{Method\+Info} $\ast$ \hyperlink{class_methods_area_ab8111f3fc9b55f1f8dbbbe0c1ca76d89}{find\+Method\+By\+Name\+Or\+Deor} (\hyperlink{class_class_loader}{Class\+Loader} $\ast$, std\+::string, std\+::string)
+\item 
+static \hyperlink{struct_operand}{Operand} $\ast$ \hyperlink{class_methods_area_ab4f4988ce71a130209877d841554b718}{copy\+Operand} (\hyperlink{struct_operand}{Operand} $\ast$)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::map$<$ std\+::string, \hyperlink{struct_instance}{Instance} $\ast$ $>$ \hyperlink{class_methods_area_a210b48b3c45d8a2d981af099b6490438}{G\+L\+O\+B\+A\+L\+\_\+loaded\+Classes}
+\item 
+static std\+::map$<$ std\+::string, \hyperlink{struct_instance}{Instance} $\ast$ $>$ \hyperlink{class_methods_area_a34d779cc67f370a08cedc65245af2e7e}{G\+L\+O\+B\+A\+L\+\_\+static\+Classes}
+\item 
+static std\+::string \hyperlink{class_methods_area_af7210f4ca8ad442f7f9b83baa750b015}{path}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Armazenas classes estáticas para serem usadas por todo o código ;. 
+
+\subsection{Member Function Documentation}
+\index{Methods\+Area@{Methods\+Area}!copy\+Operand@{copy\+Operand}}
+\index{copy\+Operand@{copy\+Operand}!Methods\+Area@{Methods\+Area}}
+\subsubsection[{\texorpdfstring{copy\+Operand(\+Operand $\ast$)}{copyOperand(Operand *)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Operand} $\ast$ Methods\+Area\+::copy\+Operand (
+\begin{DoxyParamCaption}
+\item[{{\bf Operand} $\ast$}]{to\+Copy}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{class_methods_area_ab4f4988ce71a130209877d841554b718}{}\label{class_methods_area_ab4f4988ce71a130209877d841554b718}
+
+
+Here is the caller graph for this function\+:
+% FIG 0
+
+
+\index{Methods\+Area@{Methods\+Area}!find\+Method\+By\+Name\+Or\+Deor@{find\+Method\+By\+Name\+Or\+Deor}}
+\index{find\+Method\+By\+Name\+Or\+Deor@{find\+Method\+By\+Name\+Or\+Deor}!Methods\+Area@{Methods\+Area}}
+\subsubsection[{\texorpdfstring{find\+Method\+By\+Name\+Or\+Deor(\+Class\+Loader $\ast$, std\+::string, std\+::string)}{findMethodByNameOrDeor(ClassLoader *, std::string, std::string)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Method\+Info} $\ast$ Methods\+Area\+::find\+Method\+By\+Name\+Or\+Deor (
+\begin{DoxyParamCaption}
+\item[{{\bf Class\+Loader} $\ast$}]{classloader, }
+\item[{std\+::string}]{method\+\_\+name, }
+\item[{std\+::string}]{method\+\_\+desc}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{class_methods_area_ab8111f3fc9b55f1f8dbbbe0c1ca76d89}{}\label{class_methods_area_ab8111f3fc9b55f1f8dbbbe0c1ca76d89}
+
+
+Here is the call graph for this function\+:
+% FIG 1
+
+
+
+
+Here is the caller graph for this function\+:
+% FIG 2
+
+
+\index{Methods\+Area@{Methods\+Area}!get\+Staticfield@{get\+Staticfield}}
+\index{get\+Staticfield@{get\+Staticfield}!Methods\+Area@{Methods\+Area}}
+\subsubsection[{\texorpdfstring{get\+Staticfield(std\+::string class\+Name, std\+::string var\+Name)}{getStaticfield(std::string className, std::string varName)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Operand} $\ast$ {\bf Methods\+Area\+::get\+Staticfield} (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{class\+Name, }
+\item[{std\+::string}]{var\+Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{class_methods_area_adf2c71d678e710c5fd1c357737b07f5b}{}\label{class_methods_area_adf2c71d678e710c5fd1c357737b07f5b}
+
+
+Here is the caller graph for this function\+:
+% FIG 3
+
+
+
+
+\subsection{Member Data Documentation}
+\index{Methods\+Area@{Methods\+Area}!G\+L\+O\+B\+A\+L\+\_\+loaded\+Classes@{G\+L\+O\+B\+A\+L\+\_\+loaded\+Classes}}
+\index{G\+L\+O\+B\+A\+L\+\_\+loaded\+Classes@{G\+L\+O\+B\+A\+L\+\_\+loaded\+Classes}!Methods\+Area@{Methods\+Area}}
+\subsubsection[{\texorpdfstring{G\+L\+O\+B\+A\+L\+\_\+loaded\+Classes}{GLOBAL_loadedClasses}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::map$<$ std\+::string, {\bf Instance} $\ast$ $>$ Methods\+Area\+::\+G\+L\+O\+B\+A\+L\+\_\+loaded\+Classes\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{class_methods_area_a210b48b3c45d8a2d981af099b6490438}{}\label{class_methods_area_a210b48b3c45d8a2d981af099b6490438}
+\index{Methods\+Area@{Methods\+Area}!G\+L\+O\+B\+A\+L\+\_\+static\+Classes@{G\+L\+O\+B\+A\+L\+\_\+static\+Classes}}
+\index{G\+L\+O\+B\+A\+L\+\_\+static\+Classes@{G\+L\+O\+B\+A\+L\+\_\+static\+Classes}!Methods\+Area@{Methods\+Area}}
+\subsubsection[{\texorpdfstring{G\+L\+O\+B\+A\+L\+\_\+static\+Classes}{GLOBAL_staticClasses}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::map$<$ std\+::string, {\bf Instance} $\ast$ $>$ Methods\+Area\+::\+G\+L\+O\+B\+A\+L\+\_\+static\+Classes\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{class_methods_area_a34d779cc67f370a08cedc65245af2e7e}{}\label{class_methods_area_a34d779cc67f370a08cedc65245af2e7e}
+\index{Methods\+Area@{Methods\+Area}!path@{path}}
+\index{path@{path}!Methods\+Area@{Methods\+Area}}
+\subsubsection[{\texorpdfstring{path}{path}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string Methods\+Area\+::path\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{class_methods_area_af7210f4ca8ad442f7f9b83baa750b015}{}\label{class_methods_area_af7210f4ca8ad442f7f9b83baa750b015}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_g_l_o_b_a_l__file_8hpp}{G\+L\+O\+B\+A\+L\+\_\+file.\+hpp}\item 
+\hyperlink{_g_l_o_b_a_l__file_8cpp}{G\+L\+O\+B\+A\+L\+\_\+file.\+cpp}\end{DoxyCompactItemize}

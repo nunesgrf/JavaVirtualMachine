@@ -1,0 +1,44 @@
+digraph "Stack.hpp"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="Stack.hpp",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="Frame.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_frame_8hpp.html",tooltip="Declarações das funções e da estrutura do Frame, utilizado para salvar resultados parciais..."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="InstructionImpl.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_instruction_impl_8hpp.html",tooltip="Declarações das funções do ClassLoader para salvar todos os bytes de .class corretamente. "];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="Instruction.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_instruction_8hpp.html",tooltip="Declarações das instruçoes referentes ao interpretador da JVM. "];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="AttributeInfo.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_attribute_info_8cpp.html",tooltip="Tem os métodos para adiquirir as informações dos atributos;. "];
+  Node4 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="Instruction.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_instruction_8cpp.html",tooltip="Métodos que servem para inicializar todas as intruções contidas na documentação;. ..."];
+  Node3 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="Instance.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_instance_8hpp.html",tooltip="Declaração da struct Instance. "];
+  Node7 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node7 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node8 [label="GLOBAL_file.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_g_l_o_b_a_l__file_8hpp.html",tooltip="Armazenas classes estáticas para serem usadas por todo o código. "];
+  Node8 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node9 [label="GLOBAL_file.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_g_l_o_b_a_l__file_8cpp.html",tooltip="Contém métodos que serão utilizados de forma global, ao invés de termos que setar o mesmo para todos ..."];
+  Node8 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node10 [label="InstructionImpl.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_instruction_impl_8cpp.html",tooltip="Métodos referentes a execução de cada instrução ;. "];
+  Node8 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node11 [label="Interpreter.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_interpreter_8cpp.html",tooltip="Métodos que fazem a atuação do interpretador;. "];
+  Node8 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node12 [label="jvm.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$jvm_8cpp.html",tooltip="Arquivo inicial em que é selecionado ou a exibição do leitor ou do interpretador dependendo da chamad..."];
+  Node7 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node13 [label="Instance.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_instance_8cpp.html",tooltip="Contém métodos para carregar as informações do Classloader na Instância;. "];
+  Node7 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node14 [label="Interpreter.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_interpreter_8hpp.html",tooltip="Declarações das funções e atributos do Interpretador para interpretar o que foi lido do ..."];
+  Node14 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node14 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node14 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node15 [label="Frame.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_frame_8cpp.html",tooltip="Contrutor, destrutor e metodos para o funcionamento da lógica do frame;. "];
+  Node2 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node1 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node16 [label="Stack.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_stack_8cpp.html",tooltip="Métodos que simulam a estrura de dados \"pilha\";. "];
+}
