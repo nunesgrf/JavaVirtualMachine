@@ -821,14 +821,17 @@ void Instruction::init(Instruction* instructions) {
     /* Reservados para debugg não deve aparece em nenhum class file */
     instructions[202].name = "breakpoint";
     instructions[202].bytes = 0;
+    instructions[254].func  = InstructionImpl::breakpoint;
 
 
     instructions[254].name = "impdep1";
     instructions[254].bytes = 0;
+    instructions[254].func  = InstructionImpl::impdep1;
 
 
     instructions[255].name = "impdep2";
     instructions[255].bytes = 0;
+    instructions[255].func  = InstructionImpl::impdep2;
 
 }
 

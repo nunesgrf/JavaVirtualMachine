@@ -1530,8 +1530,8 @@ void InstructionImpl::iand(Frame * this_frame){
    this_frame->operand_stack.pop();
    Operand *op2 = this_frame->operand_stack.top();
    this_frame->operand_stack.pop();
-   int result = op1->type_int && op1->type_int;
-   memcpy(&op1->type_int,&result,sizeof(int));
+   auto result = op2->type_int & op1->type_int;
+   memcpy(&op1->type_int,&result,sizeof(uint32_t));
    this_frame->operand_stack.push(op1);
    this_frame->pc++;
 }
@@ -2993,27 +2993,57 @@ void InstructionImpl::putfield(Frame * this_frame){
      Operand * count = this_frame->operand_stack.top();
      this_frame->operand_stack.pop();
 
+     uint32_t index = count->type_int;
+
+     Interpreter AuxInter;
+     auto result = AuxInter.createType("[");
      uint8_t type =  this_frame->method_code.code[this_frame->pc++];
 
      switch (type) {
          case T_BOOLEAN:
+            for (int i = 0; i < (int)index; i++) {
+            result->array_type->array->emplace_back(AuxInter.createType("Z"));
+            }
             break;
          case T_CHAR:
+            for (int i = 0; i < (int)index; i++) {
+            result->array_type->array->emplace_back(AuxInter.createType("C"));
+            }
             break;
          case T_FLOAT:
+            for (int i = 0; i < (int)index; i++) {
+            result->array_type->array->emplace_back(AuxInter.createType("F"));
+            }
             break;
          case T_DOUBLE:
+            for (int i = 0; i < (int)index; i++) {
+            result->array_type->array->emplace_back(AuxInter.createType("D"));
+            }
             break;
          case T_BYTE:
+            for (int i = 0; i < (int)index; i++) {
+            result->array_type->array->emplace_back(AuxInter.createType("B"));
+            }
             break;
          case T_SHORT:
+            for (int i = 0; i < (int)index; i++) {
+            result->array_type->array->emplace_back(AuxInter.createType("S"));
+            }
             break;
          case T_INT:
+            for (int i = 0; i < (int)index; i++) {
+            result->array_type->array->emplace_back(AuxInter.createType("I"));
+            }
             break;
-         case T_LONG:
+         case T_LONG:         
+            for (int i = 0; i < (int)index; i++) {
+            result->array_type->array->emplace_back(AuxInter.createType("J"));
+            }
             break;
      }
-
+     this_frame->operand_stack.push(result);
+      std::cout << (int)result->tag;
+      getchar();
  }
  void InstructionImpl::anewarray(Frame * this_frame){
     InstructionImpl::nop(this_frame);
@@ -3056,13 +3086,20 @@ void InstructionImpl::arraylength(Frame * this_frame){
 *   @return
 */
 void InstructionImpl::iastore(Frame * this_frame){
+
    auto value = this_frame->operand_stack.top();
    this_frame->operand_stack.pop();
    auto index = this_frame->operand_stack.top();
    this_frame->operand_stack.pop();
    auto arrayRef = this_frame->operand_stack.top();
    this_frame->operand_stack.pop();
+
+   std::cout << (int)index->tag << std::endl;
+   getchar();
    arrayRef->array_type->array->at(index->type_int) = value;
+
+   std::cout << this_frame->operand_stack.size() << std::endl;
+   getchar();
 }
 
 /**
@@ -3269,7 +3306,7 @@ void InstructionImpl::iastore(Frame * this_frame){
     auto val1 = op1->type_int;
     auto val2 = op2->type_int;
 
-    val2 &= 0x0000003f;
+    val2 &= 0x0000001f;
 
     auto valResult = val1 << val2;
 
@@ -3777,3 +3814,19 @@ void InstructionImpl::jsr_w(Frame * this_frame){
     InstructionImpl::nop(this_frame);
 
  }
+
+void InstructionImpl::impdep1(Frame * this_frame) {
+   this_frame->pc++;
+   std::cout << "impdep1 é reservada do Java" << std::endl;
+   exit(-1);
+}
+void InstructionImpl::impdep2(Frame * this_frame) {
+   this_frame->pc++;
+   std::cout << "impdep2 é reservada do Java" << std::endl;
+   exit(-1);
+}
+void InstructionImpl::breakpoint(Frame * this_frame) {
+   this_frame->pc++;
+   std::cout << "breakpoint é reservada do Java" << std::endl;
+   exit(-1);
+}
