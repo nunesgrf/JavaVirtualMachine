@@ -208,7 +208,7 @@ void InstructionImpl::nop(Frame * this_frame) {
                float converted_operand;
                memcpy(&converted_operand,&op->type_float,sizeof(float));
                
-               std::cout << converted_operand;
+               std::cout << (float)converted_operand;
                break;
             case CONSTANT_Byte:
                std::cout << (int) op->type_byte;
@@ -2577,10 +2577,10 @@ void InstructionImpl::putfield(Frame * this_frame){
 
     std::memcpy(&value_1,&op1->type_float,sizeof(float));
     std::memcpy(&value_2,&op2->type_float,sizeof(float));
-    value_1 -= value_2;
+    value_2 -= value_1;
 
     result->tag = CONSTANT_Float;
-    std::memcpy(&result->type_float,&value_1,sizeof(float));
+    std::memcpy(&result->type_float,&value_2,sizeof(float));
     this_frame->operand_stack.push(result);
 
  }
@@ -2604,10 +2604,10 @@ void InstructionImpl::putfield(Frame * this_frame){
 
     std::memcpy(&value_1,&op1->type_float,sizeof(float));
     std::memcpy(&value_2,&op2->type_float,sizeof(float));
-    value_1 /= value_2;
+    value_2 /= value_1;
 
     result->tag = CONSTANT_Float;
-    std::memcpy(&result->type_float,&value_1,sizeof(float));
+    std::memcpy(&result->type_float,&value_2,sizeof(float));
     this_frame->operand_stack.push(result);
 
  }
@@ -2704,11 +2704,9 @@ void InstructionImpl::putfield(Frame * this_frame){
      memcpy(&value_1,&operand_1->type_float, sizeof(float));
      value_2 = -value_1;
      Operand *result = (Operand *) malloc(sizeof(Operand));
-     printf("valor1 = %f\n", value_1);
 
      result->tag = CONSTANT_Double;
      memcpy(&result->type_float,&value_2, sizeof(float));
-     printf("resultado = %f\n", value_2);
 
      this_frame->operand_stack.push(result);
 
@@ -3033,12 +3031,22 @@ void InstructionImpl::putfield(Frame * this_frame){
 *   @return
 */
 void InstructionImpl::arraylength(Frame * this_frame){
+
+   Interpreter AuxInter;
+
    auto arrayRef = this_frame->operand_stack.top();
    this_frame->operand_stack.pop();
-   int size = sizeof(arrayRef);
-   memcpy(&arrayRef->type_int,&size,sizeof(int));
-   this_frame->operand_stack.push(arrayRef);
+
+   auto size      = AuxInter.createType("I");
+
+   if(arrayRef->tag != CONSTANT_Array) size->type_int = 0;
+   else size->type_int = arrayRef->array_type->array->size();
+   
+   this_frame->operand_stack.push(size);
    this_frame->pc++;
+
+   std::cout << (int)size->type_int << std::endl;
+   getchar();
 }
 
 /**
