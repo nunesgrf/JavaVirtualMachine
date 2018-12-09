@@ -1,9 +1,18 @@
+/** @file CpInfo.hpp
+ *  @brief Declarações das funções e dos atributos do Pool de constantes.
+ *  @bug No known bugs.
+ */
 #ifndef ___CPINFO_H___
 #define ___CPINFO_H___
 
-#include "ClassLoader.hpp"
-
-
+//#include "ClassLoader.hpp"
+#include <cstdint>
+#include <stdint.h>
+#include <fstream>
+/**
+*   @class CpInfo
+*   @brief Classe contém tag(uint8) e union que será um tipo diferente dependendo de qual tag que será passada;
+*/
 
 class CpInfo
 {

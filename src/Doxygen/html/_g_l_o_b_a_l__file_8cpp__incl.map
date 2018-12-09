@@ -1,0 +1,15 @@
+<map id="GLOBAL_file.cpp" name="GLOBAL_file.cpp">
+<area shape="rect" id="node2" href="$_g_l_o_b_a_l__file_8hpp.html" title="Armazenas classes estáticas para serem usadas por todo o código. " alt="" coords="507,80,630,107"/>
+<area shape="rect" id="node25" href="$_cp_attribute_interface_8hpp.html" title="Declarações da interface entre ConstantPool e AttributeInfo para traduzir as strings UTF8..." alt="" coords="38,304,202,331"/>
+<area shape="rect" id="node3" href="$_instance_8hpp.html" title="Declaração da struct Instance. " alt="" coords="637,155,734,181"/>
+<area shape="rect" id="node6" href="$_class_loader_8hpp.html" title="Declarações das funções do ClassLoader para salvar todos os bytes de .class corretamente. " alt="" coords="939,304,1059,331"/>
+<area shape="rect" id="node20" href="$_frame_8hpp.html" title="Declarações das funções e da estrutura do Frame, utilizado para salvar resultados parciais..." alt="" coords="644,229,728,256"/>
+<area shape="rect" id="node13" href="$_cp_info_8hpp.html" title="Declarações das funções e dos atributos do Pool de constantes. " alt="" coords="866,528,953,555"/>
+<area shape="rect" id="node15" href="$_method_info_8hpp.html" title="Declarações das funções do MethodInfo estrutura responsável por guardas as informaçoes dos metodos do..." alt="" coords="850,379,962,405"/>
+<area shape="rect" id="node16" href="$_attribute_info_8hpp.html" title="Declarações das funções do AttributeInfo para tratamento dos atributos do arquivo ..." alt="" coords="753,453,872,480"/>
+<area shape="rect" id="node17" href="$_interface_info_8hpp.html" title="Declarações das funções e atributos de InterfaceInfo. " alt="" coords="507,453,627,480"/>
+<area shape="rect" id="node19" href="$_field_info_8hpp.html" title="Declarações das funções do FieldInfo para tratamento dos fields do arquivo .class. " alt="" coords="1037,379,1134,405"/>
+<area shape="rect" id="node18" href="$_byte_reader_8hpp.html" title="Declarações das funções do ByteReader para leitura dos bytes no arquivo .class. " alt="" coords="510,528,626,555"/>
+<area shape="rect" id="node23" href="$_instruction_8hpp.html" title="Declarações das instruçoes referentes ao interpretador da JVM. " alt="" coords="514,304,622,331"/>
+<area shape="rect" id="node24" href="$_instruction_impl_8hpp.html" title="Declarações das funções do ClassLoader para salvar todos os bytes de .class corretamente. " alt="" coords="439,379,572,405"/>
+</map>

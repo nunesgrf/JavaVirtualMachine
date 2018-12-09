@@ -1,12 +1,41 @@
+/** @file CpInfo.cpp
+    @brief Ocorre os set's a partir dos bytes lidos no problema;
+*/
+
 #ifndef CPP_CPINFO
 #define CPP_CPINFO
 
 #include "../hpp/CpInfo.hpp"
+#include "../hpp/ByteReader.hpp"
+#include <iostream>
+#include<cstdlib>
+#define CONSTANT_Utf8 1
+#define CONSTANT_Integer 3
+#define CONSTANT_Float 4
+#define CONSTANT_Long 5
+#define CONSTANT_Double 6
+#define CONSTANT_Class 7
+#define CONSTANT_String 8
+#define CONSTANT_Fieldref 9
+#define CONSTANT_Methodref 10
+#define CONSTANT_InterfaceMethodref 11
+#define CONSTANT_NameAndType 12
+#define CONSTANT_Empty 0
 
+/** @class CpInfo::~CpInfo
+ * @brief Destrutor de CpInfo, desaloca o que foi alocado.
+ * @param sem parâmetros
+ * @return void
+ */
 CpInfo::~CpInfo() {
-     if(this->tag == 1) free(this->UTF8.bytes);
+    //if(this->tag == 1) free(this->UTF8.bytes);
 }
 
+/**@class CpInfo::read
+ * @brief realiza o set inicial das variáveis a partir do @param *fp
+ * @param *fp ponteiro de arquivo
+ * @return void
+ */
 void CpInfo::read(FILE * fp) {
 
     ByteReader<uint8_t>  OneByte;

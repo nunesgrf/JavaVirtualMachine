@@ -1,8 +1,17 @@
+/** @file MethodInfo.hpp
+ *  @brief Declarações das funções do MethodInfo estrutura responsável por guardas as informaçoes dos metodos do arquivo .class
+ *  @bug No known bugs.
+ */
 #ifndef ___METHOD_H___
 #define ___METHOD_H___
 
 #include <cstdint>
 #include "AttributeInfo.hpp"
+#include "CpInfo.hpp"
+/**
+* @struct MethodInfo
+* @brief Tipo para as informações dos metodos que serçao armazenados no methodArea
+*/
 
 struct MethodInfo
 {

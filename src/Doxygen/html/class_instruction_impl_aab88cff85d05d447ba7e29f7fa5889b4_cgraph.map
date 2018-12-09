@@ -1,0 +1,7 @@
+<map id="InstructionImpl::lneg" name="InstructionImpl::lneg">
+<area shape="rect" id="node2" href="$class_interpreter.html#a8ff3509dcc0f48200724b8ae04467495" title="Interpreter::createType" alt="" coords="193,31,348,57"/>
+<area shape="rect" id="node3" href="$class_interpreter.html#a99a623bb05c66632d0ab034ebaf2cf51" title="Interpreter::getClassInfo" alt="" coords="396,31,559,57"/>
+<area shape="rect" id="node4" href="$class_interpreter.html#ab8fa17a7a73d119f3a3113555aef9702" title="Interpreter::loadInMemo" alt="" coords="607,5,767,32"/>
+<area shape="rect" id="node5" href="$class_interpreter.html#a39a3745e54aa3cee8882075c96ae8b3f" title="Interpreter::loadVariables" alt="" coords="815,31,981,57"/>
+<area shape="rect" id="node6" href="$class_class_loader.html#a8f3dc8367a76e7a4594bd5e8206d3977" title="ClassLoader::getConstPool" alt="" coords="1029,31,1212,57"/>
+</map>

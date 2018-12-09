@@ -1,8 +1,20 @@
+/** @file InterfaceInfo.hpp
+ *  @brief Declarações das funções e atributos de InterfaceInfo.
+ *  @bug No known bugs.
+ */
 #ifndef ___INTERFACEINFO_H___
 #define ___INTERFACEINFO_H___
 
-#include "ClassLoader.hpp"
-#include "../cpp/ByteReader.cpp"
+#include <fstream>
+#include <cstdint>
+
+#include "ByteReader.hpp"
+
+/**
+*   @class InterfaceInfo
+*   @brief classe contém interface_table(uint16)
+*			Além de um destructor e um método para setar as informações da interface;    
+*/
 
 class InterfaceInfo {
 

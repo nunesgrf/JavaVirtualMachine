@@ -1,14 +1,24 @@
-#ifndef CPP_METHOD
-#define CPP_METHOD
+/** @file MethodInfo.cpp
+    @brief Métodos que simulam as a leitura dos methods assim como um destrutor;
+
+*/
 
 #include "../hpp/MethodInfo.hpp"
-#include "ByteReader.cpp"
+#include "../hpp/ByteReader.hpp"
 
+/** @brief Destrutor da classe MethodInfo.
+ * @param sem parâmetros.
+ * @return destructor.
+ */
 MethodInfo::~MethodInfo()
 {
     free(this->attributes);
 }
 
+/** @brief Serve para preencher os valores de uma instância de MethodInfo.
+ * @param *fp ponteiro para arquivo @param trueCpInfo vetor de CpInfo*
+ * @return void
+ */
 void MethodInfo::read(FILE *fp, std::vector<CpInfo*> trueCpInfo)
 {
     int i = 0;
@@ -25,5 +35,3 @@ void MethodInfo::read(FILE *fp, std::vector<CpInfo*> trueCpInfo)
         this->attributes[i].read(fp,trueCpInfo);
     }
 }
-
-#endif 

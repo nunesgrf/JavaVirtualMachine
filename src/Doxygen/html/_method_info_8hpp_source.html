@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>JVM: Código-Fonte de MethodInfo.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">JVM
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="pages.html"><span>Páginas&#160;relacionadas</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
+      <li><a href="annotated.html"><span>Estruturas&#160;de&#160;dados</span></a></li>
+      <li class="current"><a href="files.html"><span>Ficheiros</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Localizar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Lista&#160;de&#160;ficheiros</span></a></li>
+      <li><a href="globals.html"><span>Globais</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">MethodInfo.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_method_info_8hpp.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifndef ___METHOD_H___</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define ___METHOD_H___</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;cstdint&gt;</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_attribute_info_8hpp.html">AttributeInfo.hpp</a>&quot;</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_cp_info_8hpp.html">CpInfo.hpp</a>&quot;</span></div><div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="struct_method_info.html">   16</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_method_info.html">MethodInfo</a></div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div><div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="struct_method_info.html#ab24f22a8b4e3dcae351b0aa9dc6b7051">   18</a></span>&#160;    uint16_t <a class="code" href="struct_method_info.html#ab24f22a8b4e3dcae351b0aa9dc6b7051">access_flags</a>;</div><div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="struct_method_info.html#afaa8591bae9244b2b47609e4919e4dbe">   19</a></span>&#160;    uint16_t <a class="code" href="struct_method_info.html#afaa8591bae9244b2b47609e4919e4dbe">name_index</a>;</div><div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="struct_method_info.html#a427ffc223f3b52b4d83fa6ee9e411089">   20</a></span>&#160;    uint16_t <a class="code" href="struct_method_info.html#a427ffc223f3b52b4d83fa6ee9e411089">descriptor_index</a>;</div><div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="struct_method_info.html#ac7a3912757dd3af6ac55988fd42305f4">   21</a></span>&#160;    uint16_t <a class="code" href="struct_method_info.html#ac7a3912757dd3af6ac55988fd42305f4">attributes_count</a>;</div><div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="struct_method_info.html#af480b7ee48a3812864ef16e3f0b44051">   22</a></span>&#160;    <a class="code" href="class_attribute_info.html">AttributeInfo</a> *<a class="code" href="struct_method_info.html#af480b7ee48a3812864ef16e3f0b44051">attributes</a>;</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="struct_method_info.html#a96fbb8de441ef2af032c20d36d41eb7a">read</a>(FILE *fp,std::vector&lt;CpInfo*&gt;);</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="struct_method_info.html#ab2a081a2855eec567e82adfff26059cd">~MethodInfo</a>();</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;};</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#endif // ___METHOD_H___</span></div><div class="ttc" id="struct_method_info_html_ac7a3912757dd3af6ac55988fd42305f4"><div class="ttname"><a href="struct_method_info.html#ac7a3912757dd3af6ac55988fd42305f4">MethodInfo::attributes_count</a></div><div class="ttdeci">uint16_t attributes_count</div><div class="ttdef"><b>Definition:</b> MethodInfo.hpp:21</div></div>
+<div class="ttc" id="struct_method_info_html_a96fbb8de441ef2af032c20d36d41eb7a"><div class="ttname"><a href="struct_method_info.html#a96fbb8de441ef2af032c20d36d41eb7a">MethodInfo::read</a></div><div class="ttdeci">void read(FILE *fp, std::vector&lt; CpInfo * &gt;)</div><div class="ttdoc">Serve para preencher os valores de uma instância de MethodInfo. </div><div class="ttdef"><b>Definition:</b> MethodInfo.cpp:22</div></div>
+<div class="ttc" id="struct_method_info_html_ab2a081a2855eec567e82adfff26059cd"><div class="ttname"><a href="struct_method_info.html#ab2a081a2855eec567e82adfff26059cd">MethodInfo::~MethodInfo</a></div><div class="ttdeci">~MethodInfo()</div><div class="ttdoc">Destrutor da classe MethodInfo. </div><div class="ttdef"><b>Definition:</b> MethodInfo.cpp:13</div></div>
+<div class="ttc" id="_cp_info_8hpp_html"><div class="ttname"><a href="_cp_info_8hpp.html">CpInfo.hpp</a></div><div class="ttdoc">Declarações das funções e dos atributos do Pool de constantes. </div></div>
+<div class="ttc" id="struct_method_info_html_afaa8591bae9244b2b47609e4919e4dbe"><div class="ttname"><a href="struct_method_info.html#afaa8591bae9244b2b47609e4919e4dbe">MethodInfo::name_index</a></div><div class="ttdeci">uint16_t name_index</div><div class="ttdef"><b>Definition:</b> MethodInfo.hpp:19</div></div>
+<div class="ttc" id="class_attribute_info_html"><div class="ttname"><a href="class_attribute_info.html">AttributeInfo</a></div><div class="ttdoc">classe contém name_index e length(uint32) - todos uint16; Há também uma union que tem como principio ...</div><div class="ttdef"><b>Definition:</b> AttributeInfo.hpp:161</div></div>
+<div class="ttc" id="_attribute_info_8hpp_html"><div class="ttname"><a href="_attribute_info_8hpp.html">AttributeInfo.hpp</a></div><div class="ttdoc">Declarações das funções do AttributeInfo para tratamento dos atributos do arquivo ...</div></div>
+<div class="ttc" id="struct_method_info_html_a427ffc223f3b52b4d83fa6ee9e411089"><div class="ttname"><a href="struct_method_info.html#a427ffc223f3b52b4d83fa6ee9e411089">MethodInfo::descriptor_index</a></div><div class="ttdeci">uint16_t descriptor_index</div><div class="ttdef"><b>Definition:</b> MethodInfo.hpp:20</div></div>
+<div class="ttc" id="struct_method_info_html"><div class="ttname"><a href="struct_method_info.html">MethodInfo</a></div><div class="ttdoc">Tipo para as informações dos metodos que serçao armazenados no methodArea. </div><div class="ttdef"><b>Definition:</b> MethodInfo.hpp:16</div></div>
+<div class="ttc" id="struct_method_info_html_af480b7ee48a3812864ef16e3f0b44051"><div class="ttname"><a href="struct_method_info.html#af480b7ee48a3812864ef16e3f0b44051">MethodInfo::attributes</a></div><div class="ttdeci">AttributeInfo * attributes</div><div class="ttdef"><b>Definition:</b> MethodInfo.hpp:22</div></div>
+<div class="ttc" id="struct_method_info_html_ab24f22a8b4e3dcae351b0aa9dc6b7051"><div class="ttname"><a href="struct_method_info.html#ab24f22a8b4e3dcae351b0aa9dc6b7051">MethodInfo::access_flags</a></div><div class="ttdeci">uint16_t access_flags</div><div class="ttdef"><b>Definition:</b> MethodInfo.hpp:18</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>

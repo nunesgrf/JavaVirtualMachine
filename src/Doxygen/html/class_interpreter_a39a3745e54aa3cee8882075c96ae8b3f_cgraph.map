@@ -1,0 +1,5 @@
+<map id="Interpreter::loadVariables" name="Interpreter::loadVariables">
+<area shape="rect" id="node2" href="$class_class_loader.html#a8f3dc8367a76e7a4594bd5e8206d3977" title="ClassLoader::getConstPool" alt="" coords="220,5,403,32"/>
+<area shape="rect" id="node3" href="$class_interpreter.html#a99a623bb05c66632d0ab034ebaf2cf51" title="Interpreter::getClassInfo" alt="" coords="230,56,393,83"/>
+<area shape="rect" id="node4" href="$class_interpreter.html#ab8fa17a7a73d119f3a3113555aef9702" title="Interpreter::loadInMemo" alt="" coords="451,81,611,108"/>
+</map>

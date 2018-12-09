@@ -1,8 +1,28 @@
-#ifndef CPP_INTERACP
-#define CPP_INTERACP
+/** @file CpAttributeInterface.cpp
+*   @brief Funções que verificam, a partir da tag, qual o tipo do bytecode que está sendo lido;
+*
+*/
 
 #include "../hpp/CpAttributeInterface.hpp"
 
+#define CONSTANT_Utf8 1
+#define CONSTANT_Integer 3
+#define CONSTANT_Float 4
+#define CONSTANT_Long 5
+#define CONSTANT_Double 6
+#define CONSTANT_Class 7
+#define CONSTANT_String 8
+#define CONSTANT_Fieldref 9
+#define CONSTANT_Methodref 10
+#define CONSTANT_InterfaceMethodref 11
+#define CONSTANT_NameAndType 12
+#define CONSTANT_Empty 0
+
+/** @class CpAttributeInterface::getUTF8
+ * @brief Função que realiza buscas recursivas dentro do CpInfo de um bytecode.
+ * @param alpha vetor de CpInfo* @param beta index de início da busca.
+ * @return std::string
+ */
 std::string CpAttributeInterface::getUTF8(std::vector<CpInfo*> alpha, uint16_t beta) {
 
     if(alpha[beta]->tag == 1) return (char*)alpha[beta]->UTF8.bytes;
@@ -37,8 +57,7 @@ std::string CpAttributeInterface::getUTF8(std::vector<CpInfo*> alpha, uint16_t b
             return getUTF8(alpha, alpha[beta]->String.string_index -1);
             break;
         default:
+             return "";
              break; /* Must Change default */
     }
 } 
-
-#endif

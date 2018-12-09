@@ -1,12 +1,29 @@
-#ifndef CPP_FIELD
-#define CPP_FIELD
+/** @file FieldInfo.cpp
+    @brief Funções que mexerão com as informações das fields, armazendo os mesmos a partir da leitura dos bytecodes;
+
+*/
 
 #include "../hpp/FieldInfo.hpp"
+#include "../hpp/ByteReader.hpp"
 
+/** @class FieldInfo::~FieldInfo
+ * @brief Destrutor de FieldInfo.
+ * @param sem parâmetros.
+ * @return void
+ */
 FieldInfo::~FieldInfo() {
-
+    
+    for(auto a : this->attributes) {
+        a->~AttributeInfo();
+        free(a);
+    }
 }
 
+/** @class FieldInfo::read
+ *   @brief setting inicial do FieldInfo a partir de um arquivo.
+ * @param *fp ponteiro de arquivo @param trueCpInfo vetor de cpInfo.
+ * @return void
+ */
 void FieldInfo::read(FILE *fp, std::vector<CpInfo *> trueCpInfo)
 {
     ByteReader<uint16_t> TwoByte;
@@ -26,5 +43,3 @@ void FieldInfo::read(FILE *fp, std::vector<CpInfo *> trueCpInfo)
     
 
 }
-
-#endif

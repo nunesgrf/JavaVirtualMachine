@@ -1,33 +1,28 @@
-#ifndef ___BYTEREADER_H___
-#define ___BYTEREADER_H___
-
+/**
+*	@file ByteReader.cpp
+*	@brief Intuito é buscar obinário a partir do .class passado pelo arquivo 
+*
+*/
+#include "../hpp/ByteReader.hpp"
 
 #define NEUTRAL_BYTE_FOR_OR 0x00;
-
-/**
- * @brief Classe ByteReader. No momento da instanciação define-se qual tipo deseja-se buscar
- * E assim quando acionado o método byteCatch(FILE * fp) o arquivo busca o binário correspondente.
- */
-template <class T>
-class ByteReader {   
-    public:
-    T byteCatch(FILE * fp);
-};
-
-
-/**
+/** @class ByteReader<T>::byteCatch
  * @brief byteCatch(FILE * fp) busca o binário correspondendo ao tipo T.
  * @param FILE * fp : arquivo de acesso.
+ * @return T
  */
 template <class T>
 T ByteReader<T>::byteCatch(FILE * fp) {
     int num_of_bytes = sizeof(T); 
     T toReturn = NEUTRAL_BYTE_FOR_OR;
+	toReturn = getc(fp);
+	if (num_of_bytes > 1) {
+		for(int i = 0; i < num_of_bytes - 1; i++) {
+        	toReturn = ((toReturn << 8) | getc(fp));
+    	}
+	}
 
-    for(int i = 0; i < num_of_bytes; i++) {
-        toReturn = ((toReturn << 8) | getc(fp));
-    }
     return toReturn;
 }
 
-#endif // ___BYTEREADER_H___
+

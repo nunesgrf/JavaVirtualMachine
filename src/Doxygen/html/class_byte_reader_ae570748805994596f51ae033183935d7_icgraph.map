@@ -1,0 +1,29 @@
+<map id="ByteReader::byteCatch" name="ByteReader::byteCatch">
+<area shape="rect" id="node2" href="$class_constant_value.html#aee71ff590a730276c8da00dbdee74ecf" title="ConstantValue::read" alt="" coords="241,5,382,32"/>
+<area shape="rect" id="node3" href="$class_number_table_attribute.html#aa56c8bbf97ea1c478e4488b93f1287a7" title="NumberTableAttribute\l::read" alt="" coords="237,57,386,98"/>
+<area shape="rect" id="node4" href="$class_code_attribute.html#ae5c7888c59b2a2990798c597c014a2ac" title="CodeAttribute::read" alt="" coords="244,123,379,149"/>
+<area shape="rect" id="node5" href="$class_inner_class.html#ab178cb43a3277c1ade99a8a0c346cd49" title="InnerClass::read" alt="" coords="252,173,371,200"/>
+<area shape="rect" id="node6" href="$class_exception.html#ad660b6215e7a9df9b2d4bc5216c828c4" title="Exception::read" alt="" coords="255,224,368,251"/>
+<area shape="rect" id="node7" href="$class_source_file.html#ab03dce42dd5c3f890ac4efa38e9d93e6" title="SourceFile::read" alt="" coords="253,275,370,301"/>
+<area shape="rect" id="node8" href="$class_attribute_info.html#ac167daa272a7ef9b9f11389d34e42165" title="AttributeInfo::read" alt="" coords="248,376,375,403"/>
+<area shape="rect" id="node10" href="$class_field_info.html#acb85db9ce893bc3e2617138fd46a8ad6" title="FieldInfo::read" alt="" coords="497,325,603,352"/>
+<area shape="rect" id="node12" href="$struct_method_info.html#a96fbb8de441ef2af032c20d36d41eb7a" title="Serve para preencher os valores de uma instância de MethodInfo. " alt="" coords="490,427,610,453"/>
+<area shape="rect" id="node14" href="$class_class_loader.html#a9e756ef58a13aab63472a9b343710327" title="ClassLoader::setMagic" alt="" coords="233,477,389,504"/>
+<area shape="rect" id="node15" href="$class_class_loader.html#ad2bd2b993bdbc080f77a9f5e76744fd7" title="ClassLoader::setMinor" alt="" coords="235,528,388,555"/>
+<area shape="rect" id="node16" href="$class_class_loader.html#afd21ab61a4ea4d2fda29319e37a7886e" title="ClassLoader::setMajor" alt="" coords="235,579,388,605"/>
+<area shape="rect" id="node17" href="$class_class_loader.html#a22735292f1ed1c1b101111f013524a06" title="ClassLoader::setConstCount" alt="" coords="216,629,407,656"/>
+<area shape="rect" id="node18" href="$class_class_loader.html#a78a667283feda0933eabf1d8f601fa30" title="ClassLoader::setAccessFlag" alt="" coords="216,680,407,707"/>
+<area shape="rect" id="node19" href="$class_class_loader.html#aa089d3175ca27ac5e0efa2f6c26c4df5" title="ClassLoader::setThisClass" alt="" coords="221,731,401,757"/>
+<area shape="rect" id="node20" href="$class_class_loader.html#a011a4cfdd1995fa34718a549ca467b0a" title="ClassLoader::setSuperClass" alt="" coords="217,781,406,808"/>
+<area shape="rect" id="node21" href="$class_class_loader.html#a25c897efbe0542a8603f2dfa29943881" title="ClassLoader::setInterCount" alt="" coords="220,832,403,859"/>
+<area shape="rect" id="node22" href="$class_class_loader.html#aedeaf814e3cf232978ce7e0b135c93b0" title="ClassLoader::setFieldCount" alt="" coords="219,883,403,909"/>
+<area shape="rect" id="node23" href="$class_class_loader.html#aa744ed99b82e912547af903ea13fa3dd" title="ClassLoader::setMethodCount" alt="" coords="212,933,411,960"/>
+<area shape="rect" id="node24" href="$class_class_loader.html#ae1dff6712251163173291991f52ac8fa" title="ClassLoader::setAttributes\lCount" alt="" coords="223,985,400,1026"/>
+<area shape="rect" id="node25" href="$class_cp_info.html#ab8c89df973cc40b407e0cdd4911923f1" title="CpInfo::read" alt="" coords="264,1051,359,1077"/>
+<area shape="rect" id="node27" href="$class_interface_info.html#a9fa9166bbfee8837d611da9a88d1ba67" title="InterfaceInfo::setInterfaceInfo" alt="" coords="214,1101,409,1128"/>
+<area shape="rect" id="node9" href="$class_class_loader.html#adac675675241b8c2892ebfbf5b902d33" title="ClassLoader::setAttributes" alt="" coords="461,376,639,403"/>
+<area shape="rect" id="node11" href="$class_class_loader.html#a3a544b1a25a445bbf4ce7e5d84a2a90a" title="ClassLoader::setFields" alt="" coords="697,325,853,352"/>
+<area shape="rect" id="node13" href="$class_class_loader.html#ab47e37f5d359a067182c1a181e9db54e" title="ClassLoader::setMethods" alt="" coords="689,427,860,453"/>
+<area shape="rect" id="node26" href="$class_class_loader.html#a09a097315d78f50dc7522811e256978f" title="ClassLoader::setConstPool" alt="" coords="459,1051,641,1077"/>
+<area shape="rect" id="node28" href="$class_class_loader.html#a18bc96df21925d9da172c64205736ea5" title="ClassLoader::setInterface" alt="" coords="464,1101,636,1128"/>
+</map>

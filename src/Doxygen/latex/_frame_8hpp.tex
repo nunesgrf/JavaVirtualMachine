@@ -1,0 +1,51 @@
+\hypertarget{_frame_8hpp}{}\section{Referência ao ficheiro Frame.\+hpp}
+\label{_frame_8hpp}\index{Frame.\+hpp@{Frame.\+hpp}}
+
+
+Declarações das funções e da estrutura do \hyperlink{struct_frame}{Frame}, utilizado para salvar resultados parciais.  
+
+
+{\ttfamily \#include $<$cstdint$>$}\\*
+{\ttfamily \#include $<$string$>$}\\*
+{\ttfamily \#include $<$vector$>$}\\*
+{\ttfamily \#include $<$stack$>$}\\*
+{\ttfamily \#include $<$map$>$}\\*
+{\ttfamily \#include \char`\"{}Stack.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Cp\+Info.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Method\+Info.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Attribute\+Info.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Class\+Loader.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Instruction.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Instance.\+hpp\char`\"{}}\\*
+Diagrama de dependências de inclusão para Frame.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_frame_8hpp__incl}
+\end{center}
+\end{figure}
+Este grafo mostra quais são os ficheiros que incluem directamente ou indirectamente este ficheiro\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_frame_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Componentes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_array_type}{Array\+Type}
+\begin{DoxyCompactList}\small\item\em tem como base um tipo de vetor de um tipo de struct \hyperlink{struct_operand}{Operand}; \end{DoxyCompactList}\item 
+struct \hyperlink{struct_operand}{Operand}
+\begin{DoxyCompactList}\small\item\em intuito de ligar aos tipos possíveis para variáveis que serão utilizadas; \end{DoxyCompactList}\item 
+struct \hyperlink{struct_frame}{Frame}
+\begin{DoxyCompactList}\small\item\em objetivo de estruturar o tipo \hyperlink{struct_frame}{Frame}; Além disso, contém destrutor e run(para rodar o frame); \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrição detalhada}
+Declarações das funções e da estrutura do \hyperlink{struct_frame}{Frame}, utilizado para salvar resultados parciais. 
+
+\begin{DoxyRefDesc}{Bug}
+\item[\hyperlink{bug__bug000007}{Bug}]No known bugs. \end{DoxyRefDesc}

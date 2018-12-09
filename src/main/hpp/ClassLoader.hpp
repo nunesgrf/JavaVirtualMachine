@@ -1,3 +1,7 @@
+/** @file ClassLoader.hpp
+ *  @brief Declarações das funções do ClassLoader para salvar todos os bytes de .class corretamente.
+ *  @bug No known bugs.
+ */
 #ifndef ___JAVA_H___
 #define ___JAVA_H___
 
@@ -13,6 +17,12 @@
 #define CONSTANT_Methodref 10
 #define CONSTANT_InterfaceMethodref 11
 #define CONSTANT_NameAndType 12
+#define CONSTANT_Boolean  90
+#define CONSTANT_Byte     91
+#define CONSTANT_Char     92
+#define CONSTANT_Short    93
+#define CONSTANT_Array 94
+#define CONSTANT_Empty 0
 #define typeof __typeof__
 
 #include <cstdint>
@@ -22,12 +32,11 @@
 #include <memory>
 #include <cstdio>
 
-#include "../cpp/ByteReader.cpp"
 #include "CpInfo.hpp"
-#include "../cpp/MethodInfo.cpp"
+#include "MethodInfo.hpp"
 #include "InterfaceInfo.hpp"
-#include "../cpp/InterfaceInfo.cpp"
-#include "../cpp/FieldInfo.cpp"
+#include "FieldInfo.hpp"
+#include "AttributeInfo.hpp"
 
 class CpInfo;
 class FieldInfo;
@@ -35,14 +44,19 @@ class MethodInfo;
 class AttributeInfo;
 class InterfaceInfo;
 
+/**
+* @class ClassLoader
+* @brief Todo funcionamento do classLoader em relação ao local de armazenamento enquanto é feito a leitura, separando de acordo com que for chamado os metodos de set e get;
+*     Além disso, contém destructor;
+*/
 class ClassLoader {
 
     private:
       /* The magic item supplies the magic number identifying the class file format */
       uint32_t magicNumber;
-      /* The values of the minor_version and major_version items are the 
-      minor and major version numbers of this class file. 
-      Together, a major and a minor version number determine 
+      /* The values of the minor_version and major_version items are the
+      minor and major version numbers of this class file.
+      Together, a major and a minor version number determine
       the version of the class file format. */
       uint16_t minorVersion;
       uint16_t majorVersion;
@@ -70,12 +84,12 @@ class ClassLoader {
        index into the constant_pool table */
       std::vector<InterfaceInfo*> interfaces;
 
-      /* The value of the fields_count item gives the number
+     
+      uint16_t fieldsCounter; /* The value of the fields_count item gives the number
        of field_info structures in the fields table */
-      uint16_t fieldsCounter;
 
-      /* The fields table includes only those fields that are declared by this class or interface. 
-      It does not include items representing fields that are 
+      /* The fields table includes only those fields that are declared by this class or interface.
+      It does not include items representing fields that are
       inherited from superclasses or superinterfaces. */
       std::vector<FieldInfo *> fields;
 
@@ -84,7 +98,7 @@ class ClassLoader {
       uint16_t methodsCounter;
 
       /*  The method_info structures represent all methods declared by this class or interface type,
-       including instance methods, class methods, instance initialization methods, 
+       including instance methods, class methods, instance initialization methods,
        and any class or interface initialization method.  */
       std::vector<MethodInfo *> methods;
 
@@ -92,7 +106,7 @@ class ClassLoader {
        of attributes in the attributes table of this class. */
       uint16_t attributesCounter;
 
-      
+
       std::vector<AttributeInfo *> attributes;
 
       void setMagic(FILE * fp);
@@ -113,7 +127,7 @@ class ClassLoader {
       void setAttributes(FILE * fp);
 
     public:
-      
+
         uint32_t getMagic() {
           return magicNumber;
         }
@@ -129,7 +143,7 @@ class ClassLoader {
         std::vector<CpInfo*> getConstPool() {
             return constantPool;
         }
-        
+
         uint16_t getFlag() {
             return accessFlags;
         }
@@ -142,7 +156,7 @@ class ClassLoader {
         uint16_t getInterCounter() {
             return interfaceCounter;
         }
-        
+
         std::vector<InterfaceInfo*> getInterfaces() {
             return interfaces;
         }
@@ -150,26 +164,20 @@ class ClassLoader {
         uint16_t getFieldCount() {
             return fieldsCounter;
         }
-        
-        typeof(fields) getFields() {
-            return fields;
-        }
+
+        std::vector<FieldInfo*> getFields();
 
         uint16_t getMethoCount() {
             return methodsCounter;
         }
 
-        typeof(methods) getMethods() {
-            return methods;
-        }
+        std::vector<MethodInfo*> getMethods();
 
         uint16_t getAttriCount() {
             return attributesCounter;
         }
 
-        typeof(attributes) getAttributes() {
-            return attributes;
-        } 
+        std::vector<AttributeInfo*> getAttributes();
 
         bool DEBUG = true;
         ~ClassLoader();
